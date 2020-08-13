@@ -2,14 +2,17 @@
 #include <iostream>
 #include <vector>
 
+#define NUM_DWARF 7
+#define NUM_PERSON 9
+
 using namespace std;
 
-void performHeightDfs(const int heights[9], bool isDwarfPicked[9], vector<int> pickedHeights) {
+void performHeightDfs(const int heights[NUM_PERSON], bool isDwarfPicked[NUM_PERSON], vector<int> pickedHeights) {
     int numPickedDwarf = 0;
     int pickedHeightSum = 0;
     int lastPickedDwarfNo = -1;
 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < NUM_PERSON; i++) {
         if (isDwarfPicked[i]) {
             numPickedDwarf++;
             pickedHeightSum += heights[i];
@@ -17,17 +20,17 @@ void performHeightDfs(const int heights[9], bool isDwarfPicked[9], vector<int> p
         }
     }
 
-    if (pickedHeights.size() == 7 && pickedHeightSum == 100) {
+    if (pickedHeights.size() == NUM_DWARF && pickedHeightSum == 100) {
         sort(pickedHeights.begin(), pickedHeights.end());
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < NUM_DWARF; i++) {
             cout << pickedHeights[i] << endl;
         }
 
         exit(0);
     }
 
-    for (int i = lastPickedDwarfNo + 1; i < 9; i++) {
+    for (int i = lastPickedDwarfNo + 1; i < NUM_PERSON; i++) {
         pickedHeights.push_back(heights[i]);
 
         isDwarfPicked[i] = true;
@@ -40,8 +43,8 @@ void performHeightDfs(const int heights[9], bool isDwarfPicked[9], vector<int> p
 }
 
 int main() {
-    int heights[9];
-    bool isDwarfPicked[9] = {false, false, false, false, false, false, false, false, false};
+    int heights[NUM_PERSON];
+    bool isDwarfPicked[NUM_PERSON] = {false, false, false, false, false, false, false, false, false};
     vector<int> pickedHeights;
 
     for (int &height : heights) {
