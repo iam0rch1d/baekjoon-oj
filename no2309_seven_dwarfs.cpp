@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void performHeightDfs(const int heights[NUM_PERSON], bool isDwarfPicked[NUM_PERSON], vector<int> pickedHeights) {
+void backtrackHeight(const int *heights, bool *isDwarfPicked, vector<int> pickedHeights) {
     int numPickedDwarf = 0;
     int pickedHeightSum = 0;
     int lastPickedDwarfNo = -1;
@@ -35,7 +35,7 @@ void performHeightDfs(const int heights[NUM_PERSON], bool isDwarfPicked[NUM_PERS
 
         isDwarfPicked[i] = true;
 
-        performHeightDfs(heights, isDwarfPicked, pickedHeights);
+        backtrackHeight(heights, isDwarfPicked, pickedHeights);
         pickedHeights.pop_back();
 
         isDwarfPicked[i] = false;
@@ -51,7 +51,7 @@ int main() {
         cin >> height;
     }
 
-    performHeightDfs(heights, isDwarfPicked, pickedHeights);
+    backtrackHeight(heights, isDwarfPicked, pickedHeights);
 
     return 0;
 }

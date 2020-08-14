@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -43,7 +42,7 @@ public:
     }
 };
 
-void performNumberDfs(Sudoku sudoku) {
+void backtrackNumber(Sudoku sudoku) {
     int indexBlankToFill = -1;
     Point toFill;
 
@@ -79,7 +78,7 @@ void performNumberDfs(Sudoku sudoku) {
             sudoku.isNumberInBox[(toFill.y / 3) * 3 + toFill.x / 3][candidate] = true;
             sudoku.isBlankFilled[indexBlankToFill] = true;
 
-            performNumberDfs(sudoku);
+            backtrackNumber(sudoku);
 
             sudoku.numberTable[toFill.y][toFill.x] = 0;
             sudoku.isNumberInRow[toFill.y][candidate] = false;
@@ -99,7 +98,7 @@ int main() {
         }
     }
 
-    performNumberDfs(Sudoku(numberTable));
+    backtrackNumber(Sudoku(numberTable));
 
     return 0;
 }
