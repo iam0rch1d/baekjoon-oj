@@ -2,8 +2,8 @@
 #include <iostream>
 #include <vector>
 
-#define NUM_DWARF 7
 #define NUM_PERSON 9
+#define NUM_DWARF 7
 
 using namespace std;
 
