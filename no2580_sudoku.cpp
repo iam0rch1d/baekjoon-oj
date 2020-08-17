@@ -70,8 +70,7 @@ void backtrackNumber(Sudoku sudoku) {
     for (int candidate = 1; candidate <= 9; candidate++) {
         if (!sudoku.isNumberInRow[toFill.y][candidate]
             && !sudoku.isNumberInColumn[toFill.x][candidate]
-            && !sudoku.isNumberInBox[(toFill.y / 3) * 3 + toFill.x / 3][candidate]
-                ) {
+            && !sudoku.isNumberInBox[(toFill.y / 3) * 3 + toFill.x / 3][candidate]) {
             sudoku.numberTable[toFill.y][toFill.x] = candidate;
             sudoku.isNumberInRow[toFill.y][candidate] = true;
             sudoku.isNumberInColumn[toFill.x][candidate] = true;

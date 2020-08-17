@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void backtrackHeight(const int *heights, bool *isDwarfPicked, vector<int> pickedHeights) {
+void backtrackHeight(const int *heights, bool *isDwarfPicked, vector<int> &pickedHeights) {
     int numPickedDwarf = 0;
     int pickedHeightSum = 0;
     int lastPickedDwarfNo = -1;
