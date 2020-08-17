@@ -36,7 +36,7 @@ int operate(vector<int> &operands, vector<int> &operationSequence) {
 }
 
 void backtrackResult(vector<int> &operands,
-                     int numOperations[4],
+                     int *numOperations,
                      vector<int> &operationSequence,
                      vector<int> &results) {
     int result;
@@ -81,7 +81,7 @@ int main() {
     backtrackResult(operands, numOperations, operationSequence, results);
     sort(results.begin(), results.end());
 
-    cout << results.back() << endl << results.front();
+    cout << results.back() << endl << results[0];
 
     return 0;
 }
