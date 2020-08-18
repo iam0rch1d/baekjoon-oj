@@ -68,13 +68,15 @@ void backtrackNumber(Sudoku sudoku) {
     }
 
     for (int candidate = 1; candidate <= 9; candidate++) {
+        int boxNo = toFill.y / 3 * 3 + toFill.x / 3;
+
         if (!sudoku.isNumberInRow[toFill.y][candidate]
             && !sudoku.isNumberInColumn[toFill.x][candidate]
-            && !sudoku.isNumberInBox[(toFill.y / 3) * 3 + toFill.x / 3][candidate]) {
+            && !sudoku.isNumberInBox[boxNo][candidate]) {
             sudoku.numberTable[toFill.y][toFill.x] = candidate;
             sudoku.isNumberInRow[toFill.y][candidate] = true;
             sudoku.isNumberInColumn[toFill.x][candidate] = true;
-            sudoku.isNumberInBox[(toFill.y / 3) * 3 + toFill.x / 3][candidate] = true;
+            sudoku.isNumberInBox[boxNo][candidate] = true;
             sudoku.isBlankFilled[indexBlankToFill] = true;
 
             backtrackNumber(sudoku);
@@ -82,7 +84,7 @@ void backtrackNumber(Sudoku sudoku) {
             sudoku.numberTable[toFill.y][toFill.x] = 0;
             sudoku.isNumberInRow[toFill.y][candidate] = false;
             sudoku.isNumberInColumn[toFill.x][candidate] = false;
-            sudoku.isNumberInBox[(toFill.y / 3) * 3 + toFill.x / 3][candidate] = false;
+            sudoku.isNumberInBox[boxNo][candidate] = false;
             sudoku.isBlankFilled[indexBlankToFill] = false;
         }
     }
