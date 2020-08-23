@@ -15,3 +15,4 @@ add_executable(no6549_largest_rectangle_in_histogram no6549_largest_rectangle_in
 add_executable(no2630_colored_paper_pieces no2630_colored_paper_pieces.cpp)
 add_executable(no1992_quadtree no1992_quadtree.cpp)
 add_executable(no1780_number_of_paper_pieces no1780_number_of_paper_pieces.cpp)
+add_executable(no1629_power no1629_power.cpp)
