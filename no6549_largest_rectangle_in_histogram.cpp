@@ -8,12 +8,12 @@ typedef struct Division {
     int rightEnd;
 } Division;
 
-long long int findMaximumSurface(vector<long long int> &rectangleHeights, Division division) {
+long long int dncMaximumSurface(vector<long long int> &rectangleHeights, Division division) {
     if (division.leftEnd == division.rightEnd) return rectangleHeights[division.leftEnd];
 
     int center = (division.leftEnd + division.rightEnd) / 2;
-    long long int maximumSurface = max(findMaximumSurface(rectangleHeights, {division.leftEnd, center}),
-                                       findMaximumSurface(rectangleHeights, {center + 1, division.rightEnd}));
+    long long int maximumSurface = max(dncMaximumSurface(rectangleHeights, {division.leftEnd, center}),
+                                       dncMaximumSurface(rectangleHeights, {center + 1, division.rightEnd}));
     Division stretched = {center, center + 1};
     long long int stretchedHeight = min(rectangleHeights[stretched.leftEnd], rectangleHeights[stretched.rightEnd]);
 
@@ -50,7 +50,7 @@ int main() {
             cin >> boardHeight;
         }
 
-        cout << findMaximumSurface(rectangleHeights, {0, numRectangle - 1}) << endl;
+        cout << dncMaximumSurface(rectangleHeights, {0, numRectangle - 1}) << endl;
     }
 
     return 0;
