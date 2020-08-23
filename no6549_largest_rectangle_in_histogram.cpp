@@ -13,7 +13,7 @@ long long int findMaximumSurface(vector<long long int> &rectangleHeights, Divisi
 
     int center = (division.leftEnd + division.rightEnd) / 2;
     long long int maximumSurface = max(findMaximumSurface(rectangleHeights, {division.leftEnd, center}),
-                                  findMaximumSurface(rectangleHeights, {center + 1, division.rightEnd}));
+                                       findMaximumSurface(rectangleHeights, {center + 1, division.rightEnd}));
     Division stretched = {center, center + 1};
     long long int stretchedHeight = min(rectangleHeights[stretched.leftEnd], rectangleHeights[stretched.rightEnd]);
 
