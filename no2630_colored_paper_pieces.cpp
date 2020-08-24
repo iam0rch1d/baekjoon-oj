@@ -34,7 +34,7 @@ int main() {
 
     cin >> size;
 
-    vector<vector<int>> colors(size, vector<int> (size));
+    vector<vector<int>> colors(size, vector<int>(size));
 
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {

@@ -10,7 +10,7 @@ int main() {
 
     cin >> matrixANumRow >> matrixANumColumn;
 
-    vector<vector<int>> matrixA(matrixANumRow, vector<int> (matrixANumColumn));
+    vector<vector<int>> matrixA(matrixANumRow, vector<int>(matrixANumColumn));
 
     for (int i = 0; i < matrixANumRow; i++) {
         for (int j = 0; j < matrixANumColumn; j++) {
@@ -20,8 +20,8 @@ int main() {
 
     cin >> matrixANumColumn >> matrixBNumColumn;
 
-    vector<vector<int>> matrixB(matrixANumColumn, vector<int> (matrixBNumColumn));
-    vector<vector<int>> matrixMultiplication(matrixANumRow, vector<int> (matrixBNumColumn, 0));
+    vector<vector<int>> matrixB(matrixANumColumn, vector<int>(matrixBNumColumn));
+    vector<vector<int>> matrixMultiplication(matrixANumRow, vector<int>(matrixBNumColumn, 0));
 
     for (int i = 0; i < matrixANumColumn; i++) {
         for (int j = 0; j < matrixBNumColumn; j++) {

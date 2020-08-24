@@ -46,7 +46,7 @@ int main() {
 
     cin >> numPerson;
 
-    vector<vector<int>> synergy(numPerson + 1, vector<int> (numPerson + 1));
+    vector<vector<int>> synergy(numPerson + 1, vector<int>(numPerson + 1));
     vector<bool> isStartTeamMember(numPerson + 1, false);
 
     for (int i = 1; i <= numPerson; i++) {
