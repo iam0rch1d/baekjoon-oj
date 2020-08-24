@@ -26,14 +26,21 @@ int main() {
 
     cin >> n >> k;
 
-    if (k == 0 || n == k) {
+    k = (k > n - k) ? n - k : k;
+
+    if (k == 0) {
         cout << "1" << endl;
 
         return 0;
     }
 
+    if (k == 1) {
+        cout << n << endl;
+
+        return 0;
+    }
+
     vector<long long int> factorials(n + 1);
-    vector<long long int> factorialInverses(n + 1);
 
     factorials[0] = 1;
     factorials[1] = 1;
@@ -42,13 +49,10 @@ int main() {
         factorials[i] = factorials[i - 1] * i % MODULUS;
     }
 
-    factorialInverses[n] = power(factorials[n], MODULUS - 2);
-
-    for (int i = n - 1; i >= 0; i--) {
-        factorialInverses[i] = factorialInverses[i + 1] * (i + 1) % MODULUS;
-    }
-
-    cout << factorials[n] * factorialInverses[k] % MODULUS * factorialInverses[n - k] % MODULUS << endl;
+    cout << factorials[n]
+    * power(factorials[k], MODULUS - 2) % MODULUS
+    * power(factorials[n - k], MODULUS - 2) % MODULUS
+    << endl;
 
     return 0;
 }
