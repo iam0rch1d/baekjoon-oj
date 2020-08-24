@@ -9,9 +9,7 @@ long long int power(long long int base, long long int exponent) {
     long long int result = 1;
 
     while (exponent > 0) {
-        if (exponent % 2 != 0) {
-            result = result * base % MODULUS;
-        }
+        if (exponent % 2 != 0) result = result * base % MODULUS;
 
         base = base * base % MODULUS;
         exponent /= 2;
