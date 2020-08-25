@@ -42,7 +42,7 @@ int main() {
 
         cin >> numRectangle;
 
-        if (numRectangle == 0) break;
+        if (numRectangle == 0) return 0;
 
         vector<long long int> rectangleHeights(numRectangle);
 
@@ -52,6 +52,4 @@ int main() {
 
         cout << dncMaximumSurface(rectangleHeights, {0, numRectangle - 1}) << endl;
     }
-
-    return 0;
 }
