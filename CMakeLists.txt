@@ -20,3 +20,4 @@ add_executable(no11401_binomial_coefficient_3 no11401_binomial_coefficient_3.cpp
 add_executable(no2740_matrix_multiplication no2740_matrix_multiplication.cpp)
 add_executable(no10830_power_matrix no10830_power_matrix.cpp)
 add_executable(no2749_fibonacci_3 no2749_fibonacci_3.cpp)
+add_executable(no2261_nearest_two_points no2261_nearest_two_points.cpp)
