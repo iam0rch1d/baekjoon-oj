@@ -31,3 +31,4 @@ add_executable(no1676_zeros_until_first_nonzero_in_factorial no1676_zeros_until_
 add_executable(no2004_zeros_in_combination no2004_zeros_in_combination.cpp)
 add_executable(no9375_fashion_king no9375_fashion_king.cpp)
 add_executable(no10828_stack no10828_stack.cpp)
+add_executable(no10773_zeroize_last no10773_zeroize_last.cpp)
