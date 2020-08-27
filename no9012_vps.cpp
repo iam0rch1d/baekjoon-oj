@@ -8,19 +8,19 @@ int main() {
     cin >> numTestcase;
 
     while (numTestcase-- > 0) {
-        string parentheses;
+        string brackets;
         string::iterator head;
-        int parenthesisStack = 0;
+        int bracketStack = 0;
 
-        cin >> parentheses;
+        cin >> brackets;
 
-        head = parentheses.begin();
+        head = brackets.begin();
 
         while (*head != '\0') {
-            if (*head == '(') parenthesisStack++;
-            else if (parenthesisStack > 0) parenthesisStack--;
+            if (*head == '(') bracketStack++;
+            else if (bracketStack > 0) bracketStack--;
             else {
-                parenthesisStack = -1;
+                bracketStack = -1;
 
                 break;
             }
@@ -28,7 +28,7 @@ int main() {
             head++;
         }
 
-        cout << (parenthesisStack == 0 ? "YES" : "NO") << endl;
+        cout << (bracketStack == 0 ? "YES" : "NO") << endl;
     }
 
     return 0;
