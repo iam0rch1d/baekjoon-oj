@@ -60,8 +60,8 @@ int main() {
 
     vector<Point> points(numPoint);
 
-    for (int i = 0; i < numPoint; i++) {
-        cin >> points[i].x >> points[i].y;
+    for (auto &point : points) {
+        cin >> point.x >> point.y;
     }
 
     sort(points.begin(), points.end(), [](auto i, auto j) { return (i.x < j.x); });

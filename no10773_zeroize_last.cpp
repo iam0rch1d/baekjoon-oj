@@ -10,7 +10,7 @@ int main() {
 
     cin >> numCall;
 
-    for (int callNo = 0; callNo < numCall; callNo++) {
+    while (numCall-- > 0) {
         int calledMoney;
 
         cin >> calledMoney;

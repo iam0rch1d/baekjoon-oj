@@ -24,8 +24,8 @@ int main() {
     vector<int> dividends(numDividend);
     vector<int> differences(numDividend - 1);
 
-    for (int i = 0; i < numDividend; i++) {
-        cin >> dividends[i];
+    for (int &dividend : dividends) {
+        cin >> dividend;
     }
 
     sort(dividends.begin(), dividends.end());

@@ -4,38 +4,38 @@
 using namespace std;
 
 int main() {
-    int matrixANumRow;
-    int matrixANumColumn;
-    int matrixBNumColumn;
+    int aNumRow;
+    int aNumColumn;
+    int bNumColumn;
 
-    cin >> matrixANumRow >> matrixANumColumn;
+    cin >> aNumRow >> aNumColumn;
 
-    vector<vector<int>> matrixA(matrixANumRow, vector<int>(matrixANumColumn));
+    vector<vector<int>> a(aNumRow, vector<int>(aNumColumn));
 
-    for (int i = 0; i < matrixANumRow; i++) {
-        for (int j = 0; j < matrixANumColumn; j++) {
-            cin >> matrixA[i][j];
+    for (int i = 0; i < aNumRow; i++) {
+        for (int j = 0; j < aNumColumn; j++) {
+            cin >> a[i][j];
         }
     }
 
-    cin >> matrixANumColumn >> matrixBNumColumn;
+    cin >> aNumColumn >> bNumColumn;
 
-    vector<vector<int>> matrixB(matrixANumColumn, vector<int>(matrixBNumColumn));
-    vector<vector<int>> matrixMultiplication(matrixANumRow, vector<int>(matrixBNumColumn, 0));
+    vector<vector<int>> b(aNumColumn, vector<int>(bNumColumn));
+    vector<vector<int>> multiplication(aNumRow, vector<int>(bNumColumn, 0));
 
-    for (int i = 0; i < matrixANumColumn; i++) {
-        for (int j = 0; j < matrixBNumColumn; j++) {
-            cin >> matrixB[i][j];
+    for (int i = 0; i < aNumColumn; i++) {
+        for (int j = 0; j < bNumColumn; j++) {
+            cin >> b[i][j];
         }
     }
 
-    for (int i = 0; i < matrixANumRow; i++) {
-        for (int j = 0; j < matrixBNumColumn; j++) {
-            for (int k = 0; k < matrixANumColumn; k++) {
-                matrixMultiplication[i][j] += matrixA[i][k] * matrixB[k][j];
+    for (int i = 0; i < aNumRow; i++) {
+        for (int j = 0; j < bNumColumn; j++) {
+            for (int k = 0; k < aNumColumn; k++) {
+                multiplication[i][j] += a[i][k] * b[k][j];
             }
 
-            cout << matrixMultiplication[i][j] << " ";
+            cout << multiplication[i][j] << " ";
         }
 
         cout << endl;

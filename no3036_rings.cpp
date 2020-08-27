@@ -19,8 +19,8 @@ int main() {
 
     vector<int> ringRadii(numRing);
 
-    for (int i = 0; i < numRing; i++) {
-        cin >> ringRadii[i];
+    for (int &ringRadius : ringRadii) {
+        cin >> ringRadius;
     }
 
     for (int i = 1; i < numRing; i++) {

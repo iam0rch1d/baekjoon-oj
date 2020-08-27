@@ -18,18 +18,18 @@ int main() {
 
     vector<Conference> conferences(numConference);
 
-    for (int i = 0; i < numConference; i++) {
-        cin >> conferences[i].startTime >> conferences[i].endTime;
+    for (auto &conference : conferences) {
+        cin >> conference.startTime >> conference.endTime;
     }
 
     sort(conferences.begin(), conferences.end(), [](auto i, auto j) {
         return (i.endTime < j.endTime) || (i.endTime == j.endTime && i.startTime < j.startTime);
     });
 
-    for (int i = 0; i < numConference; i++) {
-        if (conferences[i].startTime >= vacantTime) {
+    for (auto &conference : conferences) {
+        if (conference.startTime >= vacantTime) {
             numAvailableConference++;
-            vacantTime = conferences[i].endTime;
+            vacantTime = conference.endTime;
         }
     }
 

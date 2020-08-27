@@ -11,8 +11,8 @@ int main() {
 
     vector<int> factors(numFactor);
 
-    for (int i = 0; i < numFactor; i++) {
-        cin >> factors[i];
+    for (int &factor : factors) {
+        cin >> factor;
     }
 
     cout << *max_element(factors.begin(), factors.end()) * *min_element(factors.begin(), factors.end()) << endl;

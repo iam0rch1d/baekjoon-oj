@@ -9,7 +9,7 @@ int main() {
 
     cin >> numInstruction;
 
-    for (int instructionNo = 0; instructionNo < numInstruction; instructionNo++) {
+    while (numInstruction-- > 0) {
         string instruction;
 
         cin >> instruction;
