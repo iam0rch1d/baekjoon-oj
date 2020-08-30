@@ -42,3 +42,4 @@ add_executable(no15576_large_multiplication_2 no15576_large_multiplication_2.cpp
 add_executable(no2164_cards_2 no2164_cards_2.cpp)
 add_executable(no11866_josephus_problem_0 no11866_josephus_problem_0.cpp)
 add_executable(no1966_printer no1966_printer.cpp)
+add_executable(no10866_deque no10866_deque.cpp)
