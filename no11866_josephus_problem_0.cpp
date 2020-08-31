@@ -31,9 +31,7 @@ int main() {
     for (int &person : josephusPermutation) {
         printf("%d", person);
 
-        if (person != josephusPermutation.back()) {
-            printf(", ");
-        }
+        if (person != josephusPermutation.back()) printf(", ");
     }
 
     cout << ">" << endl;

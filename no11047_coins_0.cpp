@@ -6,12 +6,12 @@ using namespace std;
 int main() {
     int numCoinType;
     int targetValue;
-    int indexCoinToMakeUp;
+    int toMakeUpCoinNo;
     int numRequiredCoin = 0;
 
     cin >> numCoinType >> targetValue;
 
-    indexCoinToMakeUp = numCoinType - 1;
+    toMakeUpCoinNo = numCoinType - 1;
 
     int coinValues[numCoinType];
 
@@ -20,10 +20,10 @@ int main() {
     }
 
     while (targetValue > 0) {
-        if (coinValues[indexCoinToMakeUp] <= targetValue) {
-            targetValue -= coinValues[indexCoinToMakeUp];
+        if (coinValues[toMakeUpCoinNo] <= targetValue) {
+            targetValue -= coinValues[toMakeUpCoinNo];
             numRequiredCoin++;
-        } else indexCoinToMakeUp--;
+        } else toMakeUpCoinNo--;
     }
 
     cout << numRequiredCoin << endl;

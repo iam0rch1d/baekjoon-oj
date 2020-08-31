@@ -8,6 +8,7 @@ int main() {
 
     for (int &uniqueNumber : uniqueNumbers) {
         cin >> uniqueNumber;
+
         uniqueNumbersSquareSum += uniqueNumber * uniqueNumber;
     }
 
