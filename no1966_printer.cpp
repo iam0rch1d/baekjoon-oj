@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 #include <queue>
 
@@ -52,9 +51,7 @@ int main() {
 
                     break;
                 }
-            } else {
-                printer.push(current);
-            }
+            } else printer.push(current);
         }
     }
 
