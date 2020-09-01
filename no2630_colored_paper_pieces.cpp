@@ -8,29 +8,29 @@ typedef struct {
     int x;
 } Point;
 
-void dncColoredPiece(vector<vector<int>> &colors, Point start, int size, int &numWhitePiece, int &numBluePiece) {
-    int numBluePoint = 0;
+void dncColoredPiece(vector<vector<int>> &colors, Point start, int size, int &whitePieceCount, int &bluePieceCount) {
+    int bluePointCount = 0;
 
     for (int i = start.y; i < start.y + size; i++) {
         for (int j = start.x; j < start.x + size; j++) {
-            numBluePoint += colors[i][j];
+            bluePointCount += colors[i][j];
         }
     }
 
-    if (numBluePoint == 0) numWhitePiece++;
-    else if (numBluePoint == size * size) numBluePiece++;
+    if (bluePointCount == 0) whitePieceCount++;
+    else if (bluePointCount == size * size) bluePieceCount++;
     else {
-        dncColoredPiece(colors, start, size / 2, numWhitePiece, numBluePiece);
-        dncColoredPiece(colors, {start.y, start.x + size / 2}, size / 2, numWhitePiece, numBluePiece);
-        dncColoredPiece(colors, {start.y + size / 2, start.x}, size / 2, numWhitePiece, numBluePiece);
-        dncColoredPiece(colors, {start.y + size / 2, start.x + size / 2}, size / 2, numWhitePiece, numBluePiece);
+        dncColoredPiece(colors, start, size / 2, whitePieceCount, bluePieceCount);
+        dncColoredPiece(colors, {start.y, start.x + size / 2}, size / 2, whitePieceCount, bluePieceCount);
+        dncColoredPiece(colors, {start.y + size / 2, start.x}, size / 2, whitePieceCount, bluePieceCount);
+        dncColoredPiece(colors, {start.y + size / 2, start.x + size / 2}, size / 2, whitePieceCount, bluePieceCount);
     }
 }
 
 int main() {
     int size;
-    int numWhitePiece = 0;
-    int numBluePiece = 0;
+    int whitePieceCount = 0;
+    int bluePieceCount = 0;
 
     cin >> size;
 
@@ -42,9 +42,9 @@ int main() {
         }
     }
 
-    dncColoredPiece(colors, {0, 0}, size, numWhitePiece, numBluePiece);
+    dncColoredPiece(colors, {0, 0}, size, whitePieceCount, bluePieceCount);
 
-    cout << numWhitePiece << endl << numBluePiece << endl;
+    cout << whitePieceCount << endl << bluePieceCount << endl;
 
     return 0;
 }

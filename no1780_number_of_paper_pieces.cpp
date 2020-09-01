@@ -11,85 +11,85 @@ typedef struct {
 void dncNumberPiece(vector<vector<int>> &colors,
                     Point start,
                     int size,
-                    int &numMinusOnePiece,
-                    int &numZeroPiece,
-                    int &numPlusOnePiece) {
-    int numMinusOnePoint = 0;
-    int numPlusOnePoint = 0;
+                    int &minusOnePieceCount,
+                    int &zeroPieceCount,
+                    int &plusOnePieceCount) {
+    int minusOnePointCount = 0;
+    int plusOnePointCount = 0;
 
     for (int i = start.y; i < start.y + size; i++) {
         for (int j = start.x; j < start.x + size; j++) {
-            numMinusOnePoint += (colors[i][j] == -1) ? 1 : 0;
-            numPlusOnePoint += (colors[i][j] == 1) ? 1 : 0;
+            minusOnePointCount += (colors[i][j] == -1) ? 1 : 0;
+            plusOnePointCount += (colors[i][j] == 1) ? 1 : 0;
         }
     }
 
-    if (numMinusOnePoint == size * size) numMinusOnePiece++;
-    else if (numMinusOnePoint == 0 && numPlusOnePoint == 0) numZeroPiece++;
-    else if (numPlusOnePoint == size * size) numPlusOnePiece++;
+    if (minusOnePointCount == size * size) minusOnePieceCount++;
+    else if (minusOnePointCount == 0 && plusOnePointCount == 0) zeroPieceCount++;
+    else if (plusOnePointCount == size * size) plusOnePieceCount++;
     else {
         dncNumberPiece(colors,
                        start,
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y, start.x + size / 3},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y, start.x + size / 3 * 2},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y + size / 3, start.x},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y + size / 3, start.x + size / 3},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y + size / 3, start.x + size / 3 * 2},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y + size / 3 * 2, start.x},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y + size / 3 * 2, start.x + size / 3},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
         dncNumberPiece(colors,
                        {start.y + size / 3 * 2, start.x + size / 3 * 2},
                        size / 3,
-                       numMinusOnePiece,
-                       numZeroPiece,
-                       numPlusOnePiece);
+                       minusOnePieceCount,
+                       zeroPieceCount,
+                       plusOnePieceCount);
     }
 }
 
 int main() {
     int size;
-    int numMinusOnePiece = 0;
-    int numZeroPiece = 0;
-    int numPlusOnePiece = 0;
+    int minusOnePieceCount = 0;
+    int zeroPieceCount = 0;
+    int plusOnePieceCount = 0;
 
     cin >> size;
 
@@ -101,9 +101,9 @@ int main() {
         }
     }
 
-    dncNumberPiece(colors, {0, 0}, size, numMinusOnePiece, numZeroPiece, numPlusOnePiece);
+    dncNumberPiece(colors, {0, 0}, size, minusOnePieceCount, zeroPieceCount, plusOnePieceCount);
 
-    cout << numMinusOnePiece << endl << numZeroPiece << endl << numPlusOnePiece;
+    cout << minusOnePieceCount << endl << zeroPieceCount << endl << plusOnePieceCount;
 
     return 0;
 }

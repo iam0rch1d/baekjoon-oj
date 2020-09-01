@@ -6,8 +6,8 @@ using namespace std;
 int main() {
     int number;
     int multiplyingNumber;
-    int numFactorialFactor2 = 0;
-    int numFactorialFactor5 = 0;
+    int factorialFactor2Count = 0;
+    int factorialFactor5Count = 0;
 
     cin >> number;
 
@@ -22,18 +22,18 @@ int main() {
 
         while (multiplyingNumber % 2 == 0 || multiplyingNumber % 5 == 0) {
             if (multiplyingNumber % 2 == 0) {
-                numFactorialFactor2++;
+                factorialFactor2Count++;
                 multiplyingNumber /= 2;
             }
 
             if (multiplyingNumber % 5 == 0) {
-                numFactorialFactor5++;
+                factorialFactor5Count++;
                 multiplyingNumber /= 5;
             }
         }
     }
 
-    cout << min<int>(numFactorialFactor2, numFactorialFactor5) << endl;
+    cout << min<int>(factorialFactor2Count, factorialFactor5Count) << endl;
 
     return 0;
 }

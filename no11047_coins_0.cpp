@@ -7,7 +7,7 @@ int main() {
     int numCoinType;
     int targetValue;
     int toMakeUpCoinNo;
-    int numRequiredCoin = 0;
+    int requiredCoinCount = 0;
 
     cin >> numCoinType >> targetValue;
 
@@ -22,11 +22,11 @@ int main() {
     while (targetValue > 0) {
         if (coinValues[toMakeUpCoinNo] <= targetValue) {
             targetValue -= coinValues[toMakeUpCoinNo];
-            numRequiredCoin++;
+            requiredCoinCount++;
         } else toMakeUpCoinNo--;
     }
 
-    cout << numRequiredCoin << endl;
+    cout << requiredCoinCount << endl;
 
     return 0;
 }

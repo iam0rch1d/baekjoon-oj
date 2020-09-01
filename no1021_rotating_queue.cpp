@@ -9,7 +9,7 @@ int main() {
     int numToPop;
     deque<int> numbers;
     queue<int> toPopNumbers;
-    int numRotation = 0;
+    int rotationCount = 0;
     int distanceForward = 0;
     int distanceBackward = 0;
 
@@ -35,7 +35,7 @@ int main() {
         if (current == toPopNumbers.front()) {
             toPopNumbers.pop();
 
-            numRotation += min(distanceForward, distanceBackward);
+            rotationCount += min(distanceForward, distanceBackward);
             distanceForward = 0;
             distanceBackward = 0;
         } else {
@@ -68,7 +68,7 @@ int main() {
         }
     }
 
-    cout << numRotation << endl;
+    cout << rotationCount << endl;
 
     return 0;
 }

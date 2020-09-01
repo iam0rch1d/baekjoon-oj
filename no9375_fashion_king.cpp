@@ -13,7 +13,7 @@ int main() {
         string clothingName;
         string clothingType;
         map<string, int> map;
-        int numCombination = 1;
+        int combinationCount = 1;
 
         cin >> numClothing;
 
@@ -25,10 +25,10 @@ int main() {
         }
 
         for (const auto &item : map) {
-            numCombination *= item.second + 1;
+            combinationCount *= item.second + 1;
         }
 
-        cout << --numCombination << endl;
+        cout << --combinationCount << endl;
     }
 
     return 0;

@@ -12,7 +12,7 @@ typedef struct Conference {
 int main() {
     int numConference;
     int vacantTime = 0;
-    int numAvailableConference = 0;
+    int availableConferenceCount = 0;
 
     cin >> numConference;
 
@@ -28,12 +28,12 @@ int main() {
 
     for (auto &conference : conferences) {
         if (conference.startTime >= vacantTime) {
-            numAvailableConference++;
+            availableConferenceCount++;
             vacantTime = conference.endTime;
         }
     }
 
-    cout << numAvailableConference << endl;
+    cout << availableConferenceCount << endl;
 
     return 0;
 }

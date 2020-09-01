@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -17,15 +16,15 @@ int countFactorialFactor(int factorialSize, int factor) {
 int main() {
     int n;
     int m;
-    int numFactorialFactor2;
-    int numFactorialFactor5;
+    int factorialFactor2Count;
+    int factorialFactor5Count;
 
     cin >> n >> m;
 
-    numFactorialFactor2 = countFactorialFactor(n, 2) - countFactorialFactor(m, 2) - countFactorialFactor(n - m, 2);
-    numFactorialFactor5 = countFactorialFactor(n, 5) - countFactorialFactor(m, 5) - countFactorialFactor(n - m, 5);
+    factorialFactor2Count = countFactorialFactor(n, 2) - countFactorialFactor(m, 2) - countFactorialFactor(n - m, 2);
+    factorialFactor5Count = countFactorialFactor(n, 5) - countFactorialFactor(m, 5) - countFactorialFactor(n - m, 5);
 
-    cout << min<int>(numFactorialFactor2, numFactorialFactor5) << endl;
+    cout << min(factorialFactor2Count, factorialFactor5Count) << endl;
 
     return 0;
 }
