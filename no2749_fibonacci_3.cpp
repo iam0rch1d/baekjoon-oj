@@ -5,11 +5,11 @@
 
 using namespace std;
 
-typedef vector<vector<long long int>> Matrix;
+typedef vector<vector<long long>> Matrix;
 
 Matrix operator*(Matrix &a, Matrix &b) {
     int size = a.size();
-    Matrix multiplication(size, vector<long long int>(size));
+    Matrix multiplication(size, vector<long long>(size));
 
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -24,9 +24,9 @@ Matrix operator*(Matrix &a, Matrix &b) {
     return multiplication;
 }
 
-Matrix powerMatrix(Matrix &base, long long int exponent) {
+Matrix powerMatrix(Matrix &base, long long exponent) {
     int baseSize = base.size();
-    Matrix result(baseSize, vector<long long int>(baseSize, 0));
+    Matrix result(baseSize, vector<long long>(baseSize, 0));
 
     for (int i = 0; i < baseSize; i++) {
         result[i][i] = 1;
@@ -43,7 +43,7 @@ Matrix powerMatrix(Matrix &base, long long int exponent) {
 }
 
 int main() {
-    long long int index;
+    long long index;
 
     cin >> index;
 

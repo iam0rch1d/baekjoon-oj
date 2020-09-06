@@ -6,16 +6,16 @@
 
 using namespace std;
 
-long long int pinaryNumberCountCache[91][2];
+long long pinaryNumberCountCache[91][2];
 
-long long int memoizePinaryNumberCount(int pinaryNumberSize, int startingWith) {
+long long memoizePinaryNumberCount(int pinaryNumberSize, int startingWith) {
     if (pinaryNumberSize == 1) return 1;
 
     if (pinaryNumberCountCache[pinaryNumberSize][startingWith] != UNMEMOIZED) {
         return pinaryNumberCountCache[pinaryNumberSize][startingWith];
     }
 
-    long long int &pinaryNumberCount = pinaryNumberCountCache[pinaryNumberSize][startingWith];
+    long long &pinaryNumberCount = pinaryNumberCountCache[pinaryNumberSize][startingWith];
 
     return pinaryNumberCount = memoizePinaryNumberCount(pinaryNumberSize - 1, 0)
                                + (startingWith == 0 ? memoizePinaryNumberCount(pinaryNumberSize - 1, 1) : 0);

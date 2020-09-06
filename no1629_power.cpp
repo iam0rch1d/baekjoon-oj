@@ -2,7 +2,7 @@
 
 using namespace std;
 
-long long int dncPower(int base, int exponent, int modulus) {
+long long dncPower(int base, int exponent, int modulus) {
     if (exponent == 0) return 1;
 
     if (exponent % 2 != 0) return dncPower(base, exponent - 1, modulus) % modulus * base % modulus;

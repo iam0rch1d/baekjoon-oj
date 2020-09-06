@@ -24,7 +24,7 @@ Matrix operator*(vector<vector<int>> &a, vector<vector<int>> &b) {
     return multiplication;
 }
 
-Matrix powerMatrix(vector<vector<int>> &base, long long int exponent) {
+Matrix powerMatrix(vector<vector<int>> &base, long long exponent) {
     int baseSize = base.size();
     Matrix result(baseSize, vector<int>(baseSize, 0));
 
@@ -44,7 +44,7 @@ Matrix powerMatrix(vector<vector<int>> &base, long long int exponent) {
 
 int main() {
     int baseSize;
-    long long int exponent;
+    long long exponent;
 
     cin >> baseSize >> exponent;
 

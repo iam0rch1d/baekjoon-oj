@@ -5,8 +5,8 @@
 
 using namespace std;
 
-long long int power(long long int base, long long int exponent) {
-    long long int result = 1;
+long long power(long long base, long long exponent) {
+    long long result = 1;
 
     while (exponent > 0) {
         if (exponent % 2 != 0) result = result * base % MODULUS;
@@ -38,7 +38,7 @@ int main() {
         return 0;
     }
 
-    vector<long long int> factorials(n + 1);
+    vector<long long> factorials(n + 1);
 
     factorials[0] = 1;
     factorials[1] = 1;

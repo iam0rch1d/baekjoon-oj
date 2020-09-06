@@ -8,14 +8,14 @@ typedef struct Division {
     int rightEnd;
 } Division;
 
-long long int dncMaximumSurface(vector<long long int> &rectangleHeights, Division division) {
+long long dncMaximumSurface(vector<long long> &rectangleHeights, Division division) {
     if (division.leftEnd == division.rightEnd) return rectangleHeights[division.leftEnd];
 
     int center = (division.leftEnd + division.rightEnd) / 2;
-    long long int maximumSurface = max(dncMaximumSurface(rectangleHeights, {division.leftEnd, center}),
+    long long maximumSurface = max(dncMaximumSurface(rectangleHeights, {division.leftEnd, center}),
                                        dncMaximumSurface(rectangleHeights, {center + 1, division.rightEnd}));
     Division stretched = {center, center + 1};
-    long long int stretchedHeight = min(rectangleHeights[stretched.leftEnd], rectangleHeights[stretched.rightEnd]);
+    long long stretchedHeight = min(rectangleHeights[stretched.leftEnd], rectangleHeights[stretched.rightEnd]);
 
     maximumSurface = max(maximumSurface, 2 * stretchedHeight);
 
@@ -44,9 +44,9 @@ int main() {
 
         if (numRectangle == 0) return 0;
 
-        vector<long long int> rectangleHeights(numRectangle);
+        vector<long long> rectangleHeights(numRectangle);
 
-        for (long long int &boardHeight : rectangleHeights) {
+        for (long long &boardHeight : rectangleHeights) {
             cin >> boardHeight;
         }
 
