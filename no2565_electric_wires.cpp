@@ -1,18 +1,20 @@
 #include <algorithm>
+#include <cstring>
 #include <iostream>
 
 using namespace std;
 
-int connectionSize;
-int connections[501];
-int increaseLengthCache[501];
-
 int main() {
+    int connectionSize;
+    int connections[501];
     int fromPole;
-    int maximumFromPole = 0;
     int toPole;
+    int maximumFromPole = 0;
+    int increaseLengthCache[501];
 
     cin >> connectionSize;
+
+    memset(connections, 0, sizeof(connections));
 
     for (int i = 0; i < connectionSize; i++) {
         cin >> fromPole >> toPole;
@@ -20,6 +22,8 @@ int main() {
         connections[fromPole] = toPole;
         maximumFromPole = max(maximumFromPole, fromPole);
     }
+
+    memset(increaseLengthCache, 0, sizeof(increaseLengthCache));
 
     for (int i = 1; i <= maximumFromPole; i++) {
         for (int j = 0; j < i; j++) {

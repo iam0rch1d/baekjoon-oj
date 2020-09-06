@@ -1,16 +1,18 @@
+#include <cstring>
 #include <iostream>
 #include <queue>
 
 using namespace std;
 
-int connectionSize;
-int connections[1000];
-int increaseLengthCache[1000];
-int decreaseLengthCache[1000];
-
 int main() {
+    int connectionSize;
+    int connections[1000];
+    int increaseLengthCache[1000];
+    int decreaseLengthCache[1000];
     priority_queue<int> bitonicLengths;
 
+    memset(increaseLengthCache, 0, sizeof(increaseLengthCache));
+    memset(decreaseLengthCache, 0, sizeof(decreaseLengthCache));
     bitonicLengths.push(1);
 
     cin >> connectionSize;
