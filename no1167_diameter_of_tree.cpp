@@ -5,7 +5,7 @@
 using namespace std;
 
 bool hasVisited[100001];
-vector<pair<int, int>> adjacentVertexes[100001];
+vector<pair<int, int>> childVertices[100001];
 int diameter;
 int farthestVertex;
 
@@ -19,7 +19,7 @@ void dfs(int currentVertex, int totalLength) {
         farthestVertex = currentVertex;
     }
 
-    for (pair<int, int> adjacentVertex : adjacentVertexes[currentVertex]) {
+    for (pair<int, int> adjacentVertex : childVertices[currentVertex]) {
         dfs(adjacentVertex.first, totalLength + adjacentVertex.second);
     }
 }
@@ -46,8 +46,8 @@ int main() {
 
             cin >> edgeLength;
 
-            adjacentVertexes[fromVertex].emplace_back(toVertex, edgeLength);
-            adjacentVertexes[toVertex].emplace_back(fromVertex, edgeLength);
+            childVertices[fromVertex].emplace_back(toVertex, edgeLength);
+            childVertices[toVertex].emplace_back(fromVertex, edgeLength);
         }
     }
 
