@@ -5,18 +5,18 @@
 using namespace std;
 
 int main() {
-    int connectionSize;
+    int connectionsSize;
     int connections[501];
     int fromPole;
     int toPole;
     int maximumFromPole = 0;
     int increaseLengthCache[501];
 
-    cin >> connectionSize;
+    cin >> connectionsSize;
 
     memset(connections, 0, sizeof(connections));
 
-    for (int i = 0; i < connectionSize; i++) {
+    for (int i = 0; i < connectionsSize; i++) {
         cin >> fromPole >> toPole;
 
         connections[fromPole] = toPole;
@@ -33,7 +33,7 @@ int main() {
         }
     }
 
-    cout << connectionSize - *max_element(increaseLengthCache, increaseLengthCache + maximumFromPole + 1) << endl;
+    cout << connectionsSize - *max_element(increaseLengthCache, increaseLengthCache + maximumFromPole + 1) << endl;
 
     return 0;
 }
