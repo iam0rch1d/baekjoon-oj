@@ -3,11 +3,10 @@
 
 using namespace std;
 
-int numOwnedCable;
-long long ownedCables[10000];
-long long numNeededCable;
-
 int main() {
+    int numOwnedCable;
+    long long ownedCables[10000];
+    long long numNeededCable;
     long long croppingSizeLow = 1;
     long long croppingSizeHigh;
     long long maximumCroppingSize = 0;
