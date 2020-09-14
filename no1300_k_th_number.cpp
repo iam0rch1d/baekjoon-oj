@@ -11,11 +11,11 @@ int main() {
 
     cin >> n >> k;
 
-    bkHigh = n * n;
+    bkHigh = k;
 
     while (bkLow <= bkHigh) {
         int bkCenter = (bkLow + bkHigh) / 2;
-        long long lessThanKCount = 0;
+        int lessThanKCount = 0;
 
         for (int i = 1; i <= n; i++) {
             lessThanKCount += min(bkCenter / i, n);
