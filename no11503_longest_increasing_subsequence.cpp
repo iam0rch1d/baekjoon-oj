@@ -22,12 +22,12 @@ int memoizeMaximumLength(const vector<int> &sequence, vector<int> &maximumLength
 }
 
 int main() {
-    int numElement;
+    int sequenceSize;
 
-    cin >> numElement;
+    cin >> sequenceSize;
 
-    vector<int> sequence(numElement);
-    vector<int> maximumLengthCache(numElement + 1, UNMEMOIZED);
+    vector<int> sequence(sequenceSize);
+    vector<int> maximumLengthCache(sequenceSize + 1, UNMEMOIZED);
 
     for (int &element : sequence) {
         cin >> element;
