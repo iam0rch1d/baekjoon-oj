@@ -53,7 +53,7 @@ int main() {
         bisectNumber({0, keysSize}, target);
     }
 
-    cout << "\n";
+    cout << '\n';
 
     return 0;
 }

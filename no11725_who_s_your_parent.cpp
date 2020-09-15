@@ -37,7 +37,7 @@ int main() {
     dfs(1);
 
     for (int i = 2; i <= numVertex; i++) {
-        cout << parentVertices[i] << "\n";
+        cout << parentVertices[i] << '\n';
     }
 
     return 0;

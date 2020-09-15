@@ -26,10 +26,10 @@ int main() {
         cin >> instruction;
 
         if (instruction == 0 && !maxHeap.empty()) {
-            cout << maxHeap.top().value << "\n";
+            cout << maxHeap.top().value << '\n';
 
             maxHeap.pop();
-        } else if (instruction == 0) cout << 0 << "\n";
+        } else if (instruction == 0) cout << 0 << '\n';
         else maxHeap.push({instruction});
     }
 

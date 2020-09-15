@@ -61,7 +61,7 @@ int main() {
         bisectNumber({0, deck.size()}, target);
     }
 
-    cout << "\n";
+    cout << '\n';
 
     return 0;
 }

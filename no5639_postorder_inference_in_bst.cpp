@@ -49,7 +49,7 @@ void dfsPostorder(Vertex *current) {
         dfsPostorder(current->leftChildVertex);
         dfsPostorder(current->rightChildVertex);
 
-        cout << current->key << "\n";
+        cout << current->key << '\n';
     }
 }
 

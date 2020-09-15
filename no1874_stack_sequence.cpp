@@ -34,7 +34,7 @@ int main() {
 
     if (numberStack.empty()) {
         for (char &operation : operationStack) {
-            cout << operation << "\n";
+            cout << operation << '\n';
         }
     } else cout << "NO\n";
 

@@ -30,17 +30,17 @@ int main() {
 
             deque.push_back(target);
         } else if (instruction == "pop_front"){
-            cout << (deque.empty() ? -1 : deque.front()) << "\n";
+            cout << (deque.empty() ? -1 : deque.front()) << '\n';
 
             if (!deque.empty()) deque.pop_front();
         } else if (instruction == "pop_back"){
-            cout << (deque.empty() ? -1 : deque.back()) << "\n";
+            cout << (deque.empty() ? -1 : deque.back()) << '\n';
 
             if (!deque.empty()) deque.pop_back();
-        } else if (instruction == "size") cout << deque.size() << "\n";
-        else if (instruction == "empty") cout << (deque.empty() ? 1 : 0) << "\n";
-        else if (instruction == "front") cout << (deque.empty() ? -1 : deque.front()) << "\n";
-        else if (instruction == "back") cout << (deque.empty() ? -1 : deque.back()) << "\n";
+        } else if (instruction == "size") cout << deque.size() << '\n';
+        else if (instruction == "empty") cout << (deque.empty() ? 1 : 0) << '\n';
+        else if (instruction == "front") cout << (deque.empty() ? -1 : deque.front()) << '\n';
+        else if (instruction == "back") cout << (deque.empty() ? -1 : deque.back()) << '\n';
     }
 
     return 0;

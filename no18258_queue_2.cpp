@@ -24,13 +24,13 @@ int main() {
 
             queue.push(target);
         } else if (instruction == "pop"){
-            cout << (queue.empty() ? -1 : queue.front()) << "\n";
+            cout << (queue.empty() ? -1 : queue.front()) << '\n';
 
             if (!queue.empty()) queue.pop();
-        } else if (instruction == "size") cout << queue.size() << "\n";
-        else if (instruction == "empty") cout << (queue.empty() ? 1 : 0) << "\n";
-        else if (instruction == "front") cout << (queue.empty() ? -1 : queue.front()) << "\n";
-        else if (instruction == "back") cout << (queue.empty() ? -1 : queue.back()) << "\n";
+        } else if (instruction == "size") cout << queue.size() << '\n';
+        else if (instruction == "empty") cout << (queue.empty() ? 1 : 0) << '\n';
+        else if (instruction == "front") cout << (queue.empty() ? -1 : queue.front()) << '\n';
+        else if (instruction == "back") cout << (queue.empty() ? -1 : queue.back()) << '\n';
     }
 
     return 0;

@@ -43,7 +43,7 @@ int main() {
 
     dfsPreorder({0, numVertex}, {0, numVertex});
 
-    cout << "\n";
+    cout << '\n';
 
     return 0;
 }
