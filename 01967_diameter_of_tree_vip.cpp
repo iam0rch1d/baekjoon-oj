@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<pair<int, int>> childVertices[10001];
+vector<pair<int, int>> childVertices[10001];  // .first = <to-vertex>, .second = <edge length>
 int diameter;
 int farthestVertex;
 

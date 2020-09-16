@@ -8,7 +8,7 @@ int main() {
     cin.tie(nullptr);
 
     int sequenceSize;
-    vector<int> lis; // 'LIS' refers to 'Longest Increasing Subsequence'
+    vector<int> lis;  // 'LIS' refers to 'Longest Increasing Subsequence'
 
     cin >> sequenceSize;
 

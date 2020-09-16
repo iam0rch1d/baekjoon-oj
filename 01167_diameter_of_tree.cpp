@@ -5,7 +5,7 @@
 using namespace std;
 
 bool hasVisited[100001];
-vector<pair<int, int>> childVertices[100001];
+vector<pair<int, int>> childVertices[100001];  // .first = <to-vertex>, .second = <edge length>
 int diameter;
 int farthestVertex;
 
@@ -51,12 +51,12 @@ int main() {
         }
     }
 
-    dfs(1, 0); // Find the farthest vertex from root
+    dfs(1, 0);  // Find the farthest vertex from root
 
     diameter = 0;
 
     memset(hasVisited, false, sizeof(hasVisited));
-    dfs(farthestVertex, 0); // Find the farthest vertex and the distance from 'the farthest vertex from root'
+    dfs(farthestVertex, 0);  // Find the farthest vertex and the distance from 'the farthest vertex from root'
 
     cout << diameter << endl;
 

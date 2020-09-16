@@ -7,7 +7,7 @@ int maximumTotalValueCache[101][100001];
 int main() {
     int numItem;
     int strength;
-    pair<int, int> items[100]; // .first = <load>, .second = <value>
+    pair<int, int> items[100];  // .first = <load>, .second = <value>
 
     cin >> numItem >> strength;
 

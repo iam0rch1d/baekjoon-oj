@@ -14,7 +14,7 @@ int main() {
     cin >> numDay;
 
     for (int i = 0; i < numDay; i++) {
-        cin >> consultations[i].first >> consultations[i].second; // .first = <requiredDays>, .second = <pay>
+        cin >> consultations[i].first >> consultations[i].second;  // .first = <days required>, .second = <pay>
 
         maximumTotalPayCache[i + 1] = max(maximumTotalPayCache[i + 1], maximumTotalPayCache[i]);
         maximumTotalPayCache[i + consultations[i].first] = max(maximumTotalPayCache[i + consultations[i].first],

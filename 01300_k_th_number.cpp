@@ -15,13 +15,13 @@ int main() {
 
     while (bkLow <= bkHigh) {
         int bkCenter = (bkLow + bkHigh) / 2;
-        int lessThanKCount = 0;
+        int belowBkCenterCount = 0;
 
         for (int i = 1; i <= n; i++) {
-            lessThanKCount += min(bkCenter / i, n);
+            belowBkCenterCount += min(bkCenter / i, n);
         }
 
-        if (lessThanKCount < k) bkLow = bkCenter + 1;
+        if (belowBkCenterCount < k) bkLow = bkCenter + 1;
         else {
             bk = bkCenter;
             bkHigh = bkCenter - 1;
