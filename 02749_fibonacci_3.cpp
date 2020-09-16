@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#define MODULUS 1000000
+#define MODULO 1000000
 
 using namespace std;
 
@@ -17,7 +17,7 @@ Matrix operator*(Matrix &a, Matrix &b) {
                 multiplication[i][j] += a[i][k] * b[k][j];
             }
 
-            multiplication[i][j] %= MODULUS;
+            multiplication[i][j] %= MODULO;
         }
     }
 

@@ -2,24 +2,24 @@
 
 using namespace std;
 
-long long dncPower(int base, int exponent, int modulus) {
+long long dncPower(int base, int exponent, int modulo) {
     if (exponent == 0) return 1;
 
-    if (exponent % 2 != 0) return dncPower(base, exponent - 1, modulus) % modulus * base % modulus;
+    if (exponent % 2 != 0) return dncPower(base, exponent - 1, modulo) % modulo * base % modulo;
 
-    return ((dncPower(base, exponent / 2, modulus) % modulus)
-    * (dncPower(base, exponent / 2, modulus) % modulus))
-    % modulus;
+    return ((dncPower(base, exponent / 2, modulo) % modulo)
+    * (dncPower(base, exponent / 2, modulo) % modulo))
+           % modulo;
 }
 
 int main() {
     int base;
     int exponent;
-    int modulus;
+    int modulo;
 
-    cin >> base >> exponent >> modulus;
+    cin >> base >> exponent >> modulo;
 
-    cout << dncPower(base, exponent, modulus) << endl;
+    cout << dncPower(base, exponent, modulo) << endl;
 
     return 0;
 }

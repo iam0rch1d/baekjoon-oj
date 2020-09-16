@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define MODULUS 1234567891
+#define MODULO 1234567891
 
 using namespace std;
 
@@ -8,9 +8,9 @@ long long power(long long base, long long exponent) {
     long long result = 1;
 
     while (exponent > 0) {
-        if (exponent % 2 != 0) result = result * base % MODULUS;
+        if (exponent % 2 != 0) result = result * base % MODULO;
 
-        base = base * base % MODULUS;
+        base = base * base % MODULO;
         exponent /= 2;
     }
 
@@ -25,7 +25,7 @@ int main() {
     cin >> hashInputSize >> hashInput;
 
     for (int i = 0; i < hashInputSize; i++) {
-        hashOutput = (hashOutput + (hashInput[i] - 'a' + 1) * power(31, i)) % MODULUS;
+        hashOutput = (hashOutput + (hashInput[i] - 'a' + 1) * power(31, i)) % MODULO;
     }
 
     cout << hashOutput << endl;

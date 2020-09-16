@@ -2,7 +2,7 @@
 #include <iostream>
 
 #define UNMEMOIZED -1
-#define MODULUS 1000000000
+#define MODULO 1000000000
 
 using namespace std;
 

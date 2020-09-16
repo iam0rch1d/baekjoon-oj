@@ -2,7 +2,7 @@
 #include <vector>
 
 #define UNMEMOIZED -1
-#define MODULUS 1000000000
+#define MODULO 1000000000
 
 using namespace std;
 
@@ -34,7 +34,7 @@ int memoizeStaircaseNumberCount(vector<vector<int>> &staircaseNumberCountCache,
                                                                        startingWith + 1)
                                            + memoizeStaircaseNumberCount(staircaseNumberCountCache,
                                                                          staircaseNumberSize - 1,
-                                                                         startingWith - 1)) % MODULUS;
+                                                                         startingWith - 1)) % MODULO;
         }
     }
 }
@@ -49,7 +49,7 @@ int main() {
 
     for (int i = 1; i <= 9; i++) {
         staircaseNumberTotalCount += memoizeStaircaseNumberCount(staircaseNumberCountCache, staircaseNumberSize, i);
-        staircaseNumberTotalCount %= MODULUS;
+        staircaseNumberTotalCount %= MODULO;
     }
 
     cout << staircaseNumberTotalCount << endl;
