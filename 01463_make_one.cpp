@@ -7,9 +7,9 @@
 using namespace std;
 
 int memoizeMinimumOperationCount(int number, vector<int> &minimumOperationCountCache) {
-    if (minimumOperationCountCache[number] != UNMEMOIZED) return minimumOperationCountCache[number];
-
     int &minimumOperationCount = minimumOperationCountCache[number];
+
+    if (minimumOperationCount != UNMEMOIZED) return minimumOperationCount;
 
     if (number == 1) return minimumOperationCount = 0;
 
