@@ -8,7 +8,7 @@ using namespace std;
 int chapters[500];
 int minimumMergeCostCache[500][500];
 
-int memoizeMergeCost(int firstChapter, int lastChapter) {
+int memoizeMinimumMergeCost(int firstChapter, int lastChapter) {
     if (firstChapter == lastChapter) return 0;
 
     int &minimumMergeCost = minimumMergeCostCache[firstChapter][lastChapter];
@@ -25,7 +25,9 @@ int memoizeMergeCost(int firstChapter, int lastChapter) {
 
     for (int i = firstChapter; i <= lastChapter; i++) {
         minimumMergeCost = min(minimumMergeCost,
-                               memoizeMergeCost(firstChapter, i) + memoizeMergeCost(i + 1, lastChapter) + chapterSum);
+                               memoizeMinimumMergeCost(firstChapter, i)
+                               + memoizeMinimumMergeCost(i + 1, lastChapter)
+                               + chapterSum);
     }
 
     return minimumMergeCost;
@@ -47,7 +49,7 @@ int main() {
             cin >> chapters[i];
         }
 
-        cout << memoizeMergeCost(0, numChapter - 1) << endl;
+        cout << memoizeMinimumMergeCost(0, numChapter - 1) << endl;
     }
 
     return 0;
