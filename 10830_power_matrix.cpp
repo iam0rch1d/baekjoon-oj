@@ -7,7 +7,7 @@ using namespace std;
 
 typedef vector<vector<int>> Matrix;
 
-Matrix operator*(vector<vector<int>> &a, vector<vector<int>> &b) {
+Matrix operator*(Matrix a, Matrix b) {
     int size = a.size();
     Matrix multiplication(size, vector<int>(size));
 
@@ -24,7 +24,7 @@ Matrix operator*(vector<vector<int>> &a, vector<vector<int>> &b) {
     return multiplication;
 }
 
-Matrix powerMatrix(vector<vector<int>> &base, long long exponent) {
+Matrix powerMatrix(Matrix base, long long exponent) {
     int baseSize = base.size();
     Matrix result(baseSize, vector<int>(baseSize, 0));
 
@@ -33,7 +33,7 @@ Matrix powerMatrix(vector<vector<int>> &base, long long exponent) {
     }
 
     while (exponent > 0) {
-        if (exponent % 2 != 0) result = result * base;
+        if (exponent % 2 == 1) result = result * base;
 
         base = base * base;
         exponent /= 2;
