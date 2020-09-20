@@ -13,13 +13,13 @@ int main() {
     cin.ignore();
 
     while (numTestcase-- > 0) {
-        string sentence;
+        string s;
         string token;
         vector<string> tokens;
 
-        getline(cin, sentence);
+        getline(cin, s);
 
-        stringstream tokenizer(sentence);
+        stringstream tokenizer(s);
 
         while (getline(tokenizer, token, ' ')) {
             reverse(token.begin(), token.end());
