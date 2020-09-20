@@ -5,8 +5,8 @@
 
 using namespace std;
 
-int cardpackPrices[10001];
-int maximumTotalPriceCache[10001];
+int cardpackPrices[1001];
+int maximumTotalPriceCache[1001];
 
 int memoizeMaximumTotalPrice(int leftCards) {
     if (leftCards == 0) return 0;
@@ -25,17 +25,17 @@ int memoizeMaximumTotalPrice(int leftCards) {
 }
 
 int main() {
-    int numCardpack;
+    int n;
 
-    cin >> numCardpack;
+    cin >> n;
 
-    for (int i = 1; i <= numCardpack; i++) {
+    for (int i = 1; i <= n; i++) {
         cin >> cardpackPrices[i];
     }
 
     memset(maximumTotalPriceCache, UNMEMOIZED, sizeof(maximumTotalPriceCache));
 
-    cout << memoizeMaximumTotalPrice(numCardpack) << endl;
+    cout << memoizeMaximumTotalPrice(n) << endl;
 
     return 0;
 }
