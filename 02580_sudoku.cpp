@@ -14,7 +14,7 @@ struct Sudoku {
     bool isNumberInColumn[9][10] {};
     bool isNumberInBox[9][10] {};
     vector<Point> blanks;
-    vector<bool> areBlanksFilled;
+    vector<bool> isBlankFilled;
 
     explicit Sudoku(int numberTable[9][9]) {
         for (int i = 0; i < 9; i++) {
@@ -34,7 +34,7 @@ struct Sudoku {
                     isNumberInBox[(i / 3) * 3 + j / 3][numberTable[i][j]] = true;
                 } else {
                     blanks.push_back({i, j});
-                    areBlanksFilled.push_back(false);
+                    isBlankFilled.push_back(false);
                 }
             }
         }
@@ -46,7 +46,7 @@ void backtrackNumber(Sudoku sudoku) {
     Point toFill;
 
     for (int i = 0; i < sudoku.blanks.size(); i++) {
-        if (!sudoku.areBlanksFilled[i]) {
+        if (!sudoku.isBlankFilled[i]) {
             indexBlankToFill = i;
             toFill = sudoku.blanks[i];
 
@@ -76,7 +76,7 @@ void backtrackNumber(Sudoku sudoku) {
             sudoku.isNumberInRow[toFill.y][candidate] = true;
             sudoku.isNumberInColumn[toFill.x][candidate] = true;
             sudoku.isNumberInBox[boxNo][candidate] = true;
-            sudoku.areBlanksFilled[indexBlankToFill] = true;
+            sudoku.isBlankFilled[indexBlankToFill] = true;
 
             backtrackNumber(sudoku);
 
@@ -84,7 +84,7 @@ void backtrackNumber(Sudoku sudoku) {
             sudoku.isNumberInRow[toFill.y][candidate] = false;
             sudoku.isNumberInColumn[toFill.x][candidate] = false;
             sudoku.isNumberInBox[boxNo][candidate] = false;
-            sudoku.areBlanksFilled[indexBlankToFill] = false;
+            sudoku.isBlankFilled[indexBlankToFill] = false;
         }
     }
 }
