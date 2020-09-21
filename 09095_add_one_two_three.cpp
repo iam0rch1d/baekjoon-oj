@@ -8,9 +8,8 @@ using namespace std;
 int methodCountCache[11];
 
 int memoizeMethodCount(int target) {
-    if (target < 3) return target;
-
-    if (target == 3) return 4;
+    if (target <= 2) return target;
+    else if (target == 3) return 4;
 
     int &methodCount = methodCountCache[target];
 

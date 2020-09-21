@@ -10,8 +10,7 @@ int tilingCountCache[1001];
 
 int memoizeTilingCount(int width) {
     if (width == 1) return 1;
-
-    if (width == 2) return 3;
+    else if (width == 2) return 3;
 
     int &tilingCount = tilingCountCache[width];
 
