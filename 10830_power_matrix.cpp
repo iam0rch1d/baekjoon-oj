@@ -24,27 +24,9 @@ Matrix operator*(Matrix a, Matrix b) {
     return multiplication;
 }
 
-Matrix powerMatrix(Matrix base, long long exponent) {
-    int baseSize = base.size();
-    Matrix result(baseSize, vector<int>(baseSize, 0));
-
-    for (int i = 0; i < baseSize; i++) {
-        result[i][i] = 1;
-    }
-
-    while (exponent > 0) {
-        if (exponent % 2 == 1) result = result * base;
-
-        base = base * base;
-        exponent /= 2;
-    }
-
-    return result;
-}
-
 int main() {
     int baseSize;
-    long long exponent;
+    unsigned long long exponent;
 
     cin >> baseSize >> exponent;
 
@@ -57,7 +39,16 @@ int main() {
         }
     }
 
-    result = powerMatrix(base, exponent);
+    for (int i = 0; i < baseSize; i++) {
+        result[i][i] = 1;
+    }
+
+    while (exponent > 0) {
+        if (exponent % 2 == 1) result = result * base;
+
+        base = base * base;
+        exponent >>= 1u;
+    }
 
     for (int i = 0; i < baseSize; i++) {
         for (int j = 0; j < baseSize; j++) {
