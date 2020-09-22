@@ -4,12 +4,12 @@
 using namespace std;
 
 bool isComposite[1000001];
-bool isNumberDbs[1000001]; // 'BSS' refers to 'Divisible-By-Squares'
+bool isNumberDbs[1000001];  // 'BSS' refers to 'Divisible-By-Squares'
 
 int main() {
     long long minimumX;
     long long maximumX;
-    long long ibsNumberCount; // 'IBAS' refers to 'Indivisible-By-Squares'
+    long long ibsNumberCount;  // 'IBAS' refers to 'Indivisible-By-Squares'
     vector<long long> squares;
 
     cin >> minimumX >> maximumX;

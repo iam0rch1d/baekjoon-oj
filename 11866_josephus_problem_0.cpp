@@ -29,9 +29,9 @@ int main() {
     cout << "<";
 
     for (int &person : josephusPermutation) {
-        printf("%d", person);
+        cout << person;
 
-        if (person != josephusPermutation.back()) printf(", ");
+        if (person != josephusPermutation.back()) cout << ", ";
     }
 
     cout << ">" << endl;
