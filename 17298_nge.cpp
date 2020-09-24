@@ -7,10 +7,6 @@ int sequence[1000001];
 int nge[1000001];
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
     int sequenceSize;
     stack<int> ngeIndices;
 
