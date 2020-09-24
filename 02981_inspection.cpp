@@ -50,7 +50,7 @@ int main() {
     sort(differencesCommonDivisors.begin(), differencesCommonDivisors.end());
 
     for (int &differencesCommonDivisor : differencesCommonDivisors) {
-        cout << differencesCommonDivisor << " ";
+        cout << differencesCommonDivisor << ' ';
     }
 
     cout << endl;

@@ -6,6 +6,10 @@
 using namespace std;
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
     int numTestcase;
 
     cin >> numTestcase;
@@ -28,10 +32,10 @@ int main() {
         }
 
         for (auto &reversedToken : tokens) {
-            cout << reversedToken << " ";
+            cout << reversedToken << ' ';
         }
 
-        cout << endl;
+        cout << '\n';
     }
 
     return 0;

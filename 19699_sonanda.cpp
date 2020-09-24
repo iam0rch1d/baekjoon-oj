@@ -62,7 +62,7 @@ int main() {
         sort(primeCowWeightSums.begin(), primeCowWeightSums.end());
 
         for (int i = 0; i < primeCowWeightSums.size(); i++) {
-            if (i == 0 || primeCowWeightSums[i] != primeCowWeightSums[i - 1]) cout << primeCowWeightSums[i] << " ";
+            if (i == 0 || primeCowWeightSums[i] != primeCowWeightSums[i - 1]) cout << primeCowWeightSums[i] << ' ';
         }
 
         cout << endl;

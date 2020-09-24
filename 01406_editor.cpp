@@ -8,17 +8,19 @@ char initialString[100001];
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
+    cout.tie(nullptr);
 
+    char *head;
     int numInstruction;
     deque<char> preCursorChars;
     deque<char> postCursorChars;
 
     cin >> initialString >> numInstruction;
 
-    for (char initialChar : initialString) {
-        if (initialChar == '\0') break;
+    head = initialString;
 
-        preCursorChars.push_back(initialChar);
+    while (*head != '\0') {
+        preCursorChars.push_back(*head++);
     }
 
     while (numInstruction-- > 0) {
@@ -27,15 +29,11 @@ int main() {
         cin >> instruction;
 
         if (instruction == 'L' && !preCursorChars.empty()) {
-            char toMove = preCursorChars.back();
-
+            postCursorChars.push_front(preCursorChars.back());
             preCursorChars.pop_back();
-            postCursorChars.push_front(toMove);
         } else if (instruction == 'D' && !postCursorChars.empty()) {
-            char toMove = postCursorChars.front();
-
+            preCursorChars.push_back(postCursorChars.front());
             postCursorChars.pop_front();
-            preCursorChars.push_back(toMove);
         } else if (instruction == 'B' && !preCursorChars.empty()) preCursorChars.pop_back();
         else if (instruction == 'P') {
             char toAppend;
@@ -54,10 +52,11 @@ int main() {
 
     while (!postCursorChars.empty()) {
         cout << postCursorChars.front();
+
         postCursorChars.pop_front();
     }
 
-    cout << "\n";
+    cout << '\n';
 
     return 0;
 }

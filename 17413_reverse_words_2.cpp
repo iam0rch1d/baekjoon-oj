@@ -4,51 +4,7 @@
 
 using namespace std;
 
-int main() {
-    string s;
-    bool isForward = false;
-    queue<char> forwardWord;
-    stack<char> reverseWord;
-
-    getline(cin, s);
-
-    for (char &sChar : s) {
-        if (sChar == '<') {
-            if (!reverseWord.empty()) {
-                while (!reverseWord.empty()) {
-                    cout << reverseWord.top();
-
-                    reverseWord.pop();
-                }
-            }
-
-            isForward = true;
-        } else if (sChar == '>') {
-            while (!forwardWord.empty()) {
-                cout << forwardWord.front();
-
-                forwardWord.pop();
-            }
-
-            cout << '>';
-
-            isForward = false;
-
-            continue;
-        }
-
-        if (isForward) forwardWord.push(sChar);
-        else if (sChar == ' ') {
-            while (!reverseWord.empty()) {
-                cout << reverseWord.top();
-
-                reverseWord.pop();
-            }
-
-            cout << ' ';
-        } else reverseWord.push(sChar);
-    }
-
+void printReverseWord(stack<char> &reverseWord) {
     if (!reverseWord.empty()) {
         while (!reverseWord.empty()) {
             cout << reverseWord.top();
@@ -56,8 +12,43 @@ int main() {
             reverseWord.pop();
         }
     }
+}
 
-    cout << "\n";
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    string s;
+    bool isTagOpened = false;
+    stack<char> reverseWord;
+
+    getline(cin, s);
+
+    s += ' ';
+
+    for (char sChar : s) {
+        if (sChar == '<') {
+            printReverseWord(reverseWord);
+
+            isTagOpened = true;
+        } else if (sChar == '>') {
+            cout << '>';
+
+            isTagOpened = false;
+
+            continue;
+        }
+
+        if (isTagOpened) cout << sChar;
+        else if (sChar == ' ') {
+            printReverseWord(reverseWord);
+
+            cout << ' ';
+        } else reverseWord.push(sChar);
+    }
+
+    cout << '\n';
 
     return 0;
 }

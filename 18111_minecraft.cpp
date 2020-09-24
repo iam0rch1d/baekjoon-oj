@@ -43,7 +43,7 @@ int main() {
         }
     }
 
-    cout << minimumLevelingTime << " " << maximumLeveledHeight << endl;
+    cout << minimumLevelingTime << ' ' << maximumLeveledHeight << endl;
 
     return 0;
 }

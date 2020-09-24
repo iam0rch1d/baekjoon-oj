@@ -15,7 +15,7 @@ void dfsPreorder(pair<int, int> inorderInterval, pair<int, int> postorderInterva
     int inorderRootIndex = inorderIndexOf[rootVertex];
     int leftSubtreeSize = inorderRootIndex - inorderInterval.first;
 
-    cout << rootVertex << " ";
+    cout << rootVertex << ' ';
 
     dfsPreorder({inorderInterval.first, inorderRootIndex},
                 {postorderInterval.first, postorderInterval.first + leftSubtreeSize});

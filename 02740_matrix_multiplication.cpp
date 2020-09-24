@@ -35,7 +35,7 @@ int main() {
                 multiplication[i][j] += a[i][k] * b[k][j];
             }
 
-            cout << multiplication[i][j] << " ";
+            cout << multiplication[i][j] << ' ';
         }
 
         cout << endl;

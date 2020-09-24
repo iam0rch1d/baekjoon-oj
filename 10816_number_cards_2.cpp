@@ -20,7 +20,7 @@ void bisectNumber(pair<int, int> interval, int target) {
     if (target < deck[center].first) bisectNumber({interval.first, center}, target);
     else if (target > deck[center].first) bisectNumber({center, interval.second}, target);
     else {
-        cout << deck[center].second << " ";
+        cout << deck[center].second << ' ';
 
         return;
     }

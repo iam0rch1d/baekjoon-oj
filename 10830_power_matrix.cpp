@@ -52,7 +52,7 @@ int main() {
 
     for (int i = 0; i < baseSize; i++) {
         for (int j = 0; j < baseSize; j++) {
-            cout << result[i][j] << " ";
+            cout << result[i][j] << ' ';
         }
 
         cout << endl;

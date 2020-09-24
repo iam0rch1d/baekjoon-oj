@@ -57,7 +57,7 @@ void backtrackNumber(Sudoku sudoku) {
     if (indexBlankToFill == -1) {
         for (const auto &numberRow : sudoku.numberTable) {
             for (int number : numberRow) {
-                cout << number << " ";
+                cout << number << ' ';
             }
 
             cout << endl;

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
 using namespace std;
@@ -8,8 +9,8 @@ int main() {
     cin.tie(nullptr);
 
     int numTarget;
-    vector<int> numberStack;
-    vector<char> operationStack;
+    stack<int> numbers;
+    string operations;
     int targetNo = 0;
 
     cin >> numTarget;
@@ -21,19 +22,19 @@ int main() {
     }
 
     for (int i = 1; i <= numTarget; i++) {
-        numberStack.push_back(i);
-        operationStack.push_back('+');
+        numbers.push(i);
+        operations += '+';
 
-        while (!numberStack.empty() && numberStack.back() == targets[targetNo]) {
-            numberStack.pop_back();
-            operationStack.push_back('-');
+        while (!numbers.empty() && numbers.top() == targets[targetNo]) {
+            numbers.pop();
+            operations += '-';
 
             targetNo++;
         }
     }
 
-    if (numberStack.empty()) {
-        for (char &operation : operationStack) {
+    if (numbers.empty()) {
+        for (char &operation : operations) {
             cout << operation << '\n';
         }
     } else cout << "NO\n";
