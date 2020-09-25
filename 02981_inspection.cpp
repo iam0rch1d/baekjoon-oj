@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <cmath>
 #include <iostream>
 #include <vector>
 
@@ -8,7 +7,6 @@ using namespace std;
 int main() {
     int numDividend;
     int differencesGcd;
-    int differencesGcdSquareRoot;
     vector<int> differencesCommonDivisors;
 
     cin >> numDividend;
@@ -29,9 +27,7 @@ int main() {
         differencesGcd = __gcd(differencesGcd, differences[i]);
     }
 
-    differencesGcdSquareRoot = sqrt(differencesGcd);
-
-    for (int i = 1; i <= differencesGcdSquareRoot; i++) {
+    for (int i = 1; i * i <= differencesGcd; i++) {
         if (differencesGcd % i == 0) {
             if (i != 1) differencesCommonDivisors.push_back(i);
 
