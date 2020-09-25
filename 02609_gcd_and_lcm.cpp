@@ -1,25 +1,18 @@
-#include <cmath>
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
 
-int euclid(int a, int b) {
-    if (b > a) return euclid(b, a);
-
-    if (a % b == 0) return b;
-
-    return euclid(b, a - b);
-}
-
 int main() {
-    int numbers[2];
+    int a;
+    int b;
     int gcd;
 
-    cin >> numbers[0] >> numbers[1];
+    cin >> a >> b;
 
-    gcd = euclid(numbers[0], numbers[1]);
+    gcd = __gcd(a, b);
 
-    cout << gcd << endl << numbers[0] * numbers[1] / gcd << endl;
+    cout << gcd << endl << a * b / gcd << endl;
 
     return 0;
 }

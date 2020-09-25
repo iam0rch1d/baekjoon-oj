@@ -5,14 +5,6 @@
 
 using namespace std;
 
-int euclid(int a, int b) {
-    if (b > a) return euclid(b, a);
-
-    if (a % b == 0) return b;
-
-    return euclid(b, a - b);
-}
-
 int main() {
     int numDividend;
     int differencesGcd;
@@ -34,7 +26,7 @@ int main() {
 
     for (int i = 0; i < numDividend - 1; i++) {
         differences[i] = dividends[i + 1] - dividends[0];
-        differencesGcd = euclid(differencesGcd, differences[i]);
+        differencesGcd = __gcd(differencesGcd, differences[i]);
     }
 
     differencesGcdSquareRoot = sqrt(differencesGcd);
