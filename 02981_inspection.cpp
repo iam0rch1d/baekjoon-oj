@@ -5,43 +5,41 @@
 using namespace std;
 
 int main() {
-    int numDividend;
+    int n;
     int differencesGcd;
-    vector<int> differencesCommonDivisors;
+    vector<int> differenceCommonDivisors;
 
-    cin >> numDividend;
+    cin >> n;
 
-    vector<int> dividends(numDividend);
-    vector<int> differences(numDividend - 1);
+    vector<int> numbers(n);
 
-    for (int &dividend : dividends) {
-        cin >> dividend;
+    for (int i = 0; i < n; i++) {
+        cin >> numbers[i];
     }
 
-    sort(dividends.begin(), dividends.end());
+    sort(numbers.begin(), numbers.end());
 
-    differencesGcd = dividends[1] - dividends[0];
+    differencesGcd = numbers[1] - numbers[0];
 
-    for (int i = 0; i < numDividend - 1; i++) {
-        differences[i] = dividends[i + 1] - dividends[0];
-        differencesGcd = __gcd(differencesGcd, differences[i]);
+    for (int i = 2; i < n; i++) {
+        differencesGcd = __gcd(differencesGcd, numbers[i] - numbers[0]);
     }
 
     for (int i = 1; i * i <= differencesGcd; i++) {
         if (differencesGcd % i == 0) {
-            if (i != 1) differencesCommonDivisors.push_back(i);
+            if (i != 1) differenceCommonDivisors.push_back(i);
 
-            if (i != differencesGcd / i) differencesCommonDivisors.push_back(differencesGcd / i);
+            if (i * i != differencesGcd) differenceCommonDivisors.push_back(differencesGcd / i);
         }
     }
 
-    sort(differencesCommonDivisors.begin(), differencesCommonDivisors.end());
+    sort(differenceCommonDivisors.begin(), differenceCommonDivisors.end());
 
-    for (int &differencesCommonDivisor : differencesCommonDivisors) {
-        cout << differencesCommonDivisor << ' ';
+    for (int differenceCommonDivisor : differenceCommonDivisors) {
+        cout << differenceCommonDivisor << ' ';
     }
 
-    cout << endl;
+    cout << '\n';
 
     return 0;
 }

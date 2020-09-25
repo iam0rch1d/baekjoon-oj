@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -6,7 +5,6 @@ using namespace std;
 int main() {
     int number;
     int multiplyingNumber;
-    int factorialFactor2Count = 0;
     int factorialFactor5Count = 0;
 
     cin >> number;
@@ -17,23 +15,16 @@ int main() {
         return 0;
     }
 
-    for (int i = 2; i <= number; i++) {
+    for (int i = 5; i <= number; i += 5) {
         multiplyingNumber = i;
 
-        while (multiplyingNumber % 2 == 0 || multiplyingNumber % 5 == 0) {
-            if (multiplyingNumber % 2 == 0) {
-                factorialFactor2Count++;
-                multiplyingNumber /= 2;
-            }
-
-            if (multiplyingNumber % 5 == 0) {
-                factorialFactor5Count++;
-                multiplyingNumber /= 5;
-            }
+        while (multiplyingNumber % 5 == 0) {
+            factorialFactor5Count++;
+            multiplyingNumber /= 5;
         }
     }
 
-    cout << min<int>(factorialFactor2Count, factorialFactor5Count) << endl;
+    cout << factorialFactor5Count << endl;
 
     return 0;
 }

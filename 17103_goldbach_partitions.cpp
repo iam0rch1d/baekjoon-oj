@@ -6,11 +6,8 @@ using namespace std;
 bool eratosthenesSieve[1000001];
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
     vector<int> primes;
+    int numTestcase;
 
     for (int i = 2; i <= 1000000; i++) {
         if (!eratosthenesSieve[i]) {
@@ -22,19 +19,20 @@ int main() {
         }
     }
 
-    while (true) {
+    cin >> numTestcase;
+
+    while (numTestcase-- > 0) {
         int even;
+        int partitionCount = 0;
 
         cin >> even;
 
-        if (even == 0) return 0;
-
-        for (int i = 1; 2 * primes[i] <= even; i++) {
-            if (!eratosthenesSieve[even - primes[i]]) {
-                cout << even << " = " << primes[i] << " + " << even - primes[i] << '\n';
-
-                break;
-            }
+        for (int i = 0; 2 * primes[i] <= even; i++) {
+            if (!eratosthenesSieve[even - primes[i]]) partitionCount++;
         }
+
+        cout << partitionCount << '\n';
     }
+
+    return 0;
 }

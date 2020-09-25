@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool compositeSieve[1000001];
+bool eratosthenesSieve[1000001];
 bool DbsSieve[1000001];  // 'DBS' refers to 'Divisible-By-Squares'
 
 int main() {
@@ -17,10 +17,10 @@ int main() {
     ibsNumberCount = maximumX - minimumX + 1;
 
     for (long long i = 2; i * i <= maximumX; i++) {
-        if (compositeSieve[i]) continue;
+        if (eratosthenesSieve[i]) continue;
 
         for (long long j = i; j * j <= maximumX; j += i) {
-            compositeSieve[j] = true;
+            eratosthenesSieve[j] = true;
         }
 
         for (long long j = ((minimumX - 1) / (i * i) + 1) * i * i; j <= maximumX; j += i * i) {
