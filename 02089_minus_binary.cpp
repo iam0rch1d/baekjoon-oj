@@ -16,7 +16,7 @@ int main() {
     }
 
     while (decimal != 0) {
-        if (decimal % -2 == 0) {
+        if (decimal % 2 == 0) {
             minusBinary += '0';
             decimal /= -2;
         } else {
