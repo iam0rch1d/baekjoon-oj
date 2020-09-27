@@ -1,38 +1,33 @@
 #include <algorithm>
+#include <cstring>
 #include <iostream>
-#include <vector>
 
 #define UNMEMOIZED -1
 
 using namespace std;
 
-int memoizeMinimumOperationCount(int number, vector<int> &minimumOperationCountCache) {
-    int &minimumOperationCount = minimumOperationCountCache[number];
+int operationCountCache[1000001];
 
-    if (minimumOperationCount != UNMEMOIZED) return minimumOperationCount;
+int memoizeOperationCount(int x) {
+    if (x == 1) return 0;
 
-    if (number == 1) return minimumOperationCount = 0;
+    int &operationCount = operationCountCache[x];
 
-    if (number >= 2 && number <= 3) return minimumOperationCount = 1;
+    if (operationCount != UNMEMOIZED) return operationCount;
 
-    int whenDividedBy3 = number % 3 == 0 ?
-                         memoizeMinimumOperationCount(number / 3, minimumOperationCountCache) : INT32_MAX;
-    int whenDividedBy2 = number % 2 == 0 ?
-                         memoizeMinimumOperationCount(number / 2, minimumOperationCountCache) : INT32_MAX;
+    int whenDividedBy3 = x % 3 == 0 ? 1 + memoizeOperationCount(x / 3) : 1000000;
+    int whenDividedBy2 = x % 2 == 0 ? 1 + memoizeOperationCount(x / 2) : 1000000;
 
-    return minimumOperationCount = 1 + min({whenDividedBy3,
-                                            whenDividedBy2,
-                                            memoizeMinimumOperationCount(number - 1, minimumOperationCountCache)});
+    return operationCount = min({1 + memoizeOperationCount(x - 1), whenDividedBy2, whenDividedBy3});
 }
 
 int main() {
-    int number;
+    int x;
 
-    cin >> number;
+    memset(operationCountCache, UNMEMOIZED, sizeof(operationCountCache));
 
-    vector<int> minimumOperationCountCache(number + 1, UNMEMOIZED);
-
-    cout << memoizeMinimumOperationCount(number, minimumOperationCountCache) << endl;
+    cin >> x;
+    cout << memoizeOperationCount(x) << '\n';
 
     return 0;
 }
