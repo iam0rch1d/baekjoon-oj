@@ -1,20 +1,24 @@
+#include <cstring>
 #include <iostream>
-#include <vector>
 
 #define UNMEMOIZED -1
 
 using namespace std;
 
-int memoizeMaximumLength(const vector<int> &sequence, vector<int> &maximumLengthCache, int startingAt) {
+int sequenceSize;
+int sequence[1000];
+int maximumLengthCache[1001];
+
+int memoizeMaximumLength(int startingAt) {
     int &maximumLength = maximumLengthCache[startingAt + 1];
 
     if (maximumLength != UNMEMOIZED) return maximumLength;
 
-    maximumLength = 1;
+    maximumLength = 0;
 
-    for (int i = startingAt + 1; i < sequence.size(); i++) {
+    for (int i = startingAt + 1; i < sequenceSize; i++) {
         if (startingAt == -1 || sequence[startingAt] < sequence[i]) {
-            maximumLength = max(maximumLength, memoizeMaximumLength(sequence, maximumLengthCache, i) + 1);
+            maximumLength = max(maximumLength, memoizeMaximumLength(i) + 1);
         }
     }
 
@@ -22,18 +26,15 @@ int memoizeMaximumLength(const vector<int> &sequence, vector<int> &maximumLength
 }
 
 int main() {
-    int sequenceSize;
-
     cin >> sequenceSize;
 
-    vector<int> sequence(sequenceSize);
-    vector<int> maximumLengthCache(sequenceSize + 1, UNMEMOIZED);
+    memset(maximumLengthCache, UNMEMOIZED, sizeof(maximumLengthCache));
 
-    for (int &element : sequence) {
-        cin >> element;
+    for (int i = 0; i < sequenceSize; i++) {
+        cin >> sequence[i];
     }
 
-    cout << memoizeMaximumLength(sequence, maximumLengthCache, -1) - 1 << endl;
+    cout << memoizeMaximumLength(-1) << endl;
 
     return 0;
 }

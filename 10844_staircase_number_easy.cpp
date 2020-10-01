@@ -9,13 +9,13 @@ using namespace std;
 int memoizeStaircaseNumberCount(vector<vector<int>> &staircaseNumberCountCache,
                                 int staircaseNumberSize,
                                 int startingWith) {
+    if (staircaseNumberSize == 1) return 1;
+
     if (staircaseNumberCountCache[staircaseNumberSize][startingWith] != UNMEMOIZED) {
         return staircaseNumberCountCache[staircaseNumberSize][startingWith];
     }
 
     int &staircaseNumberCount = staircaseNumberCountCache[staircaseNumberSize][startingWith];
-
-    if (staircaseNumberSize == 1) return staircaseNumberCount = 1;
 
     switch (startingWith) {
         case 0: {

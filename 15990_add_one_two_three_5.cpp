@@ -12,7 +12,7 @@ long long memoizeMethodCount(int target, int withFirstNumber) {
     switch (target) {
         case 1: return withFirstNumber == 1 ? 1 : 0;
         case 2: return withFirstNumber == 2 ? 1 : 0;
-        case 3: return 1;
+        case 3: return 1;  // 1 -> {1, 2}, 2 -> {2, 1}, 3 -> {3}
         default: break;
     }
 
