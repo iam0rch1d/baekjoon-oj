@@ -28,7 +28,7 @@ int main() {
 
     cin >> numVertex;
 
-    for (int i = 0; i < numVertex; i++) {
+    for (int i = 0; i < numVertex - 1; i++) {
         int fromVertex;
         int toVertex;
         int edgeLength;
