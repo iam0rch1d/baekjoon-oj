@@ -26,7 +26,7 @@ bool canInstall(int withDistance) {
 int main() {
     int closestDistanceLow = 1;
     int closestDistanceHigh;
-    int maximumClosestDistance = 0;
+    int maxClosestDistance = 0;
 
     cin >> numHouse >> numNeededRouter;
 
@@ -42,12 +42,12 @@ int main() {
         int closestDistanceCenter = (closestDistanceLow + closestDistanceHigh) / 2;
 
         if (canInstall(closestDistanceCenter)) {
-            maximumClosestDistance = max(maximumClosestDistance, closestDistanceCenter);
+            maxClosestDistance = max(maxClosestDistance, closestDistanceCenter);
             closestDistanceLow = closestDistanceCenter + 1;
         } else closestDistanceHigh = closestDistanceCenter - 1;
     }
 
-    cout << maximumClosestDistance << endl;
+    cout << maxClosestDistance << '\n';
 
     return 0;
 }

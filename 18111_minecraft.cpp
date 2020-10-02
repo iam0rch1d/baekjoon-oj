@@ -10,8 +10,8 @@ int main() {
     int blockHeights[500][500];
     int leveledHeightLow = 257;
     int leveledHeightHigh;
-    int minimumLevelingTime = 128000000;
-    int maximumLeveledHeight;
+    int minLevelingTime = 128000000;
+    int maxLeveledHeight;
 
     cin >> numRow >> numColumn >> inventoryBlockCount;
 
@@ -37,13 +37,13 @@ int main() {
             }
         }
 
-        if (levelingTime <= minimumLevelingTime) {
-            minimumLevelingTime = levelingTime;
-            maximumLeveledHeight = leveledHeight;
+        if (levelingTime <= minLevelingTime) {
+            minLevelingTime = levelingTime;
+            maxLeveledHeight = leveledHeight;
         }
     }
 
-    cout << minimumLevelingTime << ' ' << maximumLeveledHeight << endl;
+    cout << minLevelingTime << ' ' << maxLeveledHeight << '\n';
 
     return 0;
 }

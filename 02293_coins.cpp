@@ -24,7 +24,7 @@ int main() {
         }
     }
 
-    cout << methodCountCache[targetValueSum] << endl;
+    cout << methodCountCache[targetValueSum] << '\n';
 
     return 0;
 }

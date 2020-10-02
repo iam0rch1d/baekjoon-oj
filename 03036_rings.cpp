@@ -19,7 +19,7 @@ int main() {
     for (int i = 1; i < numRing; i++) {
         ringRadiiGcd = __gcd(ringRadii[0], ringRadii[i]);
 
-        cout << ringRadii[0] / ringRadiiGcd << "/" << ringRadii[i] / ringRadiiGcd << endl;
+        cout << ringRadii[0] / ringRadiiGcd << "/" << ringRadii[i] / ringRadiiGcd << '\n';
     }
 
     return 0;

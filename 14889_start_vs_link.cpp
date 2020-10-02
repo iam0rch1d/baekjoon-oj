@@ -57,7 +57,7 @@ int main() {
 
     backtrackTeamDraft(synergy, isStartTeamMember, synergyDifferences);
 
-    cout << *min_element(synergyDifferences.begin(), synergyDifferences.end()) << endl;
+    cout << *min_element(synergyDifferences.begin(), synergyDifferences.end()) << '\n';
 
     return 0;
 }

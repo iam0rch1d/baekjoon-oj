@@ -24,7 +24,7 @@ int main() {
     factorialFactor2Count = countFactorialFactor(n, 2) - countFactorialFactor(m, 2) - countFactorialFactor(n - m, 2);
     factorialFactor5Count = countFactorialFactor(n, 5) - countFactorialFactor(m, 5) - countFactorialFactor(n - m, 5);
 
-    cout << min(factorialFactor2Count, factorialFactor5Count) << endl;
+    cout << min(factorialFactor2Count, factorialFactor5Count) << '\n';
 
     return 0;
 }

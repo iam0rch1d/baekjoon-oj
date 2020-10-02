@@ -81,7 +81,7 @@ int main() {
     backtrackResult(operands, numOperations, operationSequence, results);
     sort(results.begin(), results.end());
 
-    cout << results.back() << endl << results[0];
+    cout << results.back() << '\n' << results[0];
 
     return 0;
 }

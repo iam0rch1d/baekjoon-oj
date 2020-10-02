@@ -47,7 +47,7 @@ int main() {
                 priorities.pop();
 
                 if (current.documentNo == queryDocumentNo) {
-                    cout << sequenceNo << endl;
+                    cout << sequenceNo << '\n';
 
                     break;
                 }

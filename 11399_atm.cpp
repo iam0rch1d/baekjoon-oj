@@ -22,7 +22,7 @@ int main() {
         totalTime += (numPerson - i) * withdrawalTimes[i];
     }
 
-    cout << totalTime << endl;
+    cout << totalTime << '\n';
 
     return 0;
 }

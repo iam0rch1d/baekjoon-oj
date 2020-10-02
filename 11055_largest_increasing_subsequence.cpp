@@ -7,22 +7,22 @@ using namespace std;
 
 int sequenceSize;
 int sequence[1001];
-int maximumSumCache[1001];
+int maxSumCache[1001];
 
-int memoizeMaximumSum(int toIndex) {
+int memoizeMaxSum(int toIndex) {
     if (toIndex == 0) return sequence[0];
 
-    int &maximumSum = maximumSumCache[toIndex];
+    int &maxSum = maxSumCache[toIndex];
 
-    if (maximumSum != UNMEMOIZED) return maximumSum;
+    if (maxSum != UNMEMOIZED) return maxSum;
 
-    maximumSum = 0;
+    maxSum = 0;
 
     for (int i = toIndex - 1; i >= 0; i--) {
-        if (sequence[i] < sequence[toIndex]) maximumSum = max(maximumSum, memoizeMaximumSum(i));
+        if (sequence[i] < sequence[toIndex]) maxSum = max(maxSum, memoizeMaxSum(i));
     }
 
-    return maximumSum += sequence[toIndex];
+    return maxSum += sequence[toIndex];
 }
 
 int main() {
@@ -34,9 +34,9 @@ int main() {
 
     sequence[sequenceSize] = 1e6;
 
-    memset(maximumSumCache, UNMEMOIZED, sizeof(maximumSumCache));
+    memset(maxSumCache, UNMEMOIZED, sizeof(maxSumCache));
 
-    cout << memoizeMaximumSum(sequenceSize) - 1e6 << '\n';
+    cout << memoizeMaxSum(sequenceSize) - 1e6 << '\n';
 
     return 0;
 }

@@ -6,22 +6,22 @@
 using namespace std;
 
 int cardpackPrices[1001];
-int minimumTotalPriceCache[1001];
+int minTotalPriceCache[1001];
 
-int memoizeMinimumTotalPrice(int leftCards) {
+int memoizeMinTotalPrice(int leftCards) {
     if (leftCards == 0) return 0;
 
-    int &minimumTotalPrice = minimumTotalPriceCache[leftCards];
+    int &minTotalPrice = minTotalPriceCache[leftCards];
 
-    if (minimumTotalPrice != UNMEMOIZED) return minimumTotalPrice;
+    if (minTotalPrice != UNMEMOIZED) return minTotalPrice;
 
-    minimumTotalPrice = 100000001;
+    minTotalPrice = 100000001;
 
     for (int i = leftCards; i > 0; i--) {
-        minimumTotalPrice = min(minimumTotalPrice, cardpackPrices[i] + memoizeMinimumTotalPrice(leftCards - i));
+        minTotalPrice = min(minTotalPrice, cardpackPrices[i] + memoizeMinTotalPrice(leftCards - i));
     }
 
-    return minimumTotalPrice;
+    return minTotalPrice;
 }
 
 int main() {
@@ -33,9 +33,9 @@ int main() {
         cin >> cardpackPrices[i];
     }
 
-    memset(minimumTotalPriceCache, UNMEMOIZED, sizeof(minimumTotalPriceCache));
+    memset(minTotalPriceCache, UNMEMOIZED, sizeof(minTotalPriceCache));
 
-    cout << memoizeMinimumTotalPrice(n) << endl;
+    cout << memoizeMinTotalPrice(n) << '\n';
 
     return 0;
 }

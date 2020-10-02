@@ -45,7 +45,7 @@ int main() {
         }
     }
 
-    cout << dncQuadtree(colors, {0, 0}, size) << endl;
+    cout << dncQuadtree(colors, {0, 0}, size) << '\n';
 
     return 0;
 }

@@ -33,7 +33,7 @@ int main() {
 
         cin >> target;
 
-        cout << memoizeMethodCount(target) << endl;
+        cout << memoizeMethodCount(target) << '\n';
     }
 
     return 0;

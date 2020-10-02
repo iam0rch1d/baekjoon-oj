@@ -15,7 +15,7 @@ int main() {
         cin >> factor;
     }
 
-    cout << *max_element(factors.begin(), factors.end()) * *min_element(factors.begin(), factors.end()) << endl;
+    cout << *max_element(factors.begin(), factors.end()) * *min_element(factors.begin(), factors.end()) << '\n';
 
     return 0;
 }

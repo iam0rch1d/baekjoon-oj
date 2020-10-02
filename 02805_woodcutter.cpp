@@ -10,7 +10,7 @@ int main() {
     long long neededWood;
     long long cuttingSizeLow = 1;
     long long cuttingSizeHigh;
-    long long maximumCuttingSize = 0;
+    long long maxCuttingSize = 0;
 
     cin >> numTree >> neededWood;
 
@@ -29,12 +29,12 @@ int main() {
         }
 
         if (totalCutWood >= neededWood) {
-            maximumCuttingSize = max(maximumCuttingSize, cuttingSizeCenter);
+            maxCuttingSize = max(maxCuttingSize, cuttingSizeCenter);
             cuttingSizeLow = cuttingSizeCenter + 1;
         } else cuttingSizeHigh = cuttingSizeCenter - 1;
     }
 
-    cout << maximumCuttingSize << endl;
+    cout << maxCuttingSize << '\n';
 
     return 0;
 }

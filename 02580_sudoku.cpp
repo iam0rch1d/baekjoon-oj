@@ -60,7 +60,7 @@ void backtrackNumber(Sudoku sudoku) {
                 cout << number << ' ';
             }
 
-            cout << endl;
+            cout << '\n';
         }
 
         exit(0);

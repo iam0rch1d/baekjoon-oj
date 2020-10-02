@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#define MAXIMUM_NUM_OPERAND 25
+#define MAX_NUM_OPERAND 25
 
 using namespace std;
 
@@ -10,7 +10,7 @@ int main() {
     string formula;
     int operand = 0;
     vector<int> operands;
-    int indexFirstMinus = MAXIMUM_NUM_OPERAND;
+    int indexFirstMinus = MAX_NUM_OPERAND;
     int operationResult = 0;
 
     cin >> formula;
@@ -26,7 +26,7 @@ int main() {
             operand = 0;
         }
 
-        if (formula.at(i) == '-' && indexFirstMinus == MAXIMUM_NUM_OPERAND) indexFirstMinus = operands.size();
+        if (formula.at(i) == '-' && indexFirstMinus == MAX_NUM_OPERAND) indexFirstMinus = operands.size();
     }
 
     for (int i = 0; i < operands.size(); i++) {
@@ -34,7 +34,7 @@ int main() {
         else operationResult -= operands[i];
     }
 
-    cout << operationResult << endl;
+    cout << operationResult << '\n';
 
     return 0;
 }

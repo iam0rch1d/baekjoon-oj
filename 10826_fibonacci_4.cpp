@@ -31,13 +31,13 @@ int main() {
     cin >> index;
 
     if (index == 0) {
-        cout << 0 << endl;
+        cout << 0 << '\n';
 
         return 0;
     }
 
     if (index >= 1 && index <= 2) {
-        cout << 1 << endl;
+        cout << 1 << '\n';
 
         return 0;
     }
@@ -56,7 +56,7 @@ int main() {
         cout << result[i];
     }
 
-    cout << endl;
+    cout << '\n';
 
     return 0;
 }

@@ -34,7 +34,7 @@ int main() {
         if (person != josephusPermutation.back()) cout << ", ";
     }
 
-    cout << ">" << endl;
+    cout << ">" << '\n';
 
     return 0;
 }

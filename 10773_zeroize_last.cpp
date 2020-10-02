@@ -23,7 +23,7 @@ int main() {
         totalMoney += money;
     }
 
-    cout << totalMoney << endl;
+    cout << totalMoney << '\n';
 
     return 0;
 }

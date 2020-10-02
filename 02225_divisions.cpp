@@ -27,7 +27,7 @@ int main() {
 
     cin >> n >> k;
 
-    cout << memoizeBinomialCoefficient(n + k - 1, n) << endl;
+    cout << memoizeBinomialCoefficient(n + k - 1, n) << '\n';
 
     return 0;
 }

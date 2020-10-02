@@ -50,15 +50,15 @@ int main() {
 
     dfsPreorder('A');
 
-    cout << endl;
+    cout << '\n';
 
     dfsInorder('A');
 
-    cout << endl;
+    cout << '\n';
 
     dfsPostorder('A');
 
-    cout << endl;
+    cout << '\n';
 
     return 0;
 }

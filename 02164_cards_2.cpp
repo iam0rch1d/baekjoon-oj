@@ -19,7 +19,7 @@ int main() {
         deck.pop();
     }
 
-    cout << deck.front() << endl;
+    cout << deck.front() << '\n';
 
     return 0;
 }

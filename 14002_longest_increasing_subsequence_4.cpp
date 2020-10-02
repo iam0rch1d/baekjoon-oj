@@ -8,24 +8,24 @@ using namespace std;
 
 int sequenceSize;
 int sequence[1001];
-int maximumLengthCache[1001];
+int maxLengthCache[1001];
 int triggerIndexCache[1001];
 
-int memoizeMaximumLength(int toIndex) {
-    int &maximumLength = maximumLengthCache[toIndex];
+int memoizeMaxLength(int toIndex) {
+    int &maxLength = maxLengthCache[toIndex];
 
-    if (maximumLength != UNMEMOIZED) return maximumLength;
+    if (maxLength != UNMEMOIZED) return maxLength;
 
-    maximumLength = 0;
+    maxLength = 0;
 
     for (int i = toIndex - 1; i >= 0; i--) {
-        if (sequence[i] < sequence[toIndex] && memoizeMaximumLength(i) >= maximumLength) {
-            maximumLength = memoizeMaximumLength(i);
+        if (sequence[i] < sequence[toIndex] && memoizeMaxLength(i) >= maxLength) {
+            maxLength = memoizeMaxLength(i);
             triggerIndexCache[toIndex] = i;
         }
     }
 
-    return ++maximumLength;
+    return ++maxLength;
 }
 
 void backtrackLis(int index) {
@@ -47,10 +47,10 @@ int main() {
 
     sequence[sequenceSize] = 1001;
 
-    memset(maximumLengthCache, UNMEMOIZED, sizeof(maximumLengthCache));
+    memset(maxLengthCache, UNMEMOIZED, sizeof(maxLengthCache));
     memset(triggerIndexCache, UNMEMOIZED, sizeof(triggerIndexCache));
 
-    cout << memoizeMaximumLength(sequenceSize) - 1 << '\n';
+    cout << memoizeMaxLength(sequenceSize) - 1 << '\n';
 
     backtrackLis(sequenceSize);
 

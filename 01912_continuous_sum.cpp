@@ -3,21 +3,20 @@
 
 using namespace std;
 
-int maximumContinuousSumCache[100001] = {-1001};
-
 int main() {
     int sequenceSize;
     int sequence[100000];
+    int maxContinuousSumCache[100000];
 
     cin >> sequenceSize;
 
     for (int i = 0; i < sequenceSize; i++) {
         cin >> sequence[i];
 
-        maximumContinuousSumCache[i + 1] = max(maximumContinuousSumCache[i], 0) + sequence[i];
+        maxContinuousSumCache[i] = sequence[i] + (i == 0 ? 0 : max(maxContinuousSumCache[i - 1], 0));
     }
 
-    cout << *max_element(maximumContinuousSumCache, maximumContinuousSumCache + sequenceSize + 1) << endl;
+    cout << *max_element(maxContinuousSumCache, maxContinuousSumCache + sequenceSize) << '\n';
 
     return 0;
 }

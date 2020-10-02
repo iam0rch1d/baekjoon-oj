@@ -40,7 +40,7 @@ int main() {
     memset(placedColumns, -1, sizeof(placedColumns));
     backtrackNQueenCount(0);
 
-    cout << nQueenCount << endl;
+    cout << nQueenCount << '\n';
 
     return 0;
 }

@@ -26,7 +26,7 @@ int main() {
 
     cin >> pinaryNumberSize;
 
-    cout << memoizePinaryNumberCount(pinaryNumberSize, 1) << endl;
+    cout << memoizePinaryNumberCount(pinaryNumberSize, 1) << '\n';
 
     return 0;
 }

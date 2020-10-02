@@ -25,8 +25,7 @@ int main() {
     memset(cagingCountCache, UNMEMOIZED, sizeof(cagingCountCache));
 
     cin >> size;
-
-    cout << memoizeCagingCount(size) << endl;
+    cout << memoizeCagingCount(size) << '\n';
 
     return 0;
 }

@@ -21,12 +21,12 @@ int main() {
 
             stack.push_back(target);
         } else if (instruction == "pop"){
-            cout << (stack.empty() ? -1 : stack[stack.size() - 1]) << endl;
+            cout << (stack.empty() ? -1 : stack[stack.size() - 1]) << '\n';
 
             if (!stack.empty()) stack.pop_back();
-        } else if (instruction == "size") cout << stack.size() << endl;
-        else if (instruction == "empty") cout << (stack.empty() ? 1 : 0) << endl;
-        else if (instruction == "top") cout << (stack.empty() ? -1 : stack[stack.size() - 1]) << endl;
+        } else if (instruction == "size") cout << stack.size() << '\n';
+        else if (instruction == "empty") cout << (stack.empty() ? 1 : 0) << '\n';
+        else if (instruction == "top") cout << (stack.empty() ? -1 : stack[stack.size() - 1]) << '\n';
     }
 
     return 0;

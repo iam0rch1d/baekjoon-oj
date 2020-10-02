@@ -10,7 +10,7 @@ int main() {
     cin >> number;
 
     if (number < 5) {
-        cout << "0" << endl;
+        cout << "0" << '\n';
 
         return 0;
     }
@@ -24,7 +24,7 @@ int main() {
         }
     }
 
-    cout << factorialFactor5Count << endl;
+    cout << factorialFactor5Count << '\n';
 
     return 0;
 }

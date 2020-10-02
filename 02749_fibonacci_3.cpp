@@ -48,14 +48,14 @@ int main() {
     cin >> index;
 
     if (index < 2) {
-        cout << index << endl;
+        cout << index << '\n';
 
         return 0;
     }
 
     Matrix base = {{0, 1}, {1, 1}};
 
-    cout << powerMatrix(base, index - 1)[1][1] << endl;
+    cout << powerMatrix(base, index - 1)[1][1] << '\n';
 
     return 0;
 }

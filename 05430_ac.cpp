@@ -48,7 +48,7 @@ int main() {
         }
 
         if (hasError) {
-            cout << "error" << endl;
+            cout << "error" << '\n';
 
             continue;
         }
@@ -73,7 +73,7 @@ int main() {
             }
         }
 
-        cout << "]" << endl;
+        cout << "]" << '\n';
     }
 
     return 0;

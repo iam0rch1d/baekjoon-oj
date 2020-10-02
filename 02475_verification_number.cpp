@@ -12,7 +12,7 @@ int main() {
         uniqueNumbersSquareSum += uniqueNumber * uniqueNumber;
     }
 
-    cout << uniqueNumbersSquareSum % 10 << endl;
+    cout << uniqueNumbersSquareSum % 10 << '\n';
 
     return 0;
 }

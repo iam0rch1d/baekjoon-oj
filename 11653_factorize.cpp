@@ -13,7 +13,7 @@ int main() {
         if (number % divisor == 0) {
             number /= divisor;
 
-            cout << divisor << endl;
+            cout << divisor << '\n';
         } else divisor++;
     }
 

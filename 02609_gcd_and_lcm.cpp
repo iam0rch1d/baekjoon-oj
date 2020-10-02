@@ -12,7 +12,7 @@ int main() {
 
     gcd = __gcd(a, b);
 
-    cout << gcd << endl << a * b / gcd << endl;
+    cout << gcd << '\n' << a * b / gcd << '\n';
 
     return 0;
 }

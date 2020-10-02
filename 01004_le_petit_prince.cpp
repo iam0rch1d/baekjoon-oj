@@ -32,7 +32,7 @@ int main() {
             if (isIncluded(source, circle) ^ isIncluded(destination, circle)) passingCircleCount++;
         }
 
-        cout << passingCircleCount << endl;
+        cout << passingCircleCount << '\n';
     }
 
     return 0;

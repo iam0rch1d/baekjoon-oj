@@ -33,7 +33,7 @@ int main() {
         }
     }
 
-    cout << availableConferenceCount << endl;
+    cout << availableConferenceCount << '\n';
 
     return 0;
 }

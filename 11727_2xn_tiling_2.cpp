@@ -26,7 +26,7 @@ int main() {
 
     cin >> width;
 
-    cout << memoizeTilingCount(width) << endl;
+    cout << memoizeTilingCount(width) << '\n';
 
     return 0;
 }

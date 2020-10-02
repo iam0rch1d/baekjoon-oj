@@ -42,7 +42,7 @@ int main() {
         bitonicLengths.push(increaseLengthCache[i] + decreaseLengthCache[i] - 1);
     }
 
-    cout << bitonicLengths.top() << endl;
+    cout << bitonicLengths.top() << '\n';
 
     return 0;
 }

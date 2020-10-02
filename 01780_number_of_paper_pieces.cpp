@@ -103,7 +103,7 @@ int main() {
 
     dncNumberPiece(colors, {0, 0}, size, minusOnePieceCount, zeroPieceCount, plusOnePieceCount);
 
-    cout << minusOnePieceCount << endl << zeroPieceCount << endl << plusOnePieceCount;
+    cout << minusOnePieceCount << '\n' << zeroPieceCount << '\n' << plusOnePieceCount;
 
     return 0;
 }

@@ -58,7 +58,7 @@ int main() {
     memset(hasVisited, false, sizeof(hasVisited));
     dfs(farthestVertex, 0);  // Find the farthest vertex and the distance from 'the farthest vertex from root'
 
-    cout << diameter << endl;
+    cout << diameter << '\n';
 
     return 0;
 }

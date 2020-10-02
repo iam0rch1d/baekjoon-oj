@@ -44,7 +44,7 @@ int main() {
 
         memset(maxTotalScoreCache, UNMEMOIZED, sizeof(maxTotalScoreCache));
 
-        cout << max(memoizeTotalScore(numRow - 1, 0), memoizeTotalScore(numRow - 1, 1)) << endl;
+        cout << max(memoizeTotalScore(numRow - 1, 0), memoizeTotalScore(numRow - 1, 1)) << '\n';
     }
 
     return 0;

@@ -38,6 +38,6 @@ int main() {
             cout << multiplication[i][j] << ' ';
         }
 
-        cout << endl;
+        cout << '\n';
     }
 }

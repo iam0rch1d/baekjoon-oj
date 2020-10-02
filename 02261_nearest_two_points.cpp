@@ -17,7 +17,7 @@ int calculateDistanceSquare(Point &a, Point &b) {
     return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
 }
 
-int dncMinimumDistanceSquare(vector<Point>::iterator head, int size) {
+int dncMinDistanceSquare(vector<Point>::iterator head, int size) {
     if (size == 2) return calculateDistanceSquare(*head, *(head + 1));
 
     if (size == 3)
@@ -26,13 +26,13 @@ int dncMinimumDistanceSquare(vector<Point>::iterator head, int size) {
                     calculateDistanceSquare(*(head + 1), *(head + 2))});
 
     int halfSize = size / 2;
-    int minimumDistanceSquare = min(dncMinimumDistanceSquare(head, halfSize),
-                                    dncMinimumDistanceSquare(head + halfSize, size - halfSize));
+    int minDistanceSquare = min(dncMinDistanceSquare(head, halfSize),
+                                dncMinDistanceSquare(head + halfSize, size - halfSize));
     int center = ((head + halfSize - 1)->x + (head + halfSize)->x) / 2;
     vector<Point> crossingCenters;
 
     for (int i = 0; i < size; i++) {
-        if (square(center - (head + i)->x) < minimumDistanceSquare) {
+        if (square(center - (head + i)->x) < minDistanceSquare) {
             crossingCenters.push_back(*(head + i));
         }
     }
@@ -43,14 +43,14 @@ int dncMinimumDistanceSquare(vector<Point>::iterator head, int size) {
 
     for (int i = 0; i < crossingCentersSize - 1; i++) {
         for (int j = i + 1;
-             j < crossingCentersSize && square(crossingCenters[j].y - crossingCenters[i].y) < minimumDistanceSquare;
+             j < crossingCentersSize && square(crossingCenters[j].y - crossingCenters[i].y) < minDistanceSquare;
              j++) {
-            minimumDistanceSquare = min(minimumDistanceSquare,
-                                        calculateDistanceSquare(crossingCenters[i], crossingCenters[j]));
+            minDistanceSquare = min(minDistanceSquare,
+                                    calculateDistanceSquare(crossingCenters[i], crossingCenters[j]));
         }
     }
 
-    return minimumDistanceSquare;
+    return minDistanceSquare;
 }
 
 int main() {
@@ -66,7 +66,7 @@ int main() {
 
     sort(points.begin(), points.end(), [](auto i, auto j) { return (i.x < j.x); });
 
-    cout << dncMinimumDistanceSquare(points.begin(), numPoint) << endl;
+    cout << dncMinDistanceSquare(points.begin(), numPoint) << '\n';
 
     return 0;
 }

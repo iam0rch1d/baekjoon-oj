@@ -7,31 +7,31 @@ bool eratosthenesSieve[1000001];
 bool DbsSieve[1000001];  // 'DBS' refers to 'Divisible-By-Squares'
 
 int main() {
-    long long minimumX;
-    long long maximumX;
+    long long minX;
+    long long maxX;
     long long ibsNumberCount;  // 'IBS' refers to 'Indivisible-By-Squares'
     vector<long long> squares;
 
-    cin >> minimumX >> maximumX;
+    cin >> minX >> maxX;
 
-    ibsNumberCount = maximumX - minimumX + 1;
+    ibsNumberCount = maxX - minX + 1;
 
-    for (long long i = 2; i * i <= maximumX; i++) {
+    for (long long i = 2; i * i <= maxX; i++) {
         if (eratosthenesSieve[i]) continue;
 
-        for (long long j = i; j * j <= maximumX; j += i) {
+        for (long long j = i; j * j <= maxX; j += i) {
             eratosthenesSieve[j] = true;
         }
 
-        for (long long j = ((minimumX - 1) / (i * i) + 1) * i * i; j <= maximumX; j += i * i) {
-            if (!DbsSieve[j - minimumX]) {
-                DbsSieve[j - minimumX] = true;
+        for (long long j = ((minX - 1) / (i * i) + 1) * i * i; j <= maxX; j += i * i) {
+            if (!DbsSieve[j - minX]) {
+                DbsSieve[j - minX] = true;
                 ibsNumberCount--;
             }
         }
     }
 
-    cout << ibsNumberCount << endl;
+    cout << ibsNumberCount << '\n';
 
     return 0;
 }

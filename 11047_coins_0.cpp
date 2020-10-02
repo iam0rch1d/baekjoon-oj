@@ -26,7 +26,7 @@ int main() {
         } else toMakeUpCoinNo--;
     }
 
-    cout << requiredCoinCount << endl;
+    cout << requiredCoinCount << '\n';
 
     return 0;
 }

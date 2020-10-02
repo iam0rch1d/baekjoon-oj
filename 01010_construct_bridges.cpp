@@ -31,7 +31,7 @@ int main() {
 
         memset(constructionCountCache, UNMEMOIZED, sizeof(constructionCountCache));
 
-        cout << memoizeConstructionCount(numFromNode, numToNode) << endl;
+        cout << memoizeConstructionCount(numFromNode, numToNode) << '\n';
     }
 
     return 0;

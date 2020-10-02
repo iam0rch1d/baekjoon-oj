@@ -20,7 +20,7 @@ int main() {
         }
     }
 
-    cout << totalPieceCount << endl;
+    cout << totalPieceCount << '\n';
 
     return 0;
 }

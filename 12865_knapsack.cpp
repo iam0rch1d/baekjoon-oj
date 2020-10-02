@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int maximumTotalValueCache[101][100001];
+int maxTotalValueCache[101][100001];
 
 int main() {
     int numItem;
@@ -18,14 +18,13 @@ int main() {
     for (int i = 1; i <= numItem; i++) {
         for (int j = 1; j <= strength; j++) {
             if (items[i - 1].first <= j) {
-                maximumTotalValueCache[i][j] = max(maximumTotalValueCache[i - 1][j - items[i - 1].first]
-                                                   + items[i - 1].second,
-                                                   maximumTotalValueCache[i - 1][j]);
-            } else maximumTotalValueCache[i][j] = maximumTotalValueCache[i - 1][j];
+                maxTotalValueCache[i][j] = max(maxTotalValueCache[i - 1][j - items[i - 1].first] + items[i - 1].second,
+                                               maxTotalValueCache[i - 1][j]);
+            } else maxTotalValueCache[i][j] = maxTotalValueCache[i - 1][j];
         }
     }
 
-    cout << maximumTotalValueCache[numItem][strength] << endl;
+    cout << maxTotalValueCache[numItem][strength] << '\n';
 
     return 0;
 }

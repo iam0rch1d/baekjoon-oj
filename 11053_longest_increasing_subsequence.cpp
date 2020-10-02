@@ -8,20 +8,20 @@ using namespace std;
 
 int sequenceSize;
 int sequence[1001];
-int maximumLengthCache[1001];
+int maxLengthCache[1001];
 
-int memoizeMaximumLength(int toIndex) {
-    int &maximumLength = maximumLengthCache[toIndex];
+int memoizeMaxLength(int toIndex) {
+    int &maxLength = maxLengthCache[toIndex];
 
-    if (maximumLength != UNMEMOIZED) return maximumLength;
+    if (maxLength != UNMEMOIZED) return maxLength;
 
-    maximumLength = 0;
+    maxLength = 0;
 
     for (int i = toIndex - 1; i >= 0; i--) {
-        if (sequence[i] < sequence[toIndex]) maximumLength = max(maximumLength, memoizeMaximumLength(i));
+        if (sequence[i] < sequence[toIndex]) maxLength = max(maxLength, memoizeMaxLength(i));
     }
 
-    return ++maximumLength;
+    return ++maxLength;
 }
 
 int main() {
@@ -31,11 +31,11 @@ int main() {
         cin >> sequence[i];
     }
 
-    memset(maximumLengthCache, UNMEMOIZED, sizeof(maximumLengthCache));
+    memset(maxLengthCache, UNMEMOIZED, sizeof(maxLengthCache));
 
     sequence[sequenceSize] = 1001;
 
-    cout << memoizeMaximumLength(sequenceSize) - 1 << '\n';
+    cout << memoizeMaxLength(sequenceSize) - 1 << '\n';
 
     return 0;
 }

@@ -20,6 +20,6 @@ int main() {
             }
         }
 
-        cout << (isPalindrome ? "yes" : "no") << endl;
+        cout << (isPalindrome ? "yes\n" : "no\n");
     }
 }

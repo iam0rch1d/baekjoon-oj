@@ -24,7 +24,7 @@ void backtrackHeight(const int *heights, bool *isDwarfPicked, vector<int> &picke
         sort(pickedHeights.begin(), pickedHeights.end());
 
         for (int i = 0; i < NUM_DWARF; i++) {
-            cout << pickedHeights[i] << endl;
+            cout << pickedHeights[i] << '\n';
         }
 
         exit(0);

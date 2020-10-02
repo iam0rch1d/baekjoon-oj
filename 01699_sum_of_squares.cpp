@@ -5,32 +5,32 @@
 
 using namespace std;
 
-int minimumSquareCountCache[100001];
+int minSquareCountCache[100001];
 
-int memoizeMinimumSquareCount(int n) {
+int memoizeMinSquareCount(int n) {
     if (n == 0) return 0;
 
-    int &minimumSquareCount = minimumSquareCountCache[n];
+    int &minSquareCount = minSquareCountCache[n];
 
-    if (minimumSquareCount != UNMEMOIZED) return minimumSquareCount;
+    if (minSquareCount != UNMEMOIZED) return minSquareCount;
 
-    minimumSquareCount = n;
+    minSquareCount = n;
 
     for (int i = 1; i * i <= n; i++) {
-        minimumSquareCount = min(minimumSquareCount, memoizeMinimumSquareCount(n - i * i) + 1);
+        minSquareCount = min(minSquareCount, memoizeMinSquareCount(n - i * i) + 1);
     }
 
-    return minimumSquareCount;
+    return minSquareCount;
 }
 
 int main() {
     int n;
 
-    memset(minimumSquareCountCache, UNMEMOIZED, sizeof(minimumSquareCountCache));
+    memset(minSquareCountCache, UNMEMOIZED, sizeof(minSquareCountCache));
 
     cin >> n;
 
-    cout << memoizeMinimumSquareCount(n) << endl;
+    cout << memoizeMinSquareCount(n) << '\n';
 
     return 0;
 }

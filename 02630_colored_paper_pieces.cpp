@@ -44,7 +44,7 @@ int main() {
 
     dncColoredPiece(colors, {0, 0}, size, whitePieceCount, bluePieceCount);
 
-    cout << whitePieceCount << endl << bluePieceCount << endl;
+    cout << whitePieceCount << '\n' << bluePieceCount << '\n';
 
     return 0;
 }

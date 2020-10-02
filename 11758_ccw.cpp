@@ -19,7 +19,7 @@ int main() {
     else if (vectorProductZ < 0) cout << 1;
     else cout << 0;
 
-    cout << endl;
+    cout << '\n';
 
     return 0;
 }

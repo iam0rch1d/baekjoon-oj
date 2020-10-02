@@ -57,7 +57,7 @@ int main() {
     backtrackCowWeightSum(selectedCowWeights, -1);
 
     if (primeCowWeightSums.empty()) {
-        cout << "-1" << endl;
+        cout << "-1" << '\n';
     } else {
         sort(primeCowWeightSums.begin(), primeCowWeightSums.end());
 
@@ -65,7 +65,7 @@ int main() {
             if (i == 0 || primeCowWeightSums[i] != primeCowWeightSums[i - 1]) cout << primeCowWeightSums[i] << ' ';
         }
 
-        cout << endl;
+        cout << '\n';
     }
 
     return 0;

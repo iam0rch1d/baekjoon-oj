@@ -47,7 +47,7 @@ int main() {
 
     dfs(farthestVertex, 0, 0);
 
-    cout << diameter << endl;
+    cout << diameter << '\n';
 
     return 0;
 }

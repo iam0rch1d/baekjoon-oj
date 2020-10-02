@@ -36,7 +36,7 @@ int main() {
             head++;
         }
 
-        cout << (isValid && bracketStack.empty() ? "yes" : "no") << endl;
+        cout << (isValid && bracketStack.empty() ? "yes" : "no") << '\n';
     }
 
     return 0;

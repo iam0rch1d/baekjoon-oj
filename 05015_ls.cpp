@@ -55,7 +55,7 @@ int main() {
     }
 
     for (string &match : matches) {
-        cout << match << endl;
+        cout << match << '\n';
     }
 
     return 0;

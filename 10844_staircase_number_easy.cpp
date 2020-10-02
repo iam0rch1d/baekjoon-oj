@@ -52,7 +52,7 @@ int main() {
         staircaseNumberTotalCount %= MODULO;
     }
 
-    cout << staircaseNumberTotalCount << endl;
+    cout << staircaseNumberTotalCount << '\n';
 
     return 0;
 }

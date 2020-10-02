@@ -27,13 +27,13 @@ int main() {
     k = (k > n - k) ? n - k : k;
 
     if (k == 0) {
-        cout << "1" << endl;
+        cout << "1" << '\n';
 
         return 0;
     }
 
     if (k == 1) {
-        cout << n << endl;
+        cout << n << '\n';
 
         return 0;
     }
@@ -50,7 +50,7 @@ int main() {
     cout << factorials[n]
             * power(factorials[k], MODULO - 2) % MODULO
             * power(factorials[n - k], MODULO - 2) % MODULO
-    << endl;
+    << '\n';
 
     return 0;
 }

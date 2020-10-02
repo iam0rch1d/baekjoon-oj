@@ -9,7 +9,7 @@ int main() {
     long long ownedCables[10000];
     long long croppingSizeLow = 1;
     long long croppingSizeHigh;
-    long long maximumCroppingSize = 0;
+    long long maxCroppingSize = 0;
 
     cin >> numOwnedCable >> numNeededCable;
 
@@ -28,12 +28,12 @@ int main() {
         }
 
         if (croppedCableCount >= numNeededCable) {
-            maximumCroppingSize = max(maximumCroppingSize, croppingSizeCenter);
+            maxCroppingSize = max(maxCroppingSize, croppingSizeCenter);
             croppingSizeLow = croppingSizeCenter + 1;
         } else croppingSizeHigh = croppingSizeCenter - 1;
     }
 
-    cout << maximumCroppingSize << endl;
+    cout << maxCroppingSize << '\n';
 
     return 0;
 }

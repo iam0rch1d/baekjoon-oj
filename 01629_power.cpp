@@ -19,7 +19,7 @@ int main() {
 
     cin >> base >> exponent >> modulo;
 
-    cout << dncPower(base, exponent, modulo) << endl;
+    cout << dncPower(base, exponent, modulo) << '\n';
 
     return 0;
 }

@@ -27,7 +27,7 @@ int main() {
         }
     }
 
-    cout << lis.size() - 1 << endl;
+    cout << lis.size() - 1 << '\n';
 
     return 0;
 }

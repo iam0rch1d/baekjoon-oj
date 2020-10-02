@@ -42,7 +42,7 @@ int main() {
 
         cout << (memoizeMethodCount(target, 1)
                  + memoizeMethodCount(target, 2)
-                 + memoizeMethodCount(target, 3)) % MODULO << endl;
+                 + memoizeMethodCount(target, 3)) % MODULO << '\n';
     }
 
     return 0;

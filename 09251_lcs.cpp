@@ -17,7 +17,7 @@ int main() {
         }
     }
 
-    cout << lcsLengthCache[a.size()][b.size()] << endl;
+    cout << lcsLengthCache[a.size()][b.size()] << '\n';
 
     return 0;
 }

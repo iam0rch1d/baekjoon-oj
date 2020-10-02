@@ -68,7 +68,7 @@ int main() {
         }
     }
 
-    cout << rotationCount << endl;
+    cout << rotationCount << '\n';
 
     return 0;
 }

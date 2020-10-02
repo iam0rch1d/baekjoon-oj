@@ -55,7 +55,7 @@ int main() {
             cout << result[i][j] << ' ';
         }
 
-        cout << endl;
+        cout << '\n';
     }
 
     return 0;

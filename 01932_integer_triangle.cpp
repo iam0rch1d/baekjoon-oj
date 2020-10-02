@@ -10,16 +10,16 @@ typedef struct {
 
 using namespace std;
 
-int memoizeMaximumPath(vector<vector<int>> &triangle, vector<vector<int>> &maximumPathCache, Point from) {
+int memoizeMaxPath(vector<vector<int>> &triangle, vector<vector<int>> &maxPathCache, Point from) {
     if (from.y == triangle.size() - 1) return triangle[from.y][from.x];
 
-    int &maximumPath = maximumPathCache[from.y][from.x];
+    int &maxPath = maxPathCache[from.y][from.x];
 
-    if (maximumPath != UNMEMOIZED) return maximumPath;
+    if (maxPath != UNMEMOIZED) return maxPath;
 
-    return maximumPath = triangle[from.y][from.x]
-                         + max(memoizeMaximumPath(triangle, maximumPathCache, {from.y + 1, from.x}),
-                               memoizeMaximumPath(triangle, maximumPathCache, {from.y + 1, from.x + 1}));
+    return maxPath = triangle[from.y][from.x]
+                     + max(memoizeMaxPath(triangle, maxPathCache, {from.y + 1, from.x}),
+                           memoizeMaxPath(triangle, maxPathCache, {from.y + 1, from.x + 1}));
 }
 
 int main() {
@@ -28,7 +28,7 @@ int main() {
     cin >> triangleSize;
 
     vector<vector<int>> triangle(triangleSize, vector<int>(triangleSize));
-    vector<vector<int>> maximumPathCache(triangleSize, vector<int>(triangleSize, UNMEMOIZED));
+    vector<vector<int>> maxPathCache(triangleSize, vector<int>(triangleSize, UNMEMOIZED));
 
     for (int i = 0; i < triangleSize; i++) {
         for (int j = 0; j <= i; j++) {
@@ -36,7 +36,7 @@ int main() {
         }
     }
 
-    cout << memoizeMaximumPath(triangle, maximumPathCache, {0, 0}) << endl;
+    cout << memoizeMaxPath(triangle, maxPathCache, {0, 0}) << '\n';
 
     return 0;
 }

@@ -28,7 +28,7 @@ int main() {
             head++;
         }
 
-        cout << (bracketStack == 0 ? "YES" : "NO") << endl;
+        cout << (bracketStack == 0 ? "YES" : "NO") << '\n';
     }
 
     return 0;

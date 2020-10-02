@@ -28,7 +28,7 @@ int main() {
             combinationCount *= item.second + 1;
         }
 
-        cout << --combinationCount << endl;
+        cout << --combinationCount << '\n';
     }
 
     return 0;

@@ -28,7 +28,7 @@ int main() {
         }
     }
 
-    cout << bk << endl;
+    cout << bk << '\n';
 
     return 0;
 }

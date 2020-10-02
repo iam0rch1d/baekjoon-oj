@@ -6,22 +6,22 @@
 using namespace std;
 
 int cardpackPrices[1001];
-int maximumTotalPriceCache[1001];
+int maxTotalPriceCache[1001];
 
-int memoizeMaximumTotalPrice(int leftCards) {
+int memoizeMaxTotalPrice(int leftCards) {
     if (leftCards == 0) return 0;
 
-    int &maximumTotalPrice = maximumTotalPriceCache[leftCards];
+    int &maxTotalPrice = maxTotalPriceCache[leftCards];
 
-    if (maximumTotalPrice != UNMEMOIZED) return maximumTotalPrice;
+    if (maxTotalPrice != UNMEMOIZED) return maxTotalPrice;
 
-    maximumTotalPrice = 0;
+    maxTotalPrice = 0;
 
     for (int i = leftCards; i > 0; i--) {
-        maximumTotalPrice = max(maximumTotalPrice, cardpackPrices[i] + memoizeMaximumTotalPrice(leftCards - i));
+        maxTotalPrice = max(maxTotalPrice, cardpackPrices[i] + memoizeMaxTotalPrice(leftCards - i));
     }
 
-    return maximumTotalPrice;
+    return maxTotalPrice;
 }
 
 int main() {
@@ -33,9 +33,9 @@ int main() {
         cin >> cardpackPrices[i];
     }
 
-    memset(maximumTotalPriceCache, UNMEMOIZED, sizeof(maximumTotalPriceCache));
+    memset(maxTotalPriceCache, UNMEMOIZED, sizeof(maxTotalPriceCache));
 
-    cout << memoizeMaximumTotalPrice(n) << endl;
+    cout << memoizeMaxTotalPrice(n) << '\n';
 
     return 0;
 }

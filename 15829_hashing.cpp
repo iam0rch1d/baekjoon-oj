@@ -28,7 +28,7 @@ int main() {
         hashOutput = (hashOutput + (hashInput[i] - 'a' + 1) * power(31, i)) % MODULO;
     }
 
-    cout << hashOutput << endl;
+    cout << hashOutput << '\n';
 
     return 0;
 }
