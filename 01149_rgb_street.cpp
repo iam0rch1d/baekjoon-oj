@@ -16,16 +16,16 @@ int numHouse;
 int costs[1000][3];
 int minimumTotalCostCache[1000][3];
 
-int memoizeMinimumTotalCost(int from, int withColor) {
-    if (from == numHouse - 1) return costs[from][withColor];
+int memoizeMinimumTotalCost(int toHouse, int withColor) {
+    if (toHouse == 0) return costs[toHouse][withColor];
 
-    int &minimumTotalCost = minimumTotalCostCache[from][withColor];
+    int &minimumTotalCost = minimumTotalCostCache[toHouse][withColor];
 
     if (minimumTotalCost != UNMEMOIZED) return minimumTotalCost;
 
-    return minimumTotalCost = costs[from][withColor]
-                              + min(memoizeMinimumTotalCost(from + 1, (withColor + 1) % 3),
-                                    memoizeMinimumTotalCost(from + 1, (withColor + 2) % 3));
+    return minimumTotalCost = costs[toHouse][withColor]
+                              + min(memoizeMinimumTotalCost(toHouse - 1, (withColor + 1) % 3),
+                                    memoizeMinimumTotalCost(toHouse - 1, (withColor + 2) % 3));
 }
 
 int main() {
@@ -37,9 +37,9 @@ int main() {
 
     memset(minimumTotalCostCache, UNMEMOIZED, sizeof(minimumTotalCostCache));
 
-    cout << min({memoizeMinimumTotalCost(0, RED),
-                 memoizeMinimumTotalCost(0, GREEN),
-                 memoizeMinimumTotalCost(0, BLUE)}) << endl;
+    cout << min({memoizeMinimumTotalCost(numHouse - 1, RED),
+                 memoizeMinimumTotalCost(numHouse - 1, GREEN),
+                 memoizeMinimumTotalCost(numHouse - 1, BLUE)}) << endl;
 
     return 0;
 }

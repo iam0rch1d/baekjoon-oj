@@ -20,38 +20,21 @@ long long power(long long base, long long exponent) {
 
 int main() {
     int n;
-    int k = 9;
 
     cin >> n;
 
-    n += 9;
-    k = (k > n - k) ? n - k : k;
-
-    if (k == 0) {
-        cout << "1" << endl;
-
-        return 0;
-    }
-
-    if (k == 1) {
-        cout << n << endl;
-
-        return 0;
-    }
-
-    vector<long long> factorials(n + 1);
+    vector<long long> factorials(n + 10);
 
     factorials[0] = 1;
     factorials[1] = 1;
 
-    for (int i = 2; i <= n; i++) {
+    for (int i = 2; i <= n + 9; i++) {
         factorials[i] = factorials[i - 1] * i % MODULO;
     }
 
-    cout << factorials[n]
-            * power(factorials[k], MODULO - 2) % MODULO
-            * power(factorials[n - k], MODULO - 2) % MODULO
-         << endl;
+    cout << factorials[n + 9]
+            * power(factorials[n], MODULO - 2) % MODULO
+            * power(factorials[9], MODULO - 2) % MODULO << '\n';
 
     return 0;
 }

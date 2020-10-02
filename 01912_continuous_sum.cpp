@@ -14,7 +14,7 @@ int main() {
     for (int i = 0; i < sequenceSize; i++) {
         cin >> sequence[i];
 
-        maximumContinuousSumCache[i + 1] = max(maximumContinuousSumCache[i] + sequence[i], sequence[i]);
+        maximumContinuousSumCache[i + 1] = max(maximumContinuousSumCache[i], 0) + sequence[i];
     }
 
     cout << *max_element(maximumContinuousSumCache, maximumContinuousSumCache + sequenceSize + 1) << endl;

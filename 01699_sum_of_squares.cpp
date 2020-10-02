@@ -14,7 +14,7 @@ int memoizeMinimumSquareCount(int n) {
 
     if (minimumSquareCount != UNMEMOIZED) return minimumSquareCount;
 
-    minimumSquareCount = 100001;
+    minimumSquareCount = n;
 
     for (int i = 1; i * i <= n; i++) {
         minimumSquareCount = min(minimumSquareCount, memoizeMinimumSquareCount(n - i * i) + 1);
