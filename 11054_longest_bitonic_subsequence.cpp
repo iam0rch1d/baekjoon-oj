@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-    int connectionSize;
-    int connections[1000];
+    int sequenceSize;
+    int sequence[1000];
     int increaseLengthCache[1000];
     int decreaseLengthCache[1000];
     priority_queue<int> bitonicLengths;
@@ -15,26 +15,26 @@ int main() {
     memset(decreaseLengthCache, 0, sizeof(decreaseLengthCache));
     bitonicLengths.push(1);
 
-    cin >> connectionSize;
+    cin >> sequenceSize;
 
-    for (int i = 0; i < connectionSize; i++) {
-        cin >> connections[i];
+    for (int i = 0; i < sequenceSize; i++) {
+        cin >> sequence[i];
 
         increaseLengthCache[i] = 1;
         decreaseLengthCache[i] = 1;
     }
 
-    for (int i = 1; i < connectionSize; i++) {
+    for (int i = 1; i < sequenceSize; i++) {
         for (int j = 0; j < i; j++) {
-            if (connections[j] < connections[i] && increaseLengthCache[i] < increaseLengthCache[j] + 1) {
+            if (sequence[j] < sequence[i] && increaseLengthCache[i] < increaseLengthCache[j]) {
                 increaseLengthCache[i] = increaseLengthCache[j] + 1;
             }
         }
     }
 
-    for (int i = connectionSize - 2; i > 0; i--) {
-        for (int j = connectionSize - 1; j > i; j--) {
-            if (connections[j] < connections[i] && decreaseLengthCache[i] < decreaseLengthCache[j] + 1) {
+    for (int i = sequenceSize - 2; i > 0; i--) {
+        for (int j = sequenceSize - 1; j > i; j--) {
+            if (sequence[j] < sequence[i] && decreaseLengthCache[i] < decreaseLengthCache[j]) {
                 decreaseLengthCache[i] = decreaseLengthCache[j] + 1;
             }
         }

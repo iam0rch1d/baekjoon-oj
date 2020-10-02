@@ -24,9 +24,9 @@ long long memoizeMethodCount(int target) {
 int main() {
     int numTestcase;
 
-    cin >> numTestcase;
-
     memset(methodCountCache, UNMEMOIZED, sizeof(methodCountCache));
+
+    cin >> numTestcase;
 
     while (numTestcase-- > 0) {
         int target;

@@ -28,13 +28,13 @@ int memoizeMaximumSum(int toIndex) {
 int main() {
     cin >> sequenceSize;
 
-    memset(maximumSumCache, UNMEMOIZED, sizeof(maximumSumCache));
-
     for (int i = 0; i < sequenceSize; i++) {
         cin >> sequence[i];
     }
 
     sequence[sequenceSize] = 1e6;
+
+    memset(maximumSumCache, UNMEMOIZED, sizeof(maximumSumCache));
 
     cout << memoizeMaximumSum(sequenceSize) - 1e6 << '\n';
 

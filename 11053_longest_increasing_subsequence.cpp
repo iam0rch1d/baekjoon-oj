@@ -18,9 +18,7 @@ int memoizeMaximumLength(int toIndex) {
     maximumLength = 0;
 
     for (int i = toIndex - 1; i >= 0; i--) {
-        if (sequence[i] < sequence[toIndex]) {
-            maximumLength = max(maximumLength, memoizeMaximumLength(i));
-        }
+        if (sequence[i] < sequence[toIndex]) maximumLength = max(maximumLength, memoizeMaximumLength(i));
     }
 
     return ++maximumLength;
@@ -29,11 +27,11 @@ int memoizeMaximumLength(int toIndex) {
 int main() {
     cin >> sequenceSize;
 
-    memset(maximumLengthCache, UNMEMOIZED, sizeof(maximumLengthCache));
-
     for (int i = 0; i < sequenceSize; i++) {
         cin >> sequence[i];
     }
+
+    memset(maximumLengthCache, UNMEMOIZED, sizeof(maximumLengthCache));
 
     sequence[sequenceSize] = 1001;
 

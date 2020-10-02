@@ -41,14 +41,14 @@ void backtrackLis(int index) {
 int main() {
     cin >> sequenceSize;
 
-    memset(maximumLengthCache, UNMEMOIZED, sizeof(maximumLengthCache));
-    memset(triggerIndexCache, UNMEMOIZED, sizeof(triggerIndexCache));
-
     for (int i = 0; i < sequenceSize; i++) {
         cin >> sequence[i];
     }
 
     sequence[sequenceSize] = 1001;
+
+    memset(maximumLengthCache, UNMEMOIZED, sizeof(maximumLengthCache));
+    memset(triggerIndexCache, UNMEMOIZED, sizeof(triggerIndexCache));
 
     cout << memoizeMaximumLength(sequenceSize) - 1 << '\n';
 
