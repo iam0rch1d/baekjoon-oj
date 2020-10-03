@@ -132,3 +132,4 @@ add_executable(14002_longest_increasing_subsequence_4 14002_longest_increasing_s
 add_executable(11055_largest_increasing_subsequence 11055_largest_increasing_subsequence.cpp)
 add_executable(13398_continuous_sum_2 13398_continuous_sum_2.cpp)
 add_executable(03085_bomboni 03085_bomboni.cpp)
+add_executable(01476_year_calculation 01476_year_calculation.cpp)
