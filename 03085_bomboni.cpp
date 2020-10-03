@@ -6,31 +6,33 @@ using namespace std;
 int candyGridSize;
 vector<string> candies;
 
-int calculateMaxEatableCandies() {
-    int eatableCandies;
-    int maxEatableCandies = 1;
+int calculateMaxEatableCandyCount() {
+    int eatableCandyCount;
+    int maxEatableCandyCount = 1;
 
     for (int i = 0; i < candyGridSize; i++) {
-        eatableCandies = 1;
+        eatableCandyCount = 1;
 
         for (int j = 1; j < candyGridSize; j++) {
-            if (candies[i][j] == candies[i][j - 1]) maxEatableCandies = max(maxEatableCandies, ++eatableCandies);
-            else eatableCandies = 1;
+            if (candies[i][j] == candies[i][j - 1]) {
+                maxEatableCandyCount = max(maxEatableCandyCount, ++eatableCandyCount);
+            } else eatableCandyCount = 1;
         }
 
-        eatableCandies = 1;
+        eatableCandyCount = 1;
 
         for (int j = 1; j < candyGridSize; j++) {
-            if (candies[j][i] == candies[j - 1][i]) maxEatableCandies = max(maxEatableCandies, ++eatableCandies);
-            else eatableCandies = 1;
+            if (candies[j][i] == candies[j - 1][i]) {
+                maxEatableCandyCount = max(maxEatableCandyCount, ++eatableCandyCount);
+            } else eatableCandyCount = 1;
         }
     }
 
-    return maxEatableCandies;
+    return maxEatableCandyCount;
 }
 
 int main() {
-    int maxEatableCandies = 0;
+    int maxEatableCandyCount = 0;
 
     cin >> candyGridSize;
 
@@ -47,7 +49,7 @@ int main() {
             if (i < candyGridSize - 1) {
                 swap(candies[i][j], candies[i + 1][j]);
 
-                maxEatableCandies = max(maxEatableCandies, calculateMaxEatableCandies());
+                maxEatableCandyCount = max(maxEatableCandyCount, calculateMaxEatableCandyCount());
 
                 swap(candies[i][j], candies[i + 1][j]);
             }
@@ -55,14 +57,14 @@ int main() {
             if (j < candyGridSize - 1) {
                 swap(candies[i][j], candies[i][j + 1]);
 
-                maxEatableCandies = max(maxEatableCandies, calculateMaxEatableCandies());
+                maxEatableCandyCount = max(maxEatableCandyCount, calculateMaxEatableCandyCount());
 
                 swap(candies[i][j], candies[i][j + 1]);
             }
         }
     }
 
-    cout << maxEatableCandies << '\n';
+    cout << maxEatableCandyCount << '\n';
 
     return 0;
 }
