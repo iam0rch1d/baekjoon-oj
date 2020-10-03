@@ -17,11 +17,7 @@ int costs[1000][3];
 int minTotalCostCache[1000][3];
 
 int memoizeMinTotalCost(int from, int withColor, int firstColor) {
-    if (from == numHouse - 1) {
-        if (withColor == firstColor) return 1000001;
-
-        return costs[from][withColor];
-    }
+    if (from == numHouse - 1) return withColor == firstColor ? 1000001 : costs[from][withColor];
 
     int &minTotalCost = minTotalCostCache[from][withColor];
 

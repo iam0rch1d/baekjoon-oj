@@ -5,33 +5,38 @@ using namespace std;
 
 int main() {
     int sequenceSize;
-    int sequence[100000];
+    int sequence[100002];
+    int sequenceSum = 0;
 
     // 'CS' refers to 'Continuous Sum'
-    int toIndexMaxCsCache[100000];
-    int fromIndexMaxCsCache[100000];
-    int removedOneMaxCsCache[100000];
+    int toIndexMaxCsCache[100002];
+    int fromIndexMaxCsCache[100002];
+    int removedOneMaxCsCache[100002];
 
     cin >> sequenceSize;
 
-    for (int i = 0; i < sequenceSize; i++) {
+    toIndexMaxCsCache[0] = -1001;
+
+    for (int i = 1; i <= sequenceSize; i++) {
         cin >> sequence[i];
 
-        toIndexMaxCsCache[i] = sequence[i] + (i == 0 ? 0 : max(toIndexMaxCsCache[i - 1], 0));
+        sequenceSum += sequence[i];
+        toIndexMaxCsCache[i] = sequence[i] + max(toIndexMaxCsCache[i - 1], 0);
     }
 
-    for (int i = sequenceSize - 1; i >= 0; i--) {
-        fromIndexMaxCsCache[i] = sequence[i] + (i == sequenceSize - 1 ? 0 : max(fromIndexMaxCsCache[i + 1], 0));
+    fromIndexMaxCsCache[sequenceSize + 1] = -1001;
+
+    for (int i = sequenceSize; i >= 0; i--) {
+        fromIndexMaxCsCache[i] = sequence[i] + max(fromIndexMaxCsCache[i + 1], 0);
     }
 
-    for (int i = 1; i <= sequenceSize - 2; i++) {
-        removedOneMaxCsCache[i] = toIndexMaxCsCache[i - 1] + fromIndexMaxCsCache[i + 1];
+    for (int i = 1; i <= sequenceSize; i++) {
+        removedOneMaxCsCache[i] = max({toIndexMaxCsCache[i - 1] + fromIndexMaxCsCache[i + 1],
+                                       toIndexMaxCsCache[i - 1],
+                                       fromIndexMaxCsCache[i + 1]});
     }
 
-    cout << (sequenceSize >= 3 ? max(*max_element(toIndexMaxCsCache, toIndexMaxCsCache + sequenceSize),
-                                     *max_element(removedOneMaxCsCache + 1, removedOneMaxCsCache + sequenceSize - 1))
-                               : *max_element(toIndexMaxCsCache, toIndexMaxCsCache + sequenceSize))
-         << '\n';
+    cout << max(sequenceSum, *max_element(removedOneMaxCsCache + 1, removedOneMaxCsCache + sequenceSize + 1)) << '\n';
 
     return 0;
 }

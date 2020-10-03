@@ -6,28 +6,23 @@
 
 using namespace std;
 
-long long binomialCoefficientCache[401][401];
-
-long long memoizeBinomialCoefficient(int n, int k) {
-    if (k == 0 || n == k) return 1;
-
-    long long &binomialCoefficient = binomialCoefficientCache[n][k];
-
-    if (binomialCoefficient != UNMEMOIZED) return binomialCoefficient;
-
-    return binomialCoefficient = (memoizeBinomialCoefficient(n - 1, k - 1)
-                                  + memoizeBinomialCoefficient(n - 1, k)) % MODULO;
-}
+long long divisionCount[201];
 
 int main() {
     int n;
     int k;
 
-    memset(binomialCoefficientCache, UNMEMOIZED, sizeof(binomialCoefficientCache));
-
     cin >> n >> k;
 
-    cout << memoizeBinomialCoefficient(n + k - 1, n) << '\n';
+    divisionCount[0] = 1;
+
+    for (int i = 1; i <= k; i++) {
+        for (int j = 1; j <= n; j++) {
+            divisionCount[j] = (divisionCount[j] + divisionCount[j - 1]) % MODULO;
+        }
+    }
+
+    cout << divisionCount[n] << '\n';
 
     return 0;
 }
