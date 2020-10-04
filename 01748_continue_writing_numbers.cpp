@@ -12,7 +12,6 @@ int main() {
 
     while (n >= divisor / 10) {
         totalDigitCount += nDigitCount * (n < divisor ? n - divisor / 10 + 1 : divisor / 10 * 9);
-
         nDigitCount++;
         divisor *= 10;
     }

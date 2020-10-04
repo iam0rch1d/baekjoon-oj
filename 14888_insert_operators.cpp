@@ -48,13 +48,14 @@ void backtrackResult(vector<int> &operands,
     } else {
         for (int i = 0; i < 4; i++) {
             if (numOperations[i] > 0) {
-                numOperations[i]--;
                 operationSequence.push_back(i);
 
+                numOperations[i]--;
+
                 backtrackResult(operands, numOperations, operationSequence, results);
+                operationSequence.pop_back();
 
                 numOperations[i]++;
-                operationSequence.pop_back();
             }
         }
     }
