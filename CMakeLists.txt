@@ -139,3 +139,4 @@ add_executable(01748_continue_writing_numbers 01748_continue_writing_numbers.cpp
 add_executable(15654_n_and_m_5 15654_n_and_m_5.cpp)
 add_executable(15655_n_and_m_6 15655_n_and_m_6.cpp)
 add_executable(15656_n_and_m_7 15656_n_and_m_7.cpp)
+add_executable(15657_n_and_m_8 15657_n_and_m_8.cpp)
