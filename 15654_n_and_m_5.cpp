@@ -27,7 +27,6 @@ void backtrackSubsequence(vector<int> &pickedNumbers) {
             isPicked[i] = true;
 
             backtrackSubsequence(pickedNumbers);
-
             pickedNumbers.pop_back();
 
             isPicked[i] = false;
