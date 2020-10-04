@@ -40,8 +40,6 @@ int main() {
                                                      {{1, 1},    {1, 1}}};
 
     for (auto tetromino : tetrominoes) {
-
-
         for (int row = 0; row + tetromino.size() <= boardRowSize; row++) {
             for (int column = 0; column + tetromino[0].size() <= boardHeightSize; column++) {
                 int score = 0;
