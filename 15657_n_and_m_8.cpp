@@ -8,7 +8,7 @@ int n;
 int m;
 int sequence[8];
 
-void backtrackSubsequence(vector<int> &pickedIndices) {
+void backtrackPickedIndices(vector<int> &pickedIndices) {
     if (pickedIndices.size() == m) {
         for (int pickedIndex : pickedIndices) {
             cout << sequence[pickedIndex] << ' ';
@@ -23,13 +23,13 @@ void backtrackSubsequence(vector<int> &pickedIndices) {
 
     for (int i = toPickIndex; i < n; i++) {
         pickedIndices.push_back(i);
-        backtrackSubsequence(pickedIndices);
+        backtrackPickedIndices(pickedIndices);
         pickedIndices.pop_back();
     }
 }
 
 int main() {
-    vector<int> pickedNumbers;
+    vector<int> pickedIndices;
 
     cin >> n >> m;
 
@@ -38,7 +38,7 @@ int main() {
     }
 
     sort(sequence, sequence + n);
-    backtrackSubsequence(pickedNumbers);
+    backtrackPickedIndices(pickedIndices);
 
     return 0;
 }
