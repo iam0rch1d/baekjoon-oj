@@ -1,17 +1,19 @@
 #include <algorithm>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int n;
 int m;
 int sequence[8];
+int pickedIndexCounts[8];
 
-void backtrackPickedIndices(vector<int> &pickedIndices) {
-    if (pickedIndices.size() == m) {
-        for (int pickedIndex : pickedIndices) {
-            cout << sequence[pickedIndex] << ' ';
+void backtrackPickedIndices(int pickCount, int toPickIndex) {
+    if (pickCount == m) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < pickedIndexCounts[i]; j++) {
+                cout << sequence[i] << ' ';
+            }
         }
 
         cout << '\n';
@@ -19,18 +21,20 @@ void backtrackPickedIndices(vector<int> &pickedIndices) {
         return;
     }
 
-    int toPickIndex = pickedIndices.empty() ? 0 : pickedIndices.back();
+    if (toPickIndex >= n) return;
 
-    for (int i = toPickIndex; i < n; i++) {
-        pickedIndices.push_back(i);
-        backtrackPickedIndices(pickedIndices);
-        pickedIndices.pop_back();
+    for (int i = m - pickCount; i >= 1; i--) {
+        pickedIndexCounts[toPickIndex] = i;
+
+        backtrackPickedIndices(pickCount + i, toPickIndex + 1);
     }
+
+    pickedIndexCounts[toPickIndex] = 0;
+
+    backtrackPickedIndices(pickCount, toPickIndex + 1);
 }
 
 int main() {
-    vector<int> pickedIndices;
-
     cin >> n >> m;
 
     for (int i = 0; i < n; i++) {
@@ -38,7 +42,7 @@ int main() {
     }
 
     sort(sequence, sequence + n);
-    backtrackPickedIndices(pickedIndices);
+    backtrackPickedIndices(0, 0);
 
     return 0;
 }

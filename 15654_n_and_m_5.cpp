@@ -7,7 +7,7 @@ using namespace std;
 int n;
 int m;
 int sequence[8];
-bool isPicked[8];
+bool isIndexPicked[8];
 
 void backtrackPickedIndices(vector<int> &pickedIndices) {
     if (pickedIndices.size() == m) {
@@ -21,15 +21,15 @@ void backtrackPickedIndices(vector<int> &pickedIndices) {
     }
 
     for (int i = 0; i < n; i++) {
-        if (!isPicked[i]) {
+        if (!isIndexPicked[i]) {
             pickedIndices.push_back(i);
 
-            isPicked[i] = true;
+            isIndexPicked[i] = true;
 
             backtrackPickedIndices(pickedIndices);
             pickedIndices.pop_back();
 
-            isPicked[i] = false;
+            isIndexPicked[i] = false;
         }
     }
 }
