@@ -12,7 +12,7 @@ int main() {
         int digitCount = 0;
         int spaceCount = 0;
 
-        while (*head != '\0'){
+        while (*head != '\0') {
             if (*head >= 'a' && *head <= 'z') lowercaseCount++;
             else if (*head >= 'A' && *head <= 'Z') uppercaseCount++;
             else if (*head >= '0' && *head <= '9') digitCount++;

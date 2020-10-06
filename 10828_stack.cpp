@@ -20,7 +20,7 @@ int main() {
             cin >> target;
 
             stack.push_back(target);
-        } else if (instruction == "pop"){
+        } else if (instruction == "pop") {
             cout << (stack.empty() ? -1 : stack[stack.size() - 1]) << '\n';
 
             if (!stack.empty()) stack.pop_back();

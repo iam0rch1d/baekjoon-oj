@@ -8,7 +8,7 @@ long long dncPower(int base, int exponent, int modulo) {
     if (exponent % 2 != 0) return dncPower(base, exponent - 1, modulo) % modulo * base % modulo;
 
     return ((dncPower(base, exponent / 2, modulo) % modulo)
-    * (dncPower(base, exponent / 2, modulo) % modulo))
+            * (dncPower(base, exponent / 2, modulo) % modulo))
            % modulo;
 }
 

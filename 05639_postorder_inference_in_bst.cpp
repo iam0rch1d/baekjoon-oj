@@ -4,7 +4,7 @@
 using namespace std;
 
 typedef struct Vertex {
-    int key {};
+    int key{};
     Vertex *leftChildVertex = nullptr;
     Vertex *rightChildVertex = nullptr;
 } Vertex;

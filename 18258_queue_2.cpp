@@ -23,7 +23,7 @@ int main() {
             cin >> target;
 
             queue.push(target);
-        } else if (instruction == "pop"){
+        } else if (instruction == "pop") {
             cout << (queue.empty() ? -1 : queue.front()) << '\n';
 
             if (!queue.empty()) queue.pop();

@@ -58,7 +58,8 @@ int main() {
 
                 break;
             }
-            default: {}
+            default: {
+            }
         }
     }
 

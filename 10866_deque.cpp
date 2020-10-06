@@ -29,11 +29,11 @@ int main() {
             cin >> target;
 
             deque.push_back(target);
-        } else if (instruction == "pop_front"){
+        } else if (instruction == "pop_front") {
             cout << (deque.empty() ? -1 : deque.front()) << '\n';
 
             if (!deque.empty()) deque.pop_front();
-        } else if (instruction == "pop_back"){
+        } else if (instruction == "pop_back") {
             cout << (deque.empty() ? -1 : deque.back()) << '\n';
 
             if (!deque.empty()) deque.pop_back();

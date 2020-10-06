@@ -50,7 +50,7 @@ int main() {
     cout << factorials[n]
             * power(factorials[k], MODULO - 2) % MODULO
             * power(factorials[n - k], MODULO - 2) % MODULO
-    << '\n';
+         << '\n';
 
     return 0;
 }

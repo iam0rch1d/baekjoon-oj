@@ -53,7 +53,8 @@ int main() {
         return 0;
     }
 
-    Matrix base = {{0, 1}, {1, 1}};
+    Matrix base = {{0, 1},
+                   {1, 1}};
 
     cout << powerMatrix(base, index - 1)[1][1] << '\n';
 

@@ -21,11 +21,11 @@ string dncQuadtree(vector<vector<int>> &colors, Point start, int size) {
     else if (numBlackPoint == size * size) return "1";
     else {
         return "("
-        + dncQuadtree(colors, start, size / 2)
-        + dncQuadtree(colors, {start.y, start.x + size / 2}, size / 2)
-        + dncQuadtree(colors, {start.y + size / 2, start.x}, size / 2)
-        + dncQuadtree(colors, {start.y + size / 2, start.x + size / 2}, size / 2)
-        + ")";
+               + dncQuadtree(colors, start, size / 2)
+               + dncQuadtree(colors, {start.y, start.x + size / 2}, size / 2)
+               + dncQuadtree(colors, {start.y + size / 2, start.x}, size / 2)
+               + dncQuadtree(colors, {start.y + size / 2, start.x + size / 2}, size / 2)
+               + ")";
     }
 }
 

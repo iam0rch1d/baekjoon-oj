@@ -9,10 +9,10 @@ typedef struct {
 } Point;
 
 struct Sudoku {
-    int numberTable[9][9] {};
-    bool isNumberInRow[9][10] {};
-    bool isNumberInColumn[9][10] {};
-    bool isNumberInBox[9][10] {};
+    int numberTable[9][9]{};
+    bool isNumberInRow[9][10]{};
+    bool isNumberInColumn[9][10]{};
+    bool isNumberInBox[9][10]{};
     vector<Point> blanks;
     vector<bool> isBlankFilled;
 

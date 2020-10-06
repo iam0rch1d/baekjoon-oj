@@ -25,7 +25,7 @@ int main() {
             if (*head == '(') bracketStack.push_back(PARENTHESIS);
             else if (*head == '[') bracketStack.push_back(BRACKET);
             else if ((*head == ')' && !bracketStack.empty() && bracketStack[bracketStack.size() - 1] == PARENTHESIS)
-            || (*head == ']' && !bracketStack.empty() && bracketStack[bracketStack.size() - 1] == BRACKET)) {
+                     || (*head == ']' && !bracketStack.empty() && bracketStack[bracketStack.size() - 1] == BRACKET)) {
                 bracketStack.pop_back();
             } else if (*head == ')' || *head == ']') {
                 isValid = false;
