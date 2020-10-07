@@ -38,7 +38,7 @@ int main() {
 
         minTotalCost = min(minTotalCost, totalCost);
 
-        if (!next_permutation(permutation.begin(), permutation.end())) break;
+        if (!next_permutation(permutation.begin() + 1, permutation.end())) break;
     }
 
     cout << minTotalCost << '\n';
