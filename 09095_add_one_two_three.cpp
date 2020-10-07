@@ -31,7 +31,6 @@ int main() {
         int target;
 
         cin >> target;
-
         cout << memoizeMethodCount(target) << '\n';
     }
 
