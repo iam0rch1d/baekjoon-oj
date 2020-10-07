@@ -31,7 +31,7 @@ int main() {
 
         for (int i = 0; i < numChar; i++) {
             if (isCharPicked[i]) {
-                password.push_back(chars[i]);
+                password += chars[i];
 
                 if (chars[i] == 'a' || chars[i] == 'e' || chars[i] == 'i' || chars[i] == 'o' || chars[i] == 'u') {
                     vowelCount++;

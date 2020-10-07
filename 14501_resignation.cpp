@@ -17,8 +17,11 @@ int main() {
         cin >> consultations[i].first >> consultations[i].second;  // .first = <days required>, .second = <pay>
 
         maxTotalPayCache[i + 1] = max(maxTotalPayCache[i + 1], maxTotalPayCache[i]);
-        maxTotalPayCache[i + consultations[i].first] = max(maxTotalPayCache[i + consultations[i].first],
-                                                           maxTotalPayCache[i] + consultations[i].second);
+
+        if (i + consultations[i].first <= numDay) {
+            maxTotalPayCache[i + consultations[i].first] = max(maxTotalPayCache[i + consultations[i].first],
+                                                               maxTotalPayCache[i] + consultations[i].second);
+        }
     }
 
     cout << *max_element(maxTotalPayCache, maxTotalPayCache + numDay + 1) << '\n';
