@@ -7,10 +7,10 @@
 using namespace std;
 
 void computeFft(vector<complex<double>> &x, bool inverse) {
-    unsigned int xSize = x.size();
+    unsigned xSize = x.size();
 
-    for (unsigned int i = 1, j = 0; i < xSize; i++) {
-        unsigned int bitmask = xSize >> 1u;
+    for (unsigned i = 1, j = 0; i < xSize; i++) {
+        unsigned bitmask = xSize >> 1u;
 
         while (!((j ^= bitmask) & bitmask)) {
             bitmask >>= 1u;
@@ -19,11 +19,11 @@ void computeFft(vector<complex<double>> &x, bool inverse) {
         if (i < j) swap(x[i], x[j]);
     }
 
-    for (unsigned int i = 1; i < xSize; i <<= 1u) {
+    for (unsigned i = 1; i < xSize; i <<= 1u) {
         double f = inverse ? M_PI / i : -M_PI / i;
         complex<double> omega(cos(f), sin(f));
 
-        for (unsigned int j = 0; j < xSize; j += (i << 1u)) {
+        for (unsigned j = 0; j < xSize; j += (i << 1u)) {
             complex<double> theta(1, 0);
 
             for (int k = 0; k < i; k++) {
@@ -75,7 +75,7 @@ int main() {
     reverse(a.begin(), a.end());
     reverse(b.begin(), b.end());
 
-    unsigned int fftSize = 1u;
+    unsigned fftSize = 1u;
 
     while (fftSize < a.size() + 1 || fftSize < b.size()) fftSize <<= 1u;
 
@@ -86,7 +86,7 @@ int main() {
     computeFft(a, false);
     computeFft(b, false);
 
-    for (unsigned int j = 0; j < fftSize; j++) {
+    for (unsigned j = 0; j < fftSize; j++) {
         a[j] *= b[j];
     }
 
