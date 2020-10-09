@@ -7,7 +7,7 @@ using namespace std;
 int n;
 int pickedRomanNumberCounts[4];
 
-void backtrackRomanNumbers(vector<int> &values, int pickCount, int toPickIndex) {
+void backtrackRomanNumbers(vector<int> &values, int pickCount, int toPickNumeral) {
     if (pickCount == n) {
         int value = 0;
 
@@ -20,17 +20,17 @@ void backtrackRomanNumbers(vector<int> &values, int pickCount, int toPickIndex) 
         return;
     }
 
-    if (toPickIndex >= 4) return;
+    if (toPickNumeral >= 4) return;
 
     for (int i = n - pickCount; i >= 1; i--) {
-        pickedRomanNumberCounts[toPickIndex] = i;
+        pickedRomanNumberCounts[toPickNumeral] = i;
 
-        backtrackRomanNumbers(values, pickCount + i, toPickIndex + 1);
+        backtrackRomanNumbers(values, pickCount + i, toPickNumeral + 1);
     }
 
-    pickedRomanNumberCounts[toPickIndex] = 0;
+    pickedRomanNumberCounts[toPickNumeral] = 0;
 
-    backtrackRomanNumbers(values, pickCount, toPickIndex + 1);
+    backtrackRomanNumbers(values, pickCount, toPickNumeral + 1);
 }
 
 int main() {

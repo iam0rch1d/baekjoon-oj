@@ -3,34 +3,34 @@
 
 using namespace std;
 
-char childVertices[26][2];
+char adjacentVerticesOf[26][2];
 
 void dfsPreorder(char currentVertex) {
     cout << currentVertex;
 
-    for (char childVertex : childVertices[currentVertex - 'A']) {
-        if (childVertex != '.') {
-            dfsPreorder(childVertex);
+    for (char adjacentVertex : adjacentVerticesOf[currentVertex - 'A']) {
+        if (adjacentVertex != '.') {
+            dfsPreorder(adjacentVertex);
         }
     }
 }
 
 void dfsInorder(char currentVertex) {
-    if (childVertices[currentVertex - 'A'][0] != '.') {
-        dfsInorder(childVertices[currentVertex - 'A'][0]);
+    if (adjacentVerticesOf[currentVertex - 'A'][0] != '.') {
+        dfsInorder(adjacentVerticesOf[currentVertex - 'A'][0]);
     }
 
     cout << currentVertex;
 
-    if (childVertices[currentVertex - 'A'][1] != '.') {
-        dfsInorder(childVertices[currentVertex - 'A'][1]);
+    if (adjacentVerticesOf[currentVertex - 'A'][1] != '.') {
+        dfsInorder(adjacentVerticesOf[currentVertex - 'A'][1]);
     }
 }
 
 void dfsPostorder(char currentVertex) {
-    for (char childVertex : childVertices[currentVertex - 'A']) {
-        if (childVertex != '.') {
-            dfsPostorder(childVertex);
+    for (char adjacentVertex : adjacentVerticesOf[currentVertex - 'A']) {
+        if (adjacentVertex != '.') {
+            dfsPostorder(adjacentVertex);
         }
     }
 
@@ -45,7 +45,7 @@ int main() {
     for (int i = 0; i < numVertex; i++) {
         char currentVertex;
 
-        cin >> currentVertex >> childVertices[currentVertex - 'A'][0] >> childVertices[currentVertex - 'A'][1];
+        cin >> currentVertex >> adjacentVerticesOf[currentVertex - 'A'][0] >> adjacentVerticesOf[currentVertex - 'A'][1];
     }
 
     dfsPreorder('A');

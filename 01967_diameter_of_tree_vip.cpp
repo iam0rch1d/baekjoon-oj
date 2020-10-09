@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<pair<int, int>> childVertices[10001];  // .first = <to-vertex>, .second = <edge length>
+vector<pair<int, int>> adjacentVerticesOf[10001];  // .first = <to-vertex>, .second = <edge length>
 int diameter;
 int farthestVertex;
 
@@ -13,7 +13,7 @@ void dfs(int currentVertex, int previousVertex, int totalLength) {
         farthestVertex = currentVertex;
     }
 
-    for (pair<int, int> adjacentVertex : childVertices[currentVertex]) {
+    for (pair<int, int> adjacentVertex : adjacentVerticesOf[currentVertex]) {
         if (previousVertex != adjacentVertex.first) {
             dfs(adjacentVertex.first, currentVertex, totalLength + adjacentVertex.second);
         }
@@ -37,8 +37,8 @@ int main() {
         cin >> toVertex;
         cin >> edgeLength;
 
-        childVertices[fromVertex].emplace_back(toVertex, edgeLength);
-        childVertices[toVertex].emplace_back(fromVertex, edgeLength);
+        adjacentVerticesOf[fromVertex].emplace_back(toVertex, edgeLength);
+        adjacentVerticesOf[toVertex].emplace_back(fromVertex, edgeLength);
     }
 
     dfs(1, 0, 0);

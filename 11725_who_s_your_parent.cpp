@@ -3,11 +3,11 @@
 
 using namespace std;
 
-vector<int> childVertices[100001];
+vector<int> adjacentVerticesOf[100001];
 int parentVertices[100001];
 
 void dfs(int currentVertex) {
-    for (int adjacentVertex : childVertices[currentVertex]) {
+    for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
         if (adjacentVertex != parentVertices[currentVertex]) {
             parentVertices[adjacentVertex] = currentVertex;
 
@@ -30,8 +30,8 @@ int main() {
 
         cin >> fromVertex >> toVertex;
 
-        childVertices[fromVertex].push_back(toVertex);
-        childVertices[toVertex].push_back(fromVertex);
+        adjacentVerticesOf[fromVertex].push_back(toVertex);
+        adjacentVerticesOf[toVertex].push_back(fromVertex);
     }
 
     dfs(1);
