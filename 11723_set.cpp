@@ -8,7 +8,7 @@ int main() {
     cout.tie(nullptr);
 
     int numInstruction;
-    unsigned bitset = 0u;
+    unsigned bitset = 0;
 
     cin >> numInstruction;
 
@@ -34,7 +34,7 @@ int main() {
 
             bitset ^= (1u << --target);
         } else if (instruction == "all") bitset = (1u << 20u) - 1;
-        else if (instruction == "empty") bitset = 0u;
+        else if (instruction == "empty") bitset = 0;
     }
 
     return 0;

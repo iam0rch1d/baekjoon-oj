@@ -14,7 +14,7 @@ int main() {
         cin >> sequence[i];
     }
 
-    for (unsigned bitset = s == 0 ? 1u : 0; bitset < (1u << n); bitset++) {
+    for (unsigned bitset = 1; bitset < (1u << n); bitset++) {
         int subsequenceSum = 0;
 
         for (unsigned i = 0; i < n; i++) {
