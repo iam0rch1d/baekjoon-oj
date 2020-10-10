@@ -7,13 +7,13 @@ vector<int> adjacentVerticesOf[2000];
 int isVisited[2000];
 
 void dfsRelation(int vertex, int depth) {
-    isVisited[vertex] = true;
-
     if (depth == 4) {
         cout << "1\n";
 
         exit(0);
     }
+
+    isVisited[vertex] = true;
 
     for (int adjacentVertex : adjacentVerticesOf[vertex]) {
         if (!isVisited[adjacentVertex]) dfsRelation(adjacentVertex, depth + 1);
