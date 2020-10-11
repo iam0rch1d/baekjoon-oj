@@ -5,32 +5,32 @@ using namespace std;
 
 char adjacentVerticesOf[26][2];
 
-void dfsPreorder(char currentVertex) {
+void dfsTreePreorder(char currentVertex) {
     cout << currentVertex;
 
     for (char adjacentVertex : adjacentVerticesOf[currentVertex - 'A']) {
         if (adjacentVertex != '.') {
-            dfsPreorder(adjacentVertex);
+            dfsTreePreorder(adjacentVertex);
         }
     }
 }
 
-void dfsInorder(char currentVertex) {
+void dfsTreeInorder(char currentVertex) {
     if (adjacentVerticesOf[currentVertex - 'A'][0] != '.') {
-        dfsInorder(adjacentVerticesOf[currentVertex - 'A'][0]);
+        dfsTreeInorder(adjacentVerticesOf[currentVertex - 'A'][0]);
     }
 
     cout << currentVertex;
 
     if (adjacentVerticesOf[currentVertex - 'A'][1] != '.') {
-        dfsInorder(adjacentVerticesOf[currentVertex - 'A'][1]);
+        dfsTreeInorder(adjacentVerticesOf[currentVertex - 'A'][1]);
     }
 }
 
-void dfsPostorder(char currentVertex) {
+void dfsTreePostorder(char currentVertex) {
     for (char adjacentVertex : adjacentVerticesOf[currentVertex - 'A']) {
         if (adjacentVertex != '.') {
-            dfsPostorder(adjacentVertex);
+            dfsTreePostorder(adjacentVertex);
         }
     }
 
@@ -48,15 +48,15 @@ int main() {
         cin >> currentVertex >> adjacentVerticesOf[currentVertex - 'A'][0] >> adjacentVerticesOf[currentVertex - 'A'][1];
     }
 
-    dfsPreorder('A');
+    dfsTreePreorder('A');
 
     cout << '\n';
 
-    dfsInorder('A');
+    dfsTreeInorder('A');
 
     cout << '\n';
 
-    dfsPostorder('A');
+    dfsTreePostorder('A');
 
     cout << '\n';
 

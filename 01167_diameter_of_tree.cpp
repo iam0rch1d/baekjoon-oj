@@ -9,7 +9,7 @@ vector<pair<int, int>> adjacentVerticesOf[100001];  // .first = <to-vertex>, .se
 int diameter;
 int farthestVertex;
 
-void dfs(int currentVertex, int totalLength) {
+void dfsTree(int currentVertex, int totalLength) {
     if (hasVisited[currentVertex]) return;
 
     hasVisited[currentVertex] = true;
@@ -20,7 +20,7 @@ void dfs(int currentVertex, int totalLength) {
     }
 
     for (pair<int, int> adjacentVertex : adjacentVerticesOf[currentVertex]) {
-        dfs(adjacentVertex.first, totalLength + adjacentVertex.second);
+        dfsTree(adjacentVertex.first, totalLength + adjacentVertex.second);
     }
 }
 
@@ -51,12 +51,12 @@ int main() {
         }
     }
 
-    dfs(1, 0);  // Find the farthest vertex from root
+    dfsTree(1, 0);  // Find the farthest vertex from root
 
     diameter = 0;
 
     memset(hasVisited, false, sizeof(hasVisited));
-    dfs(farthestVertex, 0);  // Find the farthest vertex and the distance from 'the farthest vertex from root'
+    dfsTree(farthestVertex, 0);  // Find the farthest vertex and the distance from 'the farthest vertex from root'
 
     cout << diameter << '\n';
 
