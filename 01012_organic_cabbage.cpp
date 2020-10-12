@@ -24,27 +24,27 @@ const Point differences[] = {{0,  -1},
                              {-1, 0},
                              {0,  1}};
 
-void bfsCabbageChunk(Point point, int cabbageChunkNo) {
+void bfsCabbageChunk(Point current, int cabbageChunkNo) {
     queue<Point> bfsPoints;
 
-    cabbageChunkNoAt[point.y][point.x] = cabbageChunkNo;
+    cabbageChunkNoAt[current.y][current.x] = cabbageChunkNo;
 
-    bfsPoints.push(point);
+    bfsPoints.push(current);
 
     while (!bfsPoints.empty()) {
-        point = bfsPoints.front();
+        current = bfsPoints.front();
 
         bfsPoints.pop();
 
         for (Point difference : differences) {
-            Point adjacentPoint = point + difference;
+            Point adjacent = current + difference;
 
-            if (adjacentPoint.y < 0 || adjacentPoint.y >= n || adjacentPoint.x < 0 || adjacentPoint.x >= m) continue;
+            if (adjacent.y < 0 || adjacent.y >= n || adjacent.x < 0 || adjacent.x >= m) continue;
 
-            if (map[adjacentPoint.y][adjacentPoint.x] && !cabbageChunkNoAt[adjacentPoint.y][adjacentPoint.x]) {
-                cabbageChunkNoAt[adjacentPoint.y][adjacentPoint.x] = cabbageChunkNo;
+            if (map[adjacent.y][adjacent.x] && !cabbageChunkNoAt[adjacent.y][adjacent.x]) {
+                cabbageChunkNoAt[adjacent.y][adjacent.x] = cabbageChunkNo;
 
-                bfsPoints.push(adjacentPoint);
+                bfsPoints.push(adjacent);
             }
         }
     }

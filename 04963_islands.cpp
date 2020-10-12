@@ -41,14 +41,14 @@ void bfsLand(Point point, int landNo) {
         bfsPoints.pop();
 
         for (Point difference : differences) {
-            Point adjacentPoint = point + difference;
+            Point adjacent = point + difference;
 
-            if (adjacentPoint.y < 0 || adjacentPoint.y >= h || adjacentPoint.x < 0 || adjacentPoint.x >= w) continue;
+            if (adjacent.y < 0 || adjacent.y >= h || adjacent.x < 0 || adjacent.x >= w) continue;
 
-            if (map[adjacentPoint.y][adjacentPoint.x] && !landNoAt[adjacentPoint.y][adjacentPoint.x]) {
-                landNoAt[adjacentPoint.y][adjacentPoint.x] = landNo;
+            if (map[adjacent.y][adjacent.x] && !landNoAt[adjacent.y][adjacent.x]) {
+                landNoAt[adjacent.y][adjacent.x] = landNo;
 
-                bfsPoints.push(adjacentPoint);
+                bfsPoints.push(adjacent);
             }
         }
     }

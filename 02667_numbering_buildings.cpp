@@ -24,27 +24,27 @@ const Point differences[] = {{0,  -1},
                              {0,  1}};
 int buildingCounts[MAX_SIZE * MAX_SIZE / 2 + MAX_SIZE];
 
-void bfsBuilding(Point point, int buildingNo) {
+void bfsPoint(Point current, int buildingNo) {
     queue<Point> bfsPoints;
 
-    buildingNoAt[point.y][point.x] = buildingNo;
+    buildingNoAt[current.y][current.x] = buildingNo;
 
-    bfsPoints.push(point);
+    bfsPoints.push(current);
 
     while (!bfsPoints.empty()) {
-        point = bfsPoints.front();
+        current = bfsPoints.front();
 
         bfsPoints.pop();
 
         for (Point difference : differences) {
-            Point adjacentPoint = point + difference;
+            Point adjacent = current + difference;
 
-            if (adjacentPoint.y < 0 || adjacentPoint.y >= n || adjacentPoint.x < 0 || adjacentPoint.x >= n) continue;
+            if (adjacent.y < 0 || adjacent.y >= n || adjacent.x < 0 || adjacent.x >= n) continue;
 
-            if (map[adjacentPoint.y][adjacentPoint.x] && !buildingNoAt[adjacentPoint.y][adjacentPoint.x]) {
-                buildingNoAt[adjacentPoint.y][adjacentPoint.x] = buildingNo;
+            if (map[adjacent.y][adjacent.x] && !buildingNoAt[adjacent.y][adjacent.x]) {
+                buildingNoAt[adjacent.y][adjacent.x] = buildingNo;
 
-                bfsPoints.push(adjacentPoint);
+                bfsPoints.push(adjacent);
             }
         }
     }
@@ -67,7 +67,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            if (map[i][j] && !buildingNoAt[i][j]) bfsBuilding({i, j}, ++buildingNo);
+            if (map[i][j] && !buildingNoAt[i][j]) bfsPoint({i, j}, ++buildingNo);
         }
     }
 
