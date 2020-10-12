@@ -23,7 +23,7 @@ int main() {
     int numVertex;
     int numEdge;
     int startVertex;
-    queue<int> bfsQueue;
+    queue<int> bfsVertices;
 
     cin >> numVertex >> numEdge >> startVertex;
 
@@ -48,20 +48,20 @@ int main() {
 
     isVisited[startVertex] = true;
 
-    bfsQueue.push(startVertex);
+    bfsVertices.push(startVertex);
 
-    while (!bfsQueue.empty()) {
-        int toVisitVertex = bfsQueue.front();
+    while (!bfsVertices.empty()) {
+        int toVisitVertex = bfsVertices.front();
 
         cout << toVisitVertex << ' ';
 
-        bfsQueue.pop();
+        bfsVertices.pop();
 
         for (int adjacentVertex : adjacentVerticesOf[toVisitVertex]) {
             if (!isVisited[adjacentVertex]) {
                 isVisited[adjacentVertex] = true;
 
-                bfsQueue.push(adjacentVertex);
+                bfsVertices.push(adjacentVertex);
             }
         }
     }

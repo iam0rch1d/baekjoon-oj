@@ -7,10 +7,13 @@ vector<int> adjacentVerticesOf[1001];
 bool isVisited[1001];
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int numVertex;
     int numEdge;
     int connectedComponentCount = 0;
-    queue<int> bfsQueue;
+    queue<int> bfsVertices;
 
     cin >> numVertex >> numEdge;
 
@@ -40,18 +43,18 @@ int main() {
         connectedComponentCount++;
         isVisited[startVertex] = true;
 
-        bfsQueue.push(startVertex);
+        bfsVertices.push(startVertex);
 
-        while (!bfsQueue.empty()) {
-            int toVisitVertex = bfsQueue.front();
+        while (!bfsVertices.empty()) {
+            int toVisitVertex = bfsVertices.front();
 
-            bfsQueue.pop();
+            bfsVertices.pop();
 
             for (int adjacentVertex : adjacentVerticesOf[toVisitVertex]) {
                 if (!isVisited[adjacentVertex]) {
                     isVisited[adjacentVertex] = true;
 
-                    bfsQueue.push(adjacentVertex);
+                    bfsVertices.push(adjacentVertex);
                 }
             }
         }
