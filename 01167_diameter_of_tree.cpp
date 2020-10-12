@@ -4,15 +4,15 @@
 
 using namespace std;
 
-bool hasVisited[100001];
 vector<pair<int, int>> adjacentVerticesOf[100001];  // .first = <to-vertex>, .second = <edge length>
+bool isVisited[100001];
 int diameter;
 int farthestVertex;
 
 void dfsTree(int currentVertex, int totalLength) {
-    if (hasVisited[currentVertex]) return;
+    if (isVisited[currentVertex]) return;
 
-    hasVisited[currentVertex] = true;
+    isVisited[currentVertex] = true;
 
     if (diameter < totalLength) {
         diameter = totalLength;
@@ -55,7 +55,7 @@ int main() {
 
     diameter = 0;
 
-    memset(hasVisited, false, sizeof(hasVisited));
+    memset(isVisited, false, sizeof(isVisited));
     dfsTree(farthestVertex, 0);  // Find the farthest vertex and the distance from 'the farthest vertex from root'
 
     cout << diameter << '\n';

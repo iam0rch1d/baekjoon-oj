@@ -33,9 +33,7 @@ int main() {
         int toVertex;
         int edgeLength;
 
-        cin >> fromVertex;
-        cin >> toVertex;
-        cin >> edgeLength;
+        cin >> fromVertex >> toVertex >> edgeLength;
 
         adjacentVerticesOf[fromVertex].emplace_back(toVertex, edgeLength);
         adjacentVerticesOf[toVertex].emplace_back(fromVertex, edgeLength);
