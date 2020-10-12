@@ -2,6 +2,8 @@
 #include <iostream>
 #include <queue>
 
+#define MAX_SIZE 50
+
 using namespace std;
 
 typedef struct Point {
@@ -15,8 +17,8 @@ Point operator+(Point point1, Point point2) {
 
 int h;
 int w;
-int map[50][50];
-int landNoAt[50][50];
+int map[MAX_SIZE][MAX_SIZE];
+int landNoAt[MAX_SIZE][MAX_SIZE];
 const Point differences[] = {{-1, -1},
                              {-1, 0},
                              {-1, 1},
