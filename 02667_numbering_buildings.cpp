@@ -11,6 +11,10 @@ typedef struct Point {
     int x;
 } Point;
 
+Point operator+(Point point1, Point point2) {
+    return {point1.y + point2.y, point1.x + point2.x};
+}
+
 int n;
 int map[MAX_SIZE][MAX_SIZE];
 int buildingNoAt[MAX_SIZE][MAX_SIZE];
@@ -19,10 +23,6 @@ const Point differences[] = {{0,  -1},
                              {-1, 0},
                              {0,  1}};
 int buildingCounts[MAX_SIZE * MAX_SIZE / 2 + MAX_SIZE];
-
-Point operator+(Point point1, Point point2) {
-    return {point1.y + point2.y, point1.x + point2.x};
-}
 
 void bfsBuilding(Point point, int buildingNo) {
     queue<Point> bfsPoints;
@@ -39,10 +39,12 @@ void bfsBuilding(Point point, int buildingNo) {
         for (Point difference : differences) {
             Point adjacentPoint = point + difference;
 
-            if (map[adjacentPoint.y][adjacentPoint.x] && !buildingNoAt[adjacentPoint.y][adjacentPoint.x]) {
-                bfsPoints.push(adjacentPoint);
+            if (adjacentPoint.y < 0 || adjacentPoint.y >= n || adjacentPoint.x < 0 || adjacentPoint.x >= n) continue;
 
+            if (map[adjacentPoint.y][adjacentPoint.x] && !buildingNoAt[adjacentPoint.y][adjacentPoint.x]) {
                 buildingNoAt[adjacentPoint.y][adjacentPoint.x] = buildingNo;
+
+                bfsPoints.push(adjacentPoint);
             }
         }
     }
