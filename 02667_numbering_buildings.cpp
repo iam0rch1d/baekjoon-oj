@@ -11,8 +11,8 @@ typedef struct Point {
     int x;
 } Point;
 
-Point operator+(Point point1, Point point2) {
-    return {point1.y + point2.y, point1.x + point2.x};
+Point operator+(Point a, Point b) {
+    return {a.y + b.y, a.x + b.x};
 }
 
 int n;
