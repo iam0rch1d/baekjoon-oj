@@ -6,7 +6,7 @@ using namespace std;
 vector<int> adjacentVerticesOf[2000];
 int isVisited[2000];
 
-void backtrackGraph(int vertex, int depth) {
+void dfsGraph(int vertex, int depth) {
     if (depth == 4) {
         cout << "1\n";
 
@@ -16,7 +16,7 @@ void backtrackGraph(int vertex, int depth) {
     isVisited[vertex] = true;
 
     for (int adjacentVertex : adjacentVerticesOf[vertex]) {
-        if (!isVisited[adjacentVertex]) backtrackGraph(adjacentVertex, depth + 1);
+        if (!isVisited[adjacentVertex]) dfsGraph(adjacentVertex, depth + 1);
     }
 
     isVisited[vertex] = false;
@@ -39,7 +39,7 @@ int main() {
     }
 
     for (int i = 0; i < n; i++) {
-        backtrackGraph(i, 0);
+        dfsGraph(i, 0);
     }
 
     cout << "0\n";
