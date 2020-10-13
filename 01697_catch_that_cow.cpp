@@ -6,33 +6,33 @@ using namespace std;
 int timeCount[100001];
 
 int main() {
-    int source;
-    int destination;
-    queue<int> bfsQueue;
+    int sourcePosition;
+    int destinationPosition;
+    queue<int> bfsPositions;
 
-    cin >> source >> destination;
+    cin >> sourcePosition >> destinationPosition;
 
-    timeCount[source] = 1;
+    timeCount[sourcePosition] = 1;
 
-    bfsQueue.push(source);
+    bfsPositions.push(sourcePosition);
 
-    while (!bfsQueue.empty()) {
-        int current = bfsQueue.front();
-        int adjacents[3] = {current + 1, current - 1, 2 * current};
+    while (!bfsPositions.empty()) {
+        int currentPosition = bfsPositions.front();
+        int adjacentPositions[3] = {currentPosition + 1, currentPosition - 1, 2 * currentPosition};
 
-        if (current == destination) {
-            cout << timeCount[current] - 1 << '\n';
+        if (currentPosition == destinationPosition) {
+            cout << timeCount[currentPosition] - 1 << '\n';
 
             return 0;
         }
 
-        bfsQueue.pop();
+        bfsPositions.pop();
 
-        for (int adjacent : adjacents) {
-            if (adjacent >= 0 && adjacent <= 100000 && !timeCount[adjacent]) {
-                timeCount[adjacent] = timeCount[current] + 1;
+        for (int adjacentPosition : adjacentPositions) {
+            if (adjacentPosition >= 0 && adjacentPosition <= 100000 && !timeCount[adjacentPosition]) {
+                timeCount[adjacentPosition] = timeCount[currentPosition] + 1;
 
-                bfsQueue.push(adjacent);
+                bfsPositions.push(adjacentPosition);
             }
         }
     }
