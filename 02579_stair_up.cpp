@@ -11,8 +11,8 @@ int main() {
     vector<int> stairs(stairsSize);
     vector<int> maxPathCache(stairsSize);
 
-    for (int &node : stairs) {
-        cin >> node;
+    for (int &stair : stairs) {
+        cin >> stair;
     }
 
     maxPathCache[0] = stairs[0];
