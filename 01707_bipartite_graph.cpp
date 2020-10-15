@@ -8,14 +8,14 @@ using namespace std;
 vector<int> adjacentVerticesOf[20001];
 int colors[20001];
 
-bool dfsBipartiteGraph(int vertex, int color) {
-    colors[vertex] = color;
+bool dfsBipartiteGraph(int currentVertex, int color) {
+    colors[currentVertex] = color;
 
-    return none_of(adjacentVerticesOf[vertex].begin(),
-                   adjacentVerticesOf[vertex].end(),
-                   [color, vertex](int adjacentVertex) {
+    return none_of(adjacentVerticesOf[currentVertex].begin(),
+                   adjacentVerticesOf[currentVertex].end(),
+                   [color, currentVertex](int adjacentVertex) {
                        return (colors[adjacentVertex] == 0 && !dfsBipartiteGraph(adjacentVertex, 3 - color))
-                              || (colors[adjacentVertex] == colors[vertex]);
+                              || (colors[adjacentVertex] == colors[currentVertex]);
                    });
 }
 

@@ -1,12 +1,13 @@
 #include <algorithm>
 #include <iostream>
-#include <queue>
+#include <stack>
 #include <vector>
 
 using namespace std;
 
 vector<int> adjacentVerticesOf[100000];
 bool isVisited[100000];
+vector<int> dfsOrders;
 
 void printZero() {
     cout << "0\n";
@@ -14,10 +15,18 @@ void printZero() {
     exit(0);
 }
 
+void dfsGraph(int currentVertex) {
+    isVisited[currentVertex] = true;
+
+    dfsOrders.push_back(currentVertex);
+
+    for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
+        if (!isVisited[adjacentVertex]) dfsGraph(adjacentVertex);
+    }
+}
+
 int main() {
     int n;
-    queue<int> bfsVertices;
-    vector<int> bfsOrders;
 
     cin >> n;
 
@@ -52,26 +61,9 @@ int main() {
              [&](int i, int j) { return orderOf[i] < orderOf[j]; });
     }
 
-    isVisited[0] = true;
+    dfsGraph(0);
 
-    bfsVertices.push(0);
-
-    while (!bfsVertices.empty()) {
-        int currentVertex = bfsVertices.front();
-
-        bfsOrders.push_back(currentVertex);
-        bfsVertices.pop();
-
-        for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
-            if (!isVisited[adjacentVertex]) {
-                isVisited[adjacentVertex] = true;
-
-                bfsVertices.push(adjacentVertex);
-            }
-        }
-    }
-
-    cout << (bfsOrders == orders) << '\n';
+    cout << (dfsOrders == orders) << '\n';
 
     return 0;
 }

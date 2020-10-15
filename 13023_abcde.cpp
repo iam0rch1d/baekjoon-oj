@@ -6,20 +6,20 @@ using namespace std;
 vector<int> adjacentVerticesOf[2000];
 int isVisited[2000];
 
-void dfsGraph(int vertex, int depth) {
+void dfsGraph(int currentVertex, int depth) {
     if (depth == 4) {
         cout << "1\n";
 
         exit(0);
     }
 
-    isVisited[vertex] = true;
+    isVisited[currentVertex] = true;
 
-    for (int adjacentVertex : adjacentVerticesOf[vertex]) {
+    for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
         if (!isVisited[adjacentVertex]) dfsGraph(adjacentVertex, depth + 1);
     }
 
-    isVisited[vertex] = false;
+    isVisited[currentVertex] = false;
 }
 
 int main() {
