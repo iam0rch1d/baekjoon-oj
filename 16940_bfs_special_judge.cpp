@@ -56,11 +56,11 @@ int main() {
 
         int currentOrder = bfsOrders.front();
 
-        bfsOrders.pop();
-
         if (currentOrder != orders[i]) printZero();
 
         int childCount = 0;
+
+        bfsOrders.pop();
 
         for (int adjacent : vertices[currentOrder].adjacents) {
             if (!vertices[adjacent].isVisited) {
