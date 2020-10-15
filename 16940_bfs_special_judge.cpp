@@ -1,17 +1,12 @@
-#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <vector>
 
 using namespace std;
 
-typedef struct Vertex {
-    vector<int> adjacents;
-    bool isVisited{};
-    int parent{};
-} Vertex;
-
-Vertex vertices[100000];
+vector<int> adjacentVerticesOf[100000];
+bool isVisited[100000];
+int parentOf[100000];
 int orders[100000];
 
 void printZero() {
@@ -28,16 +23,16 @@ int main() {
     cin >> n;
 
     for (int i = 0; i < n - 1; i++) {
-        int from;
-        int to;
+        int fromVertex;
+        int toVertex;
 
-        cin >> from >> to;
+        cin >> fromVertex >> toVertex;
 
-        from--;
-        to--;
+        fromVertex--;
+        toVertex--;
 
-        vertices[from].adjacents.push_back(to);
-        vertices[to].adjacents.push_back(from);
+        adjacentVerticesOf[fromVertex].push_back(toVertex);
+        adjacentVerticesOf[toVertex].push_back(fromVertex);
     }
 
     for (int i = 0; i < n; i++) {
@@ -46,7 +41,9 @@ int main() {
         orders[i]--;
     }
 
-    vertices[0].isVisited = true;
+    if (orders[0] != 0) printZero();
+
+    isVisited[0] = true;
     visitedVertexCount = 1;
 
     bfsOrders.push(0);
@@ -55,27 +52,22 @@ int main() {
         if (bfsOrders.empty()) printZero();
 
         int currentOrder = bfsOrders.front();
-
-        if (currentOrder != orders[i]) printZero();
-
         int childCount = 0;
 
         bfsOrders.pop();
 
-        for (int adjacent : vertices[currentOrder].adjacents) {
-            if (!vertices[adjacent].isVisited) {
-                vertices[adjacent].parent = currentOrder;
+        for (int adjacentVertex : adjacentVerticesOf[currentOrder]) {
+            if (!isVisited[adjacentVertex]) {
+                parentOf[adjacentVertex] = currentOrder;
                 childCount++;
             }
         }
 
         for (int j = 0; j < childCount; j++) {
-            if (visitedVertexCount + j >= n || vertices[orders[visitedVertexCount + j]].parent != currentOrder) {
-                printZero();
-            }
+            if (visitedVertexCount + j >= n || parentOf[orders[visitedVertexCount + j]] != currentOrder) printZero();
 
             bfsOrders.push(orders[visitedVertexCount + j]);
-            vertices[orders[visitedVertexCount + j]].isVisited = true;
+            isVisited[orders[visitedVertexCount + j]] = true;
         }
 
         visitedVertexCount += childCount;
