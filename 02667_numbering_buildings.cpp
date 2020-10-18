@@ -24,7 +24,7 @@ const Point differences[] = {{0,  -1},
                              {0,  1}};
 int buildingCounts[MAX_SIZE * MAX_SIZE / 2 + MAX_SIZE];
 
-void bfsPoint(Point current, int buildingNo) {
+void bfsBuildingNo(Point current, int buildingNo) {
     queue<Point> bfsPoints;
 
     buildingNoAt[current.y][current.x] = buildingNo;
@@ -67,7 +67,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            if (map[i][j] && !buildingNoAt[i][j]) bfsPoint({i, j}, ++buildingNo);
+            if (map[i][j] && !buildingNoAt[i][j]) bfsBuildingNo({i, j}, ++buildingNo);
         }
     }
 
