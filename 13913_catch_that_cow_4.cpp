@@ -3,10 +3,19 @@
 
 using namespace std;
 
+int sourcePosition;
 int timeCount[100001];
+int previousPosition[100001];
+
+void backtrackPositions(int currentPosition) {
+    if (currentPosition != sourcePosition) {
+        backtrackPositions(previousPosition[currentPosition]);
+    }
+
+    cout << currentPosition << ' ';
+}
 
 int main() {
-    int sourcePosition;
     int destinationPosition;
     queue<int> bfsPositions;
 
@@ -22,6 +31,10 @@ int main() {
         if (currentPosition == destinationPosition) {
             cout << timeCount[currentPosition] - 1 << '\n';
 
+            backtrackPositions(destinationPosition);
+
+            cout << '\n';
+
             return 0;
         }
 
@@ -32,6 +45,7 @@ int main() {
         for (int adjacentPosition : adjacentPositions) {
             if (adjacentPosition >= 0 && adjacentPosition <= 100000 && !timeCount[adjacentPosition]) {
                 timeCount[adjacentPosition] = timeCount[currentPosition] + 1;
+                previousPosition[adjacentPosition] = currentPosition;
 
                 bfsPositions.push(adjacentPosition);
             }
