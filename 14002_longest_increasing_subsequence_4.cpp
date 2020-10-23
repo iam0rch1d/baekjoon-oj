@@ -28,10 +28,10 @@ int memoizeMaxLength(int toIndex) {
     return ++maxLength;
 }
 
-void backtrackLis(int index) {
+void tracebackLis(int index) {
     if (index == -1) return;
 
-    backtrackLis(triggerIndexCache[index]);
+    tracebackLis(triggerIndexCache[index]);
 
     if (index == sequenceSize) return;
 
@@ -52,7 +52,7 @@ int main() {
 
     cout << memoizeMaxLength(sequenceSize) - 1 << '\n';
 
-    backtrackLis(sequenceSize);
+    tracebackLis(sequenceSize);
 
     cout << '\n';
 

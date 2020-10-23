@@ -3,35 +3,28 @@
 
 using namespace std;
 
-char adjacentVerticesOf[26][2];
+char childVerticesOf[26][2];
 
-void dfsTreePreorder(char currentVertex) {
+void printPreorder(char currentVertex) {
     cout << currentVertex;
 
-    for (char adjacentVertex : adjacentVerticesOf[currentVertex - 'A']) {
-        if (adjacentVertex != '.') {
-            dfsTreePreorder(adjacentVertex);
-        }
+    for (char childVertex : childVerticesOf[currentVertex - 'A']) {
+        if (childVertex != '.') printPreorder(childVertex);
     }
 }
 
-void dfsTreeInorder(char currentVertex) {
-    if (adjacentVerticesOf[currentVertex - 'A'][0] != '.') {
-        dfsTreeInorder(adjacentVerticesOf[currentVertex - 'A'][0]);
-    }
+void printInorder(char currentVertex) {
+    if (childVerticesOf[currentVertex - 'A'][0] != '.') printInorder(childVerticesOf[currentVertex - 'A'][0]);
 
     cout << currentVertex;
 
-    if (adjacentVerticesOf[currentVertex - 'A'][1] != '.') {
-        dfsTreeInorder(adjacentVerticesOf[currentVertex - 'A'][1]);
-    }
+    if (childVerticesOf[currentVertex - 'A'][1] != '.') printInorder(childVerticesOf[currentVertex - 'A'][1]);
+
 }
 
-void dfsTreePostorder(char currentVertex) {
-    for (char adjacentVertex : adjacentVerticesOf[currentVertex - 'A']) {
-        if (adjacentVertex != '.') {
-            dfsTreePostorder(adjacentVertex);
-        }
+void printPostorder(char currentVertex) {
+    for (char childVertex : childVerticesOf[currentVertex - 'A']) {
+        if (childVertex != '.') printPostorder(childVertex);
     }
 
     cout << currentVertex;
@@ -45,18 +38,18 @@ int main() {
     for (int i = 0; i < numVertex; i++) {
         char currentVertex;
 
-        cin >> currentVertex >> adjacentVerticesOf[currentVertex - 'A'][0] >> adjacentVerticesOf[currentVertex - 'A'][1];
+        cin >> currentVertex >> childVerticesOf[currentVertex - 'A'][0] >> childVerticesOf[currentVertex - 'A'][1];
     }
 
-    dfsTreePreorder('A');
+    printPreorder('A');
 
     cout << '\n';
 
-    dfsTreeInorder('A');
+    printInorder('A');
 
     cout << '\n';
 
-    dfsTreePostorder('A');
+    printPostorder('A');
 
     cout << '\n';
 

@@ -7,9 +7,9 @@ int sourcePosition;
 int timeCount[100001];
 int previousPosition[100001];
 
-void backtrackPositions(int currentPosition) {
+void tracebackPositions(int currentPosition) {
     if (currentPosition != sourcePosition) {
-        backtrackPositions(previousPosition[currentPosition]);
+        tracebackPositions(previousPosition[currentPosition]);
     }
 
     cout << currentPosition << ' ';
@@ -31,7 +31,7 @@ int main() {
         if (currentPosition == destinationPosition) {
             cout << timeCount[currentPosition] - 1 << '\n';
 
-            backtrackPositions(destinationPosition);
+            tracebackPositions(destinationPosition);
 
             cout << '\n';
 

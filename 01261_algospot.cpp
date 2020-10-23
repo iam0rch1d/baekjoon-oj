@@ -15,7 +15,7 @@ Point operator+(Point a, Point b) {
     return {a.y + b.y, a.x + b.x};
 }
 
-int breakCount[MAX_SIZE][MAX_SIZE];
+int breakCountAt[MAX_SIZE][MAX_SIZE];
 
 int main() {
     int n;
@@ -39,7 +39,7 @@ int main() {
         }
     }
 
-    breakCount[0][0] = 1;
+    breakCountAt[0][0] = 1;
 
     bfsPoints.push_front({0, 0});
 
@@ -47,7 +47,7 @@ int main() {
         Point current = bfsPoints.front();
 
         if (current.y == n - 1 && current.x == m - 1) {
-            cout << breakCount[current.y][current.x] - 1 << '\n';
+            cout << breakCountAt[current.y][current.x] - 1 << '\n';
 
             return 0;
         }
@@ -61,11 +61,11 @@ int main() {
                 || adjacent.y >= n
                 || adjacent.x < 0
                 || adjacent.x >= m
-                || breakCount[adjacent.y][adjacent.x]) {
+                || breakCountAt[adjacent.y][adjacent.x]) {
                 continue;
             }
 
-            breakCount[adjacent.y][adjacent.x] = breakCount[current.y][current.x] + map[adjacent.y][adjacent.x];
+            breakCountAt[adjacent.y][adjacent.x] = breakCountAt[current.y][current.x] + map[adjacent.y][adjacent.x];
 
             map[adjacent.y][adjacent.x] ? bfsPoints.push_back(adjacent) : bfsPoints.push_front(adjacent);
         }
