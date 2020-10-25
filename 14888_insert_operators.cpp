@@ -4,85 +4,47 @@
 
 using namespace std;
 
-int operate(vector<int> &operands, vector<int> &operationSequence) {
-    int result = operands[0];
-
-    for (int i = 0; i < operationSequence.size(); i++) {
-        switch (operationSequence[i]) {
-            case 0: {
-                result += operands[i + 1];
-
-                break;
-            }
-            case 1: {
-                result -= operands[i + 1];
-
-                break;
-            }
-            case 2: {
-                result *= operands[i + 1];
-
-                break;
-            }
-            default: {
-                result /= operands[i + 1];
-
-                break;
-            }
-        }
-    }
-
-    return result;
-}
-
-void backtrackResult(vector<int> &operands,
-                     int *numOperations,
-                     vector<int> &operationSequence,
-                     vector<int> &results) {
-    int result;
-
-    if (operationSequence.size() == operands.size() - 1) {
-        result = operate(operands, operationSequence);
-
-        results.push_back(result);
-    } else {
-        for (int i = 0; i < 4; i++) {
-            if (numOperations[i] > 0) {
-                operationSequence.push_back(i);
-
-                numOperations[i]--;
-
-                backtrackResult(operands, numOperations, operationSequence, results);
-                operationSequence.pop_back();
-
-                numOperations[i]++;
-            }
-        }
-    }
-}
-
 int main() {
-    int numOperand;
-    int numOperations[4];
-    vector<int> operationSequence;
+    int n;
+    vector<int> operations;
     vector<int> results;
 
-    cin >> numOperand;
+    cin >> n;
 
-    vector<int> operands(numOperand);
+    vector<int> a(n);
 
-    for (int &operand : operands) {
-        cin >> operand;
+    for (int &ai : a) {
+        cin >> ai;
     }
 
-    for (int &numOperation : numOperations) {
+    for (int i = 0; i < 4; i++) {
+        int numOperation;
+
         cin >> numOperation;
+
+        for (int j = 0; j < numOperation; j++) {
+            operations.push_back(i);
+        }
     }
 
-    backtrackResult(operands, numOperations, operationSequence, results);
+    while (true) {
+        int result = a[0];
+
+        for (int i = 0; i < n - 1; i++) {
+            if (operations[i] == 0) result += a[i + 1];
+            else if (operations[i] == 1) result -= a[i + 1];
+            else if (operations[i] == 2) result *= a[i + 1];
+            else if (operations[i] == 3) result /= a[i + 1];
+        }
+
+        results.push_back(result);
+
+        if (!next_permutation(operations.begin(), operations.end())) break;
+    }
+
     sort(results.begin(), results.end());
 
-    cout << results.back() << '\n' << results[0];
+    cout << results.back() << '\n' << results[0] << '\n';
 
     return 0;
 }
