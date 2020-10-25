@@ -5,50 +5,54 @@
 using namespace std;
 
 int main() {
-    int numSign;
-    vector<string> numberStrings;
+    int k;
+    string maxNumberString;
+    string minNumberString;
 
-    cin >> numSign;
+    cin >> k;
 
-    vector<char> signs(numSign);
-    vector<bool> isNumberPicked(10, false);
+    vector<char> signs(k);
 
     for (char &sign : signs) {
         cin >> sign;
     }
 
-    for (int i = 0; i < numSign + 1; i++) {
-        isNumberPicked[i] = true;
+    for (int i = 0; i <= k; i++) {
+        maxNumberString += (char) ('0' + (9 - i));
+        minNumberString += (char) ('0' + i);
     }
 
     while (true) {
-        string numberString;
+        bool isSatisfied = true;
 
-        for (int i = 0; i < 10; i++) {
-            if (isNumberPicked[i]) numberString += (char) ('0' + i);
-        }
+        for (int i = 0; i < k; i++) {
+            if ((signs[i] == '<' && maxNumberString[i] > maxNumberString[i + 1])
+                || (signs[i] == '>' && maxNumberString[i] < maxNumberString[i + 1])) {
+                isSatisfied = false;
 
-        while (true) {
-            bool isSatisfied = true;
-
-            for (int i = 0; i < numSign; i++) {
-                if ((signs[i] == '<' && numberString[i] > numberString[i + 1])
-                    || (signs[i] == '>' && numberString[i] < numberString[i + 1])) {
-                    isSatisfied = false;
-
-                    break;
-                }
+                break;
             }
-
-            if (isSatisfied) numberStrings.push_back(numberString);
-
-            if (!next_permutation(numberString.begin(), numberString.end())) break;
         }
 
-        if (!prev_permutation(isNumberPicked.begin(), isNumberPicked.end())) break;
+        if (isSatisfied || !prev_permutation(maxNumberString.begin(), maxNumberString.end())) break;
     }
 
-    cout << numberStrings.back() << '\n' << numberStrings[0] << '\n';
+    while (true) {
+        bool isSatisfied = true;
+
+        for (int i = 0; i < k; i++) {
+            if ((signs[i] == '<' && minNumberString[i] > minNumberString[i + 1])
+                || (signs[i] == '>' && minNumberString[i] < minNumberString[i + 1])) {
+                isSatisfied = false;
+
+                break;
+            }
+        }
+
+        if (isSatisfied || !next_permutation(minNumberString.begin(), minNumberString.end())) break;
+    }
+
+    cout << maxNumberString << '\n' << minNumberString << '\n';
 
     return 0;
 }
