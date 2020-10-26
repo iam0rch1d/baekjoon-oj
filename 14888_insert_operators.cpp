@@ -34,7 +34,7 @@ int main() {
             if (operations[i] == 0) result += a[i + 1];
             else if (operations[i] == 1) result -= a[i + 1];
             else if (operations[i] == 2) result *= a[i + 1];
-            else if (operations[i] == 3) result /= a[i + 1];
+            else result /= a[i + 1];
         }
 
         results.push_back(result);

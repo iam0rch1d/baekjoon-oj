@@ -1,14 +1,15 @@
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
 
+bool canMake[2000001];
+
 int main() {
     unsigned n;
-    int s;
     int sequence[20];
-    int subsequenceCount = 0;
 
-    cin >> n >> s;
+    cin >> n;
 
     for (int i = 0; i < n; i++) {
         cin >> sequence[i];
@@ -21,10 +22,14 @@ int main() {
             subsequenceSum += bitset & (1u << i) ? sequence[i] : 0;
         }
 
-        if (subsequenceSum == s) subsequenceCount++;
+        canMake[subsequenceSum] = true;
     }
 
-    cout << subsequenceCount << '\n';
+    for (int i = 1; i <= 2000000; i++) {
+        if (!canMake[i]) {
+            cout << i << '\n';
 
-    return 0;
+            return 0;
+        }
+    }
 }
