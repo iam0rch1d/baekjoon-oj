@@ -42,9 +42,8 @@ int main() {
         if (!next_permutation(operations.begin(), operations.end())) break;
     }
 
-    sort(results.begin(), results.end());
-
-    cout << results.back() << '\n' << results[0] << '\n';
+    cout << *max_element(results.begin(), results.end()) << '\n'
+         << *min_element(results.begin(), results.end()) << '\n';
 
     return 0;
 }
