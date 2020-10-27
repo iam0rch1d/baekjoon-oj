@@ -4,7 +4,7 @@
 
 using namespace std;
 
-typedef struct Conference {
+typedef struct {
     int startTime;
     int endTime;
 } Conference;

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-typedef struct Division {
+typedef struct {
     int leftEnd;
     int rightEnd;
 } Division;

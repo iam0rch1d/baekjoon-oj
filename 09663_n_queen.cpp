@@ -19,18 +19,18 @@ bool isPromising(pair<int, int> point) {
     return true;
 }
 
-void backtrackNQueenCount(int currentRow) {
-    if (currentRow == n) {
+void backtrackNQueenCount(int row) {
+    if (row == n) {
         nQueenCount++;
 
         return;
     }
 
     for (int i = 0; i < n; i++) {
-        placedColumns[currentRow] = i;
+        placedColumns[row] = i;
 
-        if (isPromising({currentRow, i})) backtrackNQueenCount(currentRow + 1);
-        else placedColumns[currentRow] = -1;
+        if (isPromising({row, i})) backtrackNQueenCount(row + 1);
+        else placedColumns[row] = -1;
     }
 }
 

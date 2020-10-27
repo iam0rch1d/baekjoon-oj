@@ -3,7 +3,7 @@
 
 using namespace std;
 
-typedef struct Document {
+typedef struct {
     int documentNo;
     int priority;
 } Document;

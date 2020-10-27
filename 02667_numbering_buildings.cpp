@@ -6,7 +6,7 @@
 
 using namespace std;
 
-typedef struct Point {
+typedef struct {
     int y;
     int x;
 } Point;

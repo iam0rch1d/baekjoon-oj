@@ -4,7 +4,7 @@
 
 using namespace std;
 
-typedef struct Point {
+typedef struct {
     int x;
     int y;
 } Point;

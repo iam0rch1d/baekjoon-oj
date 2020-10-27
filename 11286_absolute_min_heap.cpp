@@ -3,7 +3,7 @@
 
 using namespace std;
 
-typedef struct Node {
+typedef struct {
     int value;
 } Node;
 

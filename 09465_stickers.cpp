@@ -9,19 +9,19 @@ using namespace std;
 int stickers[100000][2];
 int maxTotalScoreCache[100000][2];
 
-int memoizeTotalScore(int currentRow, int currentColumn) {
-    if (currentRow == 0) return stickers[0][currentColumn];
+int memoizeTotalScore(int row, int column) {
+    if (row == 0) return stickers[0][column];
 
-    if (currentRow == 1) return stickers[0][(currentColumn + 1) % 2] + stickers[1][currentColumn];
+    if (row == 1) return stickers[0][(column + 1) % 2] + stickers[1][column];
 
-    int &totalScore = maxTotalScoreCache[currentRow][currentColumn];
+    int &totalScore = maxTotalScoreCache[row][column];
 
     if (totalScore != UNMEMOIZED) return totalScore;
 
-    return totalScore = stickers[currentRow][currentColumn]
-                        + max({memoizeTotalScore(currentRow - 1, (currentColumn + 1) % 2),
-                               memoizeTotalScore(currentRow - 2, currentColumn),
-                               memoizeTotalScore(currentRow - 2, (currentColumn + 1) % 2)});
+    return totalScore = stickers[row][column]
+                        + max({memoizeTotalScore(row - 1, (column + 1) % 2),
+                               memoizeTotalScore(row - 2, column),
+                               memoizeTotalScore(row - 2, (column + 1) % 2)});
 }
 
 int main() {
