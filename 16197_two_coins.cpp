@@ -5,7 +5,7 @@ using namespace std;
 int n;
 int m;
 int board[20][20];
-bool canSuccessWith[11];
+int minMoves = 11;
 
 bool isOutOfBoard(int y, int x) {
     return y < 0 || y >= n || x < 0 || x >= m;
@@ -15,7 +15,7 @@ void backtrackMove(int moves, int y1, int x1, int y2, int x2) {
     if (moves >= 11 || (isOutOfBoard(y1, x1) && isOutOfBoard(y2, x2))) return;
 
     if (isOutOfBoard(y1, x1) ^ isOutOfBoard(y2, x2)) {
-        canSuccessWith[moves] = true;
+        minMoves = min(minMoves, moves);
 
         return;
     }
@@ -72,15 +72,7 @@ int main() {
 
     backtrackMove(0, y1, x1, y2, x2);
 
-    for (int i = 1; i <= 10; i++) {
-        if (canSuccessWith[i]) {
-            cout << i << '\n';
-
-            return 0;
-        }
-    }
-
-    cout << "-1\n";
+    cout << (minMoves == 11 ? -1 : minMoves) << '\n';
 
     return 0;
 }
