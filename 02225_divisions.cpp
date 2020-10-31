@@ -1,7 +1,6 @@
 #include <cstring>
 #include <iostream>
 
-#define UNMEMOIZED -1
 #define MODULO 1000000000
 
 using namespace std;

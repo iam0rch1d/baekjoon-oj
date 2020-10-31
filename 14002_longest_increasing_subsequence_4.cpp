@@ -2,57 +2,40 @@
 #include <cstring>
 #include <iostream>
 
-#define UNMEMOIZED -1
-
 using namespace std;
 
-int sequenceSize;
-int sequence[1001];
-int maxLengthCache[1001];
-int triggerIndexCache[1001];
-
-int memoizeMaxLength(int toIndex) {
-    int &maxLength = maxLengthCache[toIndex];
-
-    if (maxLength != UNMEMOIZED) return maxLength;
-
-    maxLength = 0;
-
-    for (int i = toIndex - 1; i >= 0; i--) {
-        if (sequence[i] < sequence[toIndex] && memoizeMaxLength(i) >= maxLength) {
-            maxLength = memoizeMaxLength(i);
-            triggerIndexCache[toIndex] = i;
-        }
-    }
-
-    return ++maxLength;
-}
+int n;
+int a[1000];
+int maxLengthCache[1000];
+int triggerIndexCache[1000];
 
 void tracebackLis(int index) {
     if (index == -1) return;
 
     tracebackLis(triggerIndexCache[index]);
 
-    if (index == sequenceSize) return;
-
-    cout << sequence[index] << ' ';
+    cout << a[index] << ' ';
 }
 
 int main() {
-    cin >> sequenceSize;
+    cin >> n;
 
-    for (int i = 0; i < sequenceSize; i++) {
-        cin >> sequence[i];
+    memset(triggerIndexCache, -1, sizeof(triggerIndexCache));
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+
+        for (int j = 0; j < i; j++) {
+            if (a[j] < a[i] && maxLengthCache[i] < maxLengthCache[j] + 1) {
+                maxLengthCache[i] = maxLengthCache[j] + 1;
+                triggerIndexCache[i] = j;
+            }
+        }
     }
 
-    sequence[sequenceSize] = 1001;
+    cout << *max_element(maxLengthCache, maxLengthCache + n) + 1 << '\n';
 
-    memset(maxLengthCache, UNMEMOIZED, sizeof(maxLengthCache));
-    memset(triggerIndexCache, UNMEMOIZED, sizeof(triggerIndexCache));
-
-    cout << memoizeMaxLength(sequenceSize) - 1 << '\n';
-
-    tracebackLis(sequenceSize);
+    tracebackLis((int) (max_element(maxLengthCache, maxLengthCache + n) - maxLengthCache));
 
     cout << '\n';
 

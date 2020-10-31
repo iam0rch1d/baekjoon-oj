@@ -1,41 +1,25 @@
 #include <algorithm>
-#include <cstring>
 #include <iostream>
-
-#define UNMEMOIZED -1
 
 using namespace std;
 
-int sequenceSize;
-int sequence[1001];
-int maxLengthCache[1001];
-
-int memoizeMaxLength(int toIndex) {
-    int &maxLength = maxLengthCache[toIndex];
-
-    if (maxLength != UNMEMOIZED) return maxLength;
-
-    maxLength = 0;
-
-    for (int i = toIndex - 1; i >= 0; i--) {
-        if (sequence[i] < sequence[toIndex]) maxLength = max(maxLength, memoizeMaxLength(i));
-    }
-
-    return ++maxLength;
-}
+int a[1000];
+int maxLengthCache[1000];
 
 int main() {
-    cin >> sequenceSize;
+    int n;
 
-    for (int i = 0; i < sequenceSize; i++) {
-        cin >> sequence[i];
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+
+        for (int j = 0; j < i; j++) {
+            if (a[j] < a[i]) maxLengthCache[i] = max(maxLengthCache[i], maxLengthCache[j] + 1);
+        }
     }
 
-    memset(maxLengthCache, UNMEMOIZED, sizeof(maxLengthCache));
-
-    sequence[sequenceSize] = 1001;
-
-    cout << memoizeMaxLength(sequenceSize) - 1 << '\n';
+    cout << *max_element(maxLengthCache, maxLengthCache + n) + 1 << '\n';
 
     return 0;
 }
