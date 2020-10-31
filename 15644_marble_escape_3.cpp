@@ -74,6 +74,7 @@ int tilt(vector<string> board, vector<unsigned> &directions) {
 
 int main() {
     int minTiltCount = 11;
+    unsigned minTiltBitset = 1u << 20u;
 
     cin >> n >> m;
 
@@ -100,10 +101,30 @@ int main() {
             currentBitset >>= 2u;
         }
 
-        if (areDirectionsValid) minTiltCount = min(minTiltCount, tilt(board, directions));
+        if (areDirectionsValid) {
+            int currentTiltCount = tilt(board, directions);
+
+            if (minTiltCount > currentTiltCount) {
+                minTiltCount = currentTiltCount;
+                minTiltBitset = tiltBitset;
+            }
+        }
     }
 
     cout << (minTiltCount == 11 ? -1 : minTiltCount) << '\n';
+
+    for (int i = 0; i < (minTiltCount == 11 ? 0 : minTiltCount); i++) {
+        unsigned direction = minTiltBitset & 3u;
+
+        if (direction == 0) cout << 'U';
+        else if (direction == 1) cout << 'R';
+        else if (direction == 2) cout << 'D';
+        else if (direction == 3) cout << 'L';
+
+        minTiltBitset >>= 2u;
+    }
+
+    cout << '\n';
 
     return 0;
 }
