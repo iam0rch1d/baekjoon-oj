@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int timeCount[100001];
+int timeCountAt[100001];
 
 int main() {
     int sourcePosition;
@@ -12,7 +12,7 @@ int main() {
 
     cin >> sourcePosition >> destinationPosition;
 
-    timeCount[sourcePosition] = 1;
+    timeCountAt[sourcePosition] = 1;
 
     bfsPositions.push(sourcePosition);
 
@@ -20,7 +20,7 @@ int main() {
         int currentPosition = bfsPositions.front();
 
         if (currentPosition == destinationPosition) {
-            cout << timeCount[currentPosition] - 1 << '\n';
+            cout << timeCountAt[currentPosition] - 1 << '\n';
 
             return 0;
         }
@@ -30,8 +30,8 @@ int main() {
         bfsPositions.pop();
 
         for (int adjacentPosition : adjacentPositions) {
-            if (adjacentPosition >= 0 && adjacentPosition <= 100000 && !timeCount[adjacentPosition]) {
-                timeCount[adjacentPosition] = timeCount[currentPosition] + 1;
+            if (adjacentPosition >= 0 && adjacentPosition <= 100000 && !timeCountAt[adjacentPosition]) {
+                timeCountAt[adjacentPosition] = timeCountAt[currentPosition] + 1;
 
                 bfsPositions.push(adjacentPosition);
             }

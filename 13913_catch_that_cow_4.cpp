@@ -4,7 +4,7 @@
 using namespace std;
 
 int sourcePosition;
-int timeCount[100001];
+int timeCountAt[100001];
 int previousPosition[100001];
 
 void tracebackPositions(int currentPosition) {
@@ -21,7 +21,7 @@ int main() {
 
     cin >> sourcePosition >> destinationPosition;
 
-    timeCount[sourcePosition] = 1;
+    timeCountAt[sourcePosition] = 1;
 
     bfsPositions.push(sourcePosition);
 
@@ -29,7 +29,7 @@ int main() {
         int currentPosition = bfsPositions.front();
 
         if (currentPosition == destinationPosition) {
-            cout << timeCount[currentPosition] - 1 << '\n';
+            cout << timeCountAt[currentPosition] - 1 << '\n';
 
             tracebackPositions(destinationPosition);
 
@@ -43,8 +43,8 @@ int main() {
         bfsPositions.pop();
 
         for (int adjacentPosition : adjacentPositions) {
-            if (adjacentPosition >= 0 && adjacentPosition <= 100000 && !timeCount[adjacentPosition]) {
-                timeCount[adjacentPosition] = timeCount[currentPosition] + 1;
+            if (adjacentPosition >= 0 && adjacentPosition <= 100000 && !timeCountAt[adjacentPosition]) {
+                timeCountAt[adjacentPosition] = timeCountAt[currentPosition] + 1;
                 previousPosition[adjacentPosition] = currentPosition;
 
                 bfsPositions.push(adjacentPosition);
