@@ -3,22 +3,22 @@
 
 using namespace std;
 
-int sequence[1000001];
+int a[1000001];
 int nge[1000001];
 
 int main() {
-    int sequenceSize;
+    int n;
     stack<int> ngeIndices;
 
-    cin >> sequenceSize;
+    cin >> n;
 
     ngeIndices.push(0);
 
-    for (int i = 1; i <= sequenceSize; i++) {
-        cin >> sequence[i];
+    for (int i = 1; i <= n; i++) {
+        cin >> a[i];
 
-        while (!ngeIndices.empty() && sequence[ngeIndices.top()] < sequence[i]) {
-            nge[ngeIndices.top()] = sequence[i];
+        while (!ngeIndices.empty() && a[ngeIndices.top()] < a[i]) {
+            nge[ngeIndices.top()] = a[i];
 
             ngeIndices.pop();
         }
@@ -32,7 +32,7 @@ int main() {
         ngeIndices.pop();
     }
 
-    for (int i = 1; i <= sequenceSize; i++) {
+    for (int i = 1; i <= n; i++) {
         cout << nge[i] << ' ';
     }
 

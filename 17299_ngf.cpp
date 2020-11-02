@@ -3,27 +3,27 @@
 
 using namespace std;
 
-int sequence[1000001];
-int frequency[1000001];
+int a[1000001];
+int frequencies[1000001];
 int ngf[1000001];
 
 int main() {
-    int sequenceSize;
+    int n;
     stack<int> ngfIndices;
 
-    cin >> sequenceSize;
+    cin >> n;
 
     ngfIndices.push(0);
 
-    for (int i = 1; i <= sequenceSize; i++) {
-        cin >> sequence[i];
+    for (int i = 1; i <= n; i++) {
+        cin >> a[i];
 
-        frequency[sequence[i]]++;
+        frequencies[a[i]]++;
     }
 
-    for (int i = 1; i <= sequenceSize; i++) {
-        while (!ngfIndices.empty() && frequency[sequence[ngfIndices.top()]] < frequency[sequence[i]]) {
-            ngf[ngfIndices.top()] = sequence[i];
+    for (int i = 1; i <= n; i++) {
+        while (!ngfIndices.empty() && frequencies[a[ngfIndices.top()]] < frequencies[a[i]]) {
+            ngf[ngfIndices.top()] = a[i];
 
             ngfIndices.pop();
         }
@@ -37,7 +37,7 @@ int main() {
         ngfIndices.pop();
     }
 
-    for (int i = 1; i <= sequenceSize; i++) {
+    for (int i = 1; i <= n; i++) {
         cout << ngf[i] << ' ';
     }
 

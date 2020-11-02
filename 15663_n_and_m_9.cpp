@@ -6,7 +6,7 @@ using namespace std;
 
 int n;
 int m;
-int sequence[8];
+int a[8];
 bool isPicked[8];
 
 void backtrackPickedNumbers(vector<vector<int>> &pickedPermutations, vector<int> &pickedNumbers) {
@@ -18,7 +18,7 @@ void backtrackPickedNumbers(vector<vector<int>> &pickedPermutations, vector<int>
 
     for (int i = 0; i < n; i++) {
         if (!isPicked[i]) {
-            pickedNumbers.push_back(sequence[i]);
+            pickedNumbers.push_back(a[i]);
 
             isPicked[i] = true;
 
@@ -37,10 +37,10 @@ int main() {
     cin >> n >> m;
 
     for (int i = 0; i < n; i++) {
-        cin >> sequence[i];
+        cin >> a[i];
     }
 
-    sort(sequence, sequence + n);
+    sort(a, a + n);
     backtrackPickedNumbers(pickedPermutations, pickedNumbers);
     sort(pickedPermutations.begin(), pickedPermutations.end());
     pickedPermutations.erase(unique(pickedPermutations.begin(), pickedPermutations.end()), pickedPermutations.end());

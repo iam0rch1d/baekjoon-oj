@@ -5,13 +5,13 @@ using namespace std;
 
 int n;
 int m;
-int sequence[8];
+int a[8];
 bool isIndexPicked[8];
 
 void backtrackPickedIndices(int pickCount, int toPickIndex) {
     if (pickCount == m) {
         for (int i = 0; i < n; i++) {
-            if (isIndexPicked[i]) cout << sequence[i] << ' ';
+            if (isIndexPicked[i]) cout << a[i] << ' ';
         }
 
         cout << '\n';
@@ -34,10 +34,10 @@ int main() {
     cin >> n >> m;
 
     for (int i = 0; i < n; i++) {
-        cin >> sequence[i];
+        cin >> a[i];
     }
 
-    sort(sequence, sequence + n);
+    sort(a, a + n);
     backtrackPickedIndices(0, 0);
 
     return 0;

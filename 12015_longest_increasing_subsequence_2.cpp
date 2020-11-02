@@ -7,14 +7,14 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int sequenceSize;
+    int n;
     vector<int> lis;  // 'LIS' refers to 'Longest Increasing Subsequence'
 
-    cin >> sequenceSize;
+    cin >> n;
 
     lis.push_back(0);
 
-    for (int i = 0; i < sequenceSize; i++) {
+    for (int i = 0; i < n; i++) {
         int element;
 
         cin >> element;

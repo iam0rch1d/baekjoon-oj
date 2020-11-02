@@ -6,12 +6,12 @@ using namespace std;
 
 int n;
 int m;
-int sequence[8];
+int a[8];
 
 void backtrackPickedIndices(vector<int> &pickedIndices) {
     if (pickedIndices.size() == m) {
         for (int pickedIndex : pickedIndices) {
-            cout << sequence[pickedIndex] << ' ';
+            cout << a[pickedIndex] << ' ';
         }
 
         cout << '\n';
@@ -32,10 +32,10 @@ int main() {
     cin >> n >> m;
 
     for (int i = 0; i < n; i++) {
-        cin >> sequence[i];
+        cin >> a[i];
     }
 
-    sort(sequence, sequence + n);
+    sort(a, a + n);
     backtrackPickedIndices(pickedIndices);
 
     return 0;

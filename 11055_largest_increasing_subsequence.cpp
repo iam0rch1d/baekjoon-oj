@@ -5,12 +5,12 @@
 
 using namespace std;
 
-int sequenceSize;
-int sequence[1001];
+int n;
+int a[1001];
 int maxSumCache[1001];
 
 int memoizeMaxSum(int toIndex) {
-    if (toIndex == 0) return sequence[0];
+    if (toIndex == 0) return a[0];
 
     int &maxSum = maxSumCache[toIndex];
 
@@ -19,24 +19,24 @@ int memoizeMaxSum(int toIndex) {
     maxSum = 0;
 
     for (int i = toIndex - 1; i >= 0; i--) {
-        if (sequence[i] < sequence[toIndex]) maxSum = max(maxSum, memoizeMaxSum(i));
+        if (a[i] < a[toIndex]) maxSum = max(maxSum, memoizeMaxSum(i));
     }
 
-    return maxSum += sequence[toIndex];
+    return maxSum += a[toIndex];
 }
 
 int main() {
-    cin >> sequenceSize;
+    cin >> n;
 
-    for (int i = 0; i < sequenceSize; i++) {
-        cin >> sequence[i];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
     }
 
-    sequence[sequenceSize] = 1e6;
+    a[n] = 1e6;
 
     memset(maxSumCache, UNMEMOIZED, sizeof(maxSumCache));
 
-    cout << memoizeMaxSum(sequenceSize) - 1e6 << '\n';
+    cout << memoizeMaxSum(n) - 1e6 << '\n';
 
     return 0;
 }
