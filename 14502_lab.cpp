@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <tuple>
 
 using namespace std;
 
@@ -18,13 +19,16 @@ int bfsSafeArea(vector<vector<int>> map) {
     }
 
     while (!bfsPositions.empty()) {
-        auto currentPosition = bfsPositions.front();
+        int y;
+        int x;
+
+        tie(y, x) = bfsPositions.front();
 
         bfsPositions.pop();
 
         for (int i = 0; i < 4; i++) {
-            int ny = currentPosition.first + "1201"[i] - '1';
-            int nx = currentPosition.second + "0112"[i] - '1';
+            int ny = y + "1201"[i] - '1';
+            int nx = x + "0112"[i] - '1';
 
             if (ny < 0 || ny >= n || nx < 0 || nx >= m || map[ny][nx]) continue;
 
