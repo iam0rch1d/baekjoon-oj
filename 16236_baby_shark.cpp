@@ -8,13 +8,11 @@ using namespace std;
 
 int n;
 
-int bfsPrey(vector<vector<int>> &map, int &sy, int &sx, int size) {
+int bfsPrey(vector<vector<int>> &map, int &sy, int &sx, int level) {
     vector<vector<int>> distanceTo(n, vector<int>(n, -1));
     queue<pair<int, int>> bfsDistanceQueue;
     vector<tuple<int, int, int>> preys;
     int preyDistance;
-    int py;
-    int px;
 
     distanceTo[sy][sx] = 0;
 
@@ -32,11 +30,11 @@ int bfsPrey(vector<vector<int>> &map, int &sy, int &sx, int size) {
             int ny = y + "1201"[i] - '1';
             int nx = x + "0112"[i] - '1';
 
-            if (ny < 0 || ny >= n || nx < 0 || nx >= n || distanceTo[ny][nx] != -1 || size < map[ny][nx]) continue;
+            if (ny < 0 || ny >= n || nx < 0 || nx >= n || distanceTo[ny][nx] != -1 || level < map[ny][nx]) continue;
 
             distanceTo[ny][nx] = distanceTo[y][x] + 1;
 
-            if (map[ny][nx] && size > map[ny][nx]) preys.emplace_back(distanceTo[ny][nx], ny, nx);
+            if (map[ny][nx] && level > map[ny][nx]) preys.emplace_back(distanceTo[ny][nx], ny, nx);
 
             bfsDistanceQueue.push({ny, nx});
         }
@@ -46,11 +44,8 @@ int bfsPrey(vector<vector<int>> &map, int &sy, int &sx, int size) {
 
     sort(preys.begin(), preys.end());
 
-    tie(preyDistance, py, px) = preys[0];
-
-    map[py][px] = 0;
-    sy = py;
-    sx = px;
+    tie(preyDistance, sy, sx) = preys[0];
+    map[sy][sx] = 0;
 
     return preyDistance;
 }
@@ -58,8 +53,8 @@ int bfsPrey(vector<vector<int>> &map, int &sy, int &sx, int size) {
 int main() {
     int sy;
     int sx;
-    int size = 2;
-    int bfsCount = 0;
+    int level = 2;
+    int experience = 0;
     int totalDistance = 0;
 
     cin >> n;
@@ -71,24 +66,23 @@ int main() {
             cin >> map[i][j];
 
             if (map[i][j] == 9) {
-                sy = i;
-                sx = j;
+                tie(sy, sx) = {i, j};
                 map[i][j] = 0;
             }
         }
     }
 
     while (true) {
-        int preyDistance = bfsPrey(map, sy, sx, size);
+        int preyDistance = bfsPrey(map, sy, sx, level);
 
         if (preyDistance) {
-            bfsCount++;
+            experience++;
             totalDistance += preyDistance;
         } else break;
 
-        if (bfsCount == size) {
-            size++;
-            bfsCount = 0;
+        if (experience == level) {
+            level++;
+            experience = 0;
         }
     }
 

@@ -12,8 +12,6 @@ int movingTimeAt[50][50];
 int main() {
     int r;
     int c;
-    int sy;
-    int sx;
     int dy;
     int dx;
     queue<pair<int, int>> bfsFloodingPoints;
@@ -37,14 +35,9 @@ int main() {
                 bfsFloodingPoints.push({i, j});
             } else if (map[i][j] == 'S') {
                 movingTimeAt[i][j] = 0;
-                sy = i;
-                sx = j;
 
                 bfsMovingPoints.push({i, j});
-            } else if (map[i][j] == 'D') {
-                dy = i;
-                dx = j;
-            }
+            } else if (map[i][j] == 'D') tie(dy, dx) = {i, j};
         }
     }
 
