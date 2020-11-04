@@ -14,7 +14,7 @@ int main() {
     int n;
     int m;
     int k;
-    queue<tuple<int, int, int, int>> bfsPoints;
+    queue<tuple<int, int, int, bool>> bfsPoints;
 
     cin >> n >> m >> k;
 
@@ -30,7 +30,7 @@ int main() {
 
     movesAt[0][0][0][0] = 1;
 
-    bfsPoints.push({0, 0, 0, 0});
+    bfsPoints.push({0, 0, 0, false});
 
     while (!bfsPoints.empty()) {
         int y;
@@ -44,9 +44,9 @@ int main() {
             vector<int> possibleMoves;
 
             for (int i = 0; i <= k; i++) {
-                if (movesAt[y][x][i][0]) possibleMoves.push_back(movesAt[y][x][i][0]);
+                if (movesAt[y][x][i][false]) possibleMoves.push_back(movesAt[y][x][i][false]);
 
-                if (movesAt[y][x][i][1]) possibleMoves.push_back(movesAt[y][x][i][1]);
+                if (movesAt[y][x][i][true]) possibleMoves.push_back(movesAt[y][x][i][true]);
             }
 
             cout << *min_element(possibleMoves.begin(), possibleMoves.end()) << '\n';
@@ -62,23 +62,23 @@ int main() {
 
             if (ny < 0 || ny >= n || nx < 0 || nx >= m) continue;
 
-            if (!map[ny][nx] && !movesAt[ny][nx][brokenWalls][1 - isNight]) {
-                movesAt[ny][nx][brokenWalls][1 - isNight] = movesAt[y][x][brokenWalls][isNight] + 1;
+            if (!map[ny][nx] && !movesAt[ny][nx][brokenWalls][!isNight]) {
+                movesAt[ny][nx][brokenWalls][!isNight] = movesAt[y][x][brokenWalls][isNight] + 1;
 
-                bfsPoints.push({ny, nx, brokenWalls, 1 - isNight});
+                bfsPoints.push({ny, nx, brokenWalls, !isNight});
             }
 
-            if (map[ny][nx] && !movesAt[ny][nx][brokenWalls + 1][1 - isNight] && brokenWalls < k && !isNight) {
-                movesAt[ny][nx][brokenWalls + 1][1] = movesAt[y][x][brokenWalls][isNight] + 1;
+            if (map[ny][nx] && !movesAt[ny][nx][brokenWalls + 1][true] && brokenWalls < k && !isNight) {
+                movesAt[ny][nx][brokenWalls + 1][true] = movesAt[y][x][brokenWalls][isNight] + 1;
 
-                bfsPoints.push({ny, nx, brokenWalls + 1, 1});
+                bfsPoints.push({ny, nx, brokenWalls + 1, true});
             }
         }
 
-        if (!movesAt[y][x][brokenWalls][1 - isNight]) {
-            movesAt[y][x][brokenWalls][1 - isNight] = movesAt[y][x][brokenWalls][isNight] + 1;
+        if (!movesAt[y][x][brokenWalls][!isNight]) {
+            movesAt[y][x][brokenWalls][!isNight] = movesAt[y][x][brokenWalls][isNight] + 1;
 
-            bfsPoints.push({y, x, brokenWalls, 1 - isNight});
+            bfsPoints.push({y, x, brokenWalls, !isNight});
         }
     }
 
