@@ -40,7 +40,7 @@ int main() {
 
             if (ny < 0 || ny >= 8 || nx < 0 || nx >= 8
                 || (ny - time >= 0 && map[ny - time][nx] == '#')
-                || (ny - time - 1 >= 0 && map[ny - time - 1][nx] == '#')
+                || (ny - nextTime >= 0 && map[ny - nextTime][nx] == '#')
                 || isVisited[nextTime][ny][nx]) {
                 continue;
             }
