@@ -18,7 +18,7 @@ Point operator+(Point a, Point b) {
 int n;
 int map[MAX_SIZE][MAX_SIZE];
 int islandNoAt[MAX_SIZE][MAX_SIZE];
-int distanceAt[MAX_SIZE][MAX_SIZE];
+int distanceTo[MAX_SIZE][MAX_SIZE];
 const Point differences[] = {{-1, 0},
                              {0,  1},
                              {0,  -1},
@@ -84,7 +84,7 @@ int main() {
             if (!map[adjacent.y][adjacent.x]) {
                 if (!islandNoAt[adjacent.y][adjacent.x]) {
                     islandNoAt[adjacent.y][adjacent.x] = islandNoAt[current.y][current.x];
-                    distanceAt[adjacent.y][adjacent.x] = distanceAt[current.y][current.x] + 1;
+                    distanceTo[adjacent.y][adjacent.x] = distanceTo[current.y][current.x] + 1;
 
                     bfsDistancePoints.push(adjacent);
                 }
@@ -103,7 +103,7 @@ int main() {
 
                 if (islandNoAt[adjacent.y][adjacent.x] != islandNoAt[current.y][current.x]) {
                     minBridgeDistance = min(minBridgeDistance,
-                                            distanceAt[adjacent.y][adjacent.x] + distanceAt[current.y][current.x]);
+                                            distanceTo[adjacent.y][adjacent.x] + distanceTo[current.y][current.x]);
                 }
             }
         }
