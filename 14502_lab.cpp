@@ -63,7 +63,7 @@ int main() {
         }
     }
 
-    for (int i = 0; i < numElement; i++) {
+    for (int i = 0; i < numElement - 2; i++) {
         int iy = i / m;
         int ix = i % m;
 
@@ -71,7 +71,7 @@ int main() {
 
         map[iy][ix] = 1;
 
-        for (int j = i + 1; j < numElement; j++) {
+        for (int j = i + 1; j < numElement - 1; j++) {
             int jy = j / m;
             int jx = j % m;
 

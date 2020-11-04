@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int moveCountAt[MAX_SIZE][MAX_SIZE];
+int movesAt[MAX_SIZE][MAX_SIZE];
 
 int main() {
     int n;
@@ -19,7 +19,7 @@ int main() {
 
     cin >> n >> y1 >> x1 >> y2 >> x2;
 
-    moveCountAt[y1][x1] = 1;
+    movesAt[y1][x1] = 1;
 
     bfsPoints.push({y1, x1});
 
@@ -35,15 +35,15 @@ int main() {
             int ny = y + "002244"[i] - '2';
             int nx = x + "130413"[i] - '2';
 
-            if (ny < 0 || ny >= n || nx < 0 || nx >= n || moveCountAt[ny][nx]) continue;
+            if (ny < 0 || ny >= n || nx < 0 || nx >= n || movesAt[ny][nx]) continue;
 
-            moveCountAt[ny][nx] = moveCountAt[y][x] + 1;
+            movesAt[ny][nx] = movesAt[y][x] + 1;
 
             bfsPoints.push({ny, nx});
         }
     }
 
-    cout << (moveCountAt[y2][x2] ? moveCountAt[y2][x2] - 1 : -1) << '\n';
+    cout << (movesAt[y2][x2] ? movesAt[y2][x2] - 1 : -1) << '\n';
 
     return 0;
 }

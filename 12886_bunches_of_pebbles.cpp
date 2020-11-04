@@ -5,14 +5,17 @@
 
 using namespace std;
 
-bool isVisited[501][501][501];
+bool isVisited[1000][1000];
 
 int main() {
     vector<int> abc(3);
+    int abcSum;
 
     cin >> abc[0] >> abc[1] >> abc[2];
 
-    if ((abc[0] + abc[1] + abc[2]) % 3) {
+    abcSum = abc[0] + abc[1] + abc[2];
+
+    if (abcSum % 3) {
         cout << "0\n";
 
         return 0;
@@ -22,7 +25,7 @@ int main() {
 
     sort(abc.begin(), abc.end());
 
-    isVisited[abc[0]][abc[1]][abc[2]] = true;
+    isVisited[abc[0]][abc[1]] = true;
 
     bfsAbcs.push(abc);
 
@@ -50,8 +53,8 @@ int main() {
         for (auto &adjacentAbc : adjacentAbcs) {
             sort(adjacentAbc.begin(), adjacentAbc.end());
 
-            if (!isVisited[adjacentAbc[0]][adjacentAbc[1]][adjacentAbc[2]]) {
-                isVisited[adjacentAbc[0]][adjacentAbc[1]][adjacentAbc[2]] = true;
+            if (!isVisited[adjacentAbc[0]][adjacentAbc[1]]) {
+                isVisited[adjacentAbc[0]][adjacentAbc[1]] = true;
 
                 bfsAbcs.push(adjacentAbc);
             }

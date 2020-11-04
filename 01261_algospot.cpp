@@ -1,4 +1,3 @@
-#include <cstring>
 #include <deque>
 #include <iostream>
 
@@ -15,7 +14,7 @@ Point operator+(Point a, Point b) {
     return {a.y + b.y, a.x + b.x};
 }
 
-int breakCountAt[MAX_SIZE][MAX_SIZE];
+int brokenWallsAt[MAX_SIZE][MAX_SIZE];
 
 int main() {
     int n;
@@ -39,7 +38,7 @@ int main() {
         }
     }
 
-    breakCountAt[0][0] = 1;
+    brokenWallsAt[0][0] = 1;
 
     bfsPoints.push_front({0, 0});
 
@@ -47,7 +46,7 @@ int main() {
         Point current = bfsPoints.front();
 
         if (current.y == n - 1 && current.x == m - 1) {
-            cout << breakCountAt[current.y][current.x] - 1 << '\n';
+            cout << brokenWallsAt[current.y][current.x] - 1 << '\n';
 
             return 0;
         }
@@ -61,11 +60,11 @@ int main() {
                 || adjacent.y >= n
                 || adjacent.x < 0
                 || adjacent.x >= m
-                || breakCountAt[adjacent.y][adjacent.x]) {
+                || brokenWallsAt[adjacent.y][adjacent.x]) {
                 continue;
             }
 
-            breakCountAt[adjacent.y][adjacent.x] = breakCountAt[current.y][current.x] + map[adjacent.y][adjacent.x];
+            brokenWallsAt[adjacent.y][adjacent.x] = brokenWallsAt[current.y][current.x] + map[adjacent.y][adjacent.x];
 
             map[adjacent.y][adjacent.x] ? bfsPoints.push_back(adjacent) : bfsPoints.push_front(adjacent);
         }

@@ -5,8 +5,8 @@
 
 using namespace std;
 
-int commandCounts[10000];
-char commands[10000];
+bool isVisited[10000];
+char commandFor[10000];
 int previousRegisters[10000];
 
 int main() {
@@ -21,7 +21,7 @@ int main() {
 
         cin >> a >> b;
 
-        commandCounts[a] = 1;
+        isVisited[a] = true;
 
         bfsRegisters.push(a);
 
@@ -40,7 +40,7 @@ int main() {
                 }
 
                 while (!tracebackRegisters.empty()) {
-                    cout << commands[tracebackRegisters.top()];
+                    cout << commandFor[tracebackRegisters.top()];
 
                     tracebackRegisters.pop();
                 }
@@ -52,25 +52,25 @@ int main() {
 
             int adjacentRegisters[] = {2 * currentRegister % 10000,
                                        (currentRegister + 9999) % 10000,
-                                       currentRegister * 10 % 10000 + currentRegister / 1000,
+                                       10 * currentRegister % 10000 + currentRegister / 1000,
                                        currentRegister % 10 * 1000 + currentRegister / 10};
 
             for (int i = 0; i < 4; i++) {
-                if (!commandCounts[adjacentRegisters[i]]) {
-                    commandCounts[adjacentRegisters[i]] = commandCounts[currentRegister] + 1;
+                if (!isVisited[adjacentRegisters[i]]) {
+                    isVisited[adjacentRegisters[i]] = true;
                     previousRegisters[adjacentRegisters[i]] = currentRegister;
 
-                    if (i == 0) commands[adjacentRegisters[i]] = 'D';
-                    else if (i == 1) commands[adjacentRegisters[i]] = 'S';
-                    else if (i == 2) commands[adjacentRegisters[i]] = 'L';
-                    else if (i == 3) commands[adjacentRegisters[i]] = 'R';
+                    if (i == 0) commandFor[adjacentRegisters[i]] = 'D';
+                    else if (i == 1) commandFor[adjacentRegisters[i]] = 'S';
+                    else if (i == 2) commandFor[adjacentRegisters[i]] = 'L';
+                    else if (i == 3) commandFor[adjacentRegisters[i]] = 'R';
 
                     bfsRegisters.push(adjacentRegisters[i]);
                 }
             }
         }
 
-        memset(commandCounts, 0, sizeof(commandCounts));
+        memset(isVisited, false, sizeof(isVisited));
     }
 
     return 0;

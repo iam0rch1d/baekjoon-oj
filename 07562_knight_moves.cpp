@@ -15,7 +15,7 @@ Point operator+(Point a, Point b) {
     return {a.y + b.y, a.x + b.x};
 }
 
-int moveCountAt[MAX_SIZE][MAX_SIZE];
+int movesAt[MAX_SIZE][MAX_SIZE];
 
 int main() {
     int numTestcase;
@@ -38,7 +38,7 @@ int main() {
 
         cin >> n >> initial.y >> initial.x >> target.y >> target.x;
 
-        moveCountAt[initial.y][initial.x] = 1;
+        movesAt[initial.y][initial.x] = 1;
 
         bfsPoints.push({initial.y, initial.x});
 
@@ -52,17 +52,17 @@ int main() {
 
                 if (adjacent.y < 0 || adjacent.y >= n || adjacent.x < 0 || adjacent.x >= n) continue;
 
-                if (!moveCountAt[adjacent.y][adjacent.x]) {
-                    moveCountAt[adjacent.y][adjacent.x] = moveCountAt[current.y][current.x] + 1;
+                if (!movesAt[adjacent.y][adjacent.x]) {
+                    movesAt[adjacent.y][adjacent.x] = movesAt[current.y][current.x] + 1;
 
                     bfsPoints.push(adjacent);
                 }
             }
         }
 
-        cout << moveCountAt[target.y][target.x] - 1 << '\n';
+        cout << movesAt[target.y][target.x] - 1 << '\n';
 
-        memset(moveCountAt, 0, sizeof(moveCountAt));
+        memset(movesAt, 0, sizeof(movesAt));
     }
 
     return 0;
