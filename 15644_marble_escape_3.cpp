@@ -116,10 +116,7 @@ int main() {
     for (int i = 0; i < (minTiltCount == 11 ? 0 : minTiltCount); i++) {
         unsigned direction = minTiltBitset & 3u;
 
-        if (direction == 0) cout << 'U';
-        else if (direction == 1) cout << 'R';
-        else if (direction == 2) cout << 'D';
-        else if (direction == 3) cout << 'L';
+        cout << "URDL"[direction];
 
         minTiltBitset >>= 2u;
     }

@@ -6,8 +6,8 @@
 using namespace std;
 
 bool isVisited[10000];
-char commandFor[10000];
 int previousRegisters[10000];
+char commandFor[10000];
 
 int main() {
     int numTestcase;
@@ -59,11 +59,7 @@ int main() {
                 if (!isVisited[adjacentRegisters[i]]) {
                     isVisited[adjacentRegisters[i]] = true;
                     previousRegisters[adjacentRegisters[i]] = currentRegister;
-
-                    if (i == 0) commandFor[adjacentRegisters[i]] = 'D';
-                    else if (i == 1) commandFor[adjacentRegisters[i]] = 'S';
-                    else if (i == 2) commandFor[adjacentRegisters[i]] = 'L';
-                    else if (i == 3) commandFor[adjacentRegisters[i]] = 'R';
+                    commandFor[adjacentRegisters[i]] = "DSLR"[i];
 
                     bfsRegisters.push(adjacentRegisters[i]);
                 }

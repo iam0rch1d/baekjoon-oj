@@ -25,14 +25,14 @@ int main() {
 
     while (!bfsOperations.empty()) {
         long long currentNumber;
-        string currentOperations;
+        string currentRecipe;
 
-        tie(currentNumber, currentOperations) = bfsOperations.front();
+        tie(currentNumber, currentRecipe) = bfsOperations.front();
 
         bfsOperations.pop();
 
         if (currentNumber == t) {
-            cout << currentOperations << '\n';
+            cout << currentRecipe << '\n';
 
             return 0;
         }
@@ -47,7 +47,7 @@ int main() {
 
             if (nextNumber >= 0 && nextNumber <= 1000000000 && !creatableNumbers.count(nextNumber)) {
                 creatableNumbers.insert(nextNumber);
-                bfsOperations.push({nextNumber, currentOperations + "*+-/"[i]});
+                bfsOperations.push({nextNumber, currentRecipe + "*+-/"[i]});
             }
         }
     }
