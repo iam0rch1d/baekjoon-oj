@@ -5,21 +5,21 @@
 using namespace std;
 
 int main() {
-    int numPerson;
+    int n;
     int totalTime = 0;
 
-    cin >> numPerson;
+    cin >> n;
 
-    vector<int> withdrawalTimes(numPerson);
+    vector<int> p(n);
 
-    for (int &withdrawalTime : withdrawalTimes) {
-        cin >> withdrawalTime;
+    for (int &pi : p) {
+        cin >> pi;
     }
 
-    sort(withdrawalTimes.begin(), withdrawalTimes.end());
+    sort(p.begin(), p.end());
 
-    for (int i = 0; i < numPerson; i++) {
-        totalTime += (numPerson - i) * withdrawalTimes[i];
+    for (int i = 0; i < n; i++) {
+        totalTime += (n - i) * p[i];
     }
 
     cout << totalTime << '\n';

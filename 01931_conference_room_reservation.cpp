@@ -4,32 +4,27 @@
 
 using namespace std;
 
-typedef struct {
-    int startTime;
-    int endTime;
-} Conference;
-
 int main() {
-    int numConference;
+    int n;
     int vacantTime = 0;
     int availableConferenceCount = 0;
 
-    cin >> numConference;
+    cin >> n;
 
-    vector<Conference> conferences(numConference);
+    vector<pair<int, int>> conferences(n);
 
     for (auto &conference : conferences) {
-        cin >> conference.startTime >> conference.endTime;
+        cin >> conference.first >> conference.second;
     }
 
     sort(conferences.begin(), conferences.end(), [](auto i, auto j) {
-        return (i.endTime < j.endTime) || (i.endTime == j.endTime && i.startTime < j.startTime);
+        return (i.second < j.second) || (i.second == j.second && i.first < j.first);
     });
 
     for (auto &conference : conferences) {
-        if (conference.startTime >= vacantTime) {
+        if (conference.first >= vacantTime) {
             availableConferenceCount++;
-            vacantTime = conference.endTime;
+            vacantTime = conference.second;
         }
     }
 
