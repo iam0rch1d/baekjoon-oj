@@ -24,7 +24,7 @@ int main() {
                                  {1,  0},
                                  {-1, 0},
                                  {0,  1}};
-    int maxDayCount = 0;
+    int maxDays = 0;
 
     cin >> m >> n;
 
@@ -46,7 +46,7 @@ int main() {
 
             if (adjacent.y < 0 || adjacent.y >= n || adjacent.x < 0 || adjacent.x >= m) continue;
 
-            if (map[adjacent.y][adjacent.x] == 0) {
+            if (!map[adjacent.y][adjacent.x]) {
                 map[adjacent.y][adjacent.x] = map[current.y][current.x] + 1;
 
                 bfsPoints.push(adjacent);
@@ -56,17 +56,17 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (map[i][j] == 0) {
+            if (!map[i][j]) {
                 cout << "-1\n";
 
                 return 0;
             }
 
-            maxDayCount = max(maxDayCount, map[i][j]);
+            maxDays = max(maxDays, map[i][j]);
         }
     }
 
-    cout << maxDayCount - 1 << '\n';
+    cout << maxDays - 1 << '\n';
 
     return 0;
 }
