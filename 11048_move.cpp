@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int maxTotalCandies[1000][1000];
+int maxTotalCandyCache[1000][1000];
 
 int main() {
     int n;
@@ -29,14 +29,14 @@ int main() {
 
                 if (pi < 0 || pj < 0) continue;
 
-                maxPreviousTotalCandies = max(maxPreviousTotalCandies, maxTotalCandies[pi][pj]);
+                maxPreviousTotalCandies = max(maxPreviousTotalCandies, maxTotalCandyCache[pi][pj]);
             }
 
-            maxTotalCandies[i][j] = candies[i][j] + maxPreviousTotalCandies;
+            maxTotalCandyCache[i][j] = candies[i][j] + maxPreviousTotalCandies;
         }
     }
 
-    cout << maxTotalCandies[n - 1][m - 1] << '\n';
+    cout << maxTotalCandyCache[n - 1][m - 1] << '\n';
 
     return 0;
 }
