@@ -13,10 +13,10 @@ int main() {
 
     cin >> n;
 
-    vector<pair<int, int>> products(n);
+    vector<pair<int, int>> products(n);  // .first = <profit>, .second = <deadline>
 
     for (auto &product : products) {
-        cin >> product.first >> product.second;  // .first = <profit>, .second = <deadline>
+        cin >> product.first >> product.second;
     }
 
     sort(products.begin(), products.end(), [](auto i, auto j) { return i.second > j.second; });

@@ -8,13 +8,13 @@ int main() {
     cin.tie(nullptr);
 
     int n;
-    vector<int> lis;  // 'LIS' refers to 'Longest Increasing Subsequence'
+    vector<long long> lis;  // 'LIS' refers to 'Longest Increasing Subsequence'
 
     cin >> n;
 
-    lis.push_back(0);
+    lis.push_back(-1000000001);
 
-    for (int i = 0; i < n; i++) {
+    for (long long i = 0; i < n; i++) {
         int element;
 
         cin >> element;
