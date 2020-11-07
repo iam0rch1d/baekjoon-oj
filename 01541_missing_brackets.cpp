@@ -2,39 +2,39 @@
 #include <iostream>
 #include <vector>
 
-#define MAX_NUM_OPERAND 25
-
 using namespace std;
 
 int main() {
     string formula;
-    int operand = 0;
+    bool isMinusAppeared = false;
     vector<int> operands;
-    int indexFirstMinus = MAX_NUM_OPERAND;
-    int operationResult = 0;
+    vector<int> coefficients(1, 1);
+    string operandString;
+    int result = 0;
 
     cin >> formula;
 
     for (int i = 0; i < formula.size(); i++) {
-        if (formula.at(i) >= '0' && formula.at(i) <= '9') {
-            operand *= 10;
-            operand += formula.at(i) - '0';
-        }
+        if (formula[i] == '+' || formula[i] == '-') {
+            operands.push_back(stoi(operandString));
+            operandString.clear();
 
-        if (formula.at(i) < '0' || formula.at(i) > '9' || i == formula.size() - 1) {
-            operands.push_back(operand);
-            operand = 0;
-        }
+            if (formula[i] == '-' && !isMinusAppeared) isMinusAppeared = true;
 
-        if (formula.at(i) == '-' && indexFirstMinus == MAX_NUM_OPERAND) indexFirstMinus = operands.size();
+            coefficients.push_back(isMinusAppeared ? -1 : 1);
+        } else operandString.push_back(formula[i]);
+
+        if (i == formula.size() - 1) {
+            operands.push_back(stoi(operandString));
+            coefficients.push_back(isMinusAppeared ? -1 : 1);
+        }
     }
 
     for (int i = 0; i < operands.size(); i++) {
-        if (i < indexFirstMinus) operationResult += operands[i];
-        else operationResult -= operands[i];
+        result += coefficients[i] * operands[i];
     }
 
-    cout << operationResult << '\n';
+    cout << result << '\n';
 
     return 0;
 }

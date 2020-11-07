@@ -257,3 +257,4 @@ add_executable(14003_longest_increasing_subsequence_5 14003_longest_increasing_s
 add_executable(02217_ropes 02217_ropes.cpp)
 add_executable(02902_autori 02902_autori.cpp)
 add_executable(11048_move 11048_move.cpp)
+add_executable(01744_tie 01744_tie.cpp)
