@@ -7,10 +7,9 @@ using namespace std;
 int main() {
     int n;
     vector<int> positives;
-    vector<int> ones;
-    vector<int> negatives;
     int positiveCount = 0;
     int oneCount = 0;
+    vector<int> negatives;
     int negativeCount = 0;
     int tiedSum = 0;
 
@@ -24,10 +23,8 @@ int main() {
         if (element >= 2) {
             positives.push_back(element);
             positiveCount++;
-        } else if (element == 1) {
-            ones.push_back(element);
-            oneCount++;
-        } else {
+        } else if (element == 1) oneCount++;
+        else {
             negatives.push_back(element);
             negativeCount++;
         }
@@ -50,9 +47,7 @@ int main() {
         tiedSum += tiedPair;
     }
 
-    for (int i = 0; i < oneCount; i++) {
-        tiedSum += ones[i];
-    }
+    tiedSum += oneCount;
 
     for (int i = 0; i < negativeCount; i += 2) {
         int tiedPair = 1;
