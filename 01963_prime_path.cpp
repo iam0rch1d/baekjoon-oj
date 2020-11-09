@@ -9,15 +9,15 @@ int primeCache[] = {2, 3, 5, 7, 11,
                     31, 37, 41, 43, 47,
                     53, 59, 61, 67, 71,
                     73, 79, 83, 89, 97};
-bool isComposite[10000];
+bool eratosthenesSieve[10000];
 int changes[10000];
 
 int main() {
     int numTestcase;
 
     for (int primeNumber : primeCache) {
-        for (int j = 2; j * primeNumber < 10000; j++) {
-            isComposite[j * primeNumber] = true;
+        for (int j = 2 * primeNumber; j <= 10000; j += primeNumber) {
+            eratosthenesSieve[j] = true;
         }
     }
 
@@ -52,7 +52,7 @@ int main() {
                     adjacentPassword[i] = j + '0';
                     adjacentPasswordNumber = stoi(adjacentPassword);
 
-                    if (isComposite[adjacentPasswordNumber] || changes[adjacentPasswordNumber]) continue;
+                    if (eratosthenesSieve[adjacentPasswordNumber] || changes[adjacentPasswordNumber]) continue;
 
                     changes[adjacentPasswordNumber] = changes[stoi(currentPassword)] + 1;
 
