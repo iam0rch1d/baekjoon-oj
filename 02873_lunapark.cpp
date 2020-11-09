@@ -71,9 +71,7 @@ int main() {
             }
         }
 
-        s1 += x1 == xPrime ? "RD" : "DR";
-
-        cout << s1;
+        cout << s1 << (yPrime == y1 ? "DR" : "RD");
 
         reverse(s2.begin(), s2.end());
 

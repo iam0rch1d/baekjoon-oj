@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string popBack(string s) {
+string popBackString(string s) {
     s.pop_back();
 
     return s;
@@ -16,15 +16,10 @@ string reverseString(string s) {
 }
 
 bool canMake(const string &from, string to) {
-    if (from == to) return true;
+    if (from.size() == to.size()) return from == to;
 
-    if (!to.empty()) {
-        if ((to.back() == 'A' && canMake(from, popBack(to)))
-            || (to[0] == 'B' && canMake(from, popBack(reverseString(to)))))
-            return true;
-    }
-
-    return false;
+    return (to.back() == 'A' && canMake(from, popBackString(to)))
+           || (to[0] == 'B' && canMake(from, popBackString(reverseString(to))));
 }
 
 int main() {

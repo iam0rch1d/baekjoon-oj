@@ -22,28 +22,24 @@ int main() {
         cout << i << ' ';
     }
 
-    if (m - 1 == 0) {
-        cout << '\n';
+    if (m - 1) {
+        quotient = (n - k) / (m - 1);
+        remainder = (n - k) % (m - 1);
 
-        return 0;
-    }
+        stack<int> lds;
 
-    quotient = (n - k) / (m - 1);
-    remainder = (n - k) % (m - 1);
+        for (int i = k + 1; i <= n; i++) {
+            lds.push(i);
 
-    stack<int> lds;
+            if (lds.size() == quotient + (remainder > 0)) {
+                while (!lds.empty()) {
+                    cout << lds.top() << ' ';
 
-    for (int i = k + 1; i <= n; i++) {
-        lds.push(i);
+                    lds.pop();
+                }
 
-        if (lds.size() == quotient + (remainder > 0)) {
-            while (!lds.empty()) {
-                cout << lds.top() << ' ';
-
-                lds.pop();
+                remainder = max(remainder - 1, 0);
             }
-
-            remainder = max(remainder - 1, 0);
         }
     }
 
