@@ -1,109 +1,59 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
-typedef struct {
-    int y;
-    int x;
-} Point;
+int colors[2187][2187];
+int pieceCounts[3];
 
-void dncNumberPiece(vector<vector<int>> &colors,
-                    Point start,
-                    int size,
-                    int &minusOnePieceCount,
-                    int &zeroPieceCount,
-                    int &plusOnePieceCount) {
-    int minusOnePointCount = 0;
-    int plusOnePointCount = 0;
+void dncPiece(int y, int x, int size) {
+    bool isAllSame = true;
 
-    for (int i = start.y; i < start.y + size; i++) {
-        for (int j = start.x; j < start.x + size; j++) {
-            minusOnePointCount += (colors[i][j] == -1) ? 1 : 0;
-            plusOnePointCount += (colors[i][j] == 1) ? 1 : 0;
+    for (int i = y; i < y + size; i++) {
+        for (int j = x; j < x + size; j++) {
+            if (colors[i][j] != colors[y][x]) {
+                isAllSame = false;
+
+                break;
+            }
         }
+
+        if (!isAllSame) break;
     }
 
-    if (minusOnePointCount == size * size) minusOnePieceCount++;
-    else if (minusOnePointCount == 0 && plusOnePointCount == 0) zeroPieceCount++;
-    else if (plusOnePointCount == size * size) plusOnePieceCount++;
-    else {
-        dncNumberPiece(colors,
-                       start,
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y, start.x + size / 3},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y, start.x + size / 3 * 2},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y + size / 3, start.x},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y + size / 3, start.x + size / 3},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y + size / 3, start.x + size / 3 * 2},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y + size / 3 * 2, start.x},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y + size / 3 * 2, start.x + size / 3},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
-        dncNumberPiece(colors,
-                       {start.y + size / 3 * 2, start.x + size / 3 * 2},
-                       size / 3,
-                       minusOnePieceCount,
-                       zeroPieceCount,
-                       plusOnePieceCount);
+    if (isAllSame) {
+        pieceCounts[colors[y][x] + 1]++;
+
+        return;
     }
+
+    dncPiece(y, x, size / 3);
+    dncPiece(y, x + size / 3, size / 3);
+    dncPiece(y, x + 2 * size / 3, size / 3);
+    dncPiece(y + size / 3, x, size / 3);
+    dncPiece(y + size / 3, x + size / 3, size / 3);
+    dncPiece(y + size / 3, x + 2 * size / 3, size / 3);
+    dncPiece(y + 2 * size / 3, x, size / 3);
+    dncPiece(y + 2 * size / 3, x + size / 3, size / 3);
+    dncPiece(y + 2 * size / 3, x + 2 * size / 3, size / 3);
 }
 
 int main() {
-    int size;
-    int minusOnePieceCount = 0;
-    int zeroPieceCount = 0;
-    int plusOnePieceCount = 0;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    cin >> size;
+    int n;
 
-    vector<vector<int>> colors(size, vector<int>(size));
+    cin >> n;
 
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
             cin >> colors[i][j];
         }
     }
 
-    dncNumberPiece(colors, {0, 0}, size, minusOnePieceCount, zeroPieceCount, plusOnePieceCount);
+    dncPiece(0, 0, n);
 
-    cout << minusOnePieceCount << '\n' << zeroPieceCount << '\n' << plusOnePieceCount;
+    cout << pieceCounts[0] << '\n' << pieceCounts[1] << '\n' << pieceCounts[2] << '\n';
 
     return 0;
 }

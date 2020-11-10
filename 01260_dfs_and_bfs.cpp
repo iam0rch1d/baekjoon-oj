@@ -51,13 +51,13 @@ int main() {
     bfsVertices.push(startVertex);
 
     while (!bfsVertices.empty()) {
-        int toVisitVertex = bfsVertices.front();
+        int currentVertex = bfsVertices.front();
 
-        cout << toVisitVertex << ' ';
+        cout << currentVertex << ' ';
 
         bfsVertices.pop();
 
-        for (int adjacentVertex : adjacentVerticesOf[toVisitVertex]) {
+        for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
             if (!isVisited[adjacentVertex]) {
                 isVisited[adjacentVertex] = true;
 
