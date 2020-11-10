@@ -4,11 +4,11 @@
 using namespace std;
 
 int main() {
-    int numTestcase;
+    int testcases;
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         pair<int, int> doomsday;
         pair<int, int> current;
         int year;

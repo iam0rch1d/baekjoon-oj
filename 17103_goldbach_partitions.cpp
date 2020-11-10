@@ -7,7 +7,7 @@ bool eratosthenesSieve[1000001];
 
 int main() {
     vector<int> primes;
-    int numTestcase;
+    int testcases;
 
     for (int i = 2; i <= 1000000; i++) {
         if (!eratosthenesSieve[i]) {
@@ -19,9 +19,9 @@ int main() {
         }
     }
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         int even;
         int partitionCount = 0;
 

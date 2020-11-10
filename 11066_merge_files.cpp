@@ -32,11 +32,11 @@ int memoizeMinMergeCost(int firstChapter, int lastChapter) {
 }
 
 int main() {
-    int numTestcase;
+    int testcases;
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         int numChapter;
 
         memset(minMergeCostCache, UNMEMOIZED, sizeof(minMergeCostCache));

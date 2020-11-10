@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     vector<int> triangles;
     int trianglesSize;
-    int numTestcase;
+    int testcases;
 
     for (int i = 1; i * (i + 1) < 2000; i++) {
         triangles.push_back(i * (i + 1) / 2);
@@ -15,9 +15,9 @@ int main() {
 
     trianglesSize = triangles.size();
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         int n;
         bool isEureka = false;
 

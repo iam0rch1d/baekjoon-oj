@@ -51,11 +51,11 @@ void bfsCabbageChunk(Point current, int cabbageChunkNo) {
 }
 
 int main() {
-    int numTestcase;
+    int testcases;
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         int numCabbage;
         int cabbageChunkCount = 0;
 

@@ -10,13 +10,13 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int numTestcase;
+    int testcases;
 
-    cin >> numTestcase;
+    cin >> testcases;
 
     cin.ignore();
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         string s;
         string token;
         vector<string> tokens;

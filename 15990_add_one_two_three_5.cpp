@@ -37,13 +37,13 @@ long long memoizeMethodCount(int target, int withFirstNumber) {
 }
 
 int main() {
-    int numTestcase;
+    int testcases;
 
     memset(methodCountCache, UNMEMOIZED, sizeof(methodCountCache));
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         int target;
 
         cin >> target;

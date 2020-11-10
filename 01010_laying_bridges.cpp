@@ -19,11 +19,11 @@ long long memoizeConstructionCount(int numFromNode, int numToNode) {
 }
 
 int main() {
-    int numTestcase;
+    int testcases;
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         int numFromNode;
         int numToNode;
 

@@ -23,11 +23,11 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int numTestcase;
+    int testcases;
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         int numVertex;
         int numEdge;
         bool isBipartite = true;

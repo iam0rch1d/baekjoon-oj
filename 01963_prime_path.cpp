@@ -13,7 +13,7 @@ bool eratosthenesSieve[10000];
 int changes[10000];
 
 int main() {
-    int numTestcase;
+    int testcases;
 
     for (int primeNumber : primeCache) {
         for (int j = 2 * primeNumber; j <= 10000; j += primeNumber) {
@@ -21,9 +21,9 @@ int main() {
         }
     }
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         string oldPassword;
         string newPassword;
         queue<string> bfsPasswords;

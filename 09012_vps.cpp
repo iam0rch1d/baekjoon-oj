@@ -3,11 +3,11 @@
 using namespace std;
 
 int main() {
-    int numTestcase;
+    int testcases;
 
-    cin >> numTestcase;
+    cin >> testcases;
 
-    while (numTestcase-- > 0) {
+    while (testcases--) {
         string brackets;
         string::iterator head;
         int bracketStack = 0;
