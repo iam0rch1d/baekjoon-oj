@@ -26,15 +26,13 @@ void dncPiece(int y, int x, int size) {
         return;
     }
 
-    dncPiece(y, x, size / 3);
-    dncPiece(y, x + size / 3, size / 3);
-    dncPiece(y, x + 2 * size / 3, size / 3);
-    dncPiece(y + size / 3, x, size / 3);
-    dncPiece(y + size / 3, x + size / 3, size / 3);
-    dncPiece(y + size / 3, x + 2 * size / 3, size / 3);
-    dncPiece(y + 2 * size / 3, x, size / 3);
-    dncPiece(y + 2 * size / 3, x + size / 3, size / 3);
-    dncPiece(y + 2 * size / 3, x + 2 * size / 3, size / 3);
+    int divider = size / 3;
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            dncPiece(y + i * divider, x + j * divider, divider);
+        }
+    }
 }
 
 int main() {

@@ -4,44 +4,43 @@
 
 using namespace std;
 
-int inorderTraversal[100001];
-int inorderIndexOf[100001];
-int postorderTraversal[100001];
+int inorder[100000];
+int inorderIndices[100000];
+int postorder[100000];
 
-void dfsPreorder(pair<int, int> inorderInterval, pair<int, int> postorderInterval) {
-    if (inorderInterval.first >= inorderInterval.second || postorderInterval.first >= postorderInterval.second) return;
+void dncPreorder(int inorderFirst, int inorderLast, int postorderFirst, int postorderLast) {
+    if (inorderFirst > inorderLast || postorderFirst > postorderLast) return;
 
-    int rootVertex = postorderTraversal[postorderInterval.second - 1];
-    int inorderRootIndex = inorderIndexOf[rootVertex];
-    int leftSubtreeSize = inorderRootIndex - inorderInterval.first;
+    int rootVertex = postorder[postorderLast];
+    int rootInorderIndex = inorderIndices[rootVertex];
+    int leftSubtreeSize = rootInorderIndex - inorderFirst;
 
     cout << rootVertex << ' ';
 
-    dfsPreorder({inorderInterval.first, inorderRootIndex},
-                {postorderInterval.first, postorderInterval.first + leftSubtreeSize});
-    dfsPreorder({inorderRootIndex + 1, inorderInterval.second},
-                {postorderInterval.first + leftSubtreeSize, postorderInterval.second - 1});
+    dncPreorder(inorderFirst, rootInorderIndex - 1, postorderFirst, postorderFirst + leftSubtreeSize - 1);
+    dncPreorder(rootInorderIndex + 1, inorderLast, postorderFirst + leftSubtreeSize, postorderLast - 1);
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
+    cout.tie(nullptr);
 
-    int numVertex;
+    int n;
 
-    cin >> numVertex;
+    cin >> n;
 
-    for (int i = 0; i < numVertex; i++) {
-        cin >> inorderTraversal[i];
+    for (int i = 0; i < n; i++) {
+        cin >> inorder[i];
 
-        inorderIndexOf[inorderTraversal[i]] = i;
+        inorderIndices[inorder[i]] = i;
     }
 
-    for (int i = 0; i < numVertex; i++) {
-        cin >> postorderTraversal[i];
+    for (int i = 0; i < n; i++) {
+        cin >> postorder[i];
     }
 
-    dfsPreorder({0, numVertex}, {0, numVertex});
+    dncPreorder(0, n - 1, 0, n - 1);
 
     cout << '\n';
 

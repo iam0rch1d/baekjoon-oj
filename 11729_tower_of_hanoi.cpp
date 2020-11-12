@@ -3,11 +3,7 @@
 using namespace std;
 
 void dncMoveDisc(unsigned size, int fromPeg, int auxiliaryPeg, int toPeg) {
-    if (size == 1) {
-        cout << fromPeg << ' ' << toPeg << '\n';
-
-        return;
-    }
+    if (!size) return;
 
     dncMoveDisc(size - 1, fromPeg, toPeg, auxiliaryPeg);
 
