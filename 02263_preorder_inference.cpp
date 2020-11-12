@@ -8,17 +8,17 @@ int inorder[100000];
 int inorderIndices[100000];
 int postorder[100000];
 
-void dncPreorder(int inorderFirst, int inorderLast, int postorderFirst, int postorderLast) {
-    if (inorderFirst > inorderLast || postorderFirst > postorderLast) return;
+void dncPreorder(int inorderLeft, int inorderRight, int postorderLeft, int postorderRight) {
+    if (inorderLeft > inorderRight || postorderLeft > postorderRight) return;
 
-    int rootVertex = postorder[postorderLast];
+    int rootVertex = postorder[postorderRight];
     int rootInorderIndex = inorderIndices[rootVertex];
-    int leftSubtreeSize = rootInorderIndex - inorderFirst;
+    int leftSubtreeSize = rootInorderIndex - inorderLeft;
 
     cout << rootVertex << ' ';
 
-    dncPreorder(inorderFirst, rootInorderIndex - 1, postorderFirst, postorderFirst + leftSubtreeSize - 1);
-    dncPreorder(rootInorderIndex + 1, inorderLast, postorderFirst + leftSubtreeSize, postorderLast - 1);
+    dncPreorder(inorderLeft, rootInorderIndex - 1, postorderLeft, postorderLeft + leftSubtreeSize - 1);
+    dncPreorder(rootInorderIndex + 1, inorderRight, postorderLeft + leftSubtreeSize, postorderRight - 1);
 }
 
 int main() {
