@@ -14,14 +14,12 @@ pair<long long, long long> dncPoint(string &code, int index, long long sy, long 
     return {0, 0};
 }
 
-string dncCode(long long sy, long long sx, long long size, long long y, long long x) {
-    if (size == 1) return "";
+string dncCode(long long y, long long x, long long size) {
+    if (size == 1) return "\n";
 
-    unsigned quadrantIndex = ((y >= sy + size / 2) << 1u) + (x >= sx + size / 2);
-    long long dy = (y >= sy + size / 2) * size / 2;
-    long long dx = (x >= sx + size / 2) * size / 2;
+    unsigned quadrantIndex = ((y >= size / 2) << 1u) + (x >= size / 2);
 
-    return "2134"[quadrantIndex] + dncCode(sy + dy, sx + dx, size / 2, y, x);
+    return "2134"[quadrantIndex] + dncCode(y % (size / 2), x % (size / 2), size / 2);
 }
 
 int main() {
@@ -45,7 +43,7 @@ int main() {
     y -= dy;
     x += dx;
 
-    cout << (y >= 0 && y < size && x >= 0 && x < size ? dncCode(0, 0, size, y, x) : "-1") << '\n';
+    cout << (y >= 0 && y < size && x >= 0 && x < size ? dncCode(y, x, size) : "-1\n");
 
     return 0;
 }

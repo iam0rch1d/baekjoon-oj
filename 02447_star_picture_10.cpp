@@ -13,9 +13,7 @@ void dncPicture(int sy, int sx, int n) {
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (i == 1 && j == 1) continue;
-
-            dncPicture(sy + i * n / 3, sx + j * n / 3, n / 3);
+            if (i != 1 || j != 1) dncPicture(sy + i * n / 3, sx + j * n / 3, n / 3);
         }
     }
 }
