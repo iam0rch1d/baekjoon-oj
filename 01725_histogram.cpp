@@ -3,49 +3,44 @@
 
 using namespace std;
 
-typedef struct {
-    int leftEnd;
-    int rightEnd;
-} Division;
+long long dncMaxSurface(vector<long long> &h, int left, int right) {
+    if (left == right) return h[left];
 
-long long dncMaxSurface(vector<long long> &rectangleHeights, Division division) {
-    if (division.leftEnd == division.rightEnd) return rectangleHeights[division.leftEnd];
-
-    int center = (division.leftEnd + division.rightEnd) / 2;
-    long long maxSurface = max(dncMaxSurface(rectangleHeights, {division.leftEnd, center}),
-                               dncMaxSurface(rectangleHeights, {center + 1, division.rightEnd}));
-    Division stretched = {center, center + 1};
-    long long stretchedHeight = min(rectangleHeights[stretched.leftEnd], rectangleHeights[stretched.rightEnd]);
+    int mid = (left + right) / 2;
+    long long maxSurface = max(dncMaxSurface(h, left, mid), dncMaxSurface(h, mid + 1, right));
+    int stretchedLeft = mid;
+    int stretchedRight = mid + 1;
+    long long stretchedHeight = min(h[stretchedLeft], h[stretchedRight]);
 
     maxSurface = max(maxSurface, 2 * stretchedHeight);
 
-    while (stretched.leftEnd > division.leftEnd || stretched.rightEnd < division.rightEnd) {
-        if (stretched.rightEnd < division.rightEnd
-            && (stretched.leftEnd == division.leftEnd
-                || rectangleHeights[stretched.leftEnd - 1] < rectangleHeights[stretched.rightEnd + 1])) {
-            stretched.rightEnd++;
-            stretchedHeight = min(stretchedHeight, rectangleHeights[stretched.rightEnd]);
+    while (stretchedLeft > left || stretchedRight < right) {
+        if (stretchedRight < right && (stretchedLeft == left || h[stretchedLeft - 1] < h[stretchedRight + 1])) {
+            stretchedRight++;
+            stretchedHeight = min(stretchedHeight, h[stretchedRight]);
         } else {
-            stretched.leftEnd--;
-            stretchedHeight = min(stretchedHeight, rectangleHeights[stretched.leftEnd]);
+            stretchedLeft--;
+            stretchedHeight = min(stretchedHeight, h[stretchedLeft]);
         }
 
-        maxSurface = max(maxSurface, stretchedHeight * (stretched.rightEnd - stretched.leftEnd + 1));
+        maxSurface = max(maxSurface, stretchedHeight * (stretchedRight - stretchedLeft + 1));
     }
 
     return maxSurface;
 }
 
 int main() {
-    int numRectangle;
+    int n;
 
-    cin >> numRectangle;
+    cin >> n;
 
-    vector<long long> rectangleHeights(numRectangle);
+    vector<long long> h(n);
 
-    for (long long &boardHeight : rectangleHeights) {
-        cin >> boardHeight;
+    for (long long &hi : h) {
+        cin >> hi;
     }
 
-    cout << dncMaxSurface(rectangleHeights, {0, numRectangle - 1}) << '\n';
+    cout << dncMaxSurface(h, 0, n - 1) << '\n';
+
+    return 0;
 }

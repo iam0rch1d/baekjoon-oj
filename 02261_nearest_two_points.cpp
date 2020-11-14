@@ -1,72 +1,74 @@
 #include <algorithm>
 #include <iostream>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
-typedef struct {
+struct Point {
     int x;
     int y;
-} Point;
+};
 
-int square(int a) {
-    return a * a;
+int square(int x) {
+    return x * x;
 }
 
-int calculateDistanceSquare(Point &a, Point &b) {
-    return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
+int squareDistance(Point p1, Point p2) {
+    return square(p2.x - p1.x) + square(p2.y - p1.y);
 }
 
-int dncMinDistanceSquare(vector<Point>::iterator head, int size) {
-    if (size == 2) return calculateDistanceSquare(*head, *(head + 1));
+int dncMinDistance(vector<Point> &points, int left, int right) {
+    int divisionSize = right - left + 1;
+    int mid = (left + right) / 2;
 
-    if (size == 3)
-        return min({calculateDistanceSquare(*head, *(head + 1)),
-                    calculateDistanceSquare(*head, *(head + 2)),
-                    calculateDistanceSquare(*(head + 1), *(head + 2))});
+    if (divisionSize == 2) return squareDistance(points[left], points[right]);
+    else if (divisionSize == 3) {
+        return min({squareDistance(points[left], points[mid]),
+                    squareDistance(points[left], points[right]),
+                    squareDistance(points[mid], points[right])});
+    }
 
-    int halfSize = size / 2;
-    int minDistanceSquare = min(dncMinDistanceSquare(head, halfSize),
-                                dncMinDistanceSquare(head + halfSize, size - halfSize));
-    int center = ((head + halfSize - 1)->x + (head + halfSize)->x) / 2;
-    vector<Point> crossingCenters;
+    int minDistance = min(dncMinDistance(points, left, mid), dncMinDistance(points, mid + 1, right));
+    vector<Point> centerPoints;
+    int centerPointsSize;
 
-    for (int i = 0; i < size; i++) {
-        if (square(center - (head + i)->x) < minDistanceSquare) {
-            crossingCenters.push_back(*(head + i));
+    for (int i = left; i <= right; i++) {
+        if (square(points[mid].x - points[i].x) < minDistance) centerPoints.push_back(points[i]);
+    }
+
+    sort(centerPoints.begin(), centerPoints.end(), [](auto &i, auto &j) { return tie(i.y, i.x) < tie(j.y, j.x); });
+
+    centerPointsSize = centerPoints.size();
+
+    for (int i = 0; i < centerPointsSize - 1; i++) {
+        for (int j = i + 1; j < centerPointsSize; j++) {
+            if (square(centerPoints[i].y - centerPoints[j].y) < minDistance) {
+                minDistance = min(minDistance, squareDistance(centerPoints[i], centerPoints[j]));
+            } else break;
         }
     }
 
-    int crossingCentersSize = crossingCenters.size();
-
-    sort(crossingCenters.begin(), crossingCenters.end(), [](auto i, auto j) { return (i.y < j.y); });
-
-    for (int i = 0; i < crossingCentersSize - 1; i++) {
-        for (int j = i + 1;
-             j < crossingCentersSize && square(crossingCenters[j].y - crossingCenters[i].y) < minDistanceSquare;
-             j++) {
-            minDistanceSquare = min(minDistanceSquare,
-                                    calculateDistanceSquare(crossingCenters[i], crossingCenters[j]));
-        }
-    }
-
-    return minDistanceSquare;
+    return minDistance;
 }
 
 int main() {
-    int numPoint;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    cin >> numPoint;
+    int n;
 
-    vector<Point> points(numPoint);
+    cin >> n;
+
+    vector<Point> points(n);
 
     for (auto &point : points) {
         cin >> point.x >> point.y;
     }
 
-    sort(points.begin(), points.end(), [](auto i, auto j) { return (i.x < j.x); });
+    sort(points.begin(), points.end(), [](auto &i, auto &j) { return tie(i.x, i.y) < tie(j.x, j.y); });
 
-    cout << dncMinDistanceSquare(points.begin(), numPoint) << '\n';
+    cout << dncMinDistance(points, 0, n - 1) << '\n';
 
     return 0;
 }

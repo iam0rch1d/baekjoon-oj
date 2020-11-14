@@ -10,15 +10,17 @@ long long dncSwapCount(int left, int right) {
 
     int mid = (left + right) / 2;
     long long swapCount = dncSwapCount(left, mid) + dncSwapCount(mid + 1, right);
-    int leftHead = left;
-    int rightHead = mid + 1;
-    int cacheHead = 0;
+    int leftHeadIndex = left;
+    int rightHeadIndex = mid + 1;
+    int cacheHeadIndex = 0;
 
-    while (leftHead <= mid || rightHead <= right) {
-        if (leftHead <= mid && (rightHead > right || a[leftHead] <= a[rightHead])) cache[cacheHead++] = a[leftHead++];
-        else {
-            swapCount += (long long) (mid - leftHead + 1);
-            cache[cacheHead++] = a[rightHead++];
+    while (leftHeadIndex <= mid || rightHeadIndex <= right) {
+        if (leftHeadIndex <= mid
+            && (rightHeadIndex > right || a[leftHeadIndex] <= a[rightHeadIndex])) {
+            cache[cacheHeadIndex++] = a[leftHeadIndex++];
+        } else {
+            swapCount += (long long) (mid - leftHeadIndex + 1);
+            cache[cacheHeadIndex++] = a[rightHeadIndex++];
         }
     }
 

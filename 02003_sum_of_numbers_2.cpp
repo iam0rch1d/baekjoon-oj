@@ -7,8 +7,8 @@ int main() {
     int n;
     int m;
     int sum = 0;
-    int aLeftIndex = 0;
-    int aRightIndex = 0;
+    int leftHeadIndex = 0;
+    int rightHeadIndex = 0;
     int mCount = 0;
 
     cin >> n >> m;
@@ -20,9 +20,9 @@ int main() {
     }
 
     while (true) {
-        if (sum >= m) sum -= a[aLeftIndex++];
-        else if (aRightIndex == n) break;
-        else sum += a[aRightIndex++];
+        if (sum >= m) sum -= a[leftHeadIndex++];
+        else if (rightHeadIndex == n) break;
+        else sum += a[rightHeadIndex++];
 
         if (sum == m) mCount++;
     }
