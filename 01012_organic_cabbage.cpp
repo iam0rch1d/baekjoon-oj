@@ -24,7 +24,7 @@ const Point differences[] = {{0,  -1},
                              {-1, 0},
                              {0,  1}};
 
-void bfsCabbageChunk(Point current, int cabbageChunkNo) {
+void bfsCabbageChunkNo(Point current, int cabbageChunkNo) {
     queue<Point> bfsPoints;
 
     cabbageChunkNoAt[current.y][current.x] = cabbageChunkNo;
@@ -72,7 +72,7 @@ int main() {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (map[i][j] && !cabbageChunkNoAt[i][j]) bfsCabbageChunk({i, j}, ++cabbageChunkCount);
+                if (map[i][j] && !cabbageChunkNoAt[i][j]) bfsCabbageChunkNo({i, j}, ++cabbageChunkCount);
             }
         }
 

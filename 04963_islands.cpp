@@ -28,7 +28,7 @@ const Point differences[] = {{-1, -1},
                              {1,  0},
                              {1,  1}};
 
-void bfsLand(Point point, int landNo) {
+void bfsLandNo(Point point, int landNo) {
     queue<Point> bfsPoints;
 
     landNoAt[point.y][point.x] = landNo;
@@ -73,7 +73,7 @@ int main() {
 
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                if (map[i][j] && !landNoAt[i][j]) bfsLand({i, j}, ++landCount);
+                if (map[i][j] && !landNoAt[i][j]) bfsLandNo({i, j}, ++landCount);
             }
         }
 
