@@ -37,7 +37,7 @@ int dncMinDistance(vector<Point> &points, int left, int right) {
         if (square(points[mid].x - points[i].x) < minDistance) centerPoints.push_back(points[i]);
     }
 
-    sort(centerPoints.begin(), centerPoints.end(), [](auto &i, auto &j) { return tie(i.y, i.x) < tie(j.y, j.x); });
+    sort(centerPoints.begin(), centerPoints.end(), [](auto &i, auto &j) { return tie(i.y1, i.x) < tie(j.y1, j.x); });
 
     centerPointsSize = centerPoints.size();
 
@@ -66,7 +66,7 @@ int main() {
         cin >> point.x >> point.y;
     }
 
-    sort(points.begin(), points.end(), [](auto &i, auto &j) { return tie(i.x, i.y) < tie(j.x, j.y); });
+    sort(points.begin(), points.end(), [](auto &i, auto &j) { return tie(i.x, i.y1) < tie(j.x, j.y1); });
 
     cout << dncMinDistance(points, 0, n - 1) << '\n';
 

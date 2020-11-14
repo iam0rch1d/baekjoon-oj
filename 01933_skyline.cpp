@@ -6,50 +6,55 @@
 using namespace std;
 
 struct Building {
-    int left;
-    int height;
-    int right;
+    int x1;
+    int y1;
+    int x2;
 };
 
-typedef vector<pair<int, int>> Vpii;  // .first = <position>, .second = <height>
+struct Point {
+    int x;
+    int y;
+};
 
-void append(Vpii &vpii, pair<int, int> pii) {
-    if (!vpii.empty()) {
-        if (vpii.back().second == pii.second) return;
+typedef vector<Point> Skyline;
 
-        if (vpii.back().first == pii.first) {
-            vpii.back().second = pii.second;
+void append(Skyline &skyline, Point point) {
+    if (!skyline.empty()) {
+        if (skyline.back().y == point.y) return;
+
+        if (skyline.back().x == point.x) {
+            skyline.back().y = point.y;
 
             return;
         }
     }
 
-    vpii.push_back(pii);
+    skyline.push_back(point);
 }
 
-Vpii mergeSkyline(Vpii left, Vpii right) {
+Skyline mergeSkyline(Skyline left, Skyline right) {
     int leftIndex = 0;
     int leftSize = left.size();
     int rightIndex = 0;
     int rightSize = right.size();
-    Vpii mergedSkyline;
-    int leftHeadHeight = 0;
-    int rightHeadHeight = 0;
+    Skyline mergedSkyline;
+    int leftHeadY = 0;
+    int rightHeadY = 0;
 
     while (leftIndex < leftSize && rightIndex < rightSize) {
         auto &leftHead = left[leftIndex];
         auto &rightHead = right[rightIndex];
 
-        if (leftHead.first < rightHead.first) {
-            leftHeadHeight = leftHead.second;
+        if (leftHead.x < rightHead.x) {
+            leftHeadY = leftHead.y;
 
-            append(mergedSkyline, {leftHead.first, max(leftHeadHeight, rightHeadHeight)});
+            append(mergedSkyline, {leftHead.x, max(leftHeadY, rightHeadY)});
 
             leftIndex++;
         } else {
-            rightHeadHeight = rightHead.second;
+            rightHeadY = rightHead.y;
 
-            append(mergedSkyline, {rightHead.first, max(leftHeadHeight, rightHeadHeight)});
+            append(mergedSkyline, {rightHead.x, max(leftHeadY, rightHeadY)});
 
             rightIndex++;
         }
@@ -66,10 +71,10 @@ Vpii mergeSkyline(Vpii left, Vpii right) {
     return mergedSkyline;
 }
 
-Vpii dncSkyline(vector<Building> &buildings, int left, int right) {
+Skyline dncSkyline(vector<Building> &buildings, int left, int right) {
     if (left == right) {
-        return {{buildings[left].left, buildings[left].height},
-                {buildings[left].right, 0}};
+        return {{buildings[left].x1, buildings[left].y1},
+                {buildings[left].x2, 0}};
     }
 
     int mid = (left + right) / 2;
@@ -89,17 +94,17 @@ int main() {
     vector<Building> buildings(n);
 
     for (auto &building : buildings) {
-        cin >> building.left >> building.height >> building.right;
+        cin >> building.x1 >> building.y1 >> building.x2;
     }
 
     sort(buildings.begin(), buildings.end(), [](auto &i, auto &j) {
-        return tie(i.left, i.height, i.right) < tie(j.left, j.height, j.right);
+        return tie(i.x1, i.y1, i.x2) < tie(j.x1, j.y1, j.x2);
     });
 
     auto skyline = dncSkyline(buildings, 0, n - 1);
 
-    for (auto &pii : skyline) {
-        cout << pii.first << ' ' << pii.second << ' ';
+    for (auto &point : skyline) {
+        cout << point.x << ' ' << point.y << ' ';
     }
 
     cout << '\n';
