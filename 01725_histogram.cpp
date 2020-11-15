@@ -8,22 +8,18 @@ long long dncMaxSurface(vector<long long> &h, int left, int right) {
 
     int mid = (left + right) / 2;
     long long maxSurface = max(dncMaxSurface(h, left, mid), dncMaxSurface(h, mid + 1, right));
-    int stretchedLeft = mid;
-    int stretchedRight = mid + 1;
-    long long stretchedHeight = min(h[stretchedLeft], h[stretchedRight]);
+    int spanningLeft = mid;
+    int spanningRight = mid + 1;
+    long long minSpanningHeight = min(h[spanningLeft], h[spanningRight]);
 
-    maxSurface = max(maxSurface, 2 * stretchedHeight);
+    maxSurface = max(maxSurface, 2 * minSpanningHeight);
 
-    while (stretchedLeft > left || stretchedRight < right) {
-        if (stretchedRight < right && (stretchedLeft == left || h[stretchedLeft - 1] < h[stretchedRight + 1])) {
-            stretchedRight++;
-            stretchedHeight = min(stretchedHeight, h[stretchedRight]);
-        } else {
-            stretchedLeft--;
-            stretchedHeight = min(stretchedHeight, h[stretchedLeft]);
-        }
+    while (spanningLeft > left || spanningRight < right) {
+        if (spanningLeft > left && (spanningRight == right || h[spanningLeft - 1] > h[spanningRight + 1])) {
+            minSpanningHeight = min(minSpanningHeight, h[--spanningLeft]);
+        } else minSpanningHeight = min(minSpanningHeight, h[++spanningRight]);
 
-        maxSurface = max(maxSurface, stretchedHeight * (stretchedRight - stretchedLeft + 1));
+        maxSurface = max(maxSurface, minSpanningHeight * (spanningRight - spanningLeft + 1));
     }
 
     return maxSurface;
