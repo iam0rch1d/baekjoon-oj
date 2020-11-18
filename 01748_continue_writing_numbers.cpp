@@ -4,9 +4,9 @@ using namespace std;
 
 int main() {
     int n;
-    int totalDigitCount = 0;
-    int nDigitCount = 1;
-    int divisor = 10;
+    long long totalDigitCount = 0;
+    long long nDigitCount = 1;
+    long long divisor = 10;
 
     cin >> n;
 

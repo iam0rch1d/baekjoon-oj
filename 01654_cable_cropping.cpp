@@ -1,36 +1,38 @@
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int main() {
-    int numOwnedCable;
-    long long numNeededCable;
-    long long ownedCables[10000];
-    long long croppingSizeLow = 1;
-    long long croppingSizeHigh;
+    int k;
+    long long n;
+    long long croppingSizeLeft = 1;
+    long long croppingSizeRight;
     long long maxCroppingSize = 0;
 
-    cin >> numOwnedCable >> numNeededCable;
+    cin >> k >> n;
 
-    for (int i = 0; i < numOwnedCable; i++) {
-        cin >> ownedCables[i];
+    vector<long long> ownedCables(k);
+
+    for (auto &ownedCable : ownedCables) {
+        cin >> ownedCable;
     }
 
-    croppingSizeHigh = *max_element(ownedCables, ownedCables + numOwnedCable);
+    croppingSizeRight = *max_element(ownedCables.begin(), ownedCables.end());
 
-    while (croppingSizeLow <= croppingSizeHigh) {
-        long long croppedCableCount = 0;
-        long long croppingSizeCenter = (croppingSizeLow + croppingSizeHigh) / 2;
+    while (croppingSizeLeft <= croppingSizeRight) {
+        long long croppedCables = 0;
+        long long croppingSizeMid = (croppingSizeLeft + croppingSizeRight) / 2;
 
-        for (int i = 0; i < numOwnedCable; i++) {
-            croppedCableCount += ownedCables[i] / croppingSizeCenter;
+        for (auto ownedCable : ownedCables) {
+            croppedCables += ownedCable / croppingSizeMid;
         }
 
-        if (croppedCableCount >= numNeededCable) {
-            maxCroppingSize = max(maxCroppingSize, croppingSizeCenter);
-            croppingSizeLow = croppingSizeCenter + 1;
-        } else croppingSizeHigh = croppingSizeCenter - 1;
+        if (croppedCables >= n) {
+            maxCroppingSize = max(maxCroppingSize, croppingSizeMid);
+            croppingSizeLeft = croppingSizeMid + 1;
+        } else croppingSizeRight = croppingSizeMid - 1;
     }
 
     cout << maxCroppingSize << '\n';

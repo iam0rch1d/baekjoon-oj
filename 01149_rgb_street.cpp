@@ -12,7 +12,7 @@ enum Color {
 
 using namespace std;
 
-int numHouse;
+int n;
 int costs[1000][3];
 int minTotalCostCache[1000][3];
 
@@ -29,17 +29,17 @@ int memoizeMinTotalCost(int toHouse, int withColor) {
 }
 
 int main() {
-    cin >> numHouse;
+    cin >> n;
 
-    for (int i = 0; i < numHouse; i++) {
+    for (int i = 0; i < n; i++) {
         cin >> costs[i][RED] >> costs[i][GREEN] >> costs[i][BLUE];
     }
 
     memset(minTotalCostCache, UNMEMOIZED, sizeof(minTotalCostCache));
 
-    cout << min({memoizeMinTotalCost(numHouse - 1, RED),
-                 memoizeMinTotalCost(numHouse - 1, GREEN),
-                 memoizeMinTotalCost(numHouse - 1, BLUE)}) << '\n';
+    cout << min({memoizeMinTotalCost(n - 1, RED),
+                 memoizeMinTotalCost(n - 1, GREEN),
+                 memoizeMinTotalCost(n - 1, BLUE)}) << '\n';
 
     return 0;
 }

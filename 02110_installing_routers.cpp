@@ -3,51 +3,51 @@
 
 using namespace std;
 
-int numHouse;
-int numNeededRouter;
-int housePositions[200000];
+int n;
+int c;
+int x[200000];
 
 bool canInstall(int withDistance) {
-    int previousPickedHouse = housePositions[0];
-    int pickedHouseCount = 1;
+    int lastPickedXi = x[0];
+    int pickedXiCount = 1;
 
-    for (int i = 1; i < numHouse; i++) {
-        if (housePositions[i] - previousPickedHouse < withDistance) continue;
+    for (int i = 1; i < n; i++) {
+        if (x[i] - lastPickedXi < withDistance) continue;
 
-        previousPickedHouse = housePositions[i];
-        pickedHouseCount++;
+        lastPickedXi = x[i];
+        pickedXiCount++;
 
-        if (pickedHouseCount >= numNeededRouter) return true;
+        if (pickedXiCount >= c) return true;
     }
 
     return false;
 }
 
 int main() {
-    int closestDistanceLow = 1;
-    int closestDistanceHigh;
-    int maxClosestDistance = 0;
+    int closestDistanceLeft = 1;
+    int closestDistanceRight;
+    int closestDistance;
 
-    cin >> numHouse >> numNeededRouter;
+    cin >> n >> c;
 
-    for (int i = 0; i < numHouse; i++) {
-        cin >> housePositions[i];
+    for (int i = 0; i < n; i++) {
+        cin >> x[i];
     }
 
-    sort(housePositions, housePositions + numHouse);
+    sort(x, x + n);
 
-    closestDistanceHigh = housePositions[numHouse - 1] - housePositions[0];
+    closestDistanceRight = x[n - 1] - x[0];
 
-    while (closestDistanceLow <= closestDistanceHigh) {
-        int closestDistanceCenter = (closestDistanceLow + closestDistanceHigh) / 2;
+    while (closestDistanceLeft <= closestDistanceRight) {
+        int closestDistanceMid = (closestDistanceLeft + closestDistanceRight) / 2;
 
-        if (canInstall(closestDistanceCenter)) {
-            maxClosestDistance = max(maxClosestDistance, closestDistanceCenter);
-            closestDistanceLow = closestDistanceCenter + 1;
-        } else closestDistanceHigh = closestDistanceCenter - 1;
+        if (canInstall(closestDistanceMid)) {
+            closestDistance = closestDistanceMid;
+            closestDistanceLeft = closestDistanceMid + 1;
+        } else closestDistanceRight = closestDistanceMid - 1;
     }
 
-    cout << maxClosestDistance << '\n';
+    cout << closestDistance << '\n';
 
     return 0;
 }

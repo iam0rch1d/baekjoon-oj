@@ -16,10 +16,10 @@ void bisectNumber(pair<int, int> interval, int target) {
         return;
     }
 
-    int center = (interval.first + interval.second) / 2;
+    int mid = (interval.first + interval.second) / 2;
 
-    if (target < numbers[center]) bisectNumber({interval.first, center}, target);
-    else if (target > numbers[center]) bisectNumber({center, interval.second}, target);
+    if (target < numbers[mid]) bisectNumber({interval.first, mid}, target);
+    else if (target > numbers[mid]) bisectNumber({mid, interval.second}, target);
     else {
         cout << "1\n";
 

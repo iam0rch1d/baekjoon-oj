@@ -8,8 +8,8 @@ int main() {
     int inventoryBlockCount;
     int totalBlockCount;
     int blockHeights[500][500];
-    int leveledHeightLow = 257;
-    int leveledHeightHigh;
+    int leveledHeightLeft = 257;
+    int leveledHeightRight;
     int minLevelingTime = 128000000;
     int maxLeveledHeight;
 
@@ -21,14 +21,14 @@ int main() {
         for (int j = 0; j < numColumn; j++) {
             cin >> blockHeights[i][j];
 
-            leveledHeightLow = min(leveledHeightLow, blockHeights[i][j]);
+            leveledHeightLeft = min(leveledHeightLeft, blockHeights[i][j]);
             totalBlockCount += blockHeights[i][j];
         }
     }
 
-    leveledHeightHigh = totalBlockCount / numRow / numColumn;
+    leveledHeightRight = totalBlockCount / numRow / numColumn;
 
-    for (int leveledHeight = leveledHeightLow; leveledHeight <= leveledHeightHigh; leveledHeight++) {
+    for (int leveledHeight = leveledHeightLeft; leveledHeight <= leveledHeightRight; leveledHeight++) {
         int levelingTime = 0;
 
         for (int i = 0; i < numRow; i++) {

@@ -4,80 +4,62 @@
 using namespace std;
 
 int main() {
-    int numOperand;
+    int n;
     string postfix;
     string::iterator head;
     double operands[26];
     stack<double> operandStack;
 
-    cin >> numOperand >> postfix;
+    cin >> n >> postfix;
 
     head = postfix.begin();
 
-    for (int i = 0; i < numOperand; i++) {
+    for (int i = 0; i < n; i++) {
         cin >> operands[i];
     }
 
     while (*head != '\0') {
-        switch (*head) {
-            case '+': {
-                double toUseFirst;
-                double toUseSecond = operandStack.top();
+        if (*head == '+') {
+            double toUseFirst;
+            double toUseSecond = operandStack.top();
 
-                operandStack.pop();
+            operandStack.pop();
 
-                toUseFirst = operandStack.top();
+            toUseFirst = operandStack.top();
 
-                operandStack.pop();
-                operandStack.push(toUseFirst + toUseSecond);
+            operandStack.pop();
+            operandStack.push(toUseFirst + toUseSecond);
+        } else if (*head == '-') {
+            double toUseFirst;
+            double toUseSecond = operandStack.top();
 
-                break;
-            }
-            case '-': {
-                double toUseFirst;
-                double toUseSecond = operandStack.top();
+            operandStack.pop();
 
-                operandStack.pop();
+            toUseFirst = operandStack.top();
 
-                toUseFirst = operandStack.top();
+            operandStack.pop();
+            operandStack.push(toUseFirst - toUseSecond);
+        } else if (*head == '*') {
+            double toUseFirst;
+            double toUseSecond = operandStack.top();
 
-                operandStack.pop();
-                operandStack.push(toUseFirst - toUseSecond);
+            operandStack.pop();
 
-                break;
-            }
-            case '*': {
-                double toUseFirst;
-                double toUseSecond = operandStack.top();
+            toUseFirst = operandStack.top();
 
-                operandStack.pop();
+            operandStack.pop();
+            operandStack.push(toUseFirst * toUseSecond);
+        } else if (*head == '/') {
+            double toUseFirst;
+            double toUseSecond = operandStack.top();
 
-                toUseFirst = operandStack.top();
+            operandStack.pop();
 
-                operandStack.pop();
-                operandStack.push(toUseFirst * toUseSecond);
+            toUseFirst = operandStack.top();
 
-                break;
-            }
-            case '/': {
-                double toUseFirst;
-                double toUseSecond = operandStack.top();
-
-                operandStack.pop();
-
-                toUseFirst = operandStack.top();
-
-                operandStack.pop();
-                operandStack.push(toUseFirst / toUseSecond);
-
-                break;
-            }
-            default: {
-                operandStack.push(operands[*head - 'A']);
-
-                break;
-            }
-        }
+            operandStack.pop();
+            operandStack.push(toUseFirst / toUseSecond);
+        } else operandStack.push(operands[*head - 'A']);
 
         head++;
     }

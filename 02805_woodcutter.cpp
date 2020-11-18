@@ -6,32 +6,32 @@ using namespace std;
 int trees[1000000];
 
 int main() {
-    int numTree;
-    long long neededWood;
-    long long cuttingSizeLow = 1;
-    long long cuttingSizeHigh;
+    int n;
+    long long m;
+    long long cuttingSizeLeft = 0;
+    long long cuttingSizeRight;
     long long maxCuttingSize = 0;
 
-    cin >> numTree >> neededWood;
+    cin >> n >> m;
 
-    for (int i = 0; i < numTree; i++) {
+    for (int i = 0; i < n; i++) {
         cin >> trees[i];
     }
 
-    cuttingSizeHigh = *max_element(trees, trees + numTree);
+    cuttingSizeRight = *max_element(trees, trees + n);
 
-    while (cuttingSizeLow <= cuttingSizeHigh) {
+    while (cuttingSizeLeft <= cuttingSizeRight) {
         long long totalCutWood = 0;
-        long long cuttingSizeCenter = (cuttingSizeLow + cuttingSizeHigh) / 2;
+        long long cuttingSizeMid = (cuttingSizeLeft + cuttingSizeRight) / 2;
 
-        for (int i = 0; i < numTree; i++) {
-            totalCutWood += trees[i] > cuttingSizeCenter ? trees[i] - cuttingSizeCenter : 0;
+        for (int i = 0; i < n; i++) {
+            totalCutWood += trees[i] > cuttingSizeMid ? trees[i] - cuttingSizeMid : 0;
         }
 
-        if (totalCutWood >= neededWood) {
-            maxCuttingSize = max(maxCuttingSize, cuttingSizeCenter);
-            cuttingSizeLow = cuttingSizeCenter + 1;
-        } else cuttingSizeHigh = cuttingSizeCenter - 1;
+        if (totalCutWood >= m) {
+            maxCuttingSize = cuttingSizeMid;
+            cuttingSizeLeft = cuttingSizeMid + 1;
+        } else cuttingSizeRight = cuttingSizeMid - 1;
     }
 
     cout << maxCuttingSize << '\n';

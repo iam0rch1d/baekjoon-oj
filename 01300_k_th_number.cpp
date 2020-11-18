@@ -5,26 +5,26 @@ using namespace std;
 int main() {
     int n;
     int k;
-    int bkLow = 1;
-    int bkHigh;
+    int bkLeft = 1;
+    int bkRight;
     int bk;
 
     cin >> n >> k;
 
-    bkHigh = k;
+    bkRight = k;
 
-    while (bkLow <= bkHigh) {
-        int bkCenter = (bkLow + bkHigh) / 2;
-        int belowBkCenterCount = 0;
+    while (bkLeft <= bkRight) {
+        int bkMid = (bkLeft + bkRight) / 2;
+        int belowBkMidCount = 0;
 
         for (int i = 1; i <= n; i++) {
-            belowBkCenterCount += min(bkCenter / i, n);
+            belowBkMidCount += min(bkMid / i, n);
         }
 
-        if (belowBkCenterCount < k) bkLow = bkCenter + 1;
+        if (belowBkMidCount < k) bkLeft = bkMid + 1;
         else {
-            bk = bkCenter;
-            bkHigh = bkCenter - 1;
+            bk = bkMid;
+            bkRight = bkMid - 1;
         }
     }
 
