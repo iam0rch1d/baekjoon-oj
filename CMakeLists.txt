@@ -322,3 +322,7 @@ add_executable(01790_continue_writing_numbers_2 01790_continue_writing_numbers_2
 add_executable(01939_weight_limit 01939_weight_limit.cpp)
 add_executable(02022_crossed_ladders 02022_crossed_ladders.cpp)
 add_executable(11664_line_and_point 11664_line_and_point.cpp)
+add_executable(02343_guitar_lesson 02343_guitar_lesson.cpp)
+add_executable(13397_divide_into_segments_2 13397_divide_into_segments_2.cpp)
+add_executable(01981_honeymoon_hike 01981_honeymoon_hike.cpp)
+add_executable(01561_luna 01561_luna.cpp)

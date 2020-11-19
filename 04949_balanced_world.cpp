@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -12,7 +12,7 @@ int main() {
     while (true) {
         string world;
         string::iterator head;
-        vector<int> bracketStack;
+        stack<int> bracketStack;
         bool isValid = true;
 
         getline(cin, world);
@@ -22,11 +22,11 @@ int main() {
         head = world.begin();
 
         while (*head != '\0') {
-            if (*head == '(') bracketStack.push_back(PARENTHESIS);
-            else if (*head == '[') bracketStack.push_back(BRACKET);
-            else if ((*head == ')' && !bracketStack.empty() && bracketStack[bracketStack.size() - 1] == PARENTHESIS)
-                     || (*head == ']' && !bracketStack.empty() && bracketStack[bracketStack.size() - 1] == BRACKET)) {
-                bracketStack.pop_back();
+            if (*head == '(') bracketStack.push(PARENTHESIS);
+            else if (*head == '[') bracketStack.push(BRACKET);
+            else if ((*head == ')' && !bracketStack.empty() && bracketStack.top() == PARENTHESIS)
+                     || (*head == ']' && !bracketStack.empty() && bracketStack.top() == BRACKET)) {
+                bracketStack.pop();
             } else if (*head == ')' || *head == ']') {
                 isValid = false;
 

@@ -15,13 +15,13 @@ int main() {
 
     while (bkLeft <= bkRight) {
         int bkMid = (bkLeft + bkRight) / 2;
-        int belowBkMidCount = 0;
+        int belowBkMidNumbers = 0;
 
         for (int i = 1; i <= n; i++) {
-            belowBkMidCount += min(bkMid / i, n);
+            belowBkMidNumbers += min(bkMid / i, n);
         }
 
-        if (belowBkMidCount < k) bkLeft = bkMid + 1;
+        if (belowBkMidNumbers < k) bkLeft = bkMid + 1;
         else {
             bk = bkMid;
             bkRight = bkMid - 1;
