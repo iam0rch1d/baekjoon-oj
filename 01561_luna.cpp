@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -32,7 +31,6 @@ int main() {
     long long lastTimeRight;
     long long lastTime;
     long long riders;
-    vector<long long> lastTimeDurations;
 
     lastTimeRight = n * m * *max_element(durations, durations + m);
 
