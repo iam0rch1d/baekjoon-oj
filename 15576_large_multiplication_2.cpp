@@ -1,12 +1,11 @@
 #include <algorithm>
 #include <complex>
-#include <cstdio>
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-void computeFft(vector<complex<double>> &x, bool inverse) {
+void computeFft(vector<complex<double>> &x, bool isInverse) {
     unsigned xSize = x.size();
 
     for (unsigned i = 1, j = 0; i < xSize; i++) {
@@ -20,7 +19,7 @@ void computeFft(vector<complex<double>> &x, bool inverse) {
     }
 
     for (unsigned i = 1; i < xSize; i <<= 1u) {
-        double f = inverse ? M_PI / i : -M_PI / i;
+        double f = isInverse ? M_PI / i : -M_PI / i;
         complex<double> omega(cos(f), sin(f));
 
         for (unsigned j = 0; j < xSize; j += (i << 1u)) {
@@ -29,6 +28,7 @@ void computeFft(vector<complex<double>> &x, bool inverse) {
             for (int k = 0; k < i; k++) {
                 complex<double> alpha = x[j + k];
                 complex<double> beta = x[i + j + k] * theta;
+
                 x[j + k] = alpha + beta;
                 x[i + j + k] = alpha - beta;
                 theta *= omega;
@@ -36,7 +36,7 @@ void computeFft(vector<complex<double>> &x, bool inverse) {
         }
     }
 
-    if (inverse) {
+    if (isInverse) {
         for (complex<double> &i : x) {
             i /= xSize;
         }
