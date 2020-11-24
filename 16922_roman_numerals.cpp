@@ -4,45 +4,27 @@
 
 using namespace std;
 
-int n;
-int pickedRomanNumberCounts[4];
-
-void backtrackRomanNumbers(vector<int> &values, int pickCount, int toPickNumeral) {
-    if (pickCount == n) {
-        int value = 0;
-
-        for (int i = 0; i < 4; i++) {
-            value += pickedRomanNumberCounts[i] * (i % 2 == 1 ? 5 : 1) * (i >= 2 ? 10 : 1);
-        }
-
-        values.push_back(value);
-
-        return;
-    }
-
-    if (toPickNumeral >= 4) return;
-
-    for (int i = n - pickCount; i >= 1; i--) {
-        pickedRomanNumberCounts[toPickNumeral] = i;
-
-        backtrackRomanNumbers(values, pickCount + i, toPickNumeral + 1);
-    }
-
-    pickedRomanNumberCounts[toPickNumeral] = 0;
-
-    backtrackRomanNumbers(values, pickCount, toPickNumeral + 1);
-}
+bool canMake[1001];
 
 int main() {
-    vector<int> values;
+    int n;
+    int numberCount = 0;
 
     cin >> n;
 
-    backtrackRomanNumbers(values, 0, 0);
-    sort(values.begin(), values.end());
-    values.erase(unique(values.begin(), values.end()), values.end());
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= n - i; j++) {
+            for (int k = 0; k <= n - i - j; k++) {
+                canMake[i + 5 * j + 10 * k + 50 * (n - i - j - k)] = true;
+            }
+        }
+    }
 
-    cout << values.size() << '\n';
+    for (int i = 1; i <= 1000; i++) {
+        if (canMake[i]) numberCount++;
+    }
+
+    cout << numberCount << '\n';
 
     return 0;
 }

@@ -21,15 +21,11 @@ void backtrackPickedNumbers(int pickCount, int toPickNumber) {
 
     if (toPickNumber > n) return;
 
-    for (int i = m - pickCount; i >= 1; i--) {
+    for (int i = m - pickCount; i >= 0; i--) {
         pickedNumberCounts[toPickNumber] = i;
 
         backtrackPickedNumbers(pickCount + i, toPickNumber + 1);
     }
-
-    pickedNumberCounts[toPickNumber] = 0;
-
-    backtrackPickedNumbers(pickCount, toPickNumber + 1);
 }
 
 int main() {

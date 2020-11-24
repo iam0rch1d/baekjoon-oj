@@ -26,15 +26,11 @@ void backtrackPickedNumbers(vector<vector<int>> &pickedCombinations, int pickCou
 
     if (toPickIndex >= n) return;
 
-    for (int i = m - pickCount; i >= 1; i--) {
+    for (int i = m - pickCount; i >= 0; i--) {
         pickedIndexCounts[toPickIndex] = i;
 
         backtrackPickedNumbers(pickedCombinations, pickCount + i, toPickIndex + 1);
     }
-
-    pickedIndexCounts[toPickIndex] = 0;
-
-    backtrackPickedNumbers(pickedCombinations, pickCount, toPickIndex + 1);
 }
 
 int main() {

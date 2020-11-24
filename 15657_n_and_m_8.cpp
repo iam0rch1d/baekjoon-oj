@@ -23,15 +23,11 @@ void backtrackPickedIndices(int pickCount, int toPickIndex) {
 
     if (toPickIndex >= n) return;
 
-    for (int i = m - pickCount; i >= 1; i--) {
+    for (int i = m - pickCount; i >= 0; i--) {
         pickedIndexCounts[toPickIndex] = i;
 
         backtrackPickedIndices(pickCount + i, toPickIndex + 1);
     }
-
-    pickedIndexCounts[toPickIndex] = 0;
-
-    backtrackPickedIndices(pickCount, toPickIndex + 1);
 }
 
 int main() {
