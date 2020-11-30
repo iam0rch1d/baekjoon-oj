@@ -50,8 +50,8 @@ int main() {
             int distance = 1;
 
             while (true) {
-                int ny = y + ("1201"[i] - '1') * distance;
-                int nx = x + ("0112"[i] - '1') * distance;
+                int ny = y + distance * ("1201"[i] - '1');
+                int nx = x + distance * ("0112"[i] - '1');
 
                 if (ny < 0 || ny >= h || nx < 0 || nx >= w || map[ny][nx] == '*') break;
 

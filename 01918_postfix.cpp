@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int calculatePriority(char symbol) {
+int getPriority(char symbol) {
     if (symbol == '(') return 0;
     else if (symbol == '+' || symbol == '-') return 1;
     else return 2;
@@ -33,7 +33,7 @@ int main() {
                 postfix += symbol;
             }
         } else {
-            while (!shuntingYard.empty() && calculatePriority(shuntingYard.top()) >= calculatePriority(*head)) {
+            while (!shuntingYard.empty() && getPriority(shuntingYard.top()) >= getPriority(*head)) {
                 postfix += shuntingYard.top();
 
                 shuntingYard.pop();

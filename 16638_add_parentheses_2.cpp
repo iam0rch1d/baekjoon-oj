@@ -45,22 +45,37 @@ int main() {
 
         if (!isValid) continue;
 
-        vector<long long> tempOperands(operands);
-        vector<char> tempOperations(operations);
+        vector<long long> operands1(operands);
+        vector<char> operations1(operations);
+        vector<long long> operands2;
+        vector<char> operations2;
+        int operations2Size;
         long long result;
 
         for (unsigned i = 0; i < operationsSize; i++) {
             if (priorBitset & (1u << i)) {
-                tempOperands[i] = operate(tempOperands[i], tempOperands[i + 1], tempOperations[i]);
-                tempOperands[i + 1] = 0;
-                tempOperations[i] = '+';
+                operands1[i] = operate(operands1[i], operands1[i + 1], operations1[i]);
+                operands1[i + 1] = 0;
+                operations1[i] = '.';
             }
         }
 
-        result = tempOperands[0];
+        operands2.push_back(operands1[0]);
 
         for (int i = 0; i < operationsSize; i++) {
-            result = operate(result, tempOperands[i + 1], tempOperations[i]);
+            if (operations1[i] == '.') continue;
+            else if (operations1[i] == '*') operands2.back() *= operands1[i + 1];
+            else {
+                operands2.push_back(operands1[i + 1]);
+                operations2.push_back(operations1[i]);
+            }
+        }
+
+        result = operands2[0];
+        operations2Size = operations2.size();
+
+        for (int i = 0; i < operations2Size; i++) {
+            result = operate(result, operands2[i + 1], operations2[i]);
         }
 
         maxResult = max(maxResult, result);

@@ -15,35 +15,35 @@ struct Rotation {
 
 void rotate(vector<vector<int>> &a, Rotation rotation) {
     vector<vector<int>> belts(rotation.s + 1, vector<int>());
-    vector<vector<pair<int, int>>> nextPositions(rotation.s + 1, vector<pair<int, int>>());
+    vector<vector<pair<int, int>>> nextPositionOfBelts(rotation.s + 1, vector<pair<int, int>>());
 
     for (int i = 1; i <= rotation.s; i++) {
         int beltSize;
 
         for (int j = rotation.c - i; j < rotation.c + i; j++) {
             belts[i].push_back(a[rotation.r - i][j]);
-            nextPositions[i].emplace_back(rotation.r - i, j + 1);
+            nextPositionOfBelts[i].emplace_back(rotation.r - i, j + 1);
         }
 
         for (int j = rotation.r - i; j < rotation.r + i; j++) {
             belts[i].push_back(a[j][rotation.c + i]);
-            nextPositions[i].emplace_back(j + 1, rotation.c + i);
+            nextPositionOfBelts[i].emplace_back(j + 1, rotation.c + i);
         }
 
         for (int j = rotation.c + i; j > rotation.c - i; j--) {
             belts[i].push_back(a[rotation.r + i][j]);
-            nextPositions[i].emplace_back(rotation.r + i, j - 1);
+            nextPositionOfBelts[i].emplace_back(rotation.r + i, j - 1);
         }
 
         for (int j = rotation.r + i; j > rotation.r - i; j--) {
             belts[i].push_back(a[j][rotation.c - i]);
-            nextPositions[i].emplace_back(j - 1, rotation.c - i);
+            nextPositionOfBelts[i].emplace_back(j - 1, rotation.c - i);
         }
 
         beltSize = belts[i].size();
 
         for (int j = 0; j < beltSize; j++) {
-            a[nextPositions[i][j].y][nextPositions[i][j].x] = belts[i][j];
+            a[nextPositionOfBelts[i][j].y][nextPositionOfBelts[i][j].x] = belts[i][j];
         }
     }
 }
