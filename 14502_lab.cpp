@@ -9,22 +9,22 @@ int n;
 int m;
 
 int bfsSafeArea(vector<vector<int>> map) {
-    queue<pair<int, int>> bfsPositions;
+    queue<pair<int, int>> bfsPoints;
     int safeArea = 0;
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (map[i][j] == 2) bfsPositions.push({i, j});
+            if (map[i][j] == 2) bfsPoints.push({i, j});
         }
     }
 
-    while (!bfsPositions.empty()) {
+    while (!bfsPoints.empty()) {
         int y;
         int x;
 
-        tie(y, x) = bfsPositions.front();
+        tie(y, x) = bfsPoints.front();
 
-        bfsPositions.pop();
+        bfsPoints.pop();
 
         for (int i = 0; i < 4; i++) {
             int ny = y + "1201"[i] - '1';
@@ -34,7 +34,7 @@ int bfsSafeArea(vector<vector<int>> map) {
 
             map[ny][nx] = 2;
 
-            bfsPositions.push({ny, nx});
+            bfsPoints.push({ny, nx});
         }
     }
 

@@ -8,12 +8,12 @@ int n;
 int m;
 unsigned camCount;
 
-void behold(vector<vector<int>> &map, pair<int, int> camPosition, unsigned direction) {
+void behold(vector<vector<int>> &map, pair<int, int> camPoint, unsigned direction) {
     int y;
     int x;
     int distance = 1;
 
-    tie(y, x) = camPosition;
+    tie(y, x) = camPoint;
 
     while (true) {
         int ny = y + ("0121"[direction] - '1') * distance;
@@ -27,14 +27,14 @@ void behold(vector<vector<int>> &map, pair<int, int> camPosition, unsigned direc
     }
 }
 
-int countBlindspot(vector<vector<int>> map, vector<pair<int, int>> &camPositions, vector<unsigned> &camDirections) {
+int countBlindspot(vector<vector<int>> map, vector<pair<int, int>> &camPoints, vector<unsigned> &camDirections) {
     int blindspotCount = 0;
 
     for (int i = 0; i < camCount; i++) {
         int cy;
         int cx;
 
-        tie(cy, cx) = camPositions[i];
+        tie(cy, cx) = camPoints[i];
 
         behold(map, {cy, cx}, camDirections[i]);
 
