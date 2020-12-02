@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool eratosthenesSieve[1001];
+bool isSieved[1001];
 
 int main() {
     int n;
@@ -13,11 +13,11 @@ int main() {
     cin >> n >> k;
 
     for (int i = 2; i <= n; i++) {
-        if (eratosthenesSieve[i]) continue;
+        if (isSieved[i]) continue;
 
         for (int j = i; j <= n; j += i) {
-            if (!eratosthenesSieve[j]) {
-                eratosthenesSieve[j] = true;
+            if (!isSieved[j]) {
+                isSieved[j] = true;
 
                 erasedNumbers.push_back(j);
             }

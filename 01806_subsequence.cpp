@@ -5,13 +5,13 @@ using namespace std;
 
 int main() {
     int n;
-    int m;
+    int s;
     int sum;
     int left = 0;
     int right = 0;
-    int mCount = 0;
+    int minLength = 100001;
 
-    cin >> n >> m;
+    cin >> n >> s;
 
     vector<int> a(n);
 
@@ -22,13 +22,14 @@ int main() {
     sum = a[0];
 
     while (right < n) {
-        if (sum <= m) {
-            mCount += sum == m;
-            sum += a[++right];
-        } else sum -= a[left++];
+        if (sum < s) sum += a[++right];
+        else {
+            minLength = min(minLength, right - left + 1);
+            sum -= a[left++];
+        }
     }
 
-    cout << mCount << '\n';
+    cout << (minLength == 100001 ? 0 : minLength) << '\n';
 
     return 0;
 }

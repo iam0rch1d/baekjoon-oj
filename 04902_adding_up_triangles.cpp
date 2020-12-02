@@ -3,7 +3,7 @@
 using namespace std;
 
 int n;
-int s[401][802];
+int s[401][801];
 int maxValue;
 
 void calculateMaxValueFrom(int y, int left, int right, int value) {
