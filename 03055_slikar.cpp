@@ -15,7 +15,6 @@ int main() {
     int dy;
     int dx;
     queue<pair<int, int>> bfsFloodingPoints;
-    int maxFloodingTime = 0;
     queue<pair<int, int>> bfsMovingPoints;
 
     memset(floodingTimeAt, -1, sizeof(floodingTimeAt));
@@ -59,7 +58,6 @@ int main() {
             }
 
             floodingTimeAt[ny][nx] = floodingTimeAt[y][x] + 1;
-            maxFloodingTime = max(maxFloodingTime, floodingTimeAt[ny][nx]);
 
             bfsFloodingPoints.push({ny, nx});
         }

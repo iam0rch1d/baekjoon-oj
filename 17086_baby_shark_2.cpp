@@ -37,7 +37,7 @@ int main() {
             if (ny < 0 || ny >= n || nx < 0 || nx >= m || map[ny][nx]) continue;
 
             map[ny][nx] = map[y][x] + 1;
-            maxSafeDistance = max(maxSafeDistance, map[ny][nx] - 1);
+            maxSafeDistance = map[ny][nx] - 1;
 
             bfsPoints.push({ny, nx});
         }
