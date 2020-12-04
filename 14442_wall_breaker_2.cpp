@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <tuple>
@@ -40,13 +39,7 @@ int main() {
         tie(y, x, brokenWalls) = bfsPoints.front();
 
         if (y == n - 1 && x == m - 1) {
-            vector<int> possibleMoves;
-
-            for (int i = 0; i <= k; i++) {
-                if (movesAt[y][x][i]) possibleMoves.push_back(movesAt[y][x][i]);
-            }
-
-            cout << *min_element(possibleMoves.begin(), possibleMoves.end()) << '\n';
+            cout << movesAt[y][x][brokenWalls] << '\n';
 
             return 0;
         }

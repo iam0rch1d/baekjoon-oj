@@ -1,7 +1,7 @@
 #include <iostream>
 #include <queue>
-#include <tuple>
 #include <set>
+#include <tuple>
 #include <vector>
 
 #define MAX_SIZE 1000
@@ -16,7 +16,7 @@ vector<int> spaceAreas;
 
 void bfsSpaceNo(int sy, int sx, int spaceNo) {
     queue<pair<int, int>> bfsPoints;
-    int spaceArea = 0;
+    int spaceArea = 1;
 
     spaceNoAt[sy][sx] = spaceNo;
 
@@ -26,7 +26,6 @@ void bfsSpaceNo(int sy, int sx, int spaceNo) {
         int y;
         int x;
 
-        spaceArea++;
         tie(y, x) = bfsPoints.front();
 
         bfsPoints.pop();
@@ -38,6 +37,7 @@ void bfsSpaceNo(int sy, int sx, int spaceNo) {
             if (ny < 0 || ny >= n || nx < 0 || nx >= m || map[ny][nx] || spaceNoAt[ny][nx]) continue;
 
             spaceNoAt[ny][nx] = spaceNo;
+            spaceArea++;
 
             bfsPoints.push({ny, nx});
         }
