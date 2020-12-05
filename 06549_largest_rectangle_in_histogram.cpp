@@ -1,33 +1,17 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
 using namespace std;
 
-long long dncMaxSurface(vector<long long> &h, int left, int right) {
-    if (left == right) return h[left];
-
-    int mid = (left + right) / 2;
-    long long maxSurface = max(dncMaxSurface(h, left, mid), dncMaxSurface(h, mid + 1, right));
-    int spanningLeft = mid;
-    int spanningRight = mid + 1;
-    long long minSpanningHeight = min(h[spanningLeft], h[spanningRight]);
-
-    maxSurface = max(maxSurface, 2 * minSpanningHeight);
-
-    while (spanningLeft > left || spanningRight < right) {
-        if (spanningLeft > left && (spanningRight == right || h[spanningLeft - 1] > h[spanningRight + 1])) {
-            minSpanningHeight = min(minSpanningHeight, h[--spanningLeft]);
-        } else minSpanningHeight = min(minSpanningHeight, h[++spanningRight]);
-
-        maxSurface = max(maxSurface, minSpanningHeight * (spanningRight - spanningLeft + 1));
-    }
-
-    return maxSurface;
-}
-
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     while (true) {
         int n;
+        stack<long long> sticks;
+        long long maxSurface = 0;
 
         cin >> n;
 
@@ -39,6 +23,33 @@ int main() {
             cin >> hi;
         }
 
-        cout << dncMaxSurface(h, 0, n - 1) << '\n';
+        for (int i = 0; i < n; i++) {
+            while (!sticks.empty() && h[sticks.top()] > h[i]) {
+                long long width;
+                long long height = h[sticks.top()];
+
+                sticks.pop();
+
+                // <left> = sticks.top() + 1, <right> = i - 1
+                width = i - (sticks.empty() ? 0 : sticks.top() + 1);
+
+                maxSurface = max(maxSurface, width * height);
+            }
+
+            sticks.push(i);
+        }
+
+        while (!sticks.empty()) {
+            long long width;
+            long long height = h[sticks.top()];
+
+            sticks.pop();
+
+            width = n - (sticks.empty() ? 0 : sticks.top() + 1);
+
+            maxSurface = max(maxSurface, width * height);
+        }
+
+        cout << maxSurface << '\n';
     }
 }
