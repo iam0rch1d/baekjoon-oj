@@ -21,22 +21,22 @@ int main() {
 
     cin >> n;
 
-    vector<int> a(n + 1);
-    vector<int> rightGreater(n + 1, n + 1);
-    vector<int> rightLess(n + 1, n + 1);
-    vector<int> leftGreater(n + 1, 0);
-    vector<int> leftLess(n + 1, 0);
+    vector<int> a(n);
+    vector<int> rightGreater(n, n);
+    vector<int> rightLess(n, n);
+    vector<int> leftGreater(n, -1);
+    vector<int> leftLess(n, -1);
 
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
 
-    rightGreaterIndices.push(1);
-    rightLessIndices.push(1);
-    leftGreaterIndices.push(n);
-    leftLessIndices.push(n);
+    rightGreaterIndices.push(0);
+    rightLessIndices.push(0);
+    leftGreaterIndices.push(n - 1);
+    leftLessIndices.push(n - 1);
 
-    for (int i = 2; i <= n; i++) {
+    for (int i = 1; i < n; i++) {
         while (!rightGreaterIndices.empty() && a[rightGreaterIndices.top()] <= a[i]) {
             rightGreater[rightGreaterIndices.top()] = i;
 
@@ -53,7 +53,7 @@ int main() {
         rightLessIndices.push(i);
     }
 
-    for (int i = n - 1; i >= 1; i--) {
+    for (int i = n - 2; i >= 0; i--) {
         while (!leftGreaterIndices.empty() && a[leftGreaterIndices.top()] < a[i]) {
             leftGreater[leftGreaterIndices.top()] = i;
 
@@ -70,14 +70,14 @@ int main() {
         leftLessIndices.push(i);
     }
 
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
         int right = max(i, rightGreater[i] - 1);
         int left = min(i, leftGreater[i] + 1);
 
         priceSum += (nC2(right - left + 1) - nC2(i - left) - nC2(right - i)) * a[i];
     }
 
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
         int right = max(i, rightLess[i] - 1);
         int left = min(i, leftLess[i] + 1);
 

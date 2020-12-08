@@ -36,14 +36,12 @@ pair<bool, bool> roll(vector<string> &board, Point &from, unsigned direction) {
 int tilt(vector<string> board, vector<unsigned> &directions) {
     Point red;
     Point blue;
-    Point hole;
     int tiltCount = 0;
 
     for (int i = 1; i < n - 1; i++) {
         for (int j = 1; j < m - 1; j++) {
             if (board[i][j] == 'R') red = {i, j};
             else if (board[i][j] == 'B') blue = {i, j};
-            else if (board[i][j] == 'O') hole = {i, j};
         }
     }
 
