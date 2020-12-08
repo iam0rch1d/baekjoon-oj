@@ -1,63 +1,51 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
-typedef struct Vertex {
-    int key{};
-    Vertex *leftChildVertex = nullptr;
-    Vertex *rightChildVertex = nullptr;
-} Vertex;
-
-int insertedVertexCount;
-Vertex *root;
-
-void insertVertex(int key) {
-    auto *vertex = new Vertex{key};
-
-    if (insertedVertexCount == 0) {
-        root = vertex;
-    } else {
-        Vertex *parent = root;
-
-        while (true) {
-            if (key >= parent->key) {
-                if (parent->rightChildVertex == nullptr) {
-                    parent->rightChildVertex = vertex;
-
-                    break;
-                }
-
-                parent = parent->rightChildVertex;
-            } else {
-                if (parent->leftChildVertex == nullptr) {
-                    parent->leftChildVertex = vertex;
-
-                    break;
-                }
-
-                parent = parent->leftChildVertex;
-            }
-        }
-    }
-
-    insertedVertexCount++;
-}
+struct Vertex {
+    int value{};
+    Vertex *leftChild = nullptr;
+    Vertex *rightChild = nullptr;
+};
 
 void dfsPostorder(Vertex *current) {
     if (current) {
-        dfsPostorder(current->leftChildVertex);
-        dfsPostorder(current->rightChildVertex);
+        dfsPostorder(current->leftChild);
+        dfsPostorder(current->rightChild);
 
-        cout << current->key << '\n';
+        cout << current->value << '\n';
     }
 }
 
 int main() {
-    int key;
+    int value;
+    Vertex *root = nullptr;
 
-    while (cin >> key) {
-        insertVertex(key);
+    while (cin >> value) {
+        if (!root) root = new Vertex{value};
+        else {
+            Vertex *current = root;
+
+            while (true) {
+                if (value > current->value) {
+                    if (!current->rightChild) {
+                        current->rightChild = new Vertex{value};
+
+                        break;
+                    }
+
+                    current = current->rightChild;
+                } else {
+                    if (!current->leftChild) {
+                        current->leftChild = new Vertex{value};
+
+                        break;
+                    }
+
+                    current = current->leftChild;
+                }
+            }
+        }
     }
 
     dfsPostorder(root);

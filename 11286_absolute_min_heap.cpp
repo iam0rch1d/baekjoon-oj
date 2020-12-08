@@ -3,9 +3,9 @@
 
 using namespace std;
 
-typedef struct {
+struct Node {
     int value;
-} Node;
+};
 
 bool operator<(Node a, Node b) {
     return abs(a.value) > abs(b.value) || (abs(a.value) == abs(b.value) && a.value > b.value);
