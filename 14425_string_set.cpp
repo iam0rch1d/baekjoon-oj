@@ -6,7 +6,7 @@ using namespace std;
 struct Trie {
     struct Node {
         int children[26]{};
-        bool isTerminal{false};
+        bool isTerminal{};
 
         Node() {
             for (int &child : children) {
@@ -15,41 +15,42 @@ struct Trie {
         }
     };
 
-    vector<Node> trie;
+    vector<Node> nodes;
+    int maxDepth{};
     int root{newNode()};
 
     int newNode() {
         Node node;
 
-        trie.push_back(node);
+        nodes.push_back(node);
 
-        return (int) trie.size() - 1;
+        return maxDepth++;
     }
 
-    void add(int depth, string &s, int sIndex) {
-        if (sIndex == s.size()) {
-            trie[depth].isTerminal = true;
+    void add(int depth, string &s, int i) {
+        if (i == s.size()) {
+            nodes[depth].isTerminal = true;
 
             return;
         }
 
-        int sIndexChar = s[sIndex] - 'a';
+        int childNo = s[i] - 'a';
 
-        if (trie[depth].children[sIndexChar] == -1) trie[depth].children[sIndexChar] = newNode();
+        if (nodes[depth].children[childNo] == -1) nodes[depth].children[childNo] = newNode();
 
-        add(trie[depth].children[sIndexChar], s, sIndex + 1);
+        add(nodes[depth].children[childNo], s, i + 1);
     }
 
     void add(string &s) {
         add(root, s, 0);
     }
 
-    bool find(int depth, string &s, int sIndex) {
+    bool find(int depth, string &s, int i) {
         if (depth == -1) return false;
 
-        if (sIndex == s.size()) return trie[depth].isTerminal;
+        if (i == s.size()) return nodes[depth].isTerminal;
 
-        return find(trie[depth].children[s[sIndex] - 'a'], s, sIndex + 1);
+        return find(nodes[depth].children[s[i] - 'a'], s, i + 1);
     }
 
     bool find(string &s) {
