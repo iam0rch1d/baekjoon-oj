@@ -5,19 +5,19 @@ using namespace std;
 
 struct Trie {
     struct Node {
-        int children[26]{};
+        int childDepths[26]{};
         bool isTerminal{};
 
         Node() {
-            for (int &child : children) {
-                child = -1;
+            for (int &childDepth : childDepths) {
+                childDepth = -1;
             }
         }
     };
 
     vector<Node> nodes;
     int maxDepth{};
-    int root{newNode()};
+    int rootDepth{newNode()};
 
     int newNode() {
         Node node;
@@ -36,13 +36,13 @@ struct Trie {
 
         int childNo = s[i] - 'a';
 
-        if (nodes[depth].children[childNo] == -1) nodes[depth].children[childNo] = newNode();
+        if (nodes[depth].childDepths[childNo] == -1) nodes[depth].childDepths[childNo] = newNode();
 
-        add(nodes[depth].children[childNo], s, i + 1);
+        add(nodes[depth].childDepths[childNo], s, i + 1);
     }
 
     void add(string &s) {
-        add(root, s, 0);
+        add(rootDepth, s, 0);
     }
 
     bool find(int depth, string &s, int i) {
@@ -50,11 +50,11 @@ struct Trie {
 
         if (i == s.size()) return nodes[depth].isTerminal;
 
-        return find(nodes[depth].children[s[i] - 'a'], s, i + 1);
+        return find(nodes[depth].childDepths[s[i] - 'a'], s, i + 1);
     }
 
     bool find(string &s) {
-        return find(root, s, 0);
+        return find(rootDepth, s, 0);
     }
 };
 

@@ -8,20 +8,20 @@ using namespace std;
 
 struct Trie {
     struct Node {
-        int children[CHILDREN_SIZE]{};
+        int childDepths[CHILDREN_SIZE]{};
         int failure{-1};
         bool isTerminal{};
 
         Node() {
-            for (int &child : children) {
-                child = -1;
+            for (int &childDepth : childDepths) {
+                childDepth = -1;
             }
         }
     };
 
     vector<Node> nodes;
     int maxDepth{};
-    int root{newNode()};
+    int rootDepth{newNode()};
 
     int newNode() {
         Node node;
@@ -40,13 +40,13 @@ struct Trie {
 
         int childNo = s[i] - 'a';
 
-        if (nodes[depth].children[childNo] == -1) nodes[depth].children[childNo] = newNode();
+        if (nodes[depth].childDepths[childNo] == -1) nodes[depth].childDepths[childNo] = newNode();
 
-        add(nodes[depth].children[childNo], s, i + 1);
+        add(nodes[depth].childDepths[childNo], s, i + 1);
     }
 
     void add(string &s) {
-        add(root, s, 0);
+        add(rootDepth, s, 0);
     }
 };
 
@@ -70,9 +70,9 @@ int main() {
         trie.add(s);
     }
 
-    trie.nodes[trie.root].failure = trie.root;
+    trie.nodes[trie.rootDepth].failure = trie.rootDepth;
 
-    bfsDepths.push(trie.root);
+    bfsDepths.push(trie.rootDepth);
 
     while (!bfsDepths.empty()) {
         int currentDepth = bfsDepths.front();
@@ -80,26 +80,26 @@ int main() {
         bfsDepths.pop();
 
         for (int i = 0; i < CHILDREN_SIZE; i++) {
-            int child = trie.nodes[currentDepth].children[i];
+            int childDepth = trie.nodes[currentDepth].childDepths[i];
 
-            if (child == -1) continue;
+            if (childDepth == -1) continue;
 
-            if (currentDepth == trie.root) trie.nodes[child].failure = trie.root;
+            if (currentDepth == trie.rootDepth) trie.nodes[childDepth].failure = trie.rootDepth;
             else {
-                int prefixIndex = trie.nodes[currentDepth].failure;
+                int prefixDepth = trie.nodes[currentDepth].failure;
 
-                while (prefixIndex != trie.root && trie.nodes[prefixIndex].children[i] == -1) {
-                    prefixIndex = trie.nodes[prefixIndex].failure;
+                while (prefixDepth != trie.rootDepth && trie.nodes[prefixDepth].childDepths[i] == -1) {
+                    prefixDepth = trie.nodes[prefixDepth].failure;
                 }
 
-                if (trie.nodes[prefixIndex].children[i] != -1) prefixIndex = trie.nodes[prefixIndex].children[i];
+                if (trie.nodes[prefixDepth].childDepths[i] != -1) prefixDepth = trie.nodes[prefixDepth].childDepths[i];
 
-                trie.nodes[child].failure = prefixIndex;
+                trie.nodes[childDepth].failure = prefixDepth;
             }
 
-            trie.nodes[child].isTerminal |= trie.nodes[trie.nodes[child].failure].isTerminal;
+            trie.nodes[childDepth].isTerminal |= trie.nodes[trie.nodes[childDepth].failure].isTerminal;
 
-            bfsDepths.push(child);
+            bfsDepths.push(childDepth);
         }
     }
 
@@ -108,7 +108,7 @@ int main() {
     while (q--) {
         string s;
         int sSize;
-        int prefixIndex = trie.root;
+        int prefixIndex = trie.rootDepth;
         bool isHit = false;
 
         cin >> s;
@@ -118,15 +118,15 @@ int main() {
         for (int i = 0; i < sSize; i++) {
             int childNo = s[i] - 'a';
 
-            while (prefixIndex != trie.root && trie.nodes[prefixIndex].children[childNo] == -1) {
+            while (prefixIndex != trie.rootDepth && trie.nodes[prefixIndex].childDepths[childNo] == -1) {
                 prefixIndex = trie.nodes[prefixIndex].failure;
             }
 
-            if (trie.nodes[prefixIndex].children[childNo] != -1) {
-                prefixIndex = trie.nodes[prefixIndex].children[childNo];
+            if (trie.nodes[prefixIndex].childDepths[childNo] != -1) {
+                prefixIndex = trie.nodes[prefixIndex].childDepths[childNo];
             }
 
-            if (trie.nodes[prefixIndex].isTerminal) isHit = true;
+            isHit |= trie.nodes[prefixIndex].isTerminal;
         }
 
         cout << (isHit ? "YES\n" : "NO\n");

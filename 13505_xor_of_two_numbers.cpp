@@ -5,12 +5,12 @@ using namespace std;
 
 struct Trie {
     struct Node {
-        int children[2]{-1, -1};
+        int childDepths[2]{-1, -1};
         bool isTerminal{};
     };
 
     vector<Node> nodes;
-    int root{newNode()};
+    int rootDepth{newNode()};
 
     int newNode() {
         Node node;
@@ -23,15 +23,15 @@ struct Trie {
     unsigned query(int depth, unsigned x, int i) {
         if (i == -1) return 0;
 
-        unsigned child = !((x >> i) & 1u);
+        unsigned childNo = !((x >> i) & 1u);
 
-        if (nodes[depth].children[child] == -1) child = !child;
+        if (nodes[depth].childDepths[childNo] == -1) childNo = !childNo;
 
-        return (child << i) | query(nodes[depth].children[child], x, i - 1);
+        return (childNo << i) | query(nodes[depth].childDepths[childNo], x, i - 1);
     }
 
     unsigned query(unsigned x) {
-        return query(root, x, 31);
+        return query(rootDepth, x, 31);
     }
 
     void add(int depth, unsigned x, int i) {
@@ -43,13 +43,13 @@ struct Trie {
 
         unsigned xi = (x >> i) & 1u;
 
-        if (nodes[depth].children[xi] == -1) nodes[depth].children[xi] = newNode();
+        if (nodes[depth].childDepths[xi] == -1) nodes[depth].childDepths[xi] = newNode();
 
-        add(nodes[depth].children[xi], x, i - 1);
+        add(nodes[depth].childDepths[xi], x, i - 1);
     }
 
     void add(unsigned x) {
-        add(root, x, 31);
+        add(rootDepth, x, 31);
     }
 };
 
