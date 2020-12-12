@@ -3,12 +3,16 @@
 
 using namespace std;
 
+int failureCounts[1000001];
+
 int main() {
-    int n;
     string s;
+    int n;
     int prefixIndex = 0;
 
-    cin >> n >> s;
+    cin >> s;
+
+    n = s.size();
 
     vector<int> failures(n);
 
@@ -23,7 +27,23 @@ int main() {
         else prefixIndex = 0;
     }
 
-    cout << n - failures[n - 1] << '\n';
+    for (int i = 1; i < n - 1; i++) {
+        failureCounts[failures[i]]++;
+    }
+
+    prefixIndex = n;
+
+    while (prefixIndex) {
+        if (failureCounts[prefixIndex]) {
+            cout << s.substr(0, prefixIndex) << '\n';
+
+            return 0;
+        }
+
+        prefixIndex = failures[prefixIndex - 1];
+    }
+
+    cout << "-1\n";
 
     return 0;
 }

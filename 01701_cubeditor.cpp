@@ -16,20 +16,23 @@ int main() {
     while (!s.empty()) {
         int prefixIndex = 0;
 
-        vector<int> failure(n);
+        vector<int> failures(n);
 
-        failure[0] = 0;
+        failures[0] = 0;
 
         for (int i = 1; i < n; i++) {
-            if (prefixIndex && s[i] != s[prefixIndex]) prefixIndex = failure[prefixIndex - 1];
+            while (prefixIndex && s[i] != s[prefixIndex]) {
+                prefixIndex = failures[prefixIndex - 1];
+            }
 
-            if (s[i] == s[prefixIndex]) failure[i] = ++prefixIndex;
+            if (s[i] == s[prefixIndex]) failures[i] = ++prefixIndex;
             else prefixIndex = 0;
         }
 
-        maxPrefixSize = max(maxPrefixSize, *max_element(failure.begin(), failure.end()));
+        maxPrefixSize = max(maxPrefixSize, *max_element(failures.begin(), failures.end()));
 
         s.erase(s.begin());
+
         n--;
     }
 

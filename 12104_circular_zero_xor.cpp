@@ -9,9 +9,11 @@ int main() {
     int n;
     int m;
     int prefixIndex = 0;
-    vector<int> substringIndices;
+    int zeroXorCount = 0;
 
     cin >> s >> p;
+
+    s += s.substr(0, s.size() - 1);
 
     n = s.size();
     m = p.size();
@@ -38,14 +40,13 @@ int main() {
 
         if (s[i] == p[prefixIndex]) {
             if (prefixIndex == m - 1) {
-                substringIndices.push_back(i - prefixIndex);
-
+                zeroXorCount++;
                 prefixIndex = failures[prefixIndex];
-            } else ++prefixIndex;
+            } else prefixIndex++;
         }
     }
 
-    cout << !substringIndices.empty() << '\n';
+    cout << zeroXorCount << '\n';
 
     return 0;
 }

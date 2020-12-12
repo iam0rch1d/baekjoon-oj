@@ -26,20 +26,20 @@ Matrix operator*(Matrix &a, Matrix &b) {
 
 Matrix powerMatrix(Matrix &base, long long exponent) {
     int baseSize = base.size();
-    Matrix result(baseSize, vector<long long>(baseSize, 0));
+    Matrix ret(baseSize, vector<long long>(baseSize, 0));
 
     for (int i = 0; i < baseSize; i++) {
-        result[i][i] = 1;
+        ret[i][i] = 1;
     }
 
     while (exponent > 0) {
-        if (exponent % 2 != 0) result = result * base;
+        if (exponent % 2 != 0) ret = ret * base;
 
         base = base * base;
         exponent /= 2;
     }
 
-    return result;
+    return ret;
 }
 
 int main() {

@@ -42,18 +42,18 @@ int main() {
         return 0;
     }
 
-    vector<int> result;
+    vector<int> fibonacci;
     vector<int> fibonacciCachePrevious1 = {1};
     vector<int> fibonacciCachePrevious2 = {0};
 
     for (int i = 2; i <= index; i++) {
-        result = fibonacciCachePrevious1 + fibonacciCachePrevious2;
+        fibonacci = fibonacciCachePrevious1 + fibonacciCachePrevious2;
         fibonacciCachePrevious2 = fibonacciCachePrevious1;
-        fibonacciCachePrevious1 = result;
+        fibonacciCachePrevious1 = fibonacci;
     }
 
-    for (int i = (int) result.size() - 1; i >= 0; i--) {
-        cout << result[i];
+    for (int i = (int) fibonacci.size() - 1; i >= 0; i--) {
+        cout << fibonacci[i];
     }
 
     cout << '\n';

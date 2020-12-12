@@ -5,8 +5,8 @@ using namespace std;
 
 struct Trie {
     struct Node {
-        int childNodes[2]{-1, -1};
         bool isTerminal{};
+        int childNodes[2]{-1, -1};
     };
 
     vector<Node> nodes;
@@ -55,23 +55,34 @@ struct Trie {
 };
 
 int main() {
-    int n;
-    Trie trie;
-    unsigned maxXor;
+    int testcases;
 
-    cin >> n;
+    cin >> testcases;
 
-    while (n--) {
-        unsigned a;
+    while (testcases--) {
+        int n;
+        Trie trie;
+        unsigned partialXorSum = 0;
+        unsigned ret = 0;
 
-        cin >> a;
+        cin >> n;
 
-        trie.add(a);
+        trie.add(partialXorSum);
 
-        maxXor = max(maxXor, a ^ trie.query(a));
+        while (n--) {
+            int a;
+
+            cin >> a;
+
+            partialXorSum ^= a;
+
+            trie.add(partialXorSum);
+
+            ret = max(ret, partialXorSum ^ trie.query(partialXorSum));
+        }
+
+        cout << ret << '\n';
     }
-
-    cout << maxXor << '\n';
 
     return 0;
 }

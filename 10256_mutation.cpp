@@ -17,39 +17,39 @@ int childNoOf(char c) {
 
 struct Trie {
     struct Node {
-        int childDepths[CHILDREN_SIZE]{-1, -1, -1, -1};
+        int childNodes[CHILDREN_SIZE]{-1, -1, -1, -1};
         int failure{-1};
         int hitCount{};
     };
 
     vector<Node> nodes;
-    int maxDepth{};
-    int rootDepth{newNode()};
+    int backNode{};
+    int rootNode{newNode()};
 
     int newNode() {
         Node node;
 
         nodes.push_back(node);
 
-        return maxDepth++;
+        return backNode++;
     }
 
-    void add(int depth, string &s, int i) {
+    void add(int node, string &s, int i) {
         if (i == s.size()) {
-            nodes[depth].hitCount = 1;
+            nodes[node].hitCount = 1;
 
             return;
         }
 
-        int childNo = childNoOf(s[i]);
+        int child = childNoOf(s[i]);
 
-        if (nodes[depth].childDepths[childNo] == -1) nodes[depth].childDepths[childNo] = newNode();
+        if (nodes[node].childNodes[child] == -1) nodes[node].childNodes[child] = newNode();
 
-        add(nodes[depth].childDepths[childNo], s, i + 1);
+        add(nodes[node].childNodes[child], s, i + 1);
     }
 
     void add(string &s) {
-        add(rootDepth, s, 0);
+        add(rootNode, s, 0);
     }
 };
 
@@ -68,7 +68,7 @@ int main() {
         string marker;
         set<string> mutations;
         Trie trie;
-        queue<int> bfsDepths;
+        queue<int> bfsNodes;
         int totalHitCount = 0;
 
         cin >> n >> m >> dna >> marker;
@@ -89,55 +89,53 @@ int main() {
             trie.add(mutation);
         }
 
-        trie.nodes[trie.rootDepth].failure = trie.rootDepth;
+        trie.nodes[trie.rootNode].failure = trie.rootNode;
 
-        bfsDepths.push(trie.rootDepth);
+        bfsNodes.push(trie.rootNode);
 
-        while (!bfsDepths.empty()) {
-            int currentDepth = bfsDepths.front();
+        while (!bfsNodes.empty()) {
+            int currentDepth = bfsNodes.front();
 
-            bfsDepths.pop();
+            bfsNodes.pop();
 
             for (int i = 0; i < CHILDREN_SIZE; i++) {
-                int childDepth = trie.nodes[currentDepth].childDepths[i];
+                int childNode = trie.nodes[currentDepth].childNodes[i];
 
-                if (childDepth == -1) continue;
+                if (childNode == -1) continue;
 
-                if (currentDepth == trie.rootDepth) trie.nodes[childDepth].failure = trie.rootDepth;
+                if (currentDepth == trie.rootNode) trie.nodes[childNode].failure = trie.rootNode;
                 else {
-                    int prefixDepth = trie.nodes[currentDepth].failure;
+                    int prefixNode = trie.nodes[currentDepth].failure;
 
-                    while (prefixDepth != trie.rootDepth && trie.nodes[prefixDepth].childDepths[i] == -1) {
-                        prefixDepth = trie.nodes[prefixDepth].failure;
+                    while (prefixNode != trie.rootNode && trie.nodes[prefixNode].childNodes[i] == -1) {
+                        prefixNode = trie.nodes[prefixNode].failure;
                     }
 
-                    if (trie.nodes[prefixDepth].childDepths[i] != -1) {
-                        prefixDepth = trie.nodes[prefixDepth].childDepths[i];
-                    }
+                    if (trie.nodes[prefixNode].childNodes[i] != -1) prefixNode = trie.nodes[prefixNode].childNodes[i];
 
-                    trie.nodes[childDepth].failure = prefixDepth;
+                    trie.nodes[childNode].failure = prefixNode;
                 }
 
-                trie.nodes[childDepth].hitCount += trie.nodes[trie.nodes[childDepth].failure].hitCount;
+                trie.nodes[childNode].hitCount += trie.nodes[trie.nodes[childNode].failure].hitCount;
 
-                bfsDepths.push(childDepth);
+                bfsNodes.push(childNode);
             }
         }
 
-        int prefixDepth = trie.rootDepth;
+        int prefixNode = trie.rootNode;
 
         for (int i = 0; i < n; i++) {
-            int childNo = childNoOf(dna[i]);
+            int child = childNoOf(dna[i]);
 
-            while (prefixDepth != trie.rootDepth && trie.nodes[prefixDepth].childDepths[childNo] == -1) {
-                prefixDepth = trie.nodes[prefixDepth].failure;
+            while (prefixNode != trie.rootNode && trie.nodes[prefixNode].childNodes[child] == -1) {
+                prefixNode = trie.nodes[prefixNode].failure;
             }
 
-            if (trie.nodes[prefixDepth].childDepths[childNo] != -1) {
-                prefixDepth = trie.nodes[prefixDepth].childDepths[childNo];
+            if (trie.nodes[prefixNode].childNodes[child] != -1) {
+                prefixNode = trie.nodes[prefixNode].childNodes[child];
             }
 
-            totalHitCount += trie.nodes[prefixDepth].hitCount;
+            totalHitCount += trie.nodes[prefixNode].hitCount;
         }
 
         cout << totalHitCount << '\n';

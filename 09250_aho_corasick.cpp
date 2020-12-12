@@ -8,45 +8,45 @@ using namespace std;
 
 struct Trie {
     struct Node {
-        int childDepths[CHILDREN_SIZE]{};
+        int childNodes[CHILDREN_SIZE]{};
         int failure{-1};
         bool isTerminal{};
 
         Node() {
-            for (int &childDepth : childDepths) {
-                childDepth = -1;
+            for (int &childNode : childNodes) {
+                childNode = -1;
             }
         }
     };
 
     vector<Node> nodes;
-    int maxDepth{};
-    int rootDepth{newNode()};
+    int backNode{};
+    int rootNode{newNode()};
 
     int newNode() {
         Node node;
 
         nodes.push_back(node);
 
-        return maxDepth++;
+        return backNode++;
     }
 
-    void add(int depth, string &s, int i) {
+    void add(int node, string &s, int i) {
         if (i == s.size()) {
-            nodes[depth].isTerminal = true;
+            nodes[node].isTerminal = true;
 
             return;
         }
 
-        int childNo = s[i] - 'a';
+        int child = s[i] - 'a';
 
-        if (nodes[depth].childDepths[childNo] == -1) nodes[depth].childDepths[childNo] = newNode();
+        if (nodes[node].childNodes[child] == -1) nodes[node].childNodes[child] = newNode();
 
-        add(nodes[depth].childDepths[childNo], s, i + 1);
+        add(nodes[node].childNodes[child], s, i + 1);
     }
 
     void add(string &s) {
-        add(rootDepth, s, 0);
+        add(rootNode, s, 0);
     }
 };
 
@@ -58,48 +58,48 @@ int main() {
     int n;
     int q;
     Trie trie;
-    queue<int> bfsDepths;
+    queue<int> bfsNodes;
 
     cin >> n;
 
     while (n--) {
-        string s;
+        string p;
 
-        cin >> s;
+        cin >> p;
 
-        trie.add(s);
+        trie.add(p);
     }
 
-    trie.nodes[trie.rootDepth].failure = trie.rootDepth;
+    trie.nodes[trie.rootNode].failure = trie.rootNode;
 
-    bfsDepths.push(trie.rootDepth);
+    bfsNodes.push(trie.rootNode);
 
-    while (!bfsDepths.empty()) {
-        int currentDepth = bfsDepths.front();
+    while (!bfsNodes.empty()) {
+        int currentNode = bfsNodes.front();
 
-        bfsDepths.pop();
+        bfsNodes.pop();
 
         for (int i = 0; i < CHILDREN_SIZE; i++) {
-            int childDepth = trie.nodes[currentDepth].childDepths[i];
+            int childNode = trie.nodes[currentNode].childNodes[i];
 
-            if (childDepth == -1) continue;
+            if (childNode == -1) continue;
 
-            if (currentDepth == trie.rootDepth) trie.nodes[childDepth].failure = trie.rootDepth;
+            if (currentNode == trie.rootNode) trie.nodes[childNode].failure = trie.rootNode;
             else {
-                int prefixDepth = trie.nodes[currentDepth].failure;
+                int prefixNode = trie.nodes[currentNode].failure;
 
-                while (prefixDepth != trie.rootDepth && trie.nodes[prefixDepth].childDepths[i] == -1) {
-                    prefixDepth = trie.nodes[prefixDepth].failure;
+                while (prefixNode != trie.rootNode && trie.nodes[prefixNode].childNodes[i] == -1) {
+                    prefixNode = trie.nodes[prefixNode].failure;
                 }
 
-                if (trie.nodes[prefixDepth].childDepths[i] != -1) prefixDepth = trie.nodes[prefixDepth].childDepths[i];
+                if (trie.nodes[prefixNode].childNodes[i] != -1) prefixNode = trie.nodes[prefixNode].childNodes[i];
 
-                trie.nodes[childDepth].failure = prefixDepth;
+                trie.nodes[childNode].failure = prefixNode;
             }
 
-            trie.nodes[childDepth].isTerminal |= trie.nodes[trie.nodes[childDepth].failure].isTerminal;
+            trie.nodes[childNode].isTerminal |= trie.nodes[trie.nodes[childNode].failure].isTerminal;
 
-            bfsDepths.push(childDepth);
+            bfsNodes.push(childNode);
         }
     }
 
@@ -108,7 +108,7 @@ int main() {
     while (q--) {
         string s;
         int sSize;
-        int prefixIndex = trie.rootDepth;
+        int prefixNode = trie.rootNode;
         bool isHit = false;
 
         cin >> s;
@@ -116,17 +116,15 @@ int main() {
         sSize = s.size();
 
         for (int i = 0; i < sSize; i++) {
-            int childNo = s[i] - 'a';
+            int child = s[i] - 'a';
 
-            while (prefixIndex != trie.rootDepth && trie.nodes[prefixIndex].childDepths[childNo] == -1) {
-                prefixIndex = trie.nodes[prefixIndex].failure;
+            while (prefixNode != trie.rootNode && trie.nodes[prefixNode].childNodes[child] == -1) {
+                prefixNode = trie.nodes[prefixNode].failure;
             }
 
-            if (trie.nodes[prefixIndex].childDepths[childNo] != -1) {
-                prefixIndex = trie.nodes[prefixIndex].childDepths[childNo];
-            }
+            if (trie.nodes[prefixNode].childNodes[child] != -1) prefixNode = trie.nodes[prefixNode].childNodes[child];
 
-            isHit |= trie.nodes[prefixIndex].isTerminal;
+            isHit |= trie.nodes[prefixNode].isTerminal;
         }
 
         cout << (isHit ? "YES\n" : "NO\n");

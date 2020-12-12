@@ -10,7 +10,7 @@ int main() {
     vector<int> operands;
     vector<int> coefficients(1, 1);
     string operandString;
-    int result = 0;
+    int ret = 0;
 
     cin >> formula;
 
@@ -31,10 +31,10 @@ int main() {
     }
 
     for (int i = 0; i < operands.size(); i++) {
-        result += coefficients[i] * operands[i];
+        ret += coefficients[i] * operands[i];
     }
 
-    cout << result << '\n';
+    cout << ret << '\n';
 
     return 0;
 }

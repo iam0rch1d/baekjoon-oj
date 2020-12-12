@@ -31,7 +31,7 @@ int main() {
     cin >> baseSize >> exponent;
 
     Matrix base(baseSize, vector<int>(baseSize));
-    Matrix result(baseSize, vector<int>(baseSize));
+    Matrix ret(baseSize, vector<int>(baseSize));
 
     for (int i = 0; i < baseSize; i++) {
         for (int j = 0; j < baseSize; j++) {
@@ -40,11 +40,11 @@ int main() {
     }
 
     for (int i = 0; i < baseSize; i++) {
-        result[i][i] = 1;
+        ret[i][i] = 1;
     }
 
     while (exponent > 0) {
-        if (exponent % 2 == 1) result = result * base;
+        if (exponent % 2 == 1) ret = ret * base;
 
         base = base * base;
         exponent >>= 1u;
@@ -52,7 +52,7 @@ int main() {
 
     for (int i = 0; i < baseSize; i++) {
         for (int j = 0; j < baseSize; j++) {
-            cout << result[i][j] << ' ';
+            cout << ret[i][j] << ' ';
         }
 
         cout << '\n';

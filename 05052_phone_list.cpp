@@ -5,8 +5,8 @@ using namespace std;
 
 struct Trie {
     struct Node {
-        int childNodes[26]{};
         bool isTerminal{};
+        int childNodes[10]{};
 
         Node() {
             for (int &childNode : childNodes) {
@@ -34,7 +34,7 @@ struct Trie {
             return;
         }
 
-        int child = s[i] - 'a';
+        int child = s[i] - '0';
 
         if (nodes[node].childNodes[child] == -1) nodes[node].childNodes[child] = newNode();
 
@@ -45,47 +45,40 @@ struct Trie {
         add(rootNode, s, 0);
     }
 
-    bool find(int node, string &s, int i) {
-        if (node == -1) return false;
+    bool query() {
+        for (auto node : nodes) {
+            if (node.isTerminal) {
+                for (int childNode : node.childNodes) {
+                    if (childNode != -1) return false;
+                }
+            }
+        }
 
-        if (i == s.size()) return nodes[node].isTerminal;
-
-        return find(nodes[node].childNodes[s[i] - 'a'], s, i + 1);
-    }
-
-    bool find(string &s) {
-        return find(rootNode, s, 0);
+        return true;
     }
 };
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    int testcases;
 
-    int n;
-    int m;
-    Trie trie;
-    int findCount = 0;
+    cin >> testcases;
 
-    cin >> n >> m;
+    while (testcases--) {
+        int n;
+        Trie trie;
 
-    while (n--) {
-        string s;
+        cin >> n;
 
-        cin >> s;
+        while (n--) {
+            string s;
 
-        trie.add(s);
+            cin >> s;
+
+            trie.add(s);
+        }
+
+        cout << (trie.query() ? "YES\n" : "NO\n");
     }
-
-    while (m--) {
-        string s;
-
-        cin >> s;
-
-        findCount += trie.find(s);
-    }
-
-    cout << findCount << '\n';
 
     return 0;
 }
