@@ -94,18 +94,18 @@ int main() {
         bfsNodes.push(trie.rootNode);
 
         while (!bfsNodes.empty()) {
-            int currentDepth = bfsNodes.front();
+            int currentNode = bfsNodes.front();
 
             bfsNodes.pop();
 
             for (int i = 0; i < CHILDREN_SIZE; i++) {
-                int childNode = trie.nodes[currentDepth].childNodes[i];
+                int childNode = trie.nodes[currentNode].childNodes[i];
 
                 if (childNode == -1) continue;
 
-                if (currentDepth == trie.rootNode) trie.nodes[childNode].failure = trie.rootNode;
+                if (currentNode == trie.rootNode) trie.nodes[childNode].failure = trie.rootNode;
                 else {
-                    int prefixNode = trie.nodes[currentDepth].failure;
+                    int prefixNode = trie.nodes[currentNode].failure;
 
                     while (prefixNode != trie.rootNode && trie.nodes[prefixNode].childNodes[i] == -1) {
                         prefixNode = trie.nodes[prefixNode].failure;

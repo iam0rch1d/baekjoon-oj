@@ -51,7 +51,7 @@ int main() {
     int m;
     Trie trie;
     queue<int> bfsNodes;
-    vector<pair<int, bool>> matches;  // .first = <index>, .second = <if match is opening>
+    vector<pair<int, bool>> matches;  // .first = <index>, .second = <if match is closing(right end)>
     int matchOpenIndex = 0;
     int matchOpenStack = 0;
     int foundCharCount = 0;
