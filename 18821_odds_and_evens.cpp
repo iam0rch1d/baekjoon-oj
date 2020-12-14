@@ -7,7 +7,7 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int testcases;
+    int t;
     pair<int, int> counterexamples[] = {{906150257, 906150258},
                                         {906150259, 906150293},
                                         {906150295, 906150307},
@@ -146,9 +146,9 @@ int main() {
                                         {906488067, 906488067},
                                         {906488077, 906488079}};
 
-    cin >> testcases;
+    cin >> t;
 
-    while (testcases--) {
+    while (t--) {
         int n;
         bool doesPolyaFail = false;
 

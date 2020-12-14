@@ -57,11 +57,11 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int testcases;
+    int t;
 
-    cin >> testcases;
+    cin >> t;
 
-    while (testcases--) {
+    while (t--) {
         int n;
         int m;
         string dna;

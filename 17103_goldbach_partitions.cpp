@@ -7,7 +7,7 @@ bool isSieved[1000001];
 
 int main() {
     vector<int> primes;
-    int testcases;
+    int t;
 
     for (int i = 2; i <= 1000000; i++) {
         if (!isSieved[i]) {
@@ -19,9 +19,9 @@ int main() {
         }
     }
 
-    cin >> testcases;
+    cin >> t;
 
-    while (testcases--) {
+    while (t--) {
         int even;
         int partitionCount = 0;
 

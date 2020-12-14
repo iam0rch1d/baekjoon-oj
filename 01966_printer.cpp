@@ -13,11 +13,11 @@ bool operator<(Document i, Document j) {
 }
 
 int main() {
-    int testcases;
+    int t;
 
-    cin >> testcases;
+    cin >> t;
 
-    while (testcases--) {
+    while (t--) {
         int numDocument;
         int queryDocumentNo;
         queue<Document> printer;

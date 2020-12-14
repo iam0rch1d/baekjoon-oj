@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     vector<long long> methodCountCache(10001, 1);
-    int testcases;
+    int t;
 
     for (int j = 2; j <= 3; j++) {
         for (int i = 1; i <= 10000; i++) {
@@ -13,9 +13,9 @@ int main() {
         }
     }
 
-    cin >> testcases;
+    cin >> t;
 
-    while (testcases--) {
+    while (t--) {
         int n;
 
         cin >> n;

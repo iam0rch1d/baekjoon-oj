@@ -31,11 +31,11 @@ int memoizeMinCost(int left, int right) {
 }
 
 int main() {
-    int testcases;
+    int t;
 
-    cin >> testcases;
+    cin >> t;
 
-    while (testcases--) {
+    while (t--) {
         int k;
 
         memset(minCostCache, UNMEMOIZED, sizeof(minCostCache));

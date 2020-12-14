@@ -15,11 +15,11 @@ void dfsGraph(int vertex, int cycleNo) {
 }
 
 int main() {
-    int testcases;
+    int t;
 
-    cin >> testcases;
+    cin >> t;
 
-    while (testcases--) {
+    while (t--) {
         int n;
         int cycleCount = 0;
 

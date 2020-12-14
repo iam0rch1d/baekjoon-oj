@@ -50,7 +50,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int testcases = 0;
+    int t = 0;
 
     while (cin >> n >> m) {
         int unvisitedCount = 0;
@@ -75,7 +75,7 @@ int main() {
             }
         }
 
-        cout << "Case " << ++testcases << ": " << (minMoveCount == INF ? -1 : minMoveCount) << '\n';
+        cout << "Case " << ++t << ": " << (minMoveCount == INF ? -1 : minMoveCount) << '\n';
 
         minMoveCount = INF;
     }

@@ -17,7 +17,7 @@ void calculateMaxValueFrom(int y, int left, int right, int value) {
 }
 
 int main() {
-    int testcases = 0;
+    int t = 0;
 
     while (true) {
         cin >> n;
@@ -42,6 +42,6 @@ int main() {
             }
         }
 
-        cout << ++testcases << ". " << maxValue << '\n';
+        cout << ++t << ". " << maxValue << '\n';
     }
 }
