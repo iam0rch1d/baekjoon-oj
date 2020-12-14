@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define INF 123456789
+#define INF 987654321
 
 template<typename T>
 void chmin(T &x, T y) {

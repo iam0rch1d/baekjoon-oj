@@ -6,29 +6,28 @@ using namespace std;
 #define UNMEMOIZED -1
 
 int chapters[500];
-int minMergeCostCache[500][500];
+int minCostCache[500][500];
 
-int memoizeMinMergeCost(int firstChapter, int lastChapter) {
-    if (firstChapter == lastChapter) return 0;
+int memoizeMinCost(int left, int right) {
+    if (left == right) return 0;
 
-    int &minMergeCost = minMergeCostCache[firstChapter][lastChapter];
+    int &minCost = minCostCache[left][right];
 
-    if (minMergeCost != UNMEMOIZED) return minMergeCost;
+    if (minCost != UNMEMOIZED) return minCost;
 
     int chapterSum = 0;
 
-    for (int i = firstChapter; i <= lastChapter; i++) {
+    for (int i = left; i <= right; i++) {
         chapterSum += chapters[i];
     }
 
-    minMergeCost = 1073741823;
+    minCost = 987654321;
 
-    for (int i = firstChapter; i <= lastChapter; i++) {
-        minMergeCost = min(minMergeCost,
-                           memoizeMinMergeCost(firstChapter, i) + memoizeMinMergeCost(i + 1, lastChapter) + chapterSum);
+    for (int i = left; i <= right; i++) {
+        minCost = min(minCost, memoizeMinCost(left, i) + memoizeMinCost(i + 1, right) + chapterSum);
     }
 
-    return minMergeCost;
+    return minCost;
 }
 
 int main() {
@@ -37,17 +36,17 @@ int main() {
     cin >> testcases;
 
     while (testcases--) {
-        int numChapter;
+        int k;
 
-        memset(minMergeCostCache, UNMEMOIZED, sizeof(minMergeCostCache));
+        memset(minCostCache, UNMEMOIZED, sizeof(minCostCache));
 
-        cin >> numChapter;
+        cin >> k;
 
-        for (int i = 0; i < numChapter; i++) {
+        for (int i = 0; i < k; i++) {
             cin >> chapters[i];
         }
 
-        cout << memoizeMinMergeCost(0, numChapter - 1) << '\n';
+        cout << memoizeMinCost(0, k - 1) << '\n';
     }
 
     return 0;
