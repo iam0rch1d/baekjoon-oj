@@ -1,8 +1,8 @@
 #include <iostream>
 
-#define INF_MOVES 32
-
 using namespace std;
+
+#define INF_MOVES 32
 
 long long b;
 

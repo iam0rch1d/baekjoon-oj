@@ -1,9 +1,9 @@
 #include <algorithm>
 #include <iostream>
 
-#define MAX_UF_SIZE 1000001
-
 using namespace std;
+
+#define MAX_UF_SIZE 1000001
 
 int parents[MAX_UF_SIZE];
 int ranks[MAX_UF_SIZE];

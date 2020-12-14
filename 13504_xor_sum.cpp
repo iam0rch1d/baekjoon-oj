@@ -63,7 +63,7 @@ int main() {
         int n;
         Trie trie;
         unsigned partialXorSum = 0;
-        unsigned ret = 0;
+        unsigned ans = 0;
 
         cin >> n;
 
@@ -78,10 +78,10 @@ int main() {
 
             trie.add(partialXorSum);
 
-            ret = max(ret, partialXorSum ^ trie.query(partialXorSum));
+            ans = max(ans, partialXorSum ^ trie.query(partialXorSum));
         }
 
-        cout << ret << '\n';
+        cout << ans << '\n';
     }
 
     return 0;

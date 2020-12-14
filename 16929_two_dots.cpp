@@ -1,8 +1,6 @@
 #include <cstring>
 #include <iostream>
 
-#define MAX_SIZE 50
-
 using namespace std;
 
 typedef struct {
@@ -13,6 +11,8 @@ typedef struct {
 Point operator+(Point a, Point b) {
     return {a.y + b.y, a.x + b.x};
 }
+
+#define MAX_SIZE 50
 
 int n;
 int m;

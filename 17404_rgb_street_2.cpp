@@ -2,6 +2,8 @@
 #include <cstring>
 #include <iostream>
 
+using namespace std;
+
 #define UNMEMOIZED -1
 
 enum Color {
@@ -9,8 +11,6 @@ enum Color {
     GREEN,
     BLUE
 };
-
-using namespace std;
 
 int n;
 int costs[1000][3];

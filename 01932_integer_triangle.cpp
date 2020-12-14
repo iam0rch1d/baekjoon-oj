@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
 
-#define UNMEMOIZED -1
+using namespace std;
 
 typedef struct {
     int y;
     int x;
 } Point;
 
-using namespace std;
+#define UNMEMOIZED -1
 
 int memoizeMaxPath(vector<vector<int>> &triangle, vector<vector<int>> &maxPathCache, Point from) {
     if (from.y == triangle.size() - 1) return triangle[from.y][from.x];

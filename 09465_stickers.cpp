@@ -2,9 +2,9 @@
 #include <cstring>
 #include <iostream>
 
-#define UNMEMOIZED -1
-
 using namespace std;
+
+#define UNMEMOIZED -1
 
 int stickers[100000][2];
 int maxTotalScoreCache[100000][2];

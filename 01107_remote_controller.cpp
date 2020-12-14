@@ -1,8 +1,8 @@
 #include <iostream>
 
-#define INF_CLICK_COUNT 500001
-
 using namespace std;
+
+#define INF_CLICK_COUNT 500001
 
 int target;
 bool isButtonBroken[10];

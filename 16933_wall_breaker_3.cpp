@@ -3,9 +3,9 @@
 #include <queue>
 #include <tuple>
 
-#define MAX_SIZE 1000
-
 using namespace std;
+
+#define MAX_SIZE 1000
 
 int map[MAX_SIZE][MAX_SIZE];
 int movesAt[MAX_SIZE][MAX_SIZE][11][2];

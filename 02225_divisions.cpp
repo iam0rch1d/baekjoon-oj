@@ -1,9 +1,9 @@
 #include <cstring>
 #include <iostream>
 
-#define MODULO 1000000000
-
 using namespace std;
+
+#define MODULO 1000000000
 
 long long divisionCount[201];
 

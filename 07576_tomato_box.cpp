@@ -1,8 +1,6 @@
 #include <iostream>
 #include <queue>
 
-#define MAX_SIZE 1000
-
 using namespace std;
 
 typedef struct {
@@ -13,6 +11,8 @@ typedef struct {
 Point operator+(Point a, Point b) {
     return {a.y + b.y, a.x + b.x};
 }
+
+#define MAX_SIZE 1000
 
 int map[MAX_SIZE][MAX_SIZE];
 

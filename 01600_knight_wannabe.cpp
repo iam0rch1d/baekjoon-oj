@@ -2,9 +2,9 @@
 #include <queue>
 #include <tuple>
 
-#define MAX_SIZE 200
-
 using namespace std;
+
+#define MAX_SIZE 200
 
 int map[MAX_SIZE][MAX_SIZE];
 int movesAt[MAX_SIZE][MAX_SIZE][31];

@@ -1,9 +1,9 @@
 #include <cstring>
 #include <iostream>
 
-#define UNMEMOIZED -1
-
 using namespace std;
+
+#define UNMEMOIZED -1
 
 int chapters[500];
 int minMergeCostCache[500][500];

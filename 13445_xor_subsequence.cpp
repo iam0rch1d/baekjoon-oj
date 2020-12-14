@@ -71,7 +71,7 @@ int main() {
     int n;
     Trie trie;
     unsigned partialXorSum = 0;
-    long long ret = 0;
+    long long ans = 0;
 
     cin >> n >> k;
 
@@ -84,12 +84,12 @@ int main() {
 
         partialXorSum ^= a;
 
-        ret += trie.query(partialXorSum);
+        ans += trie.query(partialXorSum);
 
         trie.add(partialXorSum);
     }
 
-    cout << ret << '\n';
+    cout << ans << '\n';
 
     return 0;
 }

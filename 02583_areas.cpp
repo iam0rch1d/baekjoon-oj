@@ -4,9 +4,9 @@
 #include <tuple>
 #include <vector>
 
-#define MAX_SIZE 100
-
 using namespace std;
+
+#define MAX_SIZE 100
 
 int n;
 int m;

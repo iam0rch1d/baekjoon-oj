@@ -1,9 +1,9 @@
 #include <cstring>
 #include <iostream>
 
-#define INF 1000001
-
 using namespace std;
+
+#define INF 1000001
 
 int minMoveCount = INF;
 int n;

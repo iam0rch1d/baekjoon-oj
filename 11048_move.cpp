@@ -3,40 +3,32 @@
 
 using namespace std;
 
-int maxTotalCandyCache[1000][1000];
+int maxTotalCandyCache[1001][1001];
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int n;
     int m;
 
     cin >> n >> m;
 
-    vector<vector<int>> candies(n, vector<int>(m));
+    vector<vector<int>> candies(n + 1, vector<int>(m + 1));
 
-    for (auto &candiesRow : candies) {
-        for (int &candy : candiesRow) {
-            cin >> candy;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            cin >> candies[i][j];
         }
     }
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            int maxPreviousTotalCandies = 0;
-
-            for (int k = 0; k < 3; k++) {
-                int pi = i - ("101"[k] - '0');
-                int pj = j - ("011"[k] - '0');
-
-                if (pi < 0 || pj < 0) continue;
-
-                maxPreviousTotalCandies = max(maxPreviousTotalCandies, maxTotalCandyCache[pi][pj]);
-            }
-
-            maxTotalCandyCache[i][j] = candies[i][j] + maxPreviousTotalCandies;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            maxTotalCandyCache[i][j] = max(maxTotalCandyCache[i - 1][j], maxTotalCandyCache[i][j - 1]) + candies[i][j];
         }
     }
 
-    cout << maxTotalCandyCache[n - 1][m - 1] << '\n';
+    cout << maxTotalCandyCache[n][m] << '\n';
 
     return 0;
 }

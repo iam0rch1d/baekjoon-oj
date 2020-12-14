@@ -1,10 +1,10 @@
 #include <cstring>
 #include <iostream>
 
+using namespace std;
+
 #define UNMEMOIZED -1
 #define MODULO 10007
-
-using namespace std;
 
 int tilingCountCache[1001];
 

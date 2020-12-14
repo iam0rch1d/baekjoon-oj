@@ -4,9 +4,9 @@
 #include <set>
 #include <vector>
 
-#define BOARD_SIZE 4
-
 using namespace std;
+
+#define BOARD_SIZE 4
 
 struct Trie {
     struct Node {

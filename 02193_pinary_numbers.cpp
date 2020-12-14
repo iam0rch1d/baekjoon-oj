@@ -1,10 +1,10 @@
 #include <cstring>
 #include <iostream>
 
+using namespace std;
+
 #define UNMEMOIZED -1
 #define MODULO 1000000000
-
-using namespace std;
 
 long long pinaryNumberCountCache[91][2];
 

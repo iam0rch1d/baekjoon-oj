@@ -3,9 +3,9 @@
 #include <tuple>
 #include <vector>
 
-#define INF_TIME 2501
-
 using namespace std;
+
+#define INF_TIME 2501
 
 int main() {
     int n;

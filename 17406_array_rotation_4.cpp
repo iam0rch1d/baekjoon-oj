@@ -2,10 +2,10 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 #define y first
 #define x second
-
-using namespace std;
 
 struct Rotation {
     int r;

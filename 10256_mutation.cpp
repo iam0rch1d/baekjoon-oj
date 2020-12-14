@@ -4,9 +4,9 @@
 #include <set>
 #include <vector>
 
-#define CHILDREN_SIZE 4
-
 using namespace std;
+
+#define CHILDREN_SIZE 4
 
 int childNoOf(char c) {
     if (c == 'A') return 0;

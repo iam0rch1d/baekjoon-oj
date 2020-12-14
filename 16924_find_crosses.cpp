@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#define MAX_SIZE 100
-
 using namespace std;
+
+#define MAX_SIZE 100
 
 int crossSizes[MAX_SIZE][MAX_SIZE];
 int isCovered[MAX_SIZE][MAX_SIZE];

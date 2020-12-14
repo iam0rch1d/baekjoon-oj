@@ -1,10 +1,10 @@
 #include <cstring>
 #include <iostream>
 
+using namespace std;
+
 #define UNMEMOIZED -1
 #define MODULO 1000000009
-
-using namespace std;
 
 long long methodCountCache[1000001];
 

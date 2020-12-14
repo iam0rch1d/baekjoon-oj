@@ -1,8 +1,8 @@
 #include <iostream>
 
-#define MAX_SIZE 32
-
 using namespace std;
+
+#define MAX_SIZE 32
 
 int map[MAX_SIZE][MAX_SIZE];
 long long methodCountCache[MAX_SIZE][MAX_SIZE][3];

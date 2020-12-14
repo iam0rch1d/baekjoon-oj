@@ -1,10 +1,10 @@
 #include <cstring>
 #include <iostream>
 
+using namespace std;
+
 #define UNMEMOIZED -1
 #define MODULO 9901
-
-using namespace std;
 
 int cagingCountCache[100001];
 

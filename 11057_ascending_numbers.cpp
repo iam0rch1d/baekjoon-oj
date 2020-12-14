@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#define MODULO 10007
-
 using namespace std;
+
+#define MODULO 10007
 
 long long power(long long base, long long exponent) {
     long long ret = 1;

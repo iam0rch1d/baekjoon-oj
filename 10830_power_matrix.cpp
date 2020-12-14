@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
 
-#define MODULO 1000
-
 using namespace std;
 
 typedef vector<vector<int>> Matrix;
+
+#define MODULO 1000
 
 Matrix operator*(Matrix a, Matrix b) {
     int size = a.size();

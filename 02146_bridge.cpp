@@ -2,8 +2,6 @@
 #include <iostream>
 #include <queue>
 
-#define MAX_SIZE 100
-
 using namespace std;
 
 typedef struct {
@@ -14,6 +12,8 @@ typedef struct {
 Point operator+(Point a, Point b) {
     return {a.y + b.y, a.x + b.x};
 }
+
+#define MAX_SIZE 100
 
 int n;
 int map[MAX_SIZE][MAX_SIZE];

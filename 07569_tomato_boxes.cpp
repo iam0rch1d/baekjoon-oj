@@ -2,9 +2,9 @@
 #include <queue>
 #include <tuple>
 
-#define MAX_SIZE 100
-
 using namespace std;
+
+#define MAX_SIZE 100
 
 int map[MAX_SIZE][MAX_SIZE][MAX_SIZE];
 

@@ -2,9 +2,9 @@
 #include <queue>
 #include <vector>
 
-#define CHILDREN_SIZE 26
-
 using namespace std;
+
+#define CHILDREN_SIZE 26
 
 struct Trie {
     struct Node {

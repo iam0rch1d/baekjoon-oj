@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#define MODULO 1000000
-
 using namespace std;
+
+#define MODULO 1000000
 
 typedef vector<vector<long long>> Matrix;
 

@@ -1,8 +1,8 @@
 #include <iostream>
 
-#define MODULO 1234567891
-
 using namespace std;
+
+#define MODULO 1234567891
 
 long long power(long long base, long long exponent) {
     long long ret = 1;

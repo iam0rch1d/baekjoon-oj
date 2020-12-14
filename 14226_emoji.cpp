@@ -2,9 +2,9 @@
 #include <iostream>
 #include <queue>
 
-#define UNMEMOIZED -1
-
 using namespace std;
+
+#define UNMEMOIZED -1
 
 int timeCache[1001][1001];
 

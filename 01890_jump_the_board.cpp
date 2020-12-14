@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#define MAX_SIZE 100
-
 using namespace std;
+
+#define MAX_SIZE 100
 
 long long pathCountCache[MAX_SIZE][MAX_SIZE];
 

@@ -1,8 +1,8 @@
 #include <iostream>
 
-#define MODULO 1000000
-
 using namespace std;
+
+#define MODULO 1000000
 
 int decodeCountCache[5001] = {1};
 

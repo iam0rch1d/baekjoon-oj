@@ -2,9 +2,9 @@
 #include <cstring>
 #include <iostream>
 
-#define UNMEMOIZED -1
-
 using namespace std;
+
+#define UNMEMOIZED -1
 
 int operationCountCache[1000001];
 

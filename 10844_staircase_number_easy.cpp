@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 #define UNMEMOIZED -1
 #define MODULO 1000000000
-
-using namespace std;
 
 int memoizeStaircaseNumberCount(vector<vector<int>> &staircaseNumberCountCache,
                                 int staircaseNumberSize,

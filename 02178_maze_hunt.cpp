@@ -1,9 +1,9 @@
 #include <iostream>
 #include <queue>
 
-#define MAX_SIZE 100
-
 using namespace std;
+
+#define MAX_SIZE 100
 
 typedef struct {
     int y;

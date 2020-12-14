@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#define MAX_SIZE 15
-
 using namespace std;
+
+#define MAX_SIZE 15
 
 int main() {
     int n;
