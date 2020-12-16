@@ -79,7 +79,7 @@ void backtrackSudominoku(int numberNo) {
 }
 
 int main() {
-    int testcaseNo = 0;
+    int t = 0;
 
     while (true) {
         int n;
@@ -111,7 +111,7 @@ int main() {
             check(i, {code[0] - 'A', code[1] - '1'}, true);
         }
 
-        cout << "Puzzle " << ++testcaseNo << '\n';
+        cout << "Puzzle " << ++t << '\n';
 
         backtrackSudominoku(0);
 

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 #define MODULO 1000000009
 
 long long methodCountCache[1000001];
@@ -14,7 +14,7 @@ long long memoizeMethodCount(int target) {
 
     long long &methodCount = methodCountCache[target];
 
-    if (methodCount != UNMEMOIZED) return methodCount;
+    if (methodCount != UNKNOWN) return methodCount;
 
     return methodCount = (memoizeMethodCount(target - 1)
                           + memoizeMethodCount(target - 2)
@@ -24,7 +24,7 @@ long long memoizeMethodCount(int target) {
 int main() {
     int t;
 
-    memset(methodCountCache, UNMEMOIZED, sizeof(methodCountCache));
+    memset(methodCountCache, UNKNOWN, sizeof(methodCountCache));
 
     cin >> t;
 

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int stickers[100000][2];
 int maxTotalScoreCache[100000][2];
@@ -16,7 +16,7 @@ int memoizeTotalScore(int row, int column) {
 
     int &totalScore = maxTotalScoreCache[row][column];
 
-    if (totalScore != UNMEMOIZED) return totalScore;
+    if (totalScore != UNKNOWN) return totalScore;
 
     return totalScore = stickers[row][column]
                         + max({memoizeTotalScore(row - 1, (column + 1) % 2),
@@ -42,7 +42,7 @@ int main() {
             cin >> stickers[i][1];
         }
 
-        memset(maxTotalScoreCache, UNMEMOIZED, sizeof(maxTotalScoreCache));
+        memset(maxTotalScoreCache, UNKNOWN, sizeof(maxTotalScoreCache));
 
         cout << max(memoizeTotalScore(numRow - 1, 0), memoizeTotalScore(numRow - 1, 1)) << '\n';
     }

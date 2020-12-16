@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int cardpackPrices[1001];
 int minTotalPriceCache[1001];
@@ -13,7 +13,7 @@ int memoizeMinTotalPrice(int leftCards) {
 
     int &minTotalPrice = minTotalPriceCache[leftCards];
 
-    if (minTotalPrice != UNMEMOIZED) return minTotalPrice;
+    if (minTotalPrice != UNKNOWN) return minTotalPrice;
 
     minTotalPrice = 100000001;
 
@@ -33,7 +33,7 @@ int main() {
         cin >> cardpackPrices[i];
     }
 
-    memset(minTotalPriceCache, UNMEMOIZED, sizeof(minTotalPriceCache));
+    memset(minTotalPriceCache, UNKNOWN, sizeof(minTotalPriceCache));
 
     cout << memoizeMinTotalPrice(n) << '\n';
 

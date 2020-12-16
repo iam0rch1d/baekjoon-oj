@@ -2,29 +2,32 @@
 
 using namespace std;
 
-int maxTotalValueCache[101][100001];
+template<typename T>
+void chmax(T &m, T q) {
+    m = max(m, q);
+}
+
+int w[101];
+int v[101];
+int maxValueCache[100001];
 
 int main() {
-    int numItem;
-    int strength;
-    pair<int, int> items[100];  // .first = <load>, .second = <value>
+    int n;
+    int k;
 
-    cin >> numItem >> strength;
+    cin >> n >> k;
 
-    for (int i = 0; i < numItem; i++) {
-        cin >> items[i].first >> items[i].second;
+    for (int i = 1; i <= n; i++) {
+        cin >> w[i] >> v[i];
     }
 
-    for (int i = 1; i <= numItem; i++) {
-        for (int j = 1; j <= strength; j++) {
-            if (items[i - 1].first <= j) {
-                maxTotalValueCache[i][j] = max(maxTotalValueCache[i - 1][j - items[i - 1].first] + items[i - 1].second,
-                                               maxTotalValueCache[i - 1][j]);
-            } else maxTotalValueCache[i][j] = maxTotalValueCache[i - 1][j];
+    for (int i = 1; i <= n; i++) {
+        for (int j = k; j >= 0; j--) {
+            if (j - w[i] >= 0) chmax(maxValueCache[j], maxValueCache[j - w[i]] + v[i]);
         }
     }
 
-    cout << maxTotalValueCache[numItem][strength] << '\n';
+    cout << maxValueCache[k] << '\n';
 
     return 0;
 }

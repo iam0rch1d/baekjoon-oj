@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 #define MODULO 10007
 
 int tilingCountCache[1001];
@@ -14,7 +14,7 @@ int memoizeTilingCount(int width) {
 
     int &tilingCount = tilingCountCache[width];
 
-    if (tilingCount != UNMEMOIZED) return tilingCount;
+    if (tilingCount != UNKNOWN) return tilingCount;
 
     return tilingCount = (memoizeTilingCount(width - 1) + 2 * memoizeTilingCount(width - 2)) % MODULO;
 }
@@ -22,7 +22,7 @@ int memoizeTilingCount(int width) {
 int main() {
     int width;
 
-    memset(tilingCountCache, UNMEMOIZED, sizeof(tilingCountCache));
+    memset(tilingCountCache, UNKNOWN, sizeof(tilingCountCache));
 
     cin >> width;
 

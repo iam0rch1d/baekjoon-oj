@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int timeCache[1001][1001];
 
@@ -12,7 +12,7 @@ int main() {
     int s;
     queue<pair<int, int>> bfsEmojis;  // .first = <current emoji>, .second = <emoji on clipboard>
 
-    memset(timeCache, UNMEMOIZED, sizeof(timeCache));
+    memset(timeCache, UNKNOWN, sizeof(timeCache));
 
     cin >> s;
 
@@ -40,7 +40,7 @@ int main() {
                 || adjacentEmoji.first > 1000
                 || adjacentEmoji.second < 0
                 || adjacentEmoji.second > 1000
-                || timeCache[adjacentEmoji.first][adjacentEmoji.second] != UNMEMOIZED) {
+                || timeCache[adjacentEmoji.first][adjacentEmoji.second] != UNKNOWN) {
                 continue;
             }
 

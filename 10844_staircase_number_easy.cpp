@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 #define MODULO 1000000000
 
 int memoizeStaircaseNumberCount(vector<vector<int>> &staircaseNumberCountCache,
@@ -11,7 +11,7 @@ int memoizeStaircaseNumberCount(vector<vector<int>> &staircaseNumberCountCache,
                                 int startingWith) {
     if (staircaseNumberSize == 1) return 1;
 
-    if (staircaseNumberCountCache[staircaseNumberSize][startingWith] != UNMEMOIZED) {
+    if (staircaseNumberCountCache[staircaseNumberSize][startingWith] != UNKNOWN) {
         return staircaseNumberCountCache[staircaseNumberSize][startingWith];
     }
 
@@ -45,7 +45,7 @@ int main() {
 
     cin >> staircaseNumberSize;
 
-    vector<vector<int>> staircaseNumberCountCache(staircaseNumberSize + 1, vector<int>(10, UNMEMOIZED));
+    vector<vector<int>> staircaseNumberCountCache(staircaseNumberSize + 1, vector<int>(10, UNKNOWN));
 
     for (int i = 1; i <= 9; i++) {
         staircaseNumberTotalCount += memoizeStaircaseNumberCount(staircaseNumberCountCache, staircaseNumberSize, i);

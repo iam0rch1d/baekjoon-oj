@@ -3,7 +3,12 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+template<typename T>
+void chmin(T &m, T q) {
+    m = min(m, q);
+}
+
+#define UNKNOWN -1
 
 int chapters[500];
 int minCostCache[500][500];
@@ -13,7 +18,7 @@ int memoizeMinCost(int left, int right) {
 
     int &minCost = minCostCache[left][right];
 
-    if (minCost != UNMEMOIZED) return minCost;
+    if (minCost != UNKNOWN) return minCost;
 
     int chapterSum = 0;
 
@@ -24,10 +29,10 @@ int memoizeMinCost(int left, int right) {
     minCost = 987654321;
 
     for (int i = left; i <= right; i++) {
-        minCost = min(minCost, memoizeMinCost(left, i) + memoizeMinCost(i + 1, right) + chapterSum);
+        chmin(minCost, memoizeMinCost(left, i) + memoizeMinCost(i + 1, right));
     }
 
-    return minCost;
+    return minCost += chapterSum;
 }
 
 int main() {
@@ -38,7 +43,7 @@ int main() {
     while (t--) {
         int k;
 
-        memset(minCostCache, UNMEMOIZED, sizeof(minCostCache));
+        memset(minCostCache, UNKNOWN, sizeof(minCostCache));
 
         cin >> k;
 

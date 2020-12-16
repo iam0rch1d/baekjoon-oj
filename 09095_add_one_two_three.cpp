@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int methodCountCache[11];
 
@@ -13,7 +13,7 @@ int memoizeMethodCount(int target) {
 
     int &methodCount = methodCountCache[target];
 
-    if (methodCount != UNMEMOIZED) return methodCount;
+    if (methodCount != UNKNOWN) return methodCount;
 
     return methodCount = memoizeMethodCount(target - 1)
                          + memoizeMethodCount(target - 2)
@@ -25,7 +25,7 @@ int main() {
 
     cin >> t;
 
-    memset(methodCountCache, UNMEMOIZED, sizeof(methodCountCache));
+    memset(methodCountCache, UNKNOWN, sizeof(methodCountCache));
 
     while (t--) {
         int target;

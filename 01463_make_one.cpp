@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int operationCountCache[1000001];
 
@@ -13,7 +13,7 @@ int memoizeOperationCount(int x) {
 
     int &operationCount = operationCountCache[x];
 
-    if (operationCount != UNMEMOIZED) return operationCount;
+    if (operationCount != UNKNOWN) return operationCount;
 
     int whenDividedBy3 = x % 3 == 0 ? 1 + memoizeOperationCount(x / 3) : 1000000;
     int whenDividedBy2 = x % 2 == 0 ? 1 + memoizeOperationCount(x / 2) : 1000000;
@@ -24,7 +24,7 @@ int memoizeOperationCount(int x) {
 int main() {
     int x;
 
-    memset(operationCountCache, UNMEMOIZED, sizeof(operationCountCache));
+    memset(operationCountCache, UNKNOWN, sizeof(operationCountCache));
 
     cin >> x;
     cout << memoizeOperationCount(x) << '\n';

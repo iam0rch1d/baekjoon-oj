@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int minSquareCountCache[100001];
 
@@ -12,7 +12,7 @@ int memoizeMinSquareCount(int n) {
 
     int &minSquareCount = minSquareCountCache[n];
 
-    if (minSquareCount != UNMEMOIZED) return minSquareCount;
+    if (minSquareCount != UNKNOWN) return minSquareCount;
 
     minSquareCount = n;
 
@@ -26,7 +26,7 @@ int memoizeMinSquareCount(int n) {
 int main() {
     int n;
 
-    memset(minSquareCountCache, UNMEMOIZED, sizeof(minSquareCountCache));
+    memset(minSquareCountCache, UNKNOWN, sizeof(minSquareCountCache));
 
     cin >> n;
 

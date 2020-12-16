@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int tilingCountCache[16];
 
@@ -12,7 +12,7 @@ int memoizeTilingCount(int width) {
 
     int &tilingCount = tilingCountCache[width / 2];
 
-    if (tilingCount != UNMEMOIZED) return tilingCount;
+    if (tilingCount != UNKNOWN) return tilingCount;
 
     tilingCount = 3 * memoizeTilingCount(width - 2);
 
@@ -26,7 +26,7 @@ int memoizeTilingCount(int width) {
 int main() {
     int width;
 
-    memset(tilingCountCache, UNMEMOIZED, sizeof(tilingCountCache));
+    memset(tilingCountCache, UNKNOWN, sizeof(tilingCountCache));
 
     cin >> width;
 

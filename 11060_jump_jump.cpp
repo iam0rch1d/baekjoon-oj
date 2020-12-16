@@ -3,12 +3,12 @@
 
 using namespace std;
 
-#define INF 987654321
-
 template<typename T>
-void chmin(T &x, T y) {
-    x = min(x, y);
+void chmin(T &m, T q) {
+    m = min(m, q);
 }
+
+#define INF 987654321
 
 int main() {
     int n;

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int cardpackPrices[1001];
 int maxTotalPriceCache[1001];
@@ -13,7 +13,7 @@ int memoizeMaxTotalPrice(int leftCards) {
 
     int &maxTotalPrice = maxTotalPriceCache[leftCards];
 
-    if (maxTotalPrice != UNMEMOIZED) return maxTotalPrice;
+    if (maxTotalPrice != UNKNOWN) return maxTotalPrice;
 
     maxTotalPrice = 0;
 
@@ -33,7 +33,7 @@ int main() {
         cin >> cardpackPrices[i];
     }
 
-    memset(maxTotalPriceCache, UNMEMOIZED, sizeof(maxTotalPriceCache));
+    memset(maxTotalPriceCache, UNKNOWN, sizeof(maxTotalPriceCache));
 
     cout << memoizeMaxTotalPrice(n) << '\n';
 

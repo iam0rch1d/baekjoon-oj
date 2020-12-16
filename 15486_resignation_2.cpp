@@ -4,8 +4,8 @@
 using namespace std;
 
 template<typename T>
-void chmax(T &x, T y) {
-    x = max(x, y);
+void chmax(T &m, T q) {
+    m = max(m, q);
 }
 
 int t[1500000];

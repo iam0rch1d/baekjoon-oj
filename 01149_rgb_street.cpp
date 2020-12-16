@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 enum Color {
     RED = 0,
@@ -21,7 +21,7 @@ int memoizeMinTotalCost(int toHouse, int withColor) {
 
     int &minTotalCost = minTotalCostCache[toHouse][withColor];
 
-    if (minTotalCost != UNMEMOIZED) return minTotalCost;
+    if (minTotalCost != UNKNOWN) return minTotalCost;
 
     return minTotalCost = costs[toHouse][withColor]
                           + min(memoizeMinTotalCost(toHouse - 1, (withColor + 1) % 3),
@@ -35,7 +35,7 @@ int main() {
         cin >> costs[i][RED] >> costs[i][GREEN] >> costs[i][BLUE];
     }
 
-    memset(minTotalCostCache, UNMEMOIZED, sizeof(minTotalCostCache));
+    memset(minTotalCostCache, UNKNOWN, sizeof(minTotalCostCache));
 
     cout << min({memoizeMinTotalCost(n - 1, RED),
                  memoizeMinTotalCost(n - 1, GREEN),

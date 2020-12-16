@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int a[2000];
 int isPalindromeCache[2000][2000];
@@ -13,7 +13,7 @@ int memoizeIsPalindrome(int left, int right) {
 
     int &isPalindrome = isPalindromeCache[left][right];
 
-    if (isPalindrome != UNMEMOIZED) return isPalindrome;
+    if (isPalindrome != UNKNOWN) return isPalindrome;
 
     return isPalindrome = memoizeIsPalindrome(left + 1, right - 1) * (a[left] == a[right]);
 }
@@ -26,7 +26,7 @@ int main() {
     int n;
     int m;
 
-    memset(isPalindromeCache, UNMEMOIZED, sizeof(isPalindromeCache));
+    memset(isPalindromeCache, UNKNOWN, sizeof(isPalindromeCache));
 
     cin >> n;
 

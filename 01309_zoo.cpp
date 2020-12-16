@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 #define MODULO 9901
 
 int cagingCountCache[100001];
@@ -14,7 +14,7 @@ int memoizeCagingCount(int size) {
 
     int &cagingCount = cagingCountCache[size];
 
-    if (cagingCount != UNMEMOIZED) return cagingCount;
+    if (cagingCount != UNKNOWN) return cagingCount;
 
     return cagingCount = (2 * memoizeCagingCount(size - 1) + memoizeCagingCount(size - 2)) % MODULO;
 }
@@ -22,7 +22,7 @@ int memoizeCagingCount(int size) {
 int main() {
     int size;
 
-    memset(cagingCountCache, UNMEMOIZED, sizeof(cagingCountCache));
+    memset(cagingCountCache, UNKNOWN, sizeof(cagingCountCache));
 
     cin >> size;
     cout << memoizeCagingCount(size) << '\n';

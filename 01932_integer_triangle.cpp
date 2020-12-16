@@ -8,14 +8,14 @@ typedef struct {
     int x;
 } Point;
 
-#define UNMEMOIZED -1
+#define UNKNOWN -1
 
 int memoizeMaxPath(vector<vector<int>> &triangle, vector<vector<int>> &maxPathCache, Point from) {
     if (from.y == triangle.size() - 1) return triangle[from.y][from.x];
 
     int &maxPath = maxPathCache[from.y][from.x];
 
-    if (maxPath != UNMEMOIZED) return maxPath;
+    if (maxPath != UNKNOWN) return maxPath;
 
     return maxPath = triangle[from.y][from.x]
                      + max(memoizeMaxPath(triangle, maxPathCache, {from.y + 1, from.x}),
@@ -28,7 +28,7 @@ int main() {
     cin >> triangleSize;
 
     vector<vector<int>> triangle(triangleSize, vector<int>(triangleSize));
-    vector<vector<int>> maxPathCache(triangleSize, vector<int>(triangleSize, UNMEMOIZED));
+    vector<vector<int>> maxPathCache(triangleSize, vector<int>(triangleSize, UNKNOWN));
 
     for (int i = 0; i < triangleSize; i++) {
         for (int j = 0; j <= i; j++) {
