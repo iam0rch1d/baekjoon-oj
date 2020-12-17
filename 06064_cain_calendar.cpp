@@ -4,11 +4,11 @@
 using namespace std;
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         pair<int, int> doomsday;
         pair<int, int> current;
         int year;

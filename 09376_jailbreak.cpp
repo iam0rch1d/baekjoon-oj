@@ -42,11 +42,11 @@ vector<vector<int>> bfsDoorOpens(vector<string> &map, int sy, int sx) {
 }
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int y1 = -1;
         int x1;
         int y2;

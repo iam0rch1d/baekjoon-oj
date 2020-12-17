@@ -4,11 +4,11 @@
 using namespace std;
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         string functions;
         int arraySize;
         string arrayString;

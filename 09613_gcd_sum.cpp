@@ -5,11 +5,11 @@
 using namespace std;
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int n;
         long long gcdSum = 0;
 

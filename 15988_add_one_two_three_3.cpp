@@ -8,7 +8,7 @@ using namespace std;
 
 long long dp[1000001];
 
-long long memoize(int target) {
+long long memoize(int n) {
     if (n <= 2) return n;
     else if (n == 3) return 4;
 
@@ -16,24 +16,21 @@ long long memoize(int target) {
 
     if (methodCount != UNKNOWN) return methodCount;
 
-    return methodCount = (memoize(n - 1)
-                          + memoize(n - 2)
-                          + memoize(n - 3)) % MODULO;
+    return methodCount = (memoize(n - 1) + memoize(n - 2) + memoize(n - 3)) % MODULO;
 }
 
 int main() {
-    int t;
+    int tc;
 
     memset(dp, UNKNOWN, sizeof(dp));
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
-        int target;
+    while (tc--) {
+        int n;
 
-        cin >> target;
-
-        cout << memoize(target) << '\n';
+        cin >> n;
+        cout << memoize(n) << '\n';
     }
 
     return 0;

@@ -13,7 +13,7 @@ bool isSieved[10000];
 int changes[10000];
 
 int main() {
-    int t;
+    int tc;
 
     for (int primeNumber : primeCache) {
         for (int j = 2 * primeNumber; j <= 10000; j += primeNumber) {
@@ -21,9 +21,9 @@ int main() {
         }
     }
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         string oldPassword;
         string newPassword;
         queue<string> bfsPasswords;

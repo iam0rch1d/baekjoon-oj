@@ -36,11 +36,11 @@ int memoize(int left, int right) {
 }
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int k;
 
         memset(dp, UNKNOWN, sizeof(dp));

@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     vector<long long> dp(10001, 1);
-    int t;
+    int tc;
 
     for (int j = 2; j <= 3; j++) {
         for (int i = 1; i <= 10000; i++) {
@@ -13,9 +13,9 @@ int main() {
         }
     }
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int n;
 
         cin >> n;

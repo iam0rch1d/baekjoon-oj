@@ -18,11 +18,11 @@ long long memoize(int n, int m) {
 }
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int n;
         int m;
 

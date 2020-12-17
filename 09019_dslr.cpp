@@ -10,11 +10,11 @@ int previousRegisters[10000];
 char commandFor[10000];
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int a;
         int b;
         queue<int> bfsRegisters;

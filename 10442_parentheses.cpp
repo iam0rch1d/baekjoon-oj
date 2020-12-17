@@ -7,7 +7,7 @@ using namespace std;
 long long dp[5001];
 
 int main() {
-    int t;
+    int tc;
 
     dp[0] = 1;
 
@@ -17,9 +17,9 @@ int main() {
         }
     }
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int l;
 
         cin >> l;

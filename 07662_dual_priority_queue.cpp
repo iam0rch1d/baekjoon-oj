@@ -8,11 +8,11 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int k;
         multiset<int> q;
 

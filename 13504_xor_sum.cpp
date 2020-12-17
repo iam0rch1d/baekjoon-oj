@@ -55,11 +55,11 @@ struct Trie {
 };
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int n;
         Trie trie;
         unsigned partialXorSum = 0;

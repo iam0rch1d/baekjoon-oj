@@ -18,7 +18,7 @@ Point operator+(Point a, Point b) {
 int movesAt[MAX_SIZE][MAX_SIZE];
 
 int main() {
-    int t;
+    int tc;
     const Point differences[] = {{-2, -1},
                                  {-2, 1},
                                  {-1, -2},
@@ -28,9 +28,9 @@ int main() {
                                  {2,  -1},
                                  {2,  1}};
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int n;
         Point initial;
         Point target;

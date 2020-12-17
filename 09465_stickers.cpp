@@ -25,11 +25,11 @@ int memoize(int row, int column) {
 }
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int numRow;
 
         cin >> numRow;

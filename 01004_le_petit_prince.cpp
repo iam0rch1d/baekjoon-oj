@@ -12,11 +12,11 @@ bool isIncluded(pair<int, int> point, tuple<int, int, int> circle) {
 }
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         pair<int, int> source;
         pair<int, int> destination;
         int numCircle;

@@ -19,13 +19,13 @@ int memoize(int n) {
 }
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
     memset(dp, UNKNOWN, sizeof(dp));
 
-    while (t--) {
+    while (tc--) {
         int n;
 
         cin >> n;
