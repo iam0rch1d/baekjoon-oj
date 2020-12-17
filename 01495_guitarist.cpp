@@ -1,10 +1,9 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int v[100];
-bool canPlayCache[101][1001];
+bool dp[101][1001];
 
 int main() {
     int n;
@@ -17,20 +16,20 @@ int main() {
         cin >> v[i];
     }
 
-    canPlayCache[0][s] = true;
+    dp[0][s] = true;
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j <= m; j++) {
-            if (canPlayCache[i][j]) {
-                if (j - v[i] >= 0) canPlayCache[i + 1][j - v[i]] = true;
+            if (dp[i][j]) {
+                if (j - v[i] >= 0) dp[i + 1][j - v[i]] = true;
 
-                if (j + v[i] <= m) canPlayCache[i + 1][j + v[i]] = true;
+                if (j + v[i] <= m) dp[i + 1][j + v[i]] = true;
             }
         }
     }
 
     for (int i = m; i >= 0; i--) {
-        if (canPlayCache[n][i]) {
+        if (dp[n][i]) {
             cout << i << '\n';
 
             return 0;

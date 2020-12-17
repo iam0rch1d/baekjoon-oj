@@ -4,54 +4,47 @@
 
 using namespace std;
 
-enum CanMatchState {
-    UNMATCHED = -1,
+enum State {
+    UNKNOWN = -1,
     FALSE,
     TRUE
 };
 
-int memoizeCanMatch(const string &pattern,
-                    const string &fileName,
-                    vector<vector<int>> &canMatchCache,
-                    int patternCharNo,
-                    int fileNameCharNo) {
-    int &canMatch = canMatchCache[patternCharNo][fileNameCharNo];
+int memoize(const string &p, const string &file, vector<vector<int>> &dp, int pIndex, int fileIndex) {
+    int &ret = dp[pIndex][fileIndex];
 
-    if (canMatch != UNMATCHED) return canMatch;
+    if (ret != UNKNOWN) return ret;
 
-    if (patternCharNo < pattern.size()
-        && fileNameCharNo < fileName.size()
-        && (pattern[patternCharNo] == '?' || pattern[patternCharNo] == fileName[fileNameCharNo])) {
-        return canMatch = memoizeCanMatch(pattern, fileName, canMatchCache, patternCharNo + 1, fileNameCharNo + 1);
+    if (pIndex < p.size() && fileIndex < file.size() && (p[pIndex] == '?' || p[pIndex] == file[fileIndex])) {
+        return ret = memoize(p, file, dp, pIndex + 1, fileIndex + 1);
     }
 
-    if (patternCharNo == pattern.size()) return canMatch = ((fileNameCharNo == fileName.size()) ? TRUE : FALSE);
+    if (pIndex == p.size()) return ret = ((fileIndex == file.size()) ? TRUE : FALSE);
 
-    if (pattern[patternCharNo] == '*'
-        && (memoizeCanMatch(pattern, fileName, canMatchCache, patternCharNo + 1, fileNameCharNo) == TRUE
-            || (fileNameCharNo < fileName.size()
-                && memoizeCanMatch(pattern, fileName, canMatchCache, patternCharNo, fileNameCharNo + 1) == TRUE))) {
-        return canMatch = TRUE;
+    if (p[pIndex] == '*'
+        && (memoize(p, file, dp, pIndex + 1, fileIndex) == TRUE
+            || (fileIndex < file.size() && memoize(p, file, dp, pIndex, fileIndex + 1) == TRUE))) {
+        return ret = TRUE;
     }
 
-    return canMatch = FALSE;
+    return ret = FALSE;
 }
 
 int main() {
-    string pattern;
-    int numFile;
+    string p;
+    int n;
     vector<string> matches;
 
-    cin >> pattern >> numFile;
+    cin >> p >> n;
 
-    while (numFile-- > 0) {
-        string fileName;
+    while (n-- > 0) {
+        string file;
 
-        cin >> fileName;
+        cin >> file;
 
-        vector<vector<int>> canMatchCache(pattern.size() + 1, vector<int>(fileName.size() + 1, UNMATCHED));
+        vector<vector<int>> dp(p.size() + 1, vector<int>(file.size() + 1, UNKNOWN));
 
-        if (memoizeCanMatch(pattern, fileName, canMatchCache, 0, 0)) matches.push_back(fileName);
+        if (memoize(p, file, dp, 0, 0)) matches.push_back(file);
     }
 
     for (string &match : matches) {

@@ -5,19 +5,19 @@ using namespace std;
 
 #define UNKNOWN -1
 
-int tilingCountCache[16];
+int dp[16];
 
-int memoizeTilingCount(int width) {
+int memoize(int width) {
     if (width == 0) return 1;
 
-    int &tilingCount = tilingCountCache[width / 2];
+    int &tilingCount = dp[width / 2];
 
     if (tilingCount != UNKNOWN) return tilingCount;
 
-    tilingCount = 3 * memoizeTilingCount(width - 2);
+    tilingCount = 3 * memoize(width - 2);
 
     for (int i = width - 4; i >= 0; i -= 2) {
-        tilingCount += 2 * memoizeTilingCount(i);
+        tilingCount += 2 * memoize(i);
     }
 
     return tilingCount;
@@ -26,7 +26,7 @@ int memoizeTilingCount(int width) {
 int main() {
     int width;
 
-    memset(tilingCountCache, UNKNOWN, sizeof(tilingCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> width;
 
@@ -36,7 +36,7 @@ int main() {
         return 0;
     }
 
-    cout << memoizeTilingCount(width) << '\n';
+    cout << memoize(width) << '\n';
 
     return 0;
 }

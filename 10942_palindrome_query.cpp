@@ -6,16 +6,16 @@ using namespace std;
 #define UNKNOWN -1
 
 int a[2000];
-int isPalindromeCache[2000][2000];
+int dp[2000][2000];
 
-int memoizeIsPalindrome(int left, int right) {
+int memoize(int left, int right) {
     if (left >= right) return 1;
 
-    int &isPalindrome = isPalindromeCache[left][right];
+    int &ret = dp[left][right];
 
-    if (isPalindrome != UNKNOWN) return isPalindrome;
+    if (ret != UNKNOWN) return ret;
 
-    return isPalindrome = memoizeIsPalindrome(left + 1, right - 1) * (a[left] == a[right]);
+    return ret = memoize(left + 1, right - 1) * (a[left] == a[right]);
 }
 
 int main() {
@@ -26,7 +26,7 @@ int main() {
     int n;
     int m;
 
-    memset(isPalindromeCache, UNKNOWN, sizeof(isPalindromeCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> n;
 
@@ -42,7 +42,7 @@ int main() {
 
         cin >> s >> e;
 
-        cout << memoizeIsPalindrome(s - 1, e - 1) << '\n';
+        cout << memoize(s - 1, e - 1) << '\n';
     }
 
     return 0;

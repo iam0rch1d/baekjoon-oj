@@ -4,12 +4,12 @@
 using namespace std;
 
 int main() {
-    vector<long long> methodCountCache(10001, 1);
+    vector<long long> dp(10001, 1);
     int t;
 
     for (int j = 2; j <= 3; j++) {
         for (int i = 1; i <= 10000; i++) {
-            if (i - j >= 0) methodCountCache[i] += methodCountCache[i - j];
+            if (i - j >= 0) dp[i] += dp[i - j];
         }
     }
 
@@ -19,7 +19,7 @@ int main() {
         int n;
 
         cin >> n;
-        cout << methodCountCache[n] << '\n';
+        cout << dp[n] << '\n';
     }
 
     return 0;

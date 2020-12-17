@@ -6,25 +6,25 @@ using namespace std;
 #define UNKNOWN -1
 #define MODULO 1000000009
 
-long long methodCountCache[1000001];
+long long dp[1000001];
 
-long long memoizeMethodCount(int target) {
-    if (target <= 2) return target;
-    else if (target == 3) return 4;
+long long memoize(int target) {
+    if (n <= 2) return n;
+    else if (n == 3) return 4;
 
-    long long &methodCount = methodCountCache[target];
+    long long &methodCount = dp[n];
 
     if (methodCount != UNKNOWN) return methodCount;
 
-    return methodCount = (memoizeMethodCount(target - 1)
-                          + memoizeMethodCount(target - 2)
-                          + memoizeMethodCount(target - 3)) % MODULO;
+    return methodCount = (memoize(n - 1)
+                          + memoize(n - 2)
+                          + memoize(n - 3)) % MODULO;
 }
 
 int main() {
     int t;
 
-    memset(methodCountCache, UNKNOWN, sizeof(methodCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> t;
 
@@ -33,7 +33,7 @@ int main() {
 
         cin >> target;
 
-        cout << memoizeMethodCount(target) << '\n';
+        cout << memoize(target) << '\n';
     }
 
     return 0;

@@ -2,14 +2,14 @@
 
 using namespace std;
 
+int w[101];
+int v[101];
+int dp[100001];
+
 template<typename T>
 void chmax(T &m, T q) {
     m = max(m, q);
 }
-
-int w[101];
-int v[101];
-int maxValueCache[100001];
 
 int main() {
     int n;
@@ -23,11 +23,11 @@ int main() {
 
     for (int i = 1; i <= n; i++) {
         for (int j = k; j >= 0; j--) {
-            if (j - w[i] >= 0) chmax(maxValueCache[j], maxValueCache[j - w[i]] + v[i]);
+            if (j - w[i] >= 0) chmax(dp[j], dp[j - w[i]] + v[i]);
         }
     }
 
-    cout << maxValueCache[k] << '\n';
+    cout << dp[k] << '\n';
 
     return 0;
 }

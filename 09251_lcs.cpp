@@ -2,22 +2,30 @@
 
 using namespace std;
 
-int lcsLengthCache[1001][1001];
+int dp[1001][1001];
 
 int main() {
     string a;
     string b;
+    int aSize;
+    int bSize;
 
     cin >> a >> b;
 
-    for (int i = 1; i <= a.size(); i++) {
-        for (int j = 1; j <= b.size(); j++) {
-            if (a[i - 1] == b[j - 1]) lcsLengthCache[i][j] = lcsLengthCache[i - 1][j - 1] + 1;
-            else lcsLengthCache[i][j] = max(lcsLengthCache[i - 1][j], lcsLengthCache[i][j - 1]);
+    aSize = a.size();
+    bSize = b.size();
+
+    a = ' ' + a;
+    b = ' ' + b;
+
+    for (int i = 1; i <= aSize; i++) {
+        for (int j = 1; j <= bSize; j++) {
+            if (a[i] == b[j]) dp[i][j] = dp[i - 1][j - 1] + 1;
+            else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
         }
     }
 
-    cout << lcsLengthCache[a.size()][b.size()] << '\n';
+    cout << dp[aSize][bSize] << '\n';
 
     return 0;
 }

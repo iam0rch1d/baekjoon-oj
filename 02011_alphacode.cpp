@@ -4,7 +4,7 @@ using namespace std;
 
 #define MODULO 1000000
 
-int decodeCountCache[5001] = {1};
+int dp[5001] = {1};
 
 int main() {
     string code;
@@ -22,14 +22,14 @@ int main() {
     for (int i = 1; i <= codeSize; i++) {
         int parsedTwoDigit = codeNumbers[i - 1] * 10 + codeNumbers[i];
 
-        if (codeNumbers[i] != 0) decodeCountCache[i] = (decodeCountCache[i] + decodeCountCache[i - 1]) % MODULO;
+        if (codeNumbers[i] != 0) dp[i] = (dp[i] + dp[i - 1]) % MODULO;
 
         if (parsedTwoDigit >= 10 && parsedTwoDigit <= 26) {
-            decodeCountCache[i] = (decodeCountCache[i] + decodeCountCache[i - 2]) % MODULO;
+            dp[i] = (dp[i] + dp[i - 2]) % MODULO;
         }
     }
 
-    cout << decodeCountCache[codeSize] << '\n';
+    cout << dp[codeSize] << '\n';
 
     return 0;
 }

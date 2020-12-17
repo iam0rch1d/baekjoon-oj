@@ -5,19 +5,17 @@ using namespace std;
 
 #define UNKNOWN -1
 
-int methodCountCache[11];
+int dp[11];
 
-int memoizeMethodCount(int target) {
-    if (target <= 2) return target;
-    else if (target == 3) return 4;
+int memoize(int n) {
+    if (n <= 2) return n;
+    else if (n == 3) return 4;
 
-    int &methodCount = methodCountCache[target];
+    int &ret = dp[n];
 
-    if (methodCount != UNKNOWN) return methodCount;
+    if (ret != UNKNOWN) return ret;
 
-    return methodCount = memoizeMethodCount(target - 1)
-                         + memoizeMethodCount(target - 2)
-                         + memoizeMethodCount(target - 3);
+    return ret = memoize(n - 1) + memoize(n - 2) + memoize(n - 3);
 }
 
 int main() {
@@ -25,13 +23,13 @@ int main() {
 
     cin >> t;
 
-    memset(methodCountCache, UNKNOWN, sizeof(methodCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     while (t--) {
-        int target;
+        int n;
 
-        cin >> target;
-        cout << memoizeMethodCount(target) << '\n';
+        cin >> n;
+        cout << memoize(n) << '\n';
     }
 
     return 0;

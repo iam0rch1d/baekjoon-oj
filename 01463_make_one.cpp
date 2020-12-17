@@ -6,28 +6,28 @@ using namespace std;
 
 #define UNKNOWN -1
 
-int operationCountCache[1000001];
+int dp[1000001];
 
-int memoizeOperationCount(int x) {
+int memoize(int x) {
     if (x == 1) return 0;
 
-    int &operationCount = operationCountCache[x];
+    int &ret = dp[x];
 
-    if (operationCount != UNKNOWN) return operationCount;
+    if (ret != UNKNOWN) return ret;
 
-    int whenDividedBy3 = x % 3 == 0 ? 1 + memoizeOperationCount(x / 3) : 1000000;
-    int whenDividedBy2 = x % 2 == 0 ? 1 + memoizeOperationCount(x / 2) : 1000000;
+    int whenDividedBy3 = x % 3 == 0 ? 1 + memoize(x / 3) : 1000000;
+    int whenDividedBy2 = x % 2 == 0 ? 1 + memoize(x / 2) : 1000000;
 
-    return operationCount = min({1 + memoizeOperationCount(x - 1), whenDividedBy2, whenDividedBy3});
+    return ret = min({1 + memoize(x - 1), whenDividedBy2, whenDividedBy3});
 }
 
 int main() {
     int x;
 
-    memset(operationCountCache, UNKNOWN, sizeof(operationCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> x;
-    cout << memoizeOperationCount(x) << '\n';
+    cout << memoize(x) << '\n';
 
     return 0;
 }

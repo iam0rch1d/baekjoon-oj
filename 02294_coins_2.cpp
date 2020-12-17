@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int coinCountCache[100001];
+int dp[100001];
 
 int main() {
     int n;
@@ -17,11 +17,11 @@ int main() {
         cin >> coinValue;
     }
 
-    for (int &coinCount : coinCountCache) {
-        coinCount = 100001;
+    for (int &dpi : dp) {
+        dpi = 100001;
     }
 
-    coinCountCache[0] = 1;
+    dp[0] = 1;
 
     for (int i = 1; i <= k; i++) {
         for (int j = 0; j < n; j++) {
@@ -29,11 +29,11 @@ int main() {
 
             if (previousTotalValue < 0) continue;
 
-            coinCountCache[i] = min(coinCountCache[i], coinCountCache[previousTotalValue] + 1);
+            dp[i] = min(dp[i], dp[previousTotalValue] + 1);
         }
     }
 
-    cout << (coinCountCache[k] == 100001 ? -1 : coinCountCache[k] - 1) << '\n';
+    cout << (dp[k] == 100001 ? -1 : dp[k] - 1) << '\n';
 
     return 0;
 }

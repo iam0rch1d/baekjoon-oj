@@ -6,26 +6,26 @@ using namespace std;
 #define UNKNOWN -1
 #define MODULO 9901
 
-int cagingCountCache[100001];
+int dp[100001];
 
-int memoizeCagingCount(int size) {
+int memoize(int size) {
     if (size == 0) return 1;
     else if (size == 1) return 3;
 
-    int &cagingCount = cagingCountCache[size];
+    int &ret = dp[size];
 
-    if (cagingCount != UNKNOWN) return cagingCount;
+    if (ret != UNKNOWN) return ret;
 
-    return cagingCount = (2 * memoizeCagingCount(size - 1) + memoizeCagingCount(size - 2)) % MODULO;
+    return ret = (2 * memoize(size - 1) + memoize(size - 2)) % MODULO;
 }
 
 int main() {
     int size;
 
-    memset(cagingCountCache, UNKNOWN, sizeof(cagingCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> size;
-    cout << memoizeCagingCount(size) << '\n';
+    cout << memoize(size) << '\n';
 
     return 0;
 }

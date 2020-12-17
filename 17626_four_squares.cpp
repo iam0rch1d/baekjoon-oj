@@ -2,28 +2,28 @@
 
 using namespace std;
 
-int squareCountCache[50001];
+int dp[50001];
 
 int main() {
     int n;
 
     cin >> n;
 
-    squareCountCache[0] = 1;
+    dp[0] = 1;
 
     for (int i = 1; i <= n; i++) {
-        squareCountCache[i] = 5;
+        dp[i] = 5;
 
         for (int j = 1; j * j <= n; j++) {
-            int previousNumber = i - j * j;
+            int pi = i - j * j;
 
-            if (previousNumber < 0 || squareCountCache[previousNumber] == 5) continue;
+            if (pi < 0 || dp[pi] == 5) continue;
 
-            squareCountCache[i] = min(squareCountCache[i], squareCountCache[previousNumber] + 1);
+            dp[i] = min(dp[i], dp[pi] + 1);
         }
     }
 
-    cout << squareCountCache[n] - 1 << '\n';
+    cout << dp[n] - 1 << '\n';
 
     return 0;
 }

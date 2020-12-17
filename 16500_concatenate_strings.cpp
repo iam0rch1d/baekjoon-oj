@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool canMakeCache[101];
+bool dp[101];
 
 int main() {
     string s;
@@ -20,17 +20,17 @@ int main() {
         cin >> ai;
     }
 
-    canMakeCache[0] = true;
+    dp[0] = true;
 
     for (int i = 0; i < sSize; i++) {
         for (int j = 0; j < n; j++) {
             int ajSize = a[j].size();
 
-            if (a[j] == s.substr(i, ajSize) && canMakeCache[i]) canMakeCache[i + ajSize] = canMakeCache[i];
+            if (a[j] == s.substr(i, ajSize) && dp[i]) dp[i + ajSize] = dp[i];
         }
     }
 
-    cout << canMakeCache[sSize] << '\n';
+    cout << dp[sSize] << '\n';
 
     return 0;
 }

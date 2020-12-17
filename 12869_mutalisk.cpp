@@ -11,36 +11,36 @@ void chmin(T &m, T q) {
 }
 
 int scv[3];
-int attackCountCache[61][61][61];
+int dp[61][61][61];
 
-int memoizeAttackCount(int x, int y, int z) {
+int memoize(int x, int y, int z) {
     x = max(x, 0);
     y = max(y, 0);
     z = max(z, 0);
 
     if (!x && !y && !z) return 0;
 
-    int &attackCount = attackCountCache[x][y][z];
+    int &ret = dp[x][y][z];
 
-    if (attackCount != UNKNOWN) return attackCount;
+    if (ret != UNKNOWN) return ret;
 
-    attackCount = 987654321;
+    ret = 987654321;
 
     for (int i = 0; i < 6; i++) {
         int nx = x - "113399"[i] + '0';
         int ny = y - "391913"[i] + '0';
         int nz = z - "939131"[i] + '0';
 
-        chmin(attackCount, memoizeAttackCount(nx, ny, nz) + 1);
+        chmin(ret, memoize(nx, ny, nz) + 1);
     }
 
-    return attackCount;
+    return ret;
 }
 
 int main() {
     int n;
 
-    memset(attackCountCache, UNKNOWN, sizeof(attackCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> n;
 
@@ -48,7 +48,7 @@ int main() {
         cin >> scv[i];
     }
 
-    cout << memoizeAttackCount(scv[0], scv[1], scv[2]) << '\n';
+    cout << memoize(scv[0], scv[1], scv[2]) << '\n';
 
     return 0;
 }

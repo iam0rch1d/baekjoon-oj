@@ -5,23 +5,23 @@ using namespace std;
 
 #define UNKNOWN -1
 
-int cardpackPrices[1001];
-int maxTotalPriceCache[1001];
+int a[1001];
+int dp[1001];
 
-int memoizeMaxTotalPrice(int leftCards) {
+int memoize(int leftCards) {
     if (leftCards == 0) return 0;
 
-    int &maxTotalPrice = maxTotalPriceCache[leftCards];
+    int &ret = dp[leftCards];
 
-    if (maxTotalPrice != UNKNOWN) return maxTotalPrice;
+    if (ret != UNKNOWN) return ret;
 
-    maxTotalPrice = 0;
+    ret = 0;
 
     for (int i = leftCards; i > 0; i--) {
-        maxTotalPrice = max(maxTotalPrice, cardpackPrices[i] + memoizeMaxTotalPrice(leftCards - i));
+        ret = max(ret, a[i] + memoize(leftCards - i));
     }
 
-    return maxTotalPrice;
+    return ret;
 }
 
 int main() {
@@ -30,12 +30,12 @@ int main() {
     cin >> n;
 
     for (int i = 1; i <= n; i++) {
-        cin >> cardpackPrices[i];
+        cin >> a[i];
     }
 
-    memset(maxTotalPriceCache, UNKNOWN, sizeof(maxTotalPriceCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
-    cout << memoizeMaxTotalPrice(n) << '\n';
+    cout << memoize(n) << '\n';
 
     return 0;
 }

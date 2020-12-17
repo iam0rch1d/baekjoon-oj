@@ -5,26 +5,26 @@
 using namespace std;
 
 int main() {
-    int numCoinValue;
-    int targetValueSum;
+    int n;
+    int k;
 
-    cin >> numCoinValue >> targetValueSum;
+    cin >> n >> k;
 
-    vector<int> methodCountCache(targetValueSum + 1, 0);
+    vector<int> dp(k + 1, 0);
 
-    methodCountCache[0] = 1;
+    dp[0] = 1;
 
-    while (numCoinValue-- > 0) {
+    while (n-- > 0) {
         int coinValue;
 
         cin >> coinValue;
 
-        for (int j = coinValue; j <= targetValueSum; j++) {
-            methodCountCache[j] += methodCountCache[j - coinValue];
+        for (int j = coinValue; j <= k; j++) {
+            dp[j] += dp[j - coinValue];
         }
     }
 
-    cout << methodCountCache[targetValueSum] << '\n';
+    cout << dp[k] << '\n';
 
     return 0;
 }

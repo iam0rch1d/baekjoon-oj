@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int maxTotalCandyCache[1001][1001];
+int dp[1001][1001];
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -24,11 +24,11 @@ int main() {
 
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
-            maxTotalCandyCache[i][j] = max(maxTotalCandyCache[i - 1][j], maxTotalCandyCache[i][j - 1]) + candies[i][j];
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + candies[i][j];
         }
     }
 
-    cout << maxTotalCandyCache[n][m] << '\n';
+    cout << dp[n][m] << '\n';
 
     return 0;
 }

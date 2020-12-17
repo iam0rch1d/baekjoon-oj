@@ -10,7 +10,7 @@ int indexCache[256];
 int values[10];
 
 int mapAlphabet(char alphabet) {
-    int &index = indexCache[(int) alphabet];
+    int &index = indexCache[alphabet];
 
     if (index) return index;
 

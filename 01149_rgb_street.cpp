@@ -14,18 +14,16 @@ enum Color {
 
 int n;
 int costs[1000][3];
-int minTotalCostCache[1000][3];
+int dp[1000][3];
 
-int memoizeMinTotalCost(int toHouse, int withColor) {
-    if (toHouse == 0) return costs[toHouse][withColor];
+int memoize(int house, int color) {
+    if (house == 0) return costs[house][color];
 
-    int &minTotalCost = minTotalCostCache[toHouse][withColor];
+    int &ret = dp[house][color];
 
-    if (minTotalCost != UNKNOWN) return minTotalCost;
+    if (ret != UNKNOWN) return ret;
 
-    return minTotalCost = costs[toHouse][withColor]
-                          + min(memoizeMinTotalCost(toHouse - 1, (withColor + 1) % 3),
-                                memoizeMinTotalCost(toHouse - 1, (withColor + 2) % 3));
+    return ret = costs[house][color] + min(memoize(house - 1, (color + 1) % 3), memoize(house - 1, (color + 2) % 3));
 }
 
 int main() {
@@ -35,11 +33,9 @@ int main() {
         cin >> costs[i][RED] >> costs[i][GREEN] >> costs[i][BLUE];
     }
 
-    memset(minTotalCostCache, UNKNOWN, sizeof(minTotalCostCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
-    cout << min({memoizeMinTotalCost(n - 1, RED),
-                 memoizeMinTotalCost(n - 1, GREEN),
-                 memoizeMinTotalCost(n - 1, BLUE)}) << '\n';
+    cout << min({memoize(n - 1, RED), memoize(n - 1, GREEN), memoize(n - 1, BLUE)}) << '\n';
 
     return 0;
 }

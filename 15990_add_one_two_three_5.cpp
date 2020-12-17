@@ -6,40 +6,28 @@ using namespace std;
 #define UNKNOWN -1
 #define MODULO 1000000009
 
-long long methodCountCache[100001][4];
+long long dp[100001][4];
 
-long long memoizeMethodCount(int target, int withFirstNumber) {
-    switch (target) {
-        case 1:
-            return withFirstNumber == 1 ? 1 : 0;
-        case 2:
-            return withFirstNumber == 2 ? 1 : 0;
-        case 3:
-            return 1;  // 1 -> {1, 2}, 2 -> {2, 1}, 3 -> {3}
-        default:
-            break;
-    }
+long long memoize(int target, int firstNumber) {
+    // 1 -> {1, 2}, 2 -> {2, 1}, 3 -> {3}
+    if (target == 1) return firstNumber == 1 ? 1 : 0;
+    else if (target == 2) return firstNumber == 2 ? 1 : 0;
+    else if (target == 3) return 1;
 
-    long long &methodCount = methodCountCache[target][withFirstNumber];
+    long long &ret = dp[target][firstNumber];
 
-    if (methodCount != UNKNOWN) return methodCount;
+    if (ret != UNKNOWN) return ret;
 
-    switch (withFirstNumber) {
-        case 1:
-            return methodCount = memoizeMethodCount(target - 1, 2) + memoizeMethodCount(target - 1, 3) % MODULO;
-        case 2:
-            return methodCount = memoizeMethodCount(target - 2, 1) + memoizeMethodCount(target - 2, 3) % MODULO;
-        case 3:
-            return methodCount = memoizeMethodCount(target - 3, 1) + memoizeMethodCount(target - 3, 2) % MODULO;
-        default:
-            return methodCount = 0;
-    }
+    if (firstNumber == 1) return ret = memoize(target - 1, 2) + memoize(target - 1, 3) % MODULO;
+    else if (firstNumber == 2) return ret = memoize(target - 2, 1) + memoize(target - 2, 3) % MODULO;
+    else if (firstNumber == 3) return ret = memoize(target - 3, 1) + memoize(target - 3, 2) % MODULO;
+    else return ret = 0;
 }
 
 int main() {
     int t;
 
-    memset(methodCountCache, UNKNOWN, sizeof(methodCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> t;
 
@@ -47,10 +35,7 @@ int main() {
         int target;
 
         cin >> target;
-
-        cout << (memoizeMethodCount(target, 1)
-                 + memoizeMethodCount(target, 2)
-                 + memoizeMethodCount(target, 3)) % MODULO << '\n';
+        cout << (memoize(target, 1) + memoize(target, 2) + memoize(target, 3)) % MODULO << '\n';
     }
 
     return 0;

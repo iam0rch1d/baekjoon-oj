@@ -5,32 +5,31 @@ using namespace std;
 
 #define UNKNOWN -1
 
-int minSquareCountCache[100001];
+int dp[100001];
 
-int memoizeMinSquareCount(int n) {
+int memoize(int n) {
     if (n == 0) return 0;
 
-    int &minSquareCount = minSquareCountCache[n];
+    int &ret = dp[n];
 
-    if (minSquareCount != UNKNOWN) return minSquareCount;
+    if (ret != UNKNOWN) return ret;
 
-    minSquareCount = n;
+    ret = n;
 
     for (int i = 1; i * i <= n; i++) {
-        minSquareCount = min(minSquareCount, memoizeMinSquareCount(n - i * i) + 1);
+        ret = min(ret, memoize(n - i * i) + 1);
     }
 
-    return minSquareCount;
+    return ret;
 }
 
 int main() {
     int n;
 
-    memset(minSquareCountCache, UNKNOWN, sizeof(minSquareCountCache));
+    memset(dp, UNKNOWN, sizeof(dp));
 
     cin >> n;
-
-    cout << memoizeMinSquareCount(n) << '\n';
+    cout << memoize(n) << '\n';
 
     return 0;
 }

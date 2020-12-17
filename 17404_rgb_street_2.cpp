@@ -6,44 +6,37 @@ using namespace std;
 
 #define UNKNOWN -1
 
-enum Color {
-    RED = 0,
-    GREEN,
-    BLUE
-};
-
 int n;
 int costs[1000][3];
-int minTotalCostCache[1000][3];
+int dp[1000][3];
 
-int memoizeMinTotalCost(int from, int withColor, int firstColor) {
-    if (from == n - 1) return withColor == firstColor ? 1000001 : costs[from][withColor];
+int memoize(int from, int color, int firstColor) {
+    if (from == n - 1) return color == firstColor ? 1000001 : costs[from][color];
 
-    int &minTotalCost = minTotalCostCache[from][withColor];
+    int &ret = dp[from][color];
 
-    if (minTotalCost != UNKNOWN) return minTotalCost;
+    if (ret != UNKNOWN) return ret;
 
-    return minTotalCost = costs[from][withColor]
-                          + min(memoizeMinTotalCost(from + 1, (withColor + 1) % 3, firstColor),
-                                memoizeMinTotalCost(from + 1, (withColor + 2) % 3, firstColor));
+    return ret = costs[from][color] + min(memoize(from + 1, (color + 1) % 3, firstColor),
+                                          memoize(from + 1, (color + 2) % 3, firstColor));
 }
 
 int main() {
-    int minTotalCost = 1000001;
+    int ans = 1000001;
 
     cin >> n;
 
     for (int i = 0; i < n; i++) {
-        cin >> costs[i][RED] >> costs[i][GREEN] >> costs[i][BLUE];
+        cin >> costs[i][0] >> costs[i][1] >> costs[i][2];
     }
 
     for (int i = 0; i < 3; i++) {
-        memset(minTotalCostCache, UNKNOWN, sizeof(minTotalCostCache));
+        memset(dp, UNKNOWN, sizeof(dp));
 
-        minTotalCost = min(minTotalCost, memoizeMinTotalCost(0, i, i));
+        ans = min(ans, memoize(0, i, i));
     }
 
-    cout << minTotalCost << '\n';
+    cout << ans << '\n';
 
     return 0;
 }

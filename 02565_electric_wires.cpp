@@ -10,7 +10,7 @@ int main() {
     int fromPole;
     int toPole;
     int maxFromPole = 0;
-    int increaseLengthCache[501];
+    int dp[501];
 
     cin >> connectionsSize;
 
@@ -23,17 +23,15 @@ int main() {
         maxFromPole = max(maxFromPole, fromPole);
     }
 
-    memset(increaseLengthCache, 0, sizeof(increaseLengthCache));
+    memset(dp, 0, sizeof(dp));
 
     for (int i = 1; i <= maxFromPole; i++) {
         for (int j = 0; j < i; j++) {
-            if (connections[j] < connections[i] && increaseLengthCache[i] < increaseLengthCache[j] + 1) {
-                increaseLengthCache[i] = increaseLengthCache[j] + 1;
-            }
+            if (connections[j] < connections[i] && dp[i] < dp[j] + 1) dp[i] = dp[j] + 1;
         }
     }
 
-    cout << connectionsSize - *max_element(increaseLengthCache, increaseLengthCache + maxFromPole + 1) << '\n';
+    cout << connectionsSize - *max_element(dp, dp + maxFromPole + 1) << '\n';
 
     return 0;
 }

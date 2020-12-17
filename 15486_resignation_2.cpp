@@ -3,14 +3,14 @@
 
 using namespace std;
 
+int t[1500000];
+long long p[1500000];
+long long dp[1500051];
+
 template<typename T>
 void chmax(T &m, T q) {
     m = max(m, q);
 }
-
-int t[1500000];
-long long p[1500000];
-long long maxTotalPayCache[1500051];
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -25,11 +25,11 @@ int main() {
     }
 
     for (int i = 0; i < n; i++) {
-        chmax(maxTotalPayCache[i + t[i]], maxTotalPayCache[i] + p[i]);
-        chmax(maxTotalPayCache[i + 1], maxTotalPayCache[i]);
+        chmax(dp[i + t[i]], dp[i] + p[i]);
+        chmax(dp[i + 1], dp[i]);
     }
 
-    cout << maxTotalPayCache[n] << '\n';
+    cout << dp[n] << '\n';
 
     return 0;
 }

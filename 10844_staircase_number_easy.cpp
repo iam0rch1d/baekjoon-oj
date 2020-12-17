@@ -6,53 +6,33 @@ using namespace std;
 #define UNKNOWN -1
 #define MODULO 1000000000
 
-int memoizeStaircaseNumberCount(vector<vector<int>> &staircaseNumberCountCache,
-                                int staircaseNumberSize,
-                                int startingWith) {
-    if (staircaseNumberSize == 1) return 1;
+int memoize(vector<vector<int>> &dp, int size, int startNumber) {
+    if (size == 1) return 1;
 
-    if (staircaseNumberCountCache[staircaseNumberSize][startingWith] != UNKNOWN) {
-        return staircaseNumberCountCache[staircaseNumberSize][startingWith];
+    if (dp[size][startNumber] != UNKNOWN) {
+        return dp[size][startNumber];
     }
 
-    int &staircaseNumberCount = staircaseNumberCountCache[staircaseNumberSize][startingWith];
+    int &ret = dp[size][startNumber];
 
-    switch (startingWith) {
-        case 0: {
-            return staircaseNumberCount = memoizeStaircaseNumberCount(staircaseNumberCountCache,
-                                                                      staircaseNumberSize - 1,
-                                                                      1);
-        }
-        case 9: {
-            return staircaseNumberCount = memoizeStaircaseNumberCount(staircaseNumberCountCache,
-                                                                      staircaseNumberSize - 1,
-                                                                      8);
-        }
-        default: {
-            return staircaseNumberCount = (memoizeStaircaseNumberCount(staircaseNumberCountCache,
-                                                                       staircaseNumberSize - 1,
-                                                                       startingWith + 1)
-                                           + memoizeStaircaseNumberCount(staircaseNumberCountCache,
-                                                                         staircaseNumberSize - 1,
-                                                                         startingWith - 1)) % MODULO;
-        }
-    }
+    if (startNumber == 0) return ret = memoize(dp, size - 1, 1);
+    else if (startNumber == 9) return ret = memoize(dp, size - 1, 8);
+    else return ret = (memoize(dp, size - 1, startNumber + 1) + memoize(dp, size - 1, startNumber - 1)) % MODULO;
 }
 
 int main() {
-    int staircaseNumberSize;
-    int staircaseNumberTotalCount = 0;
+    int n;
+    int ans = 0;
 
-    cin >> staircaseNumberSize;
+    cin >> n;
 
-    vector<vector<int>> staircaseNumberCountCache(staircaseNumberSize + 1, vector<int>(10, UNKNOWN));
+    vector<vector<int>> dp(n + 1, vector<int>(10, UNKNOWN));
 
     for (int i = 1; i <= 9; i++) {
-        staircaseNumberTotalCount += memoizeStaircaseNumberCount(staircaseNumberCountCache, staircaseNumberSize, i);
-        staircaseNumberTotalCount %= MODULO;
+        ans = (ans + memoize(dp, n, i)) % MODULO;
     }
 
-    cout << staircaseNumberTotalCount << '\n';
+    cout << ans << '\n';
 
     return 0;
 }

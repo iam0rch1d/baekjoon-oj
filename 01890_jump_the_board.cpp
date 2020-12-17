@@ -5,7 +5,7 @@ using namespace std;
 
 #define MAX_SIZE 100
 
-long long pathCountCache[MAX_SIZE][MAX_SIZE];
+long long dp[MAX_SIZE][MAX_SIZE];
 
 int main() {
     int n;
@@ -20,11 +20,11 @@ int main() {
         }
     }
 
-    pathCountCache[0][0] = 1;
+    dp[0][0] = 1;
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            if (!pathCountCache[i][j] || (i == n - 1 && j == n - 1)) continue;
+            if (!dp[i][j] || (i == n - 1 && j == n - 1)) continue;
 
             for (int k = 0; k < 2; k++) {
                 long long ni = i + ("10"[k] - '0') * jumpDistances[i][j];
@@ -32,12 +32,12 @@ int main() {
 
                 if (ni >= n || nj >= n) continue;
 
-                pathCountCache[ni][nj] += pathCountCache[i][j];
+                dp[ni][nj] += dp[i][j];
             }
         }
     }
 
-    cout << pathCountCache[n - 1][n - 1] << '\n';
+    cout << dp[n - 1][n - 1] << '\n';
 
     return 0;
 }

@@ -10,33 +10,32 @@ typedef struct {
 
 #define UNKNOWN -1
 
-int memoizeMaxPath(vector<vector<int>> &triangle, vector<vector<int>> &maxPathCache, Point from) {
-    if (from.y == triangle.size() - 1) return triangle[from.y][from.x];
+int memoize(vector<vector<int>> &a, vector<vector<int>> &dp, Point from) {
+    if (from.y == a.size() - 1) return a[from.y][from.x];
 
-    int &maxPath = maxPathCache[from.y][from.x];
+    int &ret = dp[from.y][from.x];
 
-    if (maxPath != UNKNOWN) return maxPath;
+    if (ret != UNKNOWN) return ret;
 
-    return maxPath = triangle[from.y][from.x]
-                     + max(memoizeMaxPath(triangle, maxPathCache, {from.y + 1, from.x}),
-                           memoizeMaxPath(triangle, maxPathCache, {from.y + 1, from.x + 1}));
+    return ret = a[from.y][from.x]
+                 + max(memoize(a, dp, {from.y + 1, from.x}), memoize(a, dp, {from.y + 1, from.x + 1}));
 }
 
 int main() {
-    int triangleSize;
+    int n;
 
-    cin >> triangleSize;
+    cin >> n;
 
-    vector<vector<int>> triangle(triangleSize, vector<int>(triangleSize));
-    vector<vector<int>> maxPathCache(triangleSize, vector<int>(triangleSize, UNKNOWN));
+    vector<vector<int>> a(n, vector<int>(n));
+    vector<vector<int>> dp(n, vector<int>(n, UNKNOWN));
 
-    for (int i = 0; i < triangleSize; i++) {
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j <= i; j++) {
-            cin >> triangle[i][j];
+            cin >> a[i][j];
         }
     }
 
-    cout << memoizeMaxPath(triangle, maxPathCache, {0, 0}) << '\n';
+    cout << memoize(a, dp, {0, 0}) << '\n';
 
     return 0;
 }

@@ -3,22 +3,22 @@
 
 using namespace std;
 
+#define UNKNOWN -1
+
+int chapters[500];
+int dp[500][500];
+
 template<typename T>
 void chmin(T &m, T q) {
     m = min(m, q);
 }
 
-#define UNKNOWN -1
-
-int chapters[500];
-int minCostCache[500][500];
-
-int memoizeMinCost(int left, int right) {
+int memoize(int left, int right) {
     if (left == right) return 0;
 
-    int &minCost = minCostCache[left][right];
+    int &ret = dp[left][right];
 
-    if (minCost != UNKNOWN) return minCost;
+    if (ret != UNKNOWN) return ret;
 
     int chapterSum = 0;
 
@@ -26,13 +26,13 @@ int memoizeMinCost(int left, int right) {
         chapterSum += chapters[i];
     }
 
-    minCost = 987654321;
+    ret = 987654321;
 
     for (int i = left; i <= right; i++) {
-        chmin(minCost, memoizeMinCost(left, i) + memoizeMinCost(i + 1, right));
+        chmin(ret, memoize(left, i) + memoize(i + 1, right));
     }
 
-    return minCost += chapterSum;
+    return ret += chapterSum;
 }
 
 int main() {
@@ -43,7 +43,7 @@ int main() {
     while (t--) {
         int k;
 
-        memset(minCostCache, UNKNOWN, sizeof(minCostCache));
+        memset(dp, UNKNOWN, sizeof(dp));
 
         cin >> k;
 
@@ -51,7 +51,7 @@ int main() {
             cin >> chapters[i];
         }
 
-        cout << memoizeMinCost(0, k - 1) << '\n';
+        cout << memoize(0, k - 1) << '\n';
     }
 
     return 0;

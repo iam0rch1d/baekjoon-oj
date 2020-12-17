@@ -7,21 +7,21 @@ using namespace std;
 #define UNKNOWN -1
 
 int stickers[100000][2];
-int maxTotalScoreCache[100000][2];
+int dp[100000][2];
 
-int memoizeTotalScore(int row, int column) {
+int memoize(int row, int column) {
     if (row == 0) return stickers[0][column];
 
     if (row == 1) return stickers[0][(column + 1) % 2] + stickers[1][column];
 
-    int &totalScore = maxTotalScoreCache[row][column];
+    int &ret = dp[row][column];
 
-    if (totalScore != UNKNOWN) return totalScore;
+    if (ret != UNKNOWN) return ret;
 
-    return totalScore = stickers[row][column]
-                        + max({memoizeTotalScore(row - 1, (column + 1) % 2),
-                               memoizeTotalScore(row - 2, column),
-                               memoizeTotalScore(row - 2, (column + 1) % 2)});
+    return ret = stickers[row][column]
+                 + max({memoize(row - 1, (column + 1) % 2),
+                        memoize(row - 2, column),
+                        memoize(row - 2, (column + 1) % 2)});
 }
 
 int main() {
@@ -42,9 +42,9 @@ int main() {
             cin >> stickers[i][1];
         }
 
-        memset(maxTotalScoreCache, UNKNOWN, sizeof(maxTotalScoreCache));
+        memset(dp, UNKNOWN, sizeof(dp));
 
-        cout << max(memoizeTotalScore(numRow - 1, 0), memoizeTotalScore(numRow - 1, 1)) << '\n';
+        cout << max(memoize(numRow - 1, 0), memoize(numRow - 1, 1)) << '\n';
     }
 
     return 0;

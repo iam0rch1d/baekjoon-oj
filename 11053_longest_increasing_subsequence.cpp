@@ -4,7 +4,7 @@
 using namespace std;
 
 int a[1000];
-int maxLengthCache[1000];
+int dp[1000];
 
 int main() {
     int n;
@@ -15,11 +15,11 @@ int main() {
         cin >> a[i];
 
         for (int j = 0; j < i; j++) {
-            if (a[j] < a[i]) maxLengthCache[i] = max(maxLengthCache[i], maxLengthCache[j] + 1);
+            if (a[j] < a[i]) dp[i] = max(dp[i], dp[j] + 1);
         }
     }
 
-    cout << *max_element(maxLengthCache, maxLengthCache + n) + 1 << '\n';
+    cout << *max_element(dp, dp + n) + 1 << '\n';
 
     return 0;
 }

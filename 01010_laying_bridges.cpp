@@ -5,17 +5,16 @@ using namespace std;
 
 #define UNKNOWN -1
 
-long long constructionCountCache[31][31];
+long long dp[31][31];
 
-long long memoizeConstructionCount(int numFromNode, int numToNode) {
-    if (numFromNode == 0 || numFromNode == numToNode) return 1;
+long long memoize(int n, int m) {
+    if (n == 0 || n == m) return 1;
 
-    long long &constructionCount = constructionCountCache[numFromNode][numToNode];
+    long long &ret = dp[n][m];
 
-    if (constructionCount != UNKNOWN) return constructionCount;
+    if (ret != UNKNOWN) return ret;
 
-    return constructionCount = memoizeConstructionCount(numFromNode - 1, numToNode - 1)
-                               + memoizeConstructionCount(numFromNode, numToNode - 1);
+    return ret = memoize(n - 1, m - 1) + memoize(n, m - 1);
 }
 
 int main() {
@@ -24,14 +23,14 @@ int main() {
     cin >> t;
 
     while (t--) {
-        int numFromNode;
-        int numToNode;
+        int n;
+        int m;
 
-        cin >> numFromNode >> numToNode;
+        cin >> n >> m;
 
-        memset(constructionCountCache, UNKNOWN, sizeof(constructionCountCache));
+        memset(dp, UNKNOWN, sizeof(dp));
 
-        cout << memoizeConstructionCount(numFromNode, numToNode) << '\n';
+        cout << memoize(n, m) << '\n';
     }
 
     return 0;
