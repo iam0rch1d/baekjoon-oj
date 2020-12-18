@@ -3,7 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
 #define MODULO 10007
 
 int dp[1001];
@@ -14,7 +13,7 @@ int memoize(int width) {
 
     int &ret = dp[width];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     return ret = (memoize(width - 1) + 2 * memoize(width - 2)) % MODULO;
 }
@@ -22,7 +21,7 @@ int memoize(int width) {
 int main() {
     int width;
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cin >> width;
     cout << memoize(width) << '\n';

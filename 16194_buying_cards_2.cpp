@@ -3,8 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 int a[1001];
 int dp[1001];
 
@@ -13,7 +11,7 @@ int memoize(int leftCards) {
 
     int &ret = dp[leftCards];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     ret = 100000001;
 
@@ -33,7 +31,7 @@ int main() {
         cin >> a[i];
     }
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cout << memoize(n) << '\n';
 

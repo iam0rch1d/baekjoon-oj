@@ -3,16 +3,14 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
-int r[500];
-int c[500];
-long long dp[500][500];
-
 template<typename T>
 void chmin(T &m, T q) {
     m = min(m, q);
 }
+
+int r[500];
+int c[500];
+long long dp[500][500];
 
 long long memoize(int left, int right) {
     if (left >= right) return 0;

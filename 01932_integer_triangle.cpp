@@ -3,22 +3,14 @@
 
 using namespace std;
 
-typedef struct {
-    int y;
-    int x;
-} Point;
+int memoize(vector<vector<int>> &a, vector<vector<int>> &dp, int y, int x) {
+    if (y == a.size() - 1) return a[y][x];
 
-#define UNKNOWN -1
+    int &ret = dp[y][x];
 
-int memoize(vector<vector<int>> &a, vector<vector<int>> &dp, Point from) {
-    if (from.y == a.size() - 1) return a[from.y][from.x];
+    if (ret != -1) return ret;
 
-    int &ret = dp[from.y][from.x];
-
-    if (ret != UNKNOWN) return ret;
-
-    return ret = a[from.y][from.x]
-                 + max(memoize(a, dp, {from.y + 1, from.x}), memoize(a, dp, {from.y + 1, from.x + 1}));
+    return ret = a[y][x] + max(memoize(a, dp, y + 1, x), memoize(a, dp, y + 1, x + 1));
 }
 
 int main() {
@@ -27,7 +19,7 @@ int main() {
     cin >> n;
 
     vector<vector<int>> a(n, vector<int>(n));
-    vector<vector<int>> dp(n, vector<int>(n, UNKNOWN));
+    vector<vector<int>> dp(n, vector<int>(n, -1));
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j <= i; j++) {
@@ -35,7 +27,7 @@ int main() {
         }
     }
 
-    cout << memoize(a, dp, {0, 0}) << '\n';
+    cout << memoize(a, dp, 0, 0) << '\n';
 
     return 0;
 }

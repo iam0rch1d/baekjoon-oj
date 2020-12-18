@@ -3,7 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
 #define MODULO 1000000009
 
 long long dp[1000001];
@@ -14,7 +13,7 @@ long long memoize(int n) {
 
     long long &methodCount = dp[n];
 
-    if (methodCount != UNKNOWN) return methodCount;
+    if (methodCount != -1) return methodCount;
 
     return methodCount = (memoize(n - 1) + memoize(n - 2) + memoize(n - 3)) % MODULO;
 }
@@ -22,7 +21,7 @@ long long memoize(int n) {
 int main() {
     int tc;
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cin >> tc;
 

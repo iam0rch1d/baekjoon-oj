@@ -3,13 +3,12 @@
 
 using namespace std;
 
-#define UNKNOWN -1
 #define MODULO 1000000000
 
 int memoize(vector<vector<int>> &dp, int size, int startNumber) {
     if (size == 1) return 1;
 
-    if (dp[size][startNumber] != UNKNOWN) {
+    if (dp[size][startNumber] != -1) {
         return dp[size][startNumber];
     }
 
@@ -26,7 +25,7 @@ int main() {
 
     cin >> n;
 
-    vector<vector<int>> dp(n + 1, vector<int>(10, UNKNOWN));
+    vector<vector<int>> dp(n + 1, vector<int>(10, -1));
 
     for (int i = 1; i <= 9; i++) {
         ans = (ans + memoize(dp, n, i)) % MODULO;

@@ -3,22 +3,20 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
-int chapters[500];
-int dp[500][500];
-
 template<typename T>
 void chmin(T &m, T q) {
     m = min(m, q);
 }
+
+int chapters[500];
+int dp[500][500];
 
 int memoize(int left, int right) {
     if (left == right) return 0;
 
     int &ret = dp[left][right];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     int chapterSum = 0;
 
@@ -43,7 +41,7 @@ int main() {
     while (tc--) {
         int k;
 
-        memset(dp, UNKNOWN, sizeof(dp));
+        memset(dp, -1, sizeof(dp));
 
         cin >> k;
 

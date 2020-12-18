@@ -5,14 +5,14 @@ using namespace std;
 #define MAX_N 51
 
 int sSize;
-int counts[3];
+int officeCounts[3];
 bool dp[MAX_N][MAX_N][MAX_N][3][3];
 char ans[MAX_N];
 
 bool memoize(int a, int b, int c, int p2, int p1) {
     int ansSize = a + b + c;
 
-    if (ansSize == sSize) return a == counts[0] && b == counts[1] && c == counts[2];
+    if (ansSize == sSize) return a == officeCounts[0] && b == officeCounts[1] && c == officeCounts[2];
 
     bool &ret = dp[a][b][c][p2][p1];
 
@@ -46,7 +46,7 @@ int main() {
     sSize = s.size();
 
     for (char si : s) {
-        counts[si - 'A']++;
+        officeCounts[si - 'A']++;
     }
 
     cout << (memoize(0, 0, 0, -1, -1) ? ans : "-1") << '\n';

@@ -3,8 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 long long dp[31][31];
 
 long long memoize(int n, int m) {
@@ -12,7 +10,7 @@ long long memoize(int n, int m) {
 
     long long &ret = dp[n][m];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     return ret = memoize(n - 1, m - 1) + memoize(n, m - 1);
 }
@@ -28,7 +26,7 @@ int main() {
 
         cin >> n >> m;
 
-        memset(dp, UNKNOWN, sizeof(dp));
+        memset(dp, -1, sizeof(dp));
 
         cout << memoize(n, m) << '\n';
     }

@@ -4,8 +4,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 int stickers[100000][2];
 int dp[100000][2];
 
@@ -16,12 +14,11 @@ int memoize(int row, int column) {
 
     int &ret = dp[row][column];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
-    return ret = stickers[row][column]
-                 + max({memoize(row - 1, (column + 1) % 2),
-                        memoize(row - 2, column),
-                        memoize(row - 2, (column + 1) % 2)});
+    return ret = stickers[row][column] + max({memoize(row - 1, (column + 1) % 2),
+                                              memoize(row - 2, column),
+                                              memoize(row - 2, (column + 1) % 2)});
 }
 
 int main() {
@@ -42,7 +39,7 @@ int main() {
             cin >> stickers[i][1];
         }
 
-        memset(dp, UNKNOWN, sizeof(dp));
+        memset(dp, -1, sizeof(dp));
 
         cout << max(memoize(numRow - 1, 0), memoize(numRow - 1, 1)) << '\n';
     }

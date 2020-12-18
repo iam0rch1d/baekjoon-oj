@@ -4,19 +4,17 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
-int timeCache[1001][1001];
+int cache[1001][1001];
 
 int main() {
     int s;
     queue<pair<int, int>> bfsEmojis;  // .first = <current emoji>, .second = <emoji on clipboard>
 
-    memset(timeCache, UNKNOWN, sizeof(timeCache));
+    memset(cache, -1, sizeof(cache));
 
     cin >> s;
 
-    timeCache[1][0] = 0;
+    cache[1][0] = 0;
 
     bfsEmojis.push({1, 0});
 
@@ -24,7 +22,7 @@ int main() {
         pair<int, int> currentEmoji = bfsEmojis.front();
 
         if (currentEmoji.first == s) {
-            cout << timeCache[currentEmoji.first][currentEmoji.second] << '\n';
+            cout << cache[currentEmoji.first][currentEmoji.second] << '\n';
 
             return 0;
         }
@@ -40,12 +38,11 @@ int main() {
                 || adjacentEmoji.first > 1000
                 || adjacentEmoji.second < 0
                 || adjacentEmoji.second > 1000
-                || timeCache[adjacentEmoji.first][adjacentEmoji.second] != UNKNOWN) {
+                || cache[adjacentEmoji.first][adjacentEmoji.second] != -1) {
                 continue;
             }
 
-            timeCache[adjacentEmoji.first][adjacentEmoji.second] = timeCache[currentEmoji.first][currentEmoji.second]
-                                                                   + 1;
+            cache[adjacentEmoji.first][adjacentEmoji.second] = cache[currentEmoji.first][currentEmoji.second] + 1;
 
             bfsEmojis.push(adjacentEmoji);
         }

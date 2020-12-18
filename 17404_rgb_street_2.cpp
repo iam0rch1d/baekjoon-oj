@@ -4,8 +4,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 int n;
 int costs[1000][3];
 int dp[1000][3];
@@ -15,7 +13,7 @@ int memoize(int from, int color, int firstColor) {
 
     int &ret = dp[from][color];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     return ret = costs[from][color] + min(memoize(from + 1, (color + 1) % 3, firstColor),
                                           memoize(from + 1, (color + 2) % 3, firstColor));
@@ -31,7 +29,7 @@ int main() {
     }
 
     for (int i = 0; i < 3; i++) {
-        memset(dp, UNKNOWN, sizeof(dp));
+        memset(dp, -1, sizeof(dp));
 
         ans = min(ans, memoize(0, i, i));
     }

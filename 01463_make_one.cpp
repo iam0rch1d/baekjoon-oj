@@ -4,8 +4,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 int dp[1000001];
 
 int memoize(int x) {
@@ -13,7 +11,7 @@ int memoize(int x) {
 
     int &ret = dp[x];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     int whenDividedBy3 = x % 3 == 0 ? 1 + memoize(x / 3) : 1000000;
     int whenDividedBy2 = x % 2 == 0 ? 1 + memoize(x / 2) : 1000000;
@@ -24,7 +22,7 @@ int memoize(int x) {
 int main() {
     int x;
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cin >> x;
     cout << memoize(x) << '\n';

@@ -4,8 +4,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 enum Color {
     RED = 0,
     GREEN,
@@ -21,7 +19,7 @@ int memoize(int house, int color) {
 
     int &ret = dp[house][color];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     return ret = costs[house][color] + min(memoize(house - 1, (color + 1) % 3), memoize(house - 1, (color + 2) % 3));
 }
@@ -33,7 +31,7 @@ int main() {
         cin >> costs[i][RED] >> costs[i][GREEN] >> costs[i][BLUE];
     }
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cout << min({memoize(n - 1, RED), memoize(n - 1, GREEN), memoize(n - 1, BLUE)}) << '\n';
 

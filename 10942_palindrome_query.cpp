@@ -3,8 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 int a[2000];
 int dp[2000][2000];
 
@@ -13,7 +11,7 @@ int memoize(int left, int right) {
 
     int &ret = dp[left][right];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     return ret = memoize(left + 1, right - 1) * (a[left] == a[right]);
 }
@@ -26,7 +24,7 @@ int main() {
     int n;
     int m;
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cin >> n;
 

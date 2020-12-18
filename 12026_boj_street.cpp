@@ -2,6 +2,11 @@
 
 using namespace std;
 
+template<typename T>
+void chmin(T &m, T q) {
+    m = min(m, q);
+}
+
 #define INF 987654321
 
 int dp[1000];
@@ -10,11 +15,6 @@ char previousOf(char c) {
     if (c == 'B') return 'J';
     else if (c == 'O') return 'B';
     else return 'O';
-}
-
-template<typename T>
-void chmin(T &m, T q) {
-    m = min(m, q);
 }
 
 int main() {

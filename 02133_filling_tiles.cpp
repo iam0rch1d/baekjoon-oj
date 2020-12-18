@@ -3,8 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 int dp[16];
 
 int memoize(int width) {
@@ -12,7 +10,7 @@ int memoize(int width) {
 
     int &tilingCount = dp[width / 2];
 
-    if (tilingCount != UNKNOWN) return tilingCount;
+    if (tilingCount != -1) return tilingCount;
 
     tilingCount = 3 * memoize(width - 2);
 
@@ -26,7 +24,7 @@ int memoize(int width) {
 int main() {
     int width;
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cin >> width;
 

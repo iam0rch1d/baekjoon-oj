@@ -3,7 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
 #define MODULO 1000000009
 
 long long dp[100001][4];
@@ -16,7 +15,7 @@ long long memoize(int n, int firstNumber) {
 
     long long &ret = dp[n][firstNumber];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     if (firstNumber == 1) return ret = memoize(n - 1, 2) + memoize(n - 1, 3) % MODULO;
     else if (firstNumber == 2) return ret = memoize(n - 2, 1) + memoize(n - 2, 3) % MODULO;
@@ -27,7 +26,7 @@ long long memoize(int n, int firstNumber) {
 int main() {
     int tc;
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cin >> tc;
 

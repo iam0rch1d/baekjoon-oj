@@ -3,8 +3,6 @@
 
 using namespace std;
 
-#define UNKNOWN -1
-
 template<typename T>
 void chmin(T &m, T q) {
     m = min(m, q);
@@ -22,7 +20,7 @@ int memoize(int x, int y, int z) {
 
     int &ret = dp[x][y][z];
 
-    if (ret != UNKNOWN) return ret;
+    if (ret != -1) return ret;
 
     ret = 987654321;
 
@@ -40,7 +38,7 @@ int memoize(int x, int y, int z) {
 int main() {
     int n;
 
-    memset(dp, UNKNOWN, sizeof(dp));
+    memset(dp, -1, sizeof(dp));
 
     cin >> n;
 
