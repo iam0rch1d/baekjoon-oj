@@ -3,14 +3,14 @@
 
 using namespace std;
 
-int t[1500000];
-long long p[1500000];
-long long dp[1500051];
-
 template<typename T>
 void chmax(T &m, T q) {
     m = max(m, q);
 }
+
+int t[1500000];
+long long p[1500000];
+long long dp[1500051];
 
 int main() {
     ios_base::sync_with_stdio(false);
