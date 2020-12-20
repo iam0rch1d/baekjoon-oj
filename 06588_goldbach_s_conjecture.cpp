@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool isSieved[1000001];
+bool eratosthenesSieve[1000001];
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -13,11 +13,11 @@ int main() {
     vector<int> primes;
 
     for (int i = 2; i <= 1000000; i++) {
-        if (!isSieved[i]) {
+        if (!eratosthenesSieve[i]) {
             primes.push_back(i);
 
             for (int j = i + i; j <= 1000000; j += i) {
-                isSieved[j] = true;
+                eratosthenesSieve[j] = true;
             }
         }
     }
@@ -30,7 +30,7 @@ int main() {
         if (even == 0) return 0;
 
         for (int i = 1; 2 * primes[i] <= even; i++) {
-            if (!isSieved[even - primes[i]]) {
+            if (!eratosthenesSieve[even - primes[i]]) {
                 cout << even << " = " << primes[i] << " + " << even - primes[i] << '\n';
 
                 break;

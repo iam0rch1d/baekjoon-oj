@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool isSieved[4000001] = {true, true};
+bool eratosthenesSieve[4000001] = {true, true};
 
 int main() {
     int n;
@@ -17,13 +17,13 @@ int main() {
     cin >> n;
 
     for (int i = 2; i <= n; i++) {
-        if (isSieved[i]) continue;
+        if (eratosthenesSieve[i]) continue;
 
         primes.push_back(i);
         primesSize++;
 
         for (int j = i + i; j <= n; j += i) {
-            isSieved[j] = true;
+            eratosthenesSieve[j] = true;
         }
     }
 

@@ -3,18 +3,18 @@
 
 using namespace std;
 
-bool isSieved[1000001];
+bool eratosthenesSieve[1000001];
 
 int main() {
     vector<int> primes;
     int tc;
 
     for (int i = 2; i <= 1000000; i++) {
-        if (!isSieved[i]) {
+        if (!eratosthenesSieve[i]) {
             primes.push_back(i);
 
             for (int j = i + i; j <= 1000000; j += i) {
-                isSieved[j] = true;
+                eratosthenesSieve[j] = true;
             }
         }
     }
@@ -28,7 +28,7 @@ int main() {
         cin >> even;
 
         for (int i = 0; 2 * primes[i] <= even; i++) {
-            if (!isSieved[even - primes[i]]) partitionCount++;
+            if (!eratosthenesSieve[even - primes[i]]) partitionCount++;
         }
 
         cout << partitionCount << '\n';
