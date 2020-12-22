@@ -29,12 +29,12 @@ int dncMinDistance(vector<Point> &points, int left, int right) {
                     squareDistance(points[mid], points[right])});
     }
 
-    int minDistance = min(dncMinDistance(points, left, mid), dncMinDistance(points, mid + 1, right));
+    int ret = min(dncMinDistance(points, left, mid), dncMinDistance(points, mid + 1, right));
     vector<Point> centerPoints;
     int centerPointsSize;
 
     for (int i = left; i <= right; i++) {
-        if (square(points[mid].x - points[i].x) < minDistance) centerPoints.push_back(points[i]);
+        if (square(points[mid].x - points[i].x) < ret) centerPoints.push_back(points[i]);
     }
 
     sort(centerPoints.begin(), centerPoints.end(), [](auto &i, auto &j) { return tie(i.y, i.x) < tie(j.y, j.x); });
@@ -43,13 +43,13 @@ int dncMinDistance(vector<Point> &points, int left, int right) {
 
     for (int i = 0; i < centerPointsSize - 1; i++) {
         for (int j = i + 1; j < centerPointsSize; j++) {
-            if (square(centerPoints[i].y - centerPoints[j].y) < minDistance) {
-                minDistance = min(minDistance, squareDistance(centerPoints[i], centerPoints[j]));
+            if (square(centerPoints[i].y - centerPoints[j].y) < ret) {
+                ret = min(ret, squareDistance(centerPoints[i], centerPoints[j]));
             } else break;
         }
     }
 
-    return minDistance;
+    return ret;
 }
 
 int main() {

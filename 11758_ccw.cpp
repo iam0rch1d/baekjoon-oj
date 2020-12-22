@@ -1,25 +1,25 @@
 #include <iostream>
 
 using namespace std;
+using pii = pair<int, int>;
+
+#define F first
+#define S second
+#define FOR(i, x, y) for (int i = (x); i < (y); i++)
+#define REP(i, x) FOR(i, 0, x)
+#define PRINTLN(x) cout << (x) << '\n'
 
 int main() {
-    pair<int, int> points[3];
-    pair<int, int> vectors[2];
+    pii p[3];
+    int ccw = 0;
 
-    for (auto &point : points) {
-        cin >> point.first >> point.second;
+    for (auto &pi : p) {
+        cin >> pi.F >> pi.S;
     }
 
-    vectors[0] = {points[1].first - points[0].first, points[1].second - points[0].second};
-    vectors[1] = {points[1].first - points[2].first, points[1].second - points[2].second};
+    REP(i, 3) {ccw += p[i].F * p[(i + 1) % 3].S - p[i].S * p[(i + 1) % 3].F;
 
-    int vectorProductZ = vectors[0].first * vectors[1].second - vectors[0].second * vectors[1].first;
-
-    if (vectorProductZ > 0) cout << -1;
-    else if (vectorProductZ < 0) cout << 1;
-    else cout << 0;
-
-    cout << '\n';
+    PRINTLN(ccw > 0 ? 1 : ccw < 0 ? -1 : 0);
 
     return 0;
 }

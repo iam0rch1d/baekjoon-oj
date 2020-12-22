@@ -11,7 +11,7 @@ int main() {
     while (true) {
         int n;
         stack<long long> sticks;
-        long long maxSurface = 0;
+        long long ans = 0;
 
         cin >> n;
 
@@ -33,7 +33,7 @@ int main() {
                 // <left> = sticks.top() + 1, <right> = i - 1
                 width = i - (sticks.empty() ? 0 : sticks.top() + 1);
 
-                maxSurface = max(maxSurface, width * height);
+                ans = max(ans, width * height);
             }
 
             sticks.push(i);
@@ -47,9 +47,9 @@ int main() {
 
             width = n - (sticks.empty() ? 0 : sticks.top() + 1);
 
-            maxSurface = max(maxSurface, width * height);
+            ans = max(ans, width * height);
         }
 
-        cout << maxSurface << '\n';
+        cout << ans << '\n';
     }
 }

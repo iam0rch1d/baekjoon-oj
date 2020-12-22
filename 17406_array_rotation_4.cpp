@@ -4,8 +4,8 @@
 
 using namespace std;
 
-#define y first
-#define x second
+#define F first
+#define S second
 
 struct Rotation {
     int r;
@@ -43,7 +43,7 @@ void rotate(vector<vector<int>> &a, Rotation rotation) {
         beltSize = belts[i].size();
 
         for (int j = 0; j < beltSize; j++) {
-            a[nextPositionOfBelts[i][j].y][nextPositionOfBelts[i][j].x] = belts[i][j];
+            a[nextPositionOfBelts[i][j].F][nextPositionOfBelts[i][j].S] = belts[i][j];
         }
     }
 }
