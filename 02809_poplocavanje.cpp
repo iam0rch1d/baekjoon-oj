@@ -51,9 +51,9 @@ int main() {
     int m;
     Trie trie;
     queue<int> bfsNodes;
-    vector<pair<int, bool>> matches;  // .first = <index>, .second = <if match is closing(right end)>
-    int matchOpenIndex = 0;
-    int matchOpenStack = 0;
+    vector<pair<int, int>> matches;
+    int matchStart = 0;
+    int matchStack = 0;
     int foundCharCount = 0;
 
     cin >> n >> s >> m;
@@ -114,23 +114,19 @@ int main() {
         if (trie.nodes[prefixNode].childNodes.count(s[i])) prefixNode = trie.nodes[prefixNode].childNodes[s[i]];
 
         if (trie.nodes[prefixNode].length) {
-            matches.emplace_back(i - trie.nodes[prefixNode].length + 1, false);
-            matches.emplace_back(i, true);
+            matches.emplace_back(i - trie.nodes[prefixNode].length + 1, -1);
+            matches.emplace_back(i, 1);
         }
     }
 
     sort(matches.begin(), matches.end());
 
     for (auto &match : matches) {
-        if (!match.second) {
-            if (!matchOpenStack) matchOpenIndex = match.first;
+        if (!matchStack) matchStart = match.first;
 
-            matchOpenStack++;
-        } else {
-            matchOpenStack--;
+        matchStack += match.second;
 
-            if (!matchOpenStack) foundCharCount += match.first - matchOpenIndex + 1;
-        }
+        if (!matchStack) foundCharCount += match.first - matchStart + 1;
     }
 
     cout << n - foundCharCount << '\n';
