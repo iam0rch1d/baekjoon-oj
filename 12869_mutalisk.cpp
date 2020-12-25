@@ -4,9 +4,7 @@
 using namespace std;
 
 template<typename T>
-void chmin(T &m, T q) {
-    m = min(m, q);
-}
+void chmin(T &m, T q) { m = min(m, q); }
 
 int scv[3];
 int dp[61][61][61];

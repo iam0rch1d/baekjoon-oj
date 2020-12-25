@@ -4,9 +4,7 @@
 using namespace std;
 
 template<typename T>
-void chmin(T &m, T q) {
-    m = min(m, q);
-}
+void chmin(T &m, T q) { m = min(m, q); }
 
 int chapters[500];
 int dp[500][500];

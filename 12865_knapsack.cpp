@@ -7,9 +7,7 @@ int v[101];
 int dp[100001];
 
 template<typename T>
-void chmax(T &m, T q) {
-    m = max(m, q);
-}
+void chmax(T &m, T q) { m = max(m, q); }
 
 int main() {
     int n;
