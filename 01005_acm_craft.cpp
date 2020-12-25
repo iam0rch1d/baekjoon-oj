@@ -14,11 +14,11 @@ template<typename T>
 void chmax(T &m, T q) { m = max(m, q); }
 
 int main() {
-    int t;
+    int tc;
 
-    cin >> t;
+    cin >> tc;
 
-    while (t--) {
+    while (tc--) {
         int n;
         int k;
 
