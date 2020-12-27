@@ -2,6 +2,7 @@
 #include <vector>
 
 using namespace std;
+
 using vi = vector<int>;
 
 #define FOR(i, x, y) for (int i = (x); i < (y); i++)

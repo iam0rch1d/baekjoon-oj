@@ -3,6 +3,7 @@
 #include <vector>
 
 using namespace std;
+
 using pib = pair<int, bool>;
 using vpib = vector<pib>;
 

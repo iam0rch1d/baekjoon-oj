@@ -3,6 +3,7 @@
 #include <vector>
 
 using namespace std;
+
 using ll = long long;
 using pll = pair<ll, ll>;
 using vpll = vector<pll>;

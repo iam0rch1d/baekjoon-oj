@@ -4,6 +4,7 @@
 #include <vector>
 
 using namespace std;
+
 using vi = vector<int>;
 
 #define ALL(x) x.begin(), x.end()

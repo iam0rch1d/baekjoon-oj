@@ -3,11 +3,12 @@
 #include <vector>
 
 using namespace std;
+
 using vi = vector<int>;
 using vvi = vector<vi>;
 
 #define ALL(x) x.begin(), x.end()
-#define FOR_(i, x, y) for (int i = x; i <= y; i++)
+#define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
 #define PRINTLN(x) cout << (x) << '\n'
 
 template<typename T>

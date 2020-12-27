@@ -6,14 +6,10 @@ using namespace std;
 #define MODULO 1000001
 
 template<typename T>
-void chmodadd(T &x, T q) {
-    x = (x + q) % MODULO;
-}
+void chmodadd(T &x, T q) { x = (x + q) % MODULO; }
 
 template<typename T>
-T modmul(T x, T y) {
-    return x * y % MODULO;
-}
+T modmul(T x, T y) { return x * y % MODULO; }
 
 long long dp[101][101][101];
 

@@ -3,6 +3,7 @@
 #include <vector>
 
 using namespace std;
+
 using pii = pair<int, int>;
 using vpii = vector<pii>;
 
