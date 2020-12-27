@@ -4,7 +4,7 @@
 using namespace std;
 
 template<typename T>
-void chmin(T &m, T q) { m = min(m, q); }
+bool chmin(T &m, T q) { if (m > q) { m = q; return true; } return false; }
 
 int r[500];
 int c[500];

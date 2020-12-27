@@ -5,7 +5,7 @@ using namespace std;
 long long dp[101];
 
 template<typename T>
-void chmax(T &m, T q) { m = max(m, q); }
+bool chmax(T &m, T q) { if (m < q) { m = q; return true; } return false; }
 
 int main() {
     int n;

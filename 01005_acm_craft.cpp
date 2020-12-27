@@ -12,7 +12,7 @@ using vvi = vector<vi>;
 #define PRINTLN(x) cout << (x) << '\n'
 
 template<typename T>
-void chmax(T &m, T q) { m = max(m, q); }
+bool chmax(T &m, T q) { if (m < q) { m = q; return true; } return false; }
 
 int main() {
     int tc;
