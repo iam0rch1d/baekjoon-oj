@@ -2,6 +2,7 @@
 #include <cstring>
 #include <complex>
 #include <deque>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <map>
