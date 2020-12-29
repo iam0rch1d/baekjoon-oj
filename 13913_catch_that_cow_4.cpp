@@ -5,11 +5,11 @@ using namespace std;
 
 int sourcePosition;
 int timeAt[100001];
-int previousPositions[100001];
+int backPositions[100001];
 
 void tracebackPositions(int currentPosition) {
     if (currentPosition != sourcePosition) {
-        tracebackPositions(previousPositions[currentPosition]);
+        tracebackPositions(backPositions[currentPosition]);
     }
 
     cout << currentPosition << ' ';
@@ -45,7 +45,7 @@ int main() {
         for (int adjacentPosition : adjacentPositions) {
             if (adjacentPosition >= 0 && adjacentPosition <= 100000 && !timeAt[adjacentPosition]) {
                 timeAt[adjacentPosition] = timeAt[currentPosition] + 1;
-                previousPositions[adjacentPosition] = currentPosition;
+                backPositions[adjacentPosition] = currentPosition;
 
                 bfsPositions.push(adjacentPosition);
             }

@@ -6,7 +6,7 @@
 using namespace std;
 
 bool isVisited[10000];
-int previousRegisters[10000];
+int backRegisters[10000];
 char commandFor[10000];
 
 int main() {
@@ -36,7 +36,7 @@ int main() {
                 while (currentRegister != a) {
                     tracebackRegisters.push(currentRegister);
 
-                    currentRegister = previousRegisters[currentRegister];
+                    currentRegister = backRegisters[currentRegister];
                 }
 
                 while (!tracebackRegisters.empty()) {
@@ -58,7 +58,7 @@ int main() {
             for (int i = 0; i < 4; i++) {
                 if (!isVisited[adjacentRegisters[i]]) {
                     isVisited[adjacentRegisters[i]] = true;
-                    previousRegisters[adjacentRegisters[i]] = currentRegister;
+                    backRegisters[adjacentRegisters[i]] = currentRegister;
                     commandFor[adjacentRegisters[i]] = "DSLR"[i];
 
                     bfsRegisters.push(adjacentRegisters[i]);

@@ -2,14 +2,14 @@
 
 using namespace std;
 
-void dncMoveDisc(unsigned size, int fromPeg, int auxiliaryPeg, int toPeg) {
+void dncMoveDisc(unsigned size, int fromPeg, int auxPeg, int toPeg) {
     if (!size) return;
 
-    dncMoveDisc(size - 1, fromPeg, toPeg, auxiliaryPeg);
+    dncMoveDisc(size - 1, fromPeg, toPeg, auxPeg);
 
     cout << fromPeg << ' ' << toPeg << '\n';
 
-    dncMoveDisc(size - 1, auxiliaryPeg, fromPeg, toPeg);
+    dncMoveDisc(size - 1, auxPeg, fromPeg, toPeg);
 }
 
 int main() {

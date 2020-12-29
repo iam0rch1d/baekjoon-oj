@@ -58,7 +58,7 @@ int main() {
 
     vi distances(n, INF);
     priority_queue<pii> dijkstraVertices;
-    vi triggerVertices(n, -1);
+    vi backVertices(n, -1);
 
     distances[startVertex] = 0;
 
@@ -83,7 +83,7 @@ int main() {
             if (chmin(distances[toVertex], distances[vertex] + weight)) {
                 dijkstraVertices.push({-distances[toVertex], toVertex});
 
-                triggerVertices[toVertex] = vertex;
+                backVertices[toVertex] = vertex;
             }
         }
     }
@@ -96,7 +96,7 @@ int main() {
     while (finishVertex != -1) {
         traceback.push(finishVertex + 1);
 
-        finishVertex = triggerVertices[finishVertex];
+        finishVertex = backVertices[finishVertex];
         tracebackSize++;
     }
 
