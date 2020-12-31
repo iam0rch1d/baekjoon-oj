@@ -9,12 +9,12 @@ using namespace std;
 vector<int> adjacentVerticesOf[1001];
 bool isVisited[1001];
 
-void dfsGraph(int currentVertex) {
-    isVisited[currentVertex] = true;
+void dfsGraph(int vertex) {
+    isVisited[vertex] = true;
 
-    cout << currentVertex << ' ';
+    cout << vertex << ' ';
 
-    for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
+    for (int adjacentVertex : adjacentVerticesOf[vertex]) {
         if (!isVisited[adjacentVertex]) dfsGraph(adjacentVertex);
     }
 }
