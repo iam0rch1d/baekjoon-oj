@@ -10,9 +10,9 @@ using namespace std;
 struct Edge {
     int fromVertex;
     int toVertex;
-    int weight;
+    int cost;
 
-    bool operator<(Edge &q) const { return weight < q.weight; }
+    bool operator<(Edge &q) const { return cost < q.cost; }
 };
 
 int main() {
@@ -24,7 +24,7 @@ int main() {
     vector<Edge> edges(e);
 
     for (Edge &edge : edges) {
-        cin >> edge.fromVertex >> edge.toVertex >> edge.weight;
+        cin >> edge.fromVertex >> edge.toVertex >> edge.cost;
     }
 
     sort(ALL(edges));
@@ -58,7 +58,7 @@ int main() {
     int ans = 0;
 
     for (Edge edge : edges) {
-        if (ufUnion(edge.fromVertex, edge.toVertex)) ans += edge.weight;
+        if (ufUnion(edge.fromVertex, edge.toVertex)) ans += edge.cost;
     }
 
     PRINTLN(ans);

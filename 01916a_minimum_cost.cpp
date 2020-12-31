@@ -18,7 +18,7 @@ using pii = pair<int, int>;
 
 struct Edge {
     int toVertex;
-    int weight;
+    int cost;
 };
 
 vector<Edge> edgesOf[100000];
@@ -33,14 +33,14 @@ int main() {
     REP(i, m) {
         int fromVertex;
         int toVertex;
-        int weight;
+        int cost;
 
-        cin >> fromVertex >> toVertex >> weight;
+        cin >> fromVertex >> toVertex >> cost;
 
         fromVertex--;
         toVertex--;
 
-        edgesOf[fromVertex].push_back({toVertex, weight});
+        edgesOf[fromVertex].push_back({toVertex, cost});
     }
 
     int startVertex;
@@ -72,16 +72,16 @@ int main() {
 
         for (auto edge : edgesOf[vertex]) {
             int toVertex = edge.toVertex;
-            int weight = edge.weight;
+            int cost = edge.cost;
 
-            if (distances[toVertex] > distances[vertex] + weight) {
+            if (distances[toVertex] > distances[vertex] + cost) {
                 if (distances[toVertex] != INF) {
                     dijkstraVertices.erase(dijkstraVertices.find({distances[toVertex], toVertex}));
                 }
 
-                distances[toVertex] = distances[vertex] + weight;
+                distances[toVertex] = distances[vertex] + cost;
 
-                dijkstraVertices.insert({distances[vertex] + weight, toVertex});
+                dijkstraVertices.insert({distances[vertex] + cost, toVertex});
             }
         }
     }

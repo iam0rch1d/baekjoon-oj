@@ -4,7 +4,7 @@
 using namespace std;
 
 using ll = long long;
-using vll = vector<ll>;
+using vl = vector<ll>;
 
 #define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
 #define PRINTLN(x) cout << (x) << '\n'
@@ -14,7 +14,7 @@ int main() {
 
     cin >> n;
 
-    vll dp(n + 2, 0);
+    vl dp(n + 2, 0);
 
     dp[0] = 0;
     dp[1] = 1;

@@ -4,7 +4,7 @@
 using namespace std;
 
 using ll = long long;
-using vll = vector<ll>;
+using vl = vector<ll>;
 
 #define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
 #define PRINTLN(x) cout << (x) << '\n'
@@ -14,7 +14,7 @@ using vll = vector<ll>;
 struct Edge {
     int fromVertex;
     int toVertex;
-    int weight;
+    int cost;
 };
 
 int main() {
@@ -26,10 +26,10 @@ int main() {
     vector<Edge> edges(m);
 
     for (Edge &edge : edges) {
-        cin >> edge.fromVertex >> edge.toVertex >> edge.weight;
+        cin >> edge.fromVertex >> edge.toVertex >> edge.cost;
     }
 
-    vll distances(n + 1, INF);
+    vl distances(n + 1, INF);
     bool hasNegativeCycle = false;
 
     distances[1] = 0;
@@ -38,7 +38,7 @@ int main() {
         for (Edge edge : edges) {
             int a = edge.fromVertex;
             int b = edge.toVertex;
-            int c = edge.weight;
+            int c = edge.cost;
 
             if (distances[a] != INF && distances[b] > distances[a] + c) {
                 distances[b] = distances[a] + c;

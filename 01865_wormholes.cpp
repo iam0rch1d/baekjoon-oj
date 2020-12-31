@@ -4,7 +4,7 @@
 using namespace std;
 
 using ll = long long;
-using vll = vector<ll>;
+using vl = vector<ll>;
 
 #define FOR(i, x, y) for (int i = (x); i < (y); i++)
 #define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
@@ -16,7 +16,7 @@ using vll = vector<ll>;
 struct Edge {
     int fromVertex;
     int toVertex;
-    int weight;
+    int cost;
 };
 
 int main() {
@@ -36,25 +36,25 @@ int main() {
         vector<Edge> edges(edgesSize);
 
         REP(i, m) {
-            cin >> edges[i].fromVertex >> edges[i].toVertex >> edges[i].weight;
+            cin >> edges[i].fromVertex >> edges[i].toVertex >> edges[i].cost;
 
-            edges[m + i] = {edges[i].toVertex, edges[i].fromVertex, edges[i].weight};
+            edges[m + i] = {edges[i].toVertex, edges[i].fromVertex, edges[i].cost};
         }
 
         FOR(i, 2 * m, edgesSize) {
-            cin >> edges[i].fromVertex >> edges[i].toVertex >> edges[i].weight;
+            cin >> edges[i].fromVertex >> edges[i].toVertex >> edges[i].cost;
 
-            edges[i].weight = -edges[i].weight;
+            edges[i].cost = -edges[i].cost;
         }
 
-        vll distances(n + 1, 0);
+        vl distances(n + 1, 0);
         bool hasNegativeCycle = false;
 
         FOR_(i, 1, n) {
             for (Edge edge : edges) {
                 int s = edge.fromVertex;
                 int e = edge.toVertex;
-                int t = edge.weight;
+                int t = edge.cost;
 
                 if (distances[s] != INF && distances[e] > distances[s] + t) {
                     distances[e] = distances[s] + t;

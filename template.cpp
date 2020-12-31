@@ -18,13 +18,17 @@ using namespace std;
 
 using ll = long long;
 using pii = pair<int, int>;
+using pil = pair<int, ll>;
 using pll = pair<ll, ll>;
 using vb = vector<bool>;
 using vi = vector<int>;
-using vll = vector<ll>;
+using vl = vector<ll>;
 using vpii = vector<pii>;
+using vpil = vector<pil>;
 using vpll = vector<pll>;
-using vvi = vector<vector<int>>;
+using vvb = vector<vb>;
+using vvi = vector<vi>;
+using vvl = vector<vl>;
 using vstr = vector<string>;
 
 #define F first

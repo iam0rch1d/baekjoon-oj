@@ -8,6 +8,8 @@ using namespace std;
 using pii = pair<int, int>;
 using vi = vector<int>;
 
+#define F first
+#define S second
 #define FOR(i, x, y) for (int i = (x); i < (y); i++)
 #define REP(i, x) FOR(i, 0, x)
 #define PRINTLN(x) cout << (x) << '\n'
@@ -17,7 +19,7 @@ bool chmin(T &m, T q) { if (m > q) { m = q; return true; } return false; }
 
 struct Edge {
     int toVertex;
-    int weight;
+    int cost;
 };
 
 #define INF 100000000
@@ -37,14 +39,14 @@ int main() {
     REP(i, e) {
         int fromVertex;
         int toVertex;
-        int weight;
+        int cost;
 
-        cin >> fromVertex >> toVertex >> weight;
+        cin >> fromVertex >> toVertex >> cost;
 
         fromVertex--;
         toVertex--;
 
-        edgesOf[fromVertex].push_back({toVertex, weight});
+        edgesOf[fromVertex].push_back({toVertex, cost});
     }
 
     vi distances(v, INF);
@@ -55,10 +57,7 @@ int main() {
     dijkstraVertices.push({0, k});
 
     while (!dijkstraVertices.empty()) {
-        int distance;
-        int vertex;
-
-        tie(distance, vertex) = dijkstraVertices.top();
+        int vertex = dijkstraVertices.top().S;
 
         dijkstraVertices.pop();
 
@@ -68,9 +67,9 @@ int main() {
 
         for (auto edge : edgesOf[vertex]) {
             int toVertex = edge.toVertex;
-            int weight = edge.weight;
+            int cost = edge.cost;
 
-            if (chmin(distances[toVertex], distances[vertex] + weight)) {
+            if (chmin(distances[toVertex], distances[vertex] + cost)) {
                 dijkstraVertices.push({-distances[toVertex], toVertex});
             }
         }

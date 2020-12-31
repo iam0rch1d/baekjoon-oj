@@ -8,9 +8,9 @@ using namespace std;
 
 struct Edge {
     int toVertex;
-    int weight;
+    int cost;
 
-    bool operator>(Edge &q) const { return weight > q.weight; }
+    bool operator>(Edge &q) const { return cost > q.cost; }
 };
 
 vector<Edge> adjacentEdgesOf[1001];
@@ -50,7 +50,7 @@ int main() {
         if (isVisited[current.toVertex]) continue;
 
         isVisited[current.toVertex] = true;
-        ans += current.weight;
+        ans += current.cost;
 
         for (Edge adjacentEdge : adjacentEdgesOf[current.toVertex]) {
             bfsEdges.push(adjacentEdge);
