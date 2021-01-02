@@ -8,6 +8,7 @@ using vi = vector<int>;
 
 #define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
 #define PRINT(x) cout << (x) << ' '
+#define PRINTLN(x) cout << (x) << '\n'
 
 vi adjacentVerticesOf[32001];
 int indegrees[32001];
@@ -44,7 +45,7 @@ int main() {
         }
     }
 
-    cout << '\n';
+    PRINTLN("");
 
     return 0;
 }

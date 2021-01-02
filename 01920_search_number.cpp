@@ -7,7 +7,7 @@ using namespace std;
 int numbersSize;
 int numbers[100000];
 
-void bisectNumber(pair<int, int> interval, int target) {
+void binarySearch(pair<int, int> interval, int target) {
     if (interval.first >= interval.second
         || target < numbers[interval.first]
         || target > numbers[interval.second - 1]) {
@@ -18,8 +18,8 @@ void bisectNumber(pair<int, int> interval, int target) {
 
     int mid = (interval.first + interval.second) / 2;
 
-    if (target < numbers[mid]) bisectNumber({interval.first, mid}, target);
-    else if (target > numbers[mid]) bisectNumber({mid, interval.second}, target);
+    if (target < numbers[mid]) binarySearch({interval.first, mid}, target);
+    else if (target > numbers[mid]) binarySearch({mid, interval.second}, target);
     else {
         cout << "1\n";
 
@@ -50,7 +50,7 @@ int main() {
     }
 
     for (int target : targets) {
-        bisectNumber({0, numbersSize}, target);
+        binarySearch({0, numbersSize}, target);
     }
 
     return 0;

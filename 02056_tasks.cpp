@@ -24,15 +24,15 @@ int main() {
 
     cin >> n;
 
-    vi times(n + 1);
-    vi totalTimes(n + 1, 0);
+    vi costs(n + 1);
+    vi distances(n + 1, 0);
     queue<int> bfsVertices;
 
     FOR_(i, 1, n) {
-        cin >> times[i] >> indegrees[i];
+        cin >> costs[i] >> indegrees[i];
 
         if (!indegrees[i]) {
-            totalTimes[i] = times[i];
+            distances[i] = costs[i];
 
             bfsVertices.push(i);
         }
@@ -52,13 +52,13 @@ int main() {
         bfsVertices.pop();
 
         for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
-            chmax(totalTimes[adjacentVertex], totalTimes[currentVertex] + times[adjacentVertex]);
+            chmax(distances[adjacentVertex], distances[currentVertex] + costs[adjacentVertex]);
 
             if (--indegrees[adjacentVertex] == 0) bfsVertices.push(adjacentVertex);
         }
     }
 
-    PRINTLN(*max_element(ALL(totalTimes)));
+    PRINTLN(*max_element(ALL(distances)));
 
     return 0;
 }

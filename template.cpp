@@ -17,12 +17,14 @@
 using namespace std;
 
 using ll = long long;
+using pib = pair<int, bool>;
 using pii = pair<int, int>;
 using pil = pair<int, ll>;
 using pll = pair<ll, ll>;
 using vb = vector<bool>;
 using vi = vector<int>;
 using vl = vector<ll>;
+using vpib = vector<pib>;
 using vpii = vector<pii>;
 using vpil = vector<pil>;
 using vpll = vector<pll>;
