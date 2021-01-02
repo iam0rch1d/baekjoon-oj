@@ -3,59 +3,52 @@
 
 using namespace std;
 
-typedef vector<vector<int>> Matrix;
+using ll = long long;
+using vl = vector<ll>;
+using vvl = vector<vl>;
+
+typedef vvl Matrix;
+
+#define FOR(i, x, y) for (int i = (x); i < (y); i++)
+#define REP(i, x) FOR(i, 0, x)
+#define PRINT(x) cout << (x) << ' '
+#define PRINTLN(x) cout << (x) << '\n'
 
 #define MODULO 1000
 
-Matrix operator*(Matrix a, Matrix b) {
+Matrix operator*=(Matrix &a, Matrix &b) {
     int size = a.size();
-    Matrix multiplication(size, vector<int>(size));
+    Matrix ret(size, vl(size, 0));
 
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            for (int k = 0; k < size; k++) {
-                multiplication[i][j] += a[i][k] * b[k][j];
-            }
+    REP(i, size) REP(j, size) REP(k, size) ret[i][j] = (ret[i][j] + a[i][k] * b[k][j] % MODULO) % MODULO;
 
-            multiplication[i][j] %= MODULO;
-        }
-    }
-
-    return multiplication;
+    return a = ret;
 }
 
 int main() {
     int baseSize;
-    unsigned long long exponent;
+    ll exponent;
 
     cin >> baseSize >> exponent;
 
-    Matrix base(baseSize, vector<int>(baseSize));
-    Matrix ret(baseSize, vector<int>(baseSize));
+    Matrix base(baseSize, vl(baseSize));
+    Matrix ans(baseSize, vl(baseSize));
 
-    for (int i = 0; i < baseSize; i++) {
-        for (int j = 0; j < baseSize; j++) {
-            cin >> base[i][j];
-        }
-    }
+    REP(i, baseSize) REP(j, baseSize) cin >> base[i][j];
 
-    for (int i = 0; i < baseSize; i++) {
-        ret[i][i] = 1;
-    }
+    REP(i, baseSize) ans[i][i] = 1;
 
     while (exponent > 0) {
-        if (exponent % 2 == 1) ret = ret * base;
+        if (exponent % 2) ans *= base;
 
-        base = base * base;
-        exponent >>= 1u;
+        base *= base;
+        exponent /= 2;
     }
 
-    for (int i = 0; i < baseSize; i++) {
-        for (int j = 0; j < baseSize; j++) {
-            cout << ret[i][j] << ' ';
-        }
+    REP (i, baseSize) {
+        REP(j, baseSize) PRINT(ans[i][j]);
 
-        cout << '\n';
+        PRINTLN("");
     }
 
     return 0;

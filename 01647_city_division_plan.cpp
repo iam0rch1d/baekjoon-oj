@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -9,29 +10,30 @@ using vi = vector<int>;
 #define ALL(x) x.begin(), x.end()
 #define PRINTLN(x) cout << (x) << '\n'
 
-struct Edge {
-    int fromVertex;
-    int toVertex;
-    int cost;
-
-    bool operator<(Edge &q) const { return cost < q.cost; }
-};
-
 int main() {
-    int v;
-    int e;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    cin >> v >> e;
+    int n;
+    int m;
 
-    vector<Edge> edges(e);
+    cin >> n >> m;
 
-    for (Edge &edge : edges) {
-        cin >> edge.fromVertex >> edge.toVertex >> edge.cost;
+    vector<tuple<int, int, int>> edges(m);  // (cost, fromVertex, toVertex)
+
+    for (auto &edge : edges) {
+        int a;
+        int b;
+        int c;
+
+        cin >> a >> b >> c;
+
+        edge = {c, a, b};
     }
 
     sort(ALL(edges));
 
-    vi parents(v + 1, -1);
+    vi parents(n, -1);
 
     auto ufFind = [&](int x) {
         while (parents[x] >= 0) {
@@ -58,9 +60,21 @@ int main() {
     };
 
     int ans = 0;
+    int edgeCount = 0;
 
-    for (Edge edge : edges) {
-        if (ufUnion(edge.fromVertex, edge.toVertex)) ans += edge.cost;
+    for (auto edge : edges) {
+        int cost;
+        int fromVertex;
+        int toVertex;
+
+        tie(cost, fromVertex, toVertex) = edge;
+
+        if (ufUnion(fromVertex, toVertex)) {
+            ans += cost;
+            edgeCount++;
+        }
+
+        if (edgeCount == n - 2) break;
     }
 
     PRINTLN(ans);
