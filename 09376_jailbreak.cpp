@@ -5,14 +5,26 @@
 
 using namespace std;
 
+using pii = pair<int, int>;
+using vi = vector<int>;
+using vvi = vector<vi>;
+using vstr = vector<string>;
+
+#define PRINTLN(x) cout << (x) << '\n'
+
+template<typename T>
+bool chmin(T &m, T q) { if (m > q) { m = q; return true; } return false; }
+
+#define INF 10001
+
 int h;
 int w;
 
-vector<vector<int>> bfsDoorOpens(vector<string> &map, int sy, int sx) {
-    vector<vector<int>> doorOpensAt(h + 2, vector<int>(w + 2, -1));
-    deque<pair<int, int>> bfsPoints;
+vvi bfsDoorOpens(vstr &map, int sy, int sx) {
+    vvi ret(h + 2, vi(w + 2, INF));
+    deque<pii> bfsPoints;
 
-    doorOpensAt[sy][sx] = 0;
+    ret[sy][sx] = 0;
 
     bfsPoints.push_front({sy, sx});
 
@@ -28,17 +40,17 @@ vector<vector<int>> bfsDoorOpens(vector<string> &map, int sy, int sx) {
             int ny = y + "1201"[i] - '1';
             int nx = x + "0112"[i] - '1';
 
-            if (ny < 0 || ny >= h + 2 || nx < 0 || nx >= w + 2 || map[ny][nx] == '*' || doorOpensAt[ny][nx] != -1) {
+            if (ny < 0 || ny >= h + 2 || nx < 0 || nx >= w + 2 || map[ny][nx] == '*' || ret[ny][nx] != INF) {
                 continue;
             }
 
-            doorOpensAt[ny][nx] = doorOpensAt[y][x] + (map[ny][nx] == '#');
+            ret[ny][nx] = ret[y][x] + (map[ny][nx] == '#');
 
             map[ny][nx] == '#' ? bfsPoints.emplace_back(ny, nx) : bfsPoints.emplace_front(ny, nx);
         }
     }
 
-    return doorOpensAt;
+    return ret;
 }
 
 int main() {
@@ -51,41 +63,38 @@ int main() {
         int x1;
         int y2;
         int x2;
-        int minTotalDoorOpens = 10001;
+        int ans = INF;
 
         cin >> h >> w;
 
-        vector<string> map(h + 2);
+        vstr a(h + 2);
 
-        map[0] = string(w + 2, '.');
-        map[h + 1] = map[0];
+        a[0] = string(w + 2, '.');
+        a[h + 1] = a[0];
 
         for (int i = 1; i <= h; i++) {
-            cin >> map[i];
+            cin >> a[i];
 
-            map[i] = '.' + map[i] + '.';
+            a[i] = '.' + a[i] + '.';
 
             for (int j = 1; j <= w; j++) {
-                if (map[i][j] == '$') (y1 == -1 ? tie(y1, x1) : tie(y2, x2)) = {i, j};
+                if (a[i][j] == '$') (y1 == -1 ? tie(y1, x1) : tie(y2, x2)) = {i, j};
             }
         }
 
-        auto doorOpensAt0 = bfsDoorOpens(map, 0, 0);
-        auto doorOpensAt1 = bfsDoorOpens(map, y1, x1);
-        auto doorOpensAt2 = bfsDoorOpens(map, y2, x2);
+        auto doorOpensAt0 = bfsDoorOpens(a, 0, 0);
+        auto doorOpensAt1 = bfsDoorOpens(a, y1, x1);
+        auto doorOpensAt2 = bfsDoorOpens(a, y2, x2);
 
         for (int i = 0; i < h + 2; i++) {
             for (int j = 0; j < w + 2; j++) {
-                if (map[i][j] == '*') continue;
+                if (a[i][j] == '*') continue;
 
-                minTotalDoorOpens = min(minTotalDoorOpens, doorOpensAt0[i][j]
-                                                           + doorOpensAt1[i][j]
-                                                           + doorOpensAt2[i][j]
-                                                           - (map[i][j] == '#' ? 2 : 0));
+                chmin(ans, doorOpensAt0[i][j] + doorOpensAt1[i][j] + doorOpensAt2[i][j] - (a[i][j] == '#' ? 2 : 0));
             }
         }
 
-        cout << minTotalDoorOpens << '\n';
+        PRINTLN(ans);
     }
 
     return 0;
