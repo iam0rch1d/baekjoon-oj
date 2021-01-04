@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -24,6 +23,7 @@ bool chmin(T &m, T q) { if (m > q) { m = q; return true; } return false; }
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
+    cout.tie(nullptr);
 
     int n;
     int m;
@@ -81,19 +81,19 @@ int main() {
     int kRight = n - 1;
     int k = n;
     auto cmp = [&](int k) {
-        vi aTemp(n, 0);
+        vi aTemp(n);
 
         IFOR(i, 0, n) {
             int vertex = orders[i];
 
-            aTemp[vertex] = 1010101010;
+            aTemp[vertex] = 1000000000;
 
             for (int nextVertex : nextVerticesOf[vertex]) {
                 chmin(aTemp[vertex], aTemp[nextVertex] - 1);
             }
 
             if (vertex < k) {
-                if (b[vertex] > aTemp[vertex]) return false;
+                if (aTemp[vertex] < b[vertex]) return false;
 
                 aTemp[vertex] = b[vertex];
             }
