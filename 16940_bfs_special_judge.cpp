@@ -6,7 +6,7 @@ using namespace std;
 
 vector<int> adjacentVerticesOf[100000];
 bool isVisited[100000];
-int parentOf[100000];
+int parents[100000];
 int orders[100000];
 
 void printZero() {
@@ -58,13 +58,13 @@ int main() {
 
         for (int adjacentVertex : adjacentVerticesOf[currentOrder]) {
             if (!isVisited[adjacentVertex]) {
-                parentOf[adjacentVertex] = currentOrder;
+                parents[adjacentVertex] = currentOrder;
                 childCount++;
             }
         }
 
         for (int j = 0; j < childCount; j++) {
-            if (visitedVertexCount + j >= n || parentOf[orders[visitedVertexCount + j]] != currentOrder) printZero();
+            if (visitedVertexCount + j >= n || parents[orders[visitedVertexCount + j]] != currentOrder) printZero();
 
             bfsOrders.push(orders[visitedVertexCount + j]);
             isVisited[orders[visitedVertexCount + j]] = true;

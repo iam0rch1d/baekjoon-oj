@@ -39,7 +39,7 @@ int main() {
     }
 
     vi depths(n + 1, -1);
-    vvi ancestorsOf(n + 1, vi(16, 0));
+    vvi dpAncestor(n + 1, vi(16, 0));
     vi distances(n + 1, -1);
     queue<int> bfsVertices;
 
@@ -56,7 +56,7 @@ int main() {
         for (auto adjacentVertex : adjacentVerticesOf[currentVertex]) {
             if (depths[adjacentVertex.F] == -1) {
                 depths[adjacentVertex.F] = depths[currentVertex] + 1;
-                ancestorsOf[adjacentVertex.F][0] = currentVertex;
+                dpAncestor[adjacentVertex.F][0] = currentVertex;
                 distances[adjacentVertex.F] = distances[currentVertex] + adjacentVertex.S;
 
                 bfsVertices.push(adjacentVertex.F);
@@ -65,7 +65,7 @@ int main() {
     }
 
     for (int j = 1; (1 << j) <= n; j++) {
-        FOR_(i, 1, n) if (ancestorsOf[i][j - 1]) ancestorsOf[i][j] = ancestorsOf[ancestorsOf[i][j - 1]][j - 1];
+        FOR_(i, 1, n) if (dpAncestor[i][j - 1]) dpAncestor[i][j] = dpAncestor[dpAncestor[i][j - 1]][j - 1];
     }
 
     int m;
@@ -79,18 +79,18 @@ int main() {
 
         while ((1 << logDepth) <= depths[u]) logDepth++;
 
-        IFOR(i, 0, logDepth) if (depths[u] - (1 << i) >= depths[v]) u = ancestorsOf[u][i];
+        IFOR(i, 0, logDepth) if (depths[u] - (1 << i) >= depths[v]) u = dpAncestor[u][i];
 
         if (u == v) return u;
 
         IFOR(i, 0, logDepth) {
-            if (ancestorsOf[u][i] && ancestorsOf[u][i] != ancestorsOf[v][i]) {
-                u = ancestorsOf[u][i];
-                v = ancestorsOf[v][i];
+            if (dpAncestor[u][i] && dpAncestor[u][i] != dpAncestor[v][i]) {
+                u = dpAncestor[u][i];
+                v = dpAncestor[v][i];
             }
         }
 
-        return ancestorsOf[u][0];
+        return dpAncestor[u][0];
     };
 
     while (m--) {

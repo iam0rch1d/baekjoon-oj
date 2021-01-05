@@ -4,12 +4,12 @@
 using namespace std;
 
 vector<int> adjacentVerticesOf[100001];
-int parentVertexOf[100001];
+int parents[100001];
 
 void dfsParent(int currentVertex) {
     for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
-        if (adjacentVertex != parentVertexOf[currentVertex]) {
-            parentVertexOf[adjacentVertex] = currentVertex;
+        if (adjacentVertex != parents[currentVertex]) {
+            parents[adjacentVertex] = currentVertex;
 
             dfsParent(adjacentVertex);
         }
@@ -37,7 +37,7 @@ int main() {
     dfsParent(1);
 
     for (int i = 2; i <= numVertex; i++) {
-        cout << parentVertexOf[i] << '\n';
+        cout << parents[i] << '\n';
     }
 
     return 0;
