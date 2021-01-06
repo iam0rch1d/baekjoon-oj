@@ -8,7 +8,7 @@ int cache[1001][1001];
 
 int main() {
     int s;
-    queue<pair<int, int>> bfsEmojis;  // .first = <current emoji>, .second = <emoji on clipboard>
+    queue<pair<int, int>> bfsEmojis;  // (<current emoji>, <emoji on clipboard>)
 
     memset(cache, -1, sizeof(cache));
 

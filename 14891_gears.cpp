@@ -17,7 +17,7 @@ int main() {
 
     while (k--) {
         pair<int, int> initialRotation;
-        queue<pair<int, int>> rotations;  // .first = <gear no.>, .second = <direction>
+        queue<pair<int, int>> rotations;  // (<gear>, <direction>)
         bool isRotated[] = {false, false, false, false};
 
         cin >> initialRotation.first >> initialRotation.second;

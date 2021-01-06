@@ -11,7 +11,7 @@ typedef struct {
 int n;
 int m;
 
-// .first = <is moved>, .second = <is in hole>
+// (<is moved>, <is in hole>)
 pair<bool, bool> roll(vector<string> &board, Point &from, unsigned direction) {
     if (board[from.y][from.x] == '.') return {false, true};
 

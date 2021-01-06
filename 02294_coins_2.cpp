@@ -25,11 +25,9 @@ int main() {
 
     for (int i = 1; i <= k; i++) {
         for (int j = 0; j < n; j++) {
-            int previousTotalValue = i - coinValues[j];
+            int pi = i - coinValues[j];
 
-            if (previousTotalValue < 0) continue;
-
-            dp[i] = min(dp[i], dp[previousTotalValue] + 1);
+            if (pi >= 0) dp[i] = min(dp[i], dp[pi] + 1);
         }
     }
 

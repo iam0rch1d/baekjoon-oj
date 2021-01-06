@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<pair<int, int>> adjacentVerticesOf[100001];  // .first = <to-vertex>, .second = <edge length>
+vector<pair<int, int>> adjacentVerticesOf[100001];  // (<to-vertex>, <edge length>)
 bool isVisited[100001];
 int diameter;
 int farthestVertex;

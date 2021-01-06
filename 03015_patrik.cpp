@@ -9,7 +9,7 @@ int main() {
     cin.tie(nullptr);
 
     int n;
-    stack<pair<int, long long>> heights;  // .first = <height>, .second = <number of people with same height>
+    stack<pair<int, long long>> heights;  // (<height>, <number of people with same height>)
     long long visibleCount = 0;
 
     cin >> n;

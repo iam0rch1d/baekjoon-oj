@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    // .first = <numerator>, .second = <denominator>
+    // (<numerator>, <denominator>)
     pair<int, int> a;
     pair<int, int> b;
     pair<int, int> sum;

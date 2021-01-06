@@ -5,7 +5,7 @@
 using namespace std;
 
 int n;
-vector<pair<int, int>> adjacentVerticesOf[10001];  // .first = <vertex no.>, .second = <weight limit>
+vector<pair<int, int>> adjacentVerticesOf[10001];  // (<vertex no.>, <weight limit>)
 int fromFactory;
 int toFactory;
 

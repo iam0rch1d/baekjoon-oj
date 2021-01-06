@@ -16,13 +16,13 @@ int distances[3001];
 /**
  * @return [-1]: Non-cyclic / [0]: Unidentified / [1~]: Vertex at which the cycle begins
  */
-int dfsGraphCycle(int currentVertex, int previousVertex) {
+int dfsGraphCycle(int currentVertex, int prevVertex) {
     if (states[currentVertex] == VISITED) return currentVertex;
 
     states[currentVertex] = VISITED;
 
     for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
-        if (adjacentVertex == previousVertex) continue;
+        if (adjacentVertex == prevVertex) continue;
 
         int cycleStartVertex = dfsGraphCycle(adjacentVertex, currentVertex);
 

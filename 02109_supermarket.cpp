@@ -13,7 +13,7 @@ int main() {
 
     cin >> n;
 
-    vector<pair<int, int>> products(n);  // .first = <profit>, .second = <deadline>
+    vector<pair<int, int>> products(n);  // (<profit>, <deadline>)
 
     for (auto &product : products) {
         cin >> product.first >> product.second;

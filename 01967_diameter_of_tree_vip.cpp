@@ -3,18 +3,18 @@
 
 using namespace std;
 
-vector<pair<int, int>> adjacentVerticesOf[10001];  // .first = <to-vertex>, .second = <edge length>
+vector<pair<int, int>> adjacentVerticesOf[10001];  // (<to-vertex>, <edge length>)
 int diameter;
 int farthestVertex;
 
-void dfsTree(int currentVertex, int previousVertex, int totalLength) {
+void dfsTree(int currentVertex, int prevVertex, int totalLength) {
     if (diameter < totalLength) {
         diameter = totalLength;
         farthestVertex = currentVertex;
     }
 
     for (pair<int, int> adjacentVertex : adjacentVerticesOf[currentVertex]) {
-        if (previousVertex != adjacentVertex.first) {
+        if (prevVertex != adjacentVertex.first) {
             dfsTree(adjacentVertex.first, currentVertex, totalLength + adjacentVertex.second);
         }
     }
