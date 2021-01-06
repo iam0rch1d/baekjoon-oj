@@ -7,15 +7,15 @@ vector<pair<int, int>> adjacentVerticesOf[10001];  // (<to-vertex>, <edge length
 int diameter;
 int farthestVertex;
 
-void dfsTree(int currentVertex, int prevVertex, int totalLength) {
+void dfs(int vertex, int prevVertex, int totalLength) {
     if (diameter < totalLength) {
         diameter = totalLength;
-        farthestVertex = currentVertex;
+        farthestVertex = vertex;
     }
 
-    for (pair<int, int> adjacentVertex : adjacentVerticesOf[currentVertex]) {
+    for (pair<int, int> adjacentVertex : adjacentVerticesOf[vertex]) {
         if (prevVertex != adjacentVertex.first) {
-            dfsTree(adjacentVertex.first, currentVertex, totalLength + adjacentVertex.second);
+            dfs(adjacentVertex.first, vertex, totalLength + adjacentVertex.second);
         }
     }
 }
@@ -39,11 +39,11 @@ int main() {
         adjacentVerticesOf[toVertex].emplace_back(fromVertex, edgeLength);
     }
 
-    dfsTree(1, 0, 0);
+    dfs(1, 0, 0);
 
     diameter = 0;
 
-    dfsTree(farthestVertex, 0, 0);
+    dfs(farthestVertex, 0, 0);
 
     cout << diameter << '\n';
 

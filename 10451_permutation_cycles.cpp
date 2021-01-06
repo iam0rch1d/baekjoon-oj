@@ -6,12 +6,12 @@ using namespace std;
 int adjacentVertices[1000];
 int cycleNoOf[1000];
 
-void dfsGraph(int vertex, int cycleNo) {
+void dfs(int vertex, int cycleNo) {
     if (cycleNoOf[vertex]) return;
 
     cycleNoOf[vertex] = cycleNo;
 
-    dfsGraph(adjacentVertices[vertex], cycleNo);
+    dfs(adjacentVertices[vertex], cycleNo);
 }
 
 int main() {
@@ -32,7 +32,7 @@ int main() {
         }
 
         for (int i = 0; i < n; i++) {
-            if (!cycleNoOf[i]) dfsGraph(i, ++cycleCount);
+            if (!cycleNoOf[i]) dfs(i, ++cycleCount);
         }
 
         cout << cycleCount << '\n';

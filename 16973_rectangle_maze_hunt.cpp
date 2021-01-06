@@ -47,7 +47,7 @@ using vstr = vector<string>;
 #define PRINT(x) cout << (x) << ' '
 #define PRINTLN(x) cout << (x) << '\n'
 
-int distances[1001][1001];
+int dist[1001][1001];
 
 int main() {
     int n;
@@ -76,7 +76,7 @@ int main() {
 
     cin >> h >> w >> sr >> sc >> fr >> fc;
 
-    distances[sr][sc] = 1;
+    dist[sr][sc] = 1;
 
     bfsVertices.push({sr, sc});
 
@@ -91,7 +91,7 @@ int main() {
         tie(y, x) = bfsVertices.front();
 
         if (y == fr && x == fc) {
-            PRINTLN(distances[y][x] - 1);
+            PRINTLN(dist[y][x] - 1);
 
             return 0;
         }
@@ -104,9 +104,9 @@ int main() {
             int ny2 = ny1 + h - 1;
             int nx2 = nx1 + w - 1;
 
-            if (ny1 < 1 || ny2 > n || nx1 < 1 || nx2 > m || distances[ny1][nx1] || sum(ny1, nx1, ny2, nx2)) continue;
+            if (ny1 < 1 || ny2 > n || nx1 < 1 || nx2 > m || dist[ny1][nx1] || sum(ny1, nx1, ny2, nx2)) continue;
 
-            distances[ny1][nx1] = distances[y][x] + 1;
+            dist[ny1][nx1] = dist[y][x] + 1;
 
             bfsVertices.push({ny1, nx1});
         }

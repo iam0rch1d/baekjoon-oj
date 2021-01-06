@@ -5,17 +5,22 @@
 
 using namespace std;
 
+#define ALL(x) x.begin(), x.end()
+#define FOR(i, x, y) for (int i = (x); i < (y); i++)
+#define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
+#define REP(i, x) FOR(i, 0, x)
+#define PRINTLN(x) cout << (x) << '\n'
+
 vector<int> adjacentVerticesOf[20001];
 int colors[20001];
 
-bool dfsBipartiteGraph(int currentVertex, int color) {
-    colors[currentVertex] = color;
+bool dfs(int vertex, int color) {
+    colors[vertex] = color;
 
-    return none_of(adjacentVerticesOf[currentVertex].begin(),
-                   adjacentVerticesOf[currentVertex].end(),
-                   [color, currentVertex](int adjacentVertex) {
-                       return (colors[adjacentVertex] == 0 && !dfsBipartiteGraph(adjacentVertex, 3 - color))
-                              || (colors[adjacentVertex] == colors[currentVertex]);
+    return none_of(ALL(adjacentVerticesOf[vertex]),
+                   [&](int adjacentVertex) {
+                       return (colors[adjacentVertex] == 0 && !dfs(adjacentVertex, 3 - color))
+                              || (colors[adjacentVertex] == colors[vertex]);
                    });
 }
 
@@ -27,39 +32,39 @@ int main() {
 
     cin >> tc;
 
-    while (tc--) {
-        int numVertex;
-        int numEdge;
-        bool isBipartite = true;
+    auto solve = []() {
+        int v;
+        int e;
+        bool ans = true;
 
-        cin >> numVertex >> numEdge;
+        cin >> v >> e;
 
-        for (int i = 0; i < numEdge; i++) {
-            int fromVertex;
-            int toVertex;
+        while (e--) {
+            int x;
+            int y;
 
-            cin >> fromVertex >> toVertex;
+            cin >> x >> y;
 
-            adjacentVerticesOf[fromVertex].push_back(toVertex);
-            adjacentVerticesOf[toVertex].push_back(fromVertex);
+            adjacentVerticesOf[x].push_back(y);
+            adjacentVerticesOf[y].push_back(x);
         }
 
-        for (int i = 1; i <= numVertex; i++) {
-            if (colors[i] == 0 && !dfsBipartiteGraph(i, 1)) {
-                isBipartite = false;
+        FOR_(i, 1, v) {
+            if (colors[i] == 0 && !dfs(i, 1)) {
+                ans = false;
 
                 break;
             }
         }
 
-        cout << (isBipartite ? "YES\n" : "NO\n");
-
-        for (int i = 1; i <= numVertex; i++) {
-            adjacentVerticesOf[i].clear();
-        }
+        FOR_(i, 1, v) adjacentVerticesOf[i].clear();
 
         memset(colors, 0, sizeof(colors));
-    }
+
+        return ans;
+    };
+
+    while (tc--) PRINTLN(solve() ? "YES" : "NO");
 
     return 0;
 }

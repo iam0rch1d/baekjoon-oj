@@ -5,7 +5,7 @@
 using namespace std;
 
 vector<int> adjacentVerticesOf[101];
-int distances[101];
+int dist[101];
 
 int main() {
     int n;
@@ -26,7 +26,7 @@ int main() {
         adjacentVerticesOf[y].push_back(x);
     }
 
-    distances[a] = 1;
+    dist[a] = 1;
 
     bfsVertices.push(a);
 
@@ -34,7 +34,7 @@ int main() {
         int currentVertex = bfsVertices.front();
 
         if (currentVertex == b) {
-            cout << distances[b] - 1 << '\n';
+            cout << dist[b] - 1 << '\n';
 
             return 0;
         }
@@ -42,8 +42,8 @@ int main() {
         bfsVertices.pop();
 
         for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
-            if (!distances[adjacentVertex]) {
-                distances[adjacentVertex] = distances[currentVertex] + 1;
+            if (!dist[adjacentVertex]) {
+                dist[adjacentVertex] = dist[currentVertex] + 1;
 
                 bfsVertices.push(adjacentVertex);
             }

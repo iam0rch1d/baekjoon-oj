@@ -49,7 +49,7 @@ int main() {
 
     while ((1 << power) <= n) power++;
 
-    function<void(int, int)> dfsVertices = [&](int vertex, int parent) {
+    function<void(int, int)> dfs = [&](int vertex, int parent) {
         tin[vertex] = ++tick;
 
         dpAncestor[vertex][0] = parent;
@@ -60,14 +60,14 @@ int main() {
             if (adjacentVertex != parent) {
                 depths[adjacentVertex] = depths[vertex] + 1;
 
-                dfsVertices(adjacentVertex, vertex);
+                dfs(adjacentVertex, vertex);
             }
         }
 
         tout[vertex] = ++tick;
     };
 
-    dfsVertices(1, 1);
+    dfs(1, 1);
 
     auto isAncestor = [&](int u, int v) {
         return tin[u] <= tin[v] && tout[u] >= tout[v];

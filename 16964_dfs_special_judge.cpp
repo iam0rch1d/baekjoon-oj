@@ -15,13 +15,13 @@ void printZero() {
     exit(0);
 }
 
-void dfsGraph(int currentVertex) {
+void dfs(int currentVertex) {
     isVisited[currentVertex] = true;
 
     dfsOrders.push_back(currentVertex);
 
     for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
-        if (!isVisited[adjacentVertex]) dfsGraph(adjacentVertex);
+        if (!isVisited[adjacentVertex]) dfs(adjacentVertex);
     }
 }
 
@@ -61,7 +61,7 @@ int main() {
              [&](int i, int j) { return orderOf[i] < orderOf[j]; });
     }
 
-    dfsGraph(0);
+    dfs(0);
 
     cout << (dfsOrders == orders) << '\n';
 

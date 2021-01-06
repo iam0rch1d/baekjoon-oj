@@ -9,13 +9,13 @@ vector<int> ordersAt[10001];
 int order;
 int maxDepth;
 
-void dfsInorder(int vertex, int depth) {
-    if (childVerticesOf[vertex][0] != -1) dfsInorder(childVerticesOf[vertex][0], depth + 1);
+void dfs(int vertex, int depth) {
+    if (childVerticesOf[vertex][0] != -1) dfs(childVerticesOf[vertex][0], depth + 1);
 
     ordersAt[depth].push_back(++order);
     maxDepth = max(maxDepth, depth);
 
-    if (childVerticesOf[vertex][1] != -1) dfsInorder(childVerticesOf[vertex][1], depth + 1);
+    if (childVerticesOf[vertex][1] != -1) dfs(childVerticesOf[vertex][1], depth + 1);
 }
 
 int main() {
@@ -44,7 +44,7 @@ int main() {
         }
     }
 
-    dfsInorder(rootVertex, 1);
+    dfs(rootVertex, 1);
 
     for (int i = 1; i <= maxDepth; i++) {
         if (maxBreadth < ordersAt[i].back() - ordersAt[i][0] + 1) {

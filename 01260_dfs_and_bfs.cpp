@@ -9,13 +9,13 @@ using namespace std;
 vector<int> adjacentVerticesOf[1001];
 bool isVisited[1001];
 
-void dfsGraph(int vertex) {
+void dfs(int vertex) {
     isVisited[vertex] = true;
 
     cout << vertex << ' ';
 
     for (int adjacentVertex : adjacentVerticesOf[vertex]) {
-        if (!isVisited[adjacentVertex]) dfsGraph(adjacentVertex);
+        if (!isVisited[adjacentVertex]) dfs(adjacentVertex);
     }
 }
 
@@ -41,7 +41,7 @@ int main() {
         sort(adjacentVertices.begin(), adjacentVertices.end());
     }
 
-    dfsGraph(startVertex);
+    dfs(startVertex);
     memset(isVisited, false, sizeof(isVisited));
 
     cout << '\n';

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <tuple>
 
 using namespace std;
 
@@ -7,7 +8,7 @@ using pii = pair<int, int>;
 
 #define PRINTLN(x) cout << (x) << '\n'
 
-int distances[500001][2];
+int dist[500001][2];
 
 int main() {
     int n;
@@ -16,7 +17,7 @@ int main() {
 
     cin >> n >> k;
 
-    distances[n][0] = 1;
+    dist[n][0] = 1;
 
     bfsVertices.push({n, 0});
 
@@ -29,9 +30,9 @@ int main() {
         bfsVertices.pop();
 
         for (int nx : {2 * x, x + 1, x - 1}) {
-            if (nx <= 0 || nx > 500000 || distances[nx][1 - t]) continue;
+            if (nx <= 0 || nx > 500000 || dist[nx][1 - t]) continue;
 
-            distances[nx][1 - t] = distances[x][t] + 1;
+            dist[nx][1 - t] = dist[x][t] + 1;
 
             bfsVertices.push({nx, 1 - t});
         }
@@ -40,7 +41,7 @@ int main() {
     int t = 0;
 
     while (k <= 500000) {
-        if (distances[k][t % 2] - 1 <= t) {
+        if (dist[k][t % 2] - 1 <= t) {
             PRINTLN(t);
 
             return 0;

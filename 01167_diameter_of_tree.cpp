@@ -9,7 +9,7 @@ bool isVisited[100001];
 int diameter;
 int farthestVertex;
 
-void dfsTree(int currentVertex, int totalLength) {
+void dfs(int currentVertex, int totalLength) {
     if (isVisited[currentVertex]) return;
 
     isVisited[currentVertex] = true;
@@ -20,7 +20,7 @@ void dfsTree(int currentVertex, int totalLength) {
     }
 
     for (pair<int, int> adjacentVertex : adjacentVerticesOf[currentVertex]) {
-        dfsTree(adjacentVertex.first, totalLength + adjacentVertex.second);
+        dfs(adjacentVertex.first, totalLength + adjacentVertex.second);
     }
 }
 
@@ -51,12 +51,12 @@ int main() {
         }
     }
 
-    dfsTree(1, 0);  // Find the farthest vertex from root
+    dfs(1, 0);  // Find the farthest vertex from root
 
     diameter = 0;
 
     memset(isVisited, false, sizeof(isVisited));
-    dfsTree(farthestVertex, 0);  // Find the farthest vertex and the distance from 'the farthest vertex from root'
+    dfs(farthestVertex, 0);  // Find the farthest vertex and the distance from 'the farthest vertex from root'
 
     cout << diameter << '\n';
 

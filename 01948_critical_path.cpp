@@ -18,7 +18,7 @@ vpii forwardEdgesOf[10000];
 vpii reverseEdgesOf[10000];
 int forwardIndegrees[10000];
 int reverseIndegrees[10000];
-int distances[10000];
+int dist[10000];
 bool isCritical[10000];
 
 int main() {
@@ -62,13 +62,13 @@ int main() {
         bfsVertices.pop();
 
         for (pii edge : forwardEdgesOf[currentVertex]) {
-            chmax(distances[edge.F], distances[currentVertex] + edge.S);
+            chmax(dist[edge.F], dist[currentVertex] + edge.S);
 
             if (--forwardIndegrees[edge.F] == 0) bfsVertices.push(edge.F);
         }
     }
 
-    PRINTLN(distances[finishVertex]);
+    PRINTLN(dist[finishVertex]);
 
     int ans = 0;
 
@@ -82,7 +82,7 @@ int main() {
         bfsVertices.pop();
 
         for (pii edge : reverseEdgesOf[currentVertex]) {
-            if (isCritical[currentVertex] && distances[currentVertex] - distances[edge.F] == edge.S) {
+            if (isCritical[currentVertex] && dist[currentVertex] - dist[edge.F] == edge.S) {
                 isCritical[edge.F] = true;
                 ans++;
             }

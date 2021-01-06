@@ -11,12 +11,12 @@ enum State {
 
 vector<int> adjacentVerticesOf[3001];
 int states[3001];
-int distances[3001];
+int dist[3001];
 
 /**
  * @return [-1]: Non-cyclic / [0]: Unidentified / [1~]: Vertex at which the cycle begins
  */
-int dfsGraphCycle(int currentVertex, int prevVertex) {
+int dfs(int currentVertex, int prevVertex) {
     if (states[currentVertex] == VISITED) return currentVertex;
 
     states[currentVertex] = VISITED;
@@ -24,7 +24,7 @@ int dfsGraphCycle(int currentVertex, int prevVertex) {
     for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
         if (adjacentVertex == prevVertex) continue;
 
-        int cycleStartVertex = dfsGraphCycle(adjacentVertex, currentVertex);
+        int cycleStartVertex = dfs(adjacentVertex, currentVertex);
 
         if (cycleStartVertex == -1) return -1;
         else if (cycleStartVertex >= 1) {
@@ -53,11 +53,11 @@ int main() {
         adjacentVerticesOf[toVertex].push_back(fromVertex);
     }
 
-    dfsGraphCycle(1, 0);
+    dfs(1, 0);
 
     for (int i = 1; i <= n; i++) {
         if (states[i] == CYCLIC) bfsVertices.push(i);
-        else distances[i] = -1;
+        else dist[i] = -1;
     }
 
     while (!bfsVertices.empty()) {
@@ -66,8 +66,8 @@ int main() {
         bfsVertices.pop();
 
         for (int adjacentVertex : adjacentVerticesOf[currentVertex]) {
-            if (distances[adjacentVertex] == -1) {
-                distances[adjacentVertex] = distances[currentVertex] + 1;
+            if (dist[adjacentVertex] == -1) {
+                dist[adjacentVertex] = dist[currentVertex] + 1;
 
                 bfsVertices.push(adjacentVertex);
             }
@@ -75,7 +75,7 @@ int main() {
     }
 
     for (int i = 1; i <= n; i++) {
-        cout << distances[i] << ' ';
+        cout << dist[i] << ' ';
     }
 
     cout << '\n';
