@@ -17,7 +17,7 @@ void bfsRoomNo(int sy, int sx, int roomNo) {
 
     roomNoAt[sy][sx] = roomNo;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -36,7 +36,7 @@ void bfsRoomNo(int sy, int sx, int roomNo) {
             roomNoAt[ny][nx] = roomNo;
             roomArea++;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 

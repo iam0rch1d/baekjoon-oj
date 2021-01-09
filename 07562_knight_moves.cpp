@@ -40,7 +40,7 @@ int main() {
 
         movesAt[initial.y][initial.x] = 1;
 
-        bfsPoints.push({initial.y, initial.x});
+        bfsPoints.emplace(initial.y, initial.x);
 
         while (!bfsPoints.empty()) {
             Point current = bfsPoints.front();

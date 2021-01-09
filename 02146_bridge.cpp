@@ -61,7 +61,7 @@ int main() {
         for (int j = 0; j < n; j++) {
             cin >> map[i][j];
 
-            if (map[i][j]) bfsDistancePoints.push({i, j});
+            if (map[i][j]) bfsDistancePoints.emplace(i, j);
         }
     }
 

@@ -19,7 +19,7 @@ int main() {
 
     dist[n][0] = 1;
 
-    bfsVertices.push({n, 0});
+    bfsVertices.emplace(n, 0);
 
     while (!bfsVertices.empty()) {
         int x;
@@ -34,7 +34,7 @@ int main() {
 
             dist[nx][1 - t] = dist[x][t] + 1;
 
-            bfsVertices.push({nx, 1 - t});
+            bfsVertices.emplace(nx, 1 - t);
         }
     }
 

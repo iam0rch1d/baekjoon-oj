@@ -1,47 +1,56 @@
 #include <iostream>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
-typedef struct {
-    int y;
-    int x;
-} Point;
+using pbb = pair<bool, bool>;
+using vi = vector<int>;
+using vstr = vector<string>;
+
+#define F first
+#define S second
+#define FOR(i, x, y) for (int i = (x); i < (y); i++)
+#define REP(i, x) FOR(i, 0, x)
+#define PRINTLN(x) cout << (x) << '\n'
 
 int n;
 int m;
 
 // (<is moved>, <is in hole>)
-pair<bool, bool> roll(vector<string> &board, Point &from, unsigned direction) {
-    if (board[from.y][from.x] == '.') return {false, true};
+pbb roll(vstr &a, int &y, int &x, unsigned direction) {
+    if (a[y][x] == '.') return {false, true};
 
-    bool isMoved = false;
+    bool retF = false;
 
     while (true) {
-        Point to{from.y + "0121"[direction] - '1', from.x + "1210"[direction] - '1'};
+        int ny = y + "0121"[direction] - '1';
+        int nx = x + "1210"[direction] - '1';
 
-        if (board[to.y][to.x] == '#' || board[to.y][to.x] == 'R' || board[to.y][to.x] == 'B') return {isMoved, false};
-        else if (board[to.y][to.x] == '.') {
-            swap(board[from.y][from.x], board[to.y][to.x]);
-            from = to;
-            isMoved = true;
-        } else if (board[to.y][to.x] == 'O') {
-            board[from.y][from.x] = '.';
+        if (a[ny][nx] == '#' || a[ny][nx] == 'R' || a[ny][nx] == 'B') return {retF, false};
+        else if (a[ny][nx] == '.') {
+            swap(a[y][x], a[ny][nx]);
+            tie(y, x) = {ny, nx};
+            retF = true;
+        } else if (a[ny][nx] == 'O') {
+            a[y][x] = '.';
 
             return {true, true};
         }
     }
 }
 
-int tilt(vector<string> board, vector<unsigned> &directions) {
-    Point red;
-    Point blue;
-    int tiltCount = 0;
+int tilt(vstr a, vi &directions) {
+    int ry;
+    int rx;
+    int by;
+    int bx;
+    int ret = 0;
 
     for (int i = 1; i < n - 1; i++) {
         for (int j = 1; j < m - 1; j++) {
-            if (board[i][j] == 'R') red = {i, j};
-            else if (board[i][j] == 'B') blue = {i, j};
+            if (a[i][j] == 'R') tie(ry, rx) = {i, j};
+            else if (a[i][j] == 'B') tie(by, bx) = {i, j};
         }
     }
 
@@ -49,77 +58,77 @@ int tilt(vector<string> board, vector<unsigned> &directions) {
         bool isRedInHole = false;
         bool isBlueInHole = false;
 
-        tiltCount++;
+        ret++;
 
         while (true) {
-            auto redStates = roll(board, red, direction);
-            auto blueStates = roll(board, blue, direction);
+            pbb redStates = roll(a, ry, rx, direction);
+            pbb blueStates = roll(a, by, bx, direction);
 
-            if (!redStates.first && !blueStates.first) break;
+            if (!redStates.F && !blueStates.F) break;
 
-            if (redStates.second) isRedInHole = true;
+            if (redStates.S) isRedInHole = true;
 
-            if (blueStates.second) isBlueInHole = true;
+            if (blueStates.S) isBlueInHole = true;
         }
 
         if (isBlueInHole) return 11;
 
-        if (isRedInHole) return tiltCount;
+        if (isRedInHole) return ret;
     }
 
     return 11;
 }
 
 int main() {
-    int minTiltCount = 11;
-    unsigned minTiltBitset = 1u << 20u;
+    int ans = 11;
+    int ansBitset = 1 << 20;
 
     cin >> n >> m;
 
-    vector<string> board(n);
+    vstr a(n);
 
-    for (string &boardRow : board) {
-        cin >> boardRow;
+    for (string &ai : a) {
+        cin >> ai;
     }
 
-    for (unsigned tiltBitset = 0; tiltBitset < (1u << 20u); tiltBitset++) {
-        unsigned currentBitset = tiltBitset;
-        vector<unsigned> directions(10, 4);
-        bool areDirectionsValid = true;
+    REP(tiltBitset, 1 << 20) {
+        int currentBitset = tiltBitset;
+        vi directions(10, 4);
+        bool isValid = true;
 
         for (int i = 0; i < 10; i++) {
-            directions[i] = currentBitset & 3u;
+            directions[i] = currentBitset & 3;
 
-            if (i != 0 && !((directions[i] & 1u) ^ (directions[i - 1] & 1u))) {
-                areDirectionsValid = false;
+            if (i != 0 && !((directions[i] & 1) ^ (directions[i - 1] & 1))) {
+                isValid = false;
 
                 break;
             }
 
-            currentBitset >>= 2u;
+            currentBitset >>= 2;
         }
 
-        if (areDirectionsValid) {
-            int currentTiltCount = tilt(board, directions);
+        if (isValid) {
+            int currentTiltCount = tilt(a, directions);
 
-            if (minTiltCount > currentTiltCount) {
-                minTiltCount = currentTiltCount;
-                minTiltBitset = tiltBitset;
+            if (ans > currentTiltCount) {
+                ans = currentTiltCount;
+                ansBitset = tiltBitset;
             }
         }
     }
 
-    cout << (minTiltCount == 11 ? -1 : minTiltCount) << '\n';
+    PRINTLN(ans == 11 ? -1 : ans);
 
-    for (int i = 0; i < (minTiltCount == 11 ? 0 : minTiltCount); i++) {
-        unsigned direction = minTiltBitset & 3u;
+    REP(i, ans == 11 ? 0 : ans) {
+        unsigned direction = ansBitset & 3;
 
         cout << "URDL"[direction];
 
-        minTiltBitset >>= 2u;
+        ansBitset >>= 2;
     }
 
-    cout << '\n';
+    PRINTLN("");
 
     return 0;
 }

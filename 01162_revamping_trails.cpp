@@ -53,7 +53,7 @@ int main() {
 
     d[0][0] = 0;
 
-    dijkstraVertices.push({0, 0, 0});
+    dijkstraVertices.emplace(0, 0, 0);
 
     while (!dijkstraVertices.empty()) {
         ll distance;
@@ -70,11 +70,11 @@ int main() {
 
         for (pil edge : edgesOf[vertex]) {
             if (chmin(d[edge.F][revamps], d[vertex][revamps] + edge.S)) {
-                dijkstraVertices.push({-d[edge.F][revamps], edge.F, revamps});
+                dijkstraVertices.emplace(-d[edge.F][revamps], edge.F, revamps);
             }
 
             if (revamps < k && chmin(d[edge.F][revamps + 1], d[vertex][revamps])) {
-                dijkstraVertices.push({-d[edge.F][revamps + 1], edge.F, revamps + 1});
+                dijkstraVertices.emplace(-d[edge.F][revamps + 1], edge.F, revamps + 1);
             }
         }
     }

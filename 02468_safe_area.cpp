@@ -14,7 +14,7 @@ void bfsSafeArea(int sy, int sx, int threshold, int safeAreaNo) {
 
     safeAreaNoAt[sy][sx] = safeAreaNo;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -32,7 +32,7 @@ void bfsSafeArea(int sy, int sx, int threshold, int safeAreaNo) {
 
             safeAreaNoAt[ny][nx] = safeAreaNo;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 }

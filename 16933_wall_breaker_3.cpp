@@ -30,7 +30,7 @@ int main() {
 
     movesAt[0][0][0][0] = 1;
 
-    bfsPoints.push({0, 0, 0, false});
+    bfsPoints.emplace(0, 0, 0, false);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -65,20 +65,20 @@ int main() {
             if (!map[ny][nx] && !movesAt[ny][nx][brokenWalls][!isNight]) {
                 movesAt[ny][nx][brokenWalls][!isNight] = movesAt[y][x][brokenWalls][isNight] + 1;
 
-                bfsPoints.push({ny, nx, brokenWalls, !isNight});
+                bfsPoints.emplace(ny, nx, brokenWalls, !isNight);
             }
 
             if (map[ny][nx] && !movesAt[ny][nx][brokenWalls + 1][true] && brokenWalls < k && !isNight) {
                 movesAt[ny][nx][brokenWalls + 1][true] = movesAt[y][x][brokenWalls][isNight] + 1;
 
-                bfsPoints.push({ny, nx, brokenWalls + 1, true});
+                bfsPoints.emplace(ny, nx, brokenWalls + 1, true);
             }
         }
 
         if (!movesAt[y][x][brokenWalls][!isNight]) {
             movesAt[y][x][brokenWalls][!isNight] = movesAt[y][x][brokenWalls][isNight] + 1;
 
-            bfsPoints.push({y, x, brokenWalls, !isNight});
+            bfsPoints.emplace(y, x, brokenWalls, !isNight);
         }
     }
 

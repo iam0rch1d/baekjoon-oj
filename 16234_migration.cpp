@@ -20,7 +20,7 @@ void bfsFrontierNo(int sy, int sx, int frontierNo) {
     frontierSizes[frontierNo] = 1;
     frontierNoAt[sy][sx] = frontierNo;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -43,7 +43,7 @@ void bfsFrontierNo(int sy, int sx, int frontierNo) {
                 frontierPopulations[frontierNo] += a[ny][nx];
                 frontierSizes[frontierNo]++;
 
-                bfsPoints.push({ny, nx});
+                bfsPoints.emplace(ny, nx);
             }
         }
     }

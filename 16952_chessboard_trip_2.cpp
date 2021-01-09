@@ -51,7 +51,7 @@ int main() {
                 REP(k, 3) {
                     dist[i][j][0][k] = {0, 0};
 
-                    bfsVertices.push({i, j, 0, k});
+                    bfsVertices.emplace(i, j, 0, k);
                 }
             }
         }
@@ -86,7 +86,7 @@ int main() {
                 int nextNumber = number + (a[ny][nx] == number + 1);
                 auto &nextState = dist[ny][nx][nextNumber][piece];
 
-                if (chmin(nextState, state + make_pair(1, 0))) bfsVertices.push({ny, nx, nextNumber, piece});
+                if (chmin(nextState, state + make_pair(1, 0))) bfsVertices.emplace(ny, nx, nextNumber, piece);
 
                 if (piece == 0) break;
 
@@ -98,7 +98,7 @@ int main() {
         REP(i, 3) {
             if (i == piece) continue;
 
-            if (chmin(dist[y][x][number][i], state + make_pair(1, 1))) bfsVertices.push({y, x, number, i});
+            if (chmin(dist[y][x][number][i], state + make_pair(1, 1))) bfsVertices.emplace(y, x, number, i);
         }
     }
 

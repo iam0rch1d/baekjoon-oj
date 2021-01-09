@@ -46,7 +46,7 @@ int main() {
                     continue;
                 }
 
-                rotations.push({adjacentGearNo, -direction});
+                rotations.emplace(adjacentGearNo, -direction);
             }
 
             if (direction == 1) {

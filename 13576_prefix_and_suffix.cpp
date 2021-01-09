@@ -38,7 +38,7 @@ int main() {
     prefixIndex = n;
 
     while (prefixIndex) {
-        prefixes.push({prefixIndex, failureCounts[prefixIndex] + 1});
+        prefixes.emplace(prefixIndex, failureCounts[prefixIndex] + 1);
 
         prefixIndex = failures[prefixIndex - 1];
     }

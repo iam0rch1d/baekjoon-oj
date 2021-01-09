@@ -48,7 +48,7 @@ int main() {
     REP(i, 4) {
         dist[sy][sx][0][i] = 0;
 
-        bfsVertices.push({sy, sx, 0, i});
+        bfsVertices.emplace(sy, sx, 0, i);
     }
 
     while (!bfsVertices.empty()) {
@@ -84,7 +84,7 @@ int main() {
 
             dist[ny][nx][nc][i] = dist[y][x][c][prevDirection] + 1;
 
-            bfsVertices.push({ny, nx, nc, i});
+            bfsVertices.emplace(ny, nx, nc, i);
         }
     }
 

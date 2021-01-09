@@ -14,7 +14,7 @@ void bfsArea(vector<string> &map, int sy, int sx, int areaNo) {
 
     areaNoAt[sy][sx] = areaNo;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -32,7 +32,7 @@ void bfsArea(vector<string> &map, int sy, int sx, int areaNo) {
 
             areaNoAt[ny][nx] = areaNo;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 }

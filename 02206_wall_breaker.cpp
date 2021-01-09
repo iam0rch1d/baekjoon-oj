@@ -29,7 +29,7 @@ int main() {
 
     movesAt[0][0][0] = 1;
 
-    bfsPoints.push({0, 0, 0});
+    bfsPoints.emplace(0, 0, 0);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -61,13 +61,13 @@ int main() {
             if (!map[ny][nx] && !movesAt[ny][nx][brokenWalls]) {
                 movesAt[ny][nx][brokenWalls] = movesAt[y][x][brokenWalls] + 1;
 
-                bfsPoints.push({ny, nx, brokenWalls});
+                bfsPoints.emplace(ny, nx, brokenWalls);
             }
 
             if (map[ny][nx] && !movesAt[ny][nx][brokenWalls + 1] && brokenWalls < 1) {
                 movesAt[ny][nx][brokenWalls + 1] = movesAt[y][x][brokenWalls] + 1;
 
-                bfsPoints.push({ny, nx, brokenWalls + 1});
+                bfsPoints.emplace(ny, nx, brokenWalls + 1);
             }
         }
     }

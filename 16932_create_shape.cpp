@@ -20,7 +20,7 @@ void bfsShapeNo(int sy, int sx, int shapeNo) {
 
     shapeNoAt[sy][sx] = shapeNo;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -39,7 +39,7 @@ void bfsShapeNo(int sy, int sx, int shapeNo) {
             shapeNoAt[ny][nx] = shapeNo;
             shapeArea++;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 

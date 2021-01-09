@@ -31,11 +31,11 @@ int main() {
             if (map[i][j] == '*') {
                 floodingTimeAt[i][j] = 0;
 
-                bfsFloodingPoints.push({i, j});
+                bfsFloodingPoints.emplace(i, j);
             } else if (map[i][j] == 'S') {
                 movingTimeAt[i][j] = 0;
 
-                bfsMovingPoints.push({i, j});
+                bfsMovingPoints.emplace(i, j);
             } else if (map[i][j] == 'D') tie(dy, dx) = {i, j};
         }
     }
@@ -59,7 +59,7 @@ int main() {
 
             floodingTimeAt[ny][nx] = floodingTimeAt[y][x] + 1;
 
-            bfsFloodingPoints.push({ny, nx});
+            bfsFloodingPoints.emplace(ny, nx);
         }
     }
 
@@ -90,7 +90,7 @@ int main() {
 
             movingTimeAt[ny][nx] = movingTimeAt[y][x] + 1;
 
-            bfsMovingPoints.push({ny, nx});
+            bfsMovingPoints.emplace(ny, nx);
         }
     }
 

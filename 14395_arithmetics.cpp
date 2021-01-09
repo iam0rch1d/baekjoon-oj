@@ -21,7 +21,7 @@ int main() {
     queue<pair<long long, string>> bfsOperations;
 
     creatableNumbers.insert(s);
-    bfsOperations.push({s, ""});
+    bfsOperations.emplace(s, "");
 
     while (!bfsOperations.empty()) {
         long long currentNumber;
@@ -47,7 +47,7 @@ int main() {
 
             if (nextNumber >= 0 && nextNumber <= 1000000000 && !creatableNumbers.count(nextNumber)) {
                 creatableNumbers.insert(nextNumber);
-                bfsOperations.push({nextNumber, currentRecipe + "*+-/"[i]});
+                bfsOperations.emplace(nextNumber, currentRecipe + "*+-/"[i]);
             }
         }
     }

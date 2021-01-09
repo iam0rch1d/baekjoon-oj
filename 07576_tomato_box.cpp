@@ -32,7 +32,7 @@ int main() {
         for (int j = 0; j < m; j++) {
             cin >> map[i][j];
 
-            if (map[i][j] == 1) bfsPoints.push({i, j});
+            if (map[i][j] == 1) bfsPoints.emplace(i, j);
         }
     }
 

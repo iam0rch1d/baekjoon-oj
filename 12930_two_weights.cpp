@@ -54,7 +54,7 @@ int main() {
 
     d1[0][0] = 0;
 
-    dijkstraVertices.push({0, 0, 0});
+    dijkstraVertices.emplace(0, 0, 0);
 
     while (!dijkstraVertices.empty()) {
         int cd1;
@@ -74,7 +74,7 @@ int main() {
             int nw2 = cw2 + a2[cv][i].S;
 
             if (nw2 <= n * 9 && chmin(d1[nv][nw2], d1[cv][cw2] + a1[cv][i].S)) {
-                dijkstraVertices.push({-d1[nv][nw2], nv, nw2});
+                dijkstraVertices.emplace(-d1[nv][nw2], nv, nw2);
             }
         }
     }

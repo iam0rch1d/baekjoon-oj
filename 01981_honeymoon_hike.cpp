@@ -16,7 +16,7 @@ bool bfsCanMove(int minElement, int maxElement) {
     queue<pair<int, int>> bfsPoints;
 
     isVisited[0][0] = true;
-    bfsPoints.push({0, 0});
+    bfsPoints.emplace(0, 0);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -39,7 +39,7 @@ bool bfsCanMove(int minElement, int maxElement) {
 
             isVisited[ny][nx] = true;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 

@@ -32,7 +32,7 @@ int main() {
 
             cin >> tempPriority;
 
-            printer.push({i, tempPriority});
+            printer.emplace(i, tempPriority);
             priorities.push(tempPriority);
         }
 

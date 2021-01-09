@@ -16,7 +16,7 @@ int main() {
 
     cache[1][0] = 0;
 
-    bfsEmojis.push({1, 0});
+    bfsEmojis.emplace(1, 0);
 
     while (!bfsEmojis.empty()) {
         pair<int, int> currentEmoji = bfsEmojis.front();

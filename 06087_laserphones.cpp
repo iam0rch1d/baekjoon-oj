@@ -27,7 +27,7 @@ int main() {
 
                 mirrorsAt[cy][cx] = 1;
 
-                bfsLaserPoints.push({cy, cx});
+                bfsLaserPoints.emplace(cy, cx);
             }
         }
     }
@@ -58,7 +58,7 @@ int main() {
                 if (!mirrorsAt[ny][nx]) {
                     mirrorsAt[ny][nx] = mirrorsAt[y][x] + 1;
 
-                    bfsLaserPoints.push({ny, nx});
+                    bfsLaserPoints.emplace(ny, nx);
                 }
 
                 distance++;

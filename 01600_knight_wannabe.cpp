@@ -25,7 +25,7 @@ int main() {
 
     movesAt[0][0][0] = 1;
 
-    bfsPoints.push({0, 0, 0});
+    bfsPoints.emplace(0, 0, 0);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -51,7 +51,7 @@ int main() {
             if (!map[ny][nx] && !movesAt[ny][nx][knightMoves + (i >= 4)]) {
                 movesAt[ny][nx][knightMoves + (i >= 4)] = movesAt[y][x][knightMoves] + 1;
 
-                bfsPoints.push({ny, nx, knightMoves + (i >= 4)});
+                bfsPoints.emplace(ny, nx, knightMoves + (i >= 4));
             }
         }
     }

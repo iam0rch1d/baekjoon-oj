@@ -46,7 +46,7 @@ int main() {
                 if (map[i][j] == 2) {
                     infectionTimeAt[i][j] = 0;
 
-                    bfsPoints.push({i, j});
+                    bfsPoints.emplace(i, j);
                 }
             }
         }
@@ -69,7 +69,7 @@ int main() {
 
                 infectionTimeAt[ny][nx] = infectionTimeAt[y][x] + 1;
 
-                bfsPoints.push({ny, nx});
+                bfsPoints.emplace(ny, nx);
             }
         }
 

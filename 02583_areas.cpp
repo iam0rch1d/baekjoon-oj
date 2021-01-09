@@ -19,7 +19,7 @@ int bfsArea(int sy, int sx) {
 
     isVisited[sy][sx] = true;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -38,7 +38,7 @@ int bfsArea(int sy, int sx) {
 
             isVisited[ny][nx] = true;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 

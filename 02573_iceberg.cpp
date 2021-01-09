@@ -16,7 +16,7 @@ void bfsIcebergNo(int sy, int sx, int icebergNo) {
 
     icebergNoAt[sy][sx] = icebergNo;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -34,7 +34,7 @@ void bfsIcebergNo(int sy, int sx, int icebergNo) {
 
             icebergNoAt[ny][nx] = icebergNo;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 }

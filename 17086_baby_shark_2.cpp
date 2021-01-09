@@ -18,7 +18,7 @@ int main() {
         for (int j = 0; j < m; j++) {
             cin >> map[i][j];
 
-            if (map[i][j]) bfsPoints.push({i, j});
+            if (map[i][j]) bfsPoints.emplace(i, j);
         }
     }
 
@@ -39,7 +39,7 @@ int main() {
             map[ny][nx] = map[y][x] + 1;
             maxSafeDistance = map[ny][nx] - 1;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 

@@ -50,7 +50,7 @@ int main() {
 
         d[startVertex] = 0;
 
-        dijkstraVertices.push({0, startVertex});
+        dijkstraVertices.emplace(0, startVertex);
 
         while (!dijkstraVertices.empty()) {
             int distance;
@@ -65,7 +65,7 @@ int main() {
             isVisited[vertex] = true;
 
             for (pii edge : edgesOf[vertex]) {
-                if (chmin(d[edge.F], d[vertex] + edge.S)) dijkstraVertices.push({-d[edge.F], edge.F});
+                if (chmin(d[edge.F], d[vertex] + edge.S)) dijkstraVertices.emplace(-d[edge.F], edge.F);
             }
         }
 

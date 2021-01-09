@@ -17,7 +17,7 @@ int main() {
     canMakeC[capacities[2]] = true;
     abcSum = capacities[2];
 
-    bfsAbs.push({0, 0});
+    bfsAbs.emplace(0, 0);
 
     while (!bfsAbs.empty()) {
         int currentAbc[3] = {bfsAbs.front().first, bfsAbs.front().second, abcSum - currentAbc[0] - currentAbc[1]};
@@ -42,7 +42,7 @@ int main() {
 
                 if (!adjacentAbc[0]) canMakeC[adjacentAbc[2]] = true;
 
-                bfsAbs.push({adjacentAbc[0], adjacentAbc[1]});
+                bfsAbs.emplace(adjacentAbc[0], adjacentAbc[1]);
             }
         }
     }

@@ -45,7 +45,7 @@ int main() {
 
     distancesOf[0].push(0);
 
-    dijkstraVertices.push({0, 0});
+    dijkstraVertices.emplace(0, 0);
 
     while (!dijkstraVertices.empty()) {
         int distance;
@@ -63,7 +63,7 @@ int main() {
             }
 
             distancesOf[edge.F].push(distance + edge.S);
-            dijkstraVertices.push({-(distance + edge.S), edge.F});
+            dijkstraVertices.emplace(-(distance + edge.S), edge.F);
         }
     }
 

@@ -20,7 +20,7 @@ void bfsSpaceNo(int sy, int sx, int spaceNo) {
 
     spaceNoAt[sy][sx] = spaceNo;
 
-    bfsPoints.push({sy, sx});
+    bfsPoints.emplace(sy, sx);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -39,7 +39,7 @@ void bfsSpaceNo(int sy, int sx, int spaceNo) {
             spaceNoAt[ny][nx] = spaceNo;
             spaceArea++;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 

@@ -33,7 +33,7 @@ int main() {
 
         visibleCount += !heights.empty();
 
-        heights.push({a[i], sameHeightCount});
+        heights.emplace(a[i], sameHeightCount);
     }
 
     cout << visibleCount << '\n';

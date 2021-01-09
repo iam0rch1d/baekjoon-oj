@@ -22,7 +22,7 @@ int main() {
             for (int k = 0; k < m; k++) {
                 cin >> map[i][j][k];
 
-                if (map[i][j][k] == 1) bfsPoints.push({i, j, k});
+                if (map[i][j][k] == 1) bfsPoints.emplace(i, j, k);
             }
         }
     }
@@ -45,7 +45,7 @@ int main() {
 
             map[nz][ny][nx] = map[z][y][x] + 1;
 
-            bfsPoints.push({nz, ny, nx});
+            bfsPoints.emplace(nz, ny, nx);
         }
     }
 

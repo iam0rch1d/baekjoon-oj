@@ -71,7 +71,7 @@ int tilt(vector<string> board, vector<unsigned> &directions) {
 }
 
 int main() {
-    int minTiltCount = 11;
+    int ans = 11;
 
     cin >> n >> m;
 
@@ -98,10 +98,10 @@ int main() {
             currentBitset >>= 2u;
         }
 
-        if (areDirectionsValid) minTiltCount = min(minTiltCount, tilt(board, directions));
+        if (areDirectionsValid) ans = min(ans, tilt(board, directions));
     }
 
-    cout << (minTiltCount == 11 ? -1 : minTiltCount) << '\n';
+    cout << (ans == 11 ? -1 : ans) << '\n';
 
     return 0;
 }

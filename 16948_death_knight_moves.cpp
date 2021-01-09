@@ -21,7 +21,7 @@ int main() {
 
     movesAt[y1][x1] = 1;
 
-    bfsPoints.push({y1, x1});
+    bfsPoints.emplace(y1, x1);
 
     while (!bfsPoints.empty()) {
         int y;
@@ -39,7 +39,7 @@ int main() {
 
             movesAt[ny][nx] = movesAt[y][x] + 1;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 

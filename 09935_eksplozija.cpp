@@ -28,9 +28,9 @@ int main() {
         }
     } else {
         for (int i = 0; i < sSize; i++) {
-            if (s[i] == explosion[0]) explosionPieces.push({i, 0});
+            if (s[i] == explosion[0]) explosionPieces.emplace(i, 0);
             else if (!explosionPieces.empty() && s[i] == explosion[explosionPieces.top().second + 1]) {
-                explosionPieces.push({i, explosionPieces.top().second + 1});
+                explosionPieces.emplace(i, explosionPieces.top().second + 1);
 
                 if (explosionPieces.top().second == explosionSize - 1) {
                     for (int j = 0; j < explosionSize; j++) {

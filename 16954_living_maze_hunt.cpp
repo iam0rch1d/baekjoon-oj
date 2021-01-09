@@ -16,7 +16,7 @@ int main() {
 
     isVisited[0][7][0] = true;
 
-    bfsPoints.push({0, 7, 0});
+    bfsPoints.emplace(0, 7, 0);
 
     while (!bfsPoints.empty()) {
         int time;
@@ -47,7 +47,7 @@ int main() {
 
             isVisited[nextTime][ny][nx] = true;
 
-            bfsPoints.push({nextTime, ny, nx});
+            bfsPoints.emplace(nextTime, ny, nx);
         }
     }
 

@@ -84,7 +84,7 @@ int main() {
                         weights[i][vertexAt[ny][nx]] = distances[ny][nx];
                     }
 
-                    bfsPoints.push({ny, nx});
+                    bfsPoints.emplace(ny, nx);
                 }
             }
         }

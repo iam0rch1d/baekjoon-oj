@@ -62,7 +62,7 @@ int main() {
 
     distances[startVertex] = 0;
 
-    dijkstraVertices.push({0, startVertex});
+    dijkstraVertices.emplace(0, startVertex);
 
     while (!dijkstraVertices.empty()) {
         int vertex = dijkstraVertices.top().S;
@@ -78,7 +78,7 @@ int main() {
             int cost = edge.cost;
 
             if (chmin(distances[toVertex], distances[vertex] + cost)) {
-                dijkstraVertices.push({-distances[toVertex], toVertex});
+                dijkstraVertices.emplace(-distances[toVertex], toVertex);
 
                 backVertices[toVertex] = vertex;
             }

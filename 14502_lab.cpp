@@ -8,13 +8,13 @@ using namespace std;
 int n;
 int m;
 
-int bfsSafeArea(vector<vector<int>> map) {
+int bfsSafeArea(vector<vector<int>> a) {
     queue<pair<int, int>> bfsPoints;
     int safeArea = 0;
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (map[i][j] == 2) bfsPoints.push({i, j});
+            if (a[i][j] == 2) bfsPoints.emplace(i, j);
         }
     }
 
@@ -30,15 +30,15 @@ int bfsSafeArea(vector<vector<int>> map) {
             int ny = y + "1201"[i] - '1';
             int nx = x + "0112"[i] - '1';
 
-            if (ny < 0 || ny >= n || nx < 0 || nx >= m || map[ny][nx]) continue;
+            if (ny < 0 || ny >= n || nx < 0 || nx >= m || a[ny][nx]) continue;
 
-            map[ny][nx] = 2;
+            a[ny][nx] = 2;
 
-            bfsPoints.push({ny, nx});
+            bfsPoints.emplace(ny, nx);
         }
     }
 
-    for (auto &mapRow : map) {
+    for (auto &mapRow : a) {
         for (int mapElement : mapRow) {
             safeArea += mapElement == 0;
         }
