@@ -16,8 +16,6 @@ using vstr = vector<string>;
 int dist[50][50][4][4];
 
 int main() {
-    RESET(dist, -1);
-
     int n;
     int m;
 
@@ -42,6 +40,8 @@ int main() {
             }
         }
     }
+
+    RESET(dist, -1);
 
     queue<tuple<int, int, int, int>> bfsVertices;  // ({y, x, c, prevDirection})
 

@@ -11,12 +11,12 @@ int dist[100001];
 int dp[100001];
 
 int main() {
-    RESET(dist, -1);
-
     int n;
     int k;
 
     cin >> n >> k;
+
+    RESET(dist, -1);
 
     dist[n] = 0;
     dp[n] = 1;
