@@ -61,10 +61,8 @@ int main() {
         else if (x <= left && y >= right) return segtree[node];
 
         int mid = (left + right) / 2;
-        int leftChild = q2(node * 2, left, mid, x, y);
-        int rightChild = q2(node * 2 + 1, mid + 1, right, x, y);
 
-        return min(leftChild, rightChild);
+        return min(q2(node * 2, left, mid, x, y), q2(node * 2 + 1, mid + 1, right, x, y));
     };
 
     int m;
