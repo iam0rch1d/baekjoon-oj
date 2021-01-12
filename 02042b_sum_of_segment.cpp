@@ -9,9 +9,8 @@ using ll = long long;
 
 #define MAX_SIZE (1 << 21)
 
-ll leafBase = 1;
 ll a[1000001];
-ll segtree[MAX_SIZE];
+ll fenwicktree[MAX_SIZE];
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -23,40 +22,20 @@ int main() {
 
     cin >> n >> m >> k;
 
-    while (leafBase <= n) leafBase *= 2;
-
-    leafBase--;
-
     auto update = [&](int x, ll diff) {
-        x += leafBase;
-
-        while (x) {
-            segtree[x] += diff;
-            x /= 2;
+        while (x < MAX_SIZE) {
+            fenwicktree[x] += diff;
+            x += x & -x;
         }
     };
 
-    auto query = [&](int left, int right) {
-        left += leafBase;
-        right += leafBase;
-
+    auto query = [&](int x) {
         ll ret = 0;
 
-        while (left < right) {
-            if (left % 2 == 0) left /= 2;
-            else {
-                ret += segtree[left];
-                left = (left + 1) / 2;
-            }
-
-            if (right % 2 == 1) right /= 2;
-            else {
-                ret += segtree[right];
-                right = (right - 1) / 2;
-            }
+        while (x) {
+            ret += fenwicktree[x];
+            x -= x & -x;
         }
-
-        if (left == right) ret += segtree[left];
 
         return ret;
     };
@@ -80,16 +59,18 @@ int main() {
 
             cin >> i >> value;
 
-            update(i, value - a[i]);
+            ll diff = value - a[i];
 
             a[i] = value;
+
+            update(i, diff);
         } else {
             int left;
             int right;
 
             cin >> left >> right;
 
-            PRINTLN(query(left, right));
+            PRINTLN(query(right) - query(left - 1));
         }
     }
 

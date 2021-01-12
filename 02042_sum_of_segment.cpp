@@ -75,11 +75,9 @@ int main() {
 
             cin >> i >> v;
 
-            ll diff = v - a[i];
+            q1(1, 1, n, i, v - a[i]);
 
             a[i] = v;
-
-            q1(1, 1, n, i, diff);
         } else {
             int i;
             int j;
