@@ -3,7 +3,6 @@
 
 using namespace std;
 
-#define FUN function
 #define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
 #define PRINTLN(x) cout << (x) << '\n'
 
@@ -19,18 +18,12 @@ int main() {
 
     cin >> n >> m;
 
-    FOR_(i, 1, n) {
-        string temp;
-
-        cin >> temp;
-
-        FOR_(j, 1, n) a[i][j] = temp[j] - '0';
-    }
+    FOR_(i, 1, n) FOR_(j, 1, m) scanf("%1d", &a[i][j]);
 
     int ans = 0;
 
     FOR_(i, 1, n) {
-        FOR_(j, 1, n) {
+        FOR_(j, 1, m) {
             if (!a[i][j]) continue;
 
             dp[i][j] = min({dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]}) + 1;
