@@ -36,6 +36,7 @@ using vstr = vector<string>;
 
 #define F first
 #define S second
+#define FUN function
 #define ALL(x) x.begin(), x.end()
 #define IALL(x) x.rbegin(), x.rend()
 #define FOR(i, x, y) for (int i = (x); i < (y); i++)
