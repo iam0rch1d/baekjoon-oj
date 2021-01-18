@@ -32,7 +32,7 @@ int main() {
 
         ret = 0;
 
-        FOR(i, x + 1, columnSize) if (a[1 - y][i] == scroll[index]) ret += memoize(index + 1, 1 - y, i);
+        FOR(nx, x + 1, columnSize) if (a[1 - y][nx] == scroll[index]) ret += memoize(index + 1, 1 - y, nx);
 
         return ret;
     };
