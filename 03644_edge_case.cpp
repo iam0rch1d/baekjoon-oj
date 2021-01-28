@@ -4,12 +4,15 @@
 using namespace std;
 
 using vi = vector<int>;
+using vvi = vector<vi>;
 
 #define FOR(i, x, y) for (int i = (x); i < (y); i++)
 #define FOR_(i, x, y) for (int i = (x); i <= (y); i++)
 #define IFOR(i, x, y) for (int i = (y) - 1; i >= (x); i--)
 #define REP(i, x) FOR(i, 0, x)
 #define PRINTLN(x) cout << (x) << '\n'
+
+vi dp[10001];
 
 vi operator+(vi &a, vi &b) {
     if (a.size() < b.size()) return operator+(b, a);
@@ -34,37 +37,21 @@ vi operator+(vi &a, vi &b) {
 }
 
 int main() {
+    dp[0] = {1};
+    dp[1] = {1};
+    dp[2] = {3};
+
+    FOR_(i, 3, 10000) dp[i] = dp[i - 1] + dp[i - 2];
+
     int n;
 
-    cin >> n;
+    while (cin >> n) {
+        int ansSize = dp[n].size();
 
-    if (n == 0) {
-        cout << 0 << '\n';
+        IFOR(i, 0, ansSize) cout << dp[n][i];
 
-        return 0;
+        PRINTLN("");
     }
-
-    if (n >= 1 && n <= 2) {
-        cout << 1 << '\n';
-
-        return 0;
-    }
-
-    vi fibonacci;
-    vi fibonacciPrev1 = {1};
-    vi fibonacciPrev2 = {0};
-
-    FOR_(i, 2, n) {
-        fibonacci = fibonacciPrev1 + fibonacciPrev2;
-        fibonacciPrev2 = fibonacciPrev1;
-        fibonacciPrev1 = fibonacci;
-    }
-
-    int fibonacciSize = fibonacci.size();
-
-    IFOR(i, 0, fibonacciSize) cout << fibonacci[i];
-
-    PRINTLN("");
 
     return 0;
 }

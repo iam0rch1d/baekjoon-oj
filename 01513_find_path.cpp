@@ -16,7 +16,7 @@ template<typename T>
 void chmodadd(T &x, T q) { x = (x + q) % MODULO; }
 
 int a[51][51];
-int dp[51][51][51][51];  // (<y>, <x>, <visits>, <lastVisit>)
+int dp[51][51][51][51];  // (<y>, <x>, <visits>, <prevPoint>)
 int ans[51];
 
 int main() {
@@ -45,9 +45,9 @@ int main() {
 
             FOR_(visits, 1, c) {
                 if (a[y][x] == -1) {  // Not point
-                    REP(lastPoint, c) {
-                        chmodadd(dp[y][x][visits][lastPoint],
-                                 dp[y - 1][x][visits][lastPoint] + dp[y][x - 1][visits][lastPoint]);
+                    REP(prevPoint, c) {
+                        chmodadd(dp[y][x][visits][prevPoint],
+                                 dp[y - 1][x][visits][prevPoint] + dp[y][x - 1][visits][prevPoint]);
                     }
                 } else {  // Point
                     int point = a[y][x];
@@ -55,9 +55,9 @@ int main() {
                     if (visits == 1) {
                         chmodadd(dp[y][x][visits][point], dp[y - 1][x][0][0] + dp[y][x - 1][0][0]);
                     } else {
-                        REP(lastPoint, point) {
+                        REP(prevPoint, point) {
                             chmodadd(dp[y][x][visits][point],
-                                     dp[y - 1][x][visits - 1][lastPoint] + dp[y][x - 1][visits - 1][lastPoint]);
+                                     dp[y - 1][x][visits - 1][prevPoint] + dp[y][x - 1][visits - 1][prevPoint]);
                         }
                     }
                 }
@@ -66,7 +66,7 @@ int main() {
     }
 
     FOR_(visits, 0, c) {
-        REP(lastPoint, max(1, c)) chmodadd(ans[visits], dp[n][m][visits][lastPoint]);
+        REP(prevPoint, max(1, c)) chmodadd(ans[visits], dp[n][m][visits][prevPoint]);
 
         PRINT(ans[visits]);
     }
